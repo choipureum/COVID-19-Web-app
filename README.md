@@ -27,7 +27,7 @@
   </p>
 </p>
 
-
+ 
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -158,13 +158,13 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
+[contributors-url]: https://github.comCOVID-19-WEB-App/COVID-19-Web-app/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
 [forks-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
 [stars-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
 [issues-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/issues
 [product-screenshot]: images/screenshot.png
 
