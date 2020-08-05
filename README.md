@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://png.pngtree.com/png-vector/20200317/ourlarge/pngtree-logo-covid-19-coronavirus-wuhan-vector-illustration-png-image_2162385.jpg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">COVID-19 종합 웹프로젝트</h3>
@@ -32,22 +32,22 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
+* [코로나19 종합 웹 프로젝트](#about-the-project)
+  * [프로젝트 기간](#built-with)
+* [프로젝트 개요](#getting-started)
+  * [배경](#prerequisites) 
+  * [WAS](#usage)
+  * [Pattern](#roadmap)
+  * [DataBase](#contributing)
+  * [Tool](#license)
+* [주요기능](#installation)
+* [프로젝트관리툴](#contact)
+* [개발 이미지](#acknowledgements)
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## 코로나19 종합 웹 프로젝트
 
 *코로나19 웹페이지 구현 프로젝트
 *6인 팀프로젝트
@@ -66,21 +66,15 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+### 프로젝트 기간
+* [20.08 ~ 20.09]
 
-
-
-<!-- GETTING STARTED -->
-## Getting Started
+### 배경
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### WAS
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -88,7 +82,7 @@ This is an example of how to list things you need to use the software and how to
 npm install npm@latest -g
 ```
 
-### Installation
+### Pattern
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -104,10 +98,7 @@ npm install
 const API_KEY = 'ENTER YOUR API';
 ```
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
+### DataBase
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
@@ -116,14 +107,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Tool
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## 주요기능
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -136,14 +127,14 @@ Contributions are what make the open source community such an amazing place to b
 
 
 <!-- LICENSE -->
-## License
+## 프로젝트관리툴
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
 <!-- CONTACT -->
-## Contact
+## 개발이미지
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
@@ -152,7 +143,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+## contact
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [Choose an Open Source License](https://choosealicense.com)
@@ -165,22 +156,3 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 * [JVectorMap](http://jvectormap.com)
 * [Font Awesome](https://fontawesome.com)
 
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
