@@ -1,5 +1,5 @@
-[![Contributors][contributors-shield]]
-[![Forks][forks-shield]]
+![Contributors][contributors-shield]
+![Forks][forks-shield]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
