@@ -10,6 +10,18 @@
 		</layout>
 	</appender>
 	
+	<appender name="console-log4jdbc" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="console-log4jdbc"/>	
+	</logger
+	
 	<!-- Application Loggers -->
 	<logger name="com.covid19.app">
 		<level value="info" />
@@ -34,7 +46,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
