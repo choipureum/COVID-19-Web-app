@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+.main_container .m_t {background:#e6e9f2;}
+
+@media (min-width:1180px) {
+	.main_container {padding-bottom:64px;}
+	.main_container .m_t > div {width:1180px; margin:0 auto; padding:16px 0 32px 0;}
+	.main_container .m_t > div::after {display:block; content:''; clear:both;}
+	.main_container .m_t > div > div {float:left;}
+	.main_container .m_t .mt_l {padding-right:16px; width:540px;}
+	.main_container .m_t .mt_r {padding-left:16px; width:640px;}
+	.main_container .m_b {width:1180px; margin:0 auto; padding-top:32px;}
+	.main_container .m_b > div {margin:0 -5px;}
+	.main_container .m_b > div::after {display:block; content:''; clear:both;}
+	.main_container .m_b > div > div {float:left; width:50%; padding:0 5px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.main_container {padding-bottom:40px;}
+	.main_container .m_t > div {padding:12px 0 24px 0;}
+	.main_container .m_b > div {padding:8px;}
+	.main_container .m_b > div > div {padding:8px;}
+}
+@media (max-width:767px) {
+	.main_container {padding-bottom:16px;}
+	.main_container .m_t > div {padding:8px 0 16px;}
+	.main_container .m_b > div {padding:8px;}
+	.main_container .m_b > div > div {padding:8px;}
+}
+
+/* main patient status */
+.m_patient_status {font-size:0; line-height:0;}
+.m_patient_status * {vertical-align:middle;}
+.m_patient_status h3 {display:block; padding:8px 16px;}
+.m_patient_status h3 span {display:inline-block; font-size:18px; line-height:26px; font-weight:500; color:#122c5d; padding-right:6px;}
+.m_patient_status h3 em {display:inline-block; font-size:12px; line-height:20px; color:#122c5d;}
+
+.m_patient_status .mps_list > ul {display:table; table-layout:fixed; width:100%;}
+.m_patient_status .mps_list > ul > li {position:relative; display:table-cell; text-align:center;}
+.m_patient_status .mps_list > ul > li:nth-child(1) {background:#2b75e0}
+.m_patient_status .mps_list > ul > li:nth-child(2) {background:#123a91}
+.m_patient_status .mps_list > ul > li:nth-child(3) {background:#05afc8}
+.m_patient_status .mps_list > ul > li:nth-child(4) {background:#858585}
+
+.m_patient_status .mps_list > ul > li ~ li::before {display:block; content:''; width:24px; height:24px; border-radius:12px; background-image:url(../../image/cn/main/ico_plus.png); background-color:#fff; background-repeat:no-repeat; background-position:center center; position:absolute; left:0; top:50%; margin:-12px;}
+.m_patient_status .mps_list > ul > li:nth-child(2)::before {background-image:url(../../image/cn/main/ico_equal.png);}
+
+.m_patient_status .mps_list .mpsl_t span {display:block; font-size:18px; line-height:26px; font-weight:500; color:#fff;}
+.m_patient_status .mps_list .mpsl_t em {display:block; font-size:12px; line-height:16px; color:#fff;}
+
+.m_patient_status .mps_list .mpsl_c {padding-top:8px;}
+.m_patient_status .mps_list .mpsl_c em {display:inline-block; font-size:12px; line-height:20px; color:#fff; padding-right:6px;}
+.m_patient_status .mps_list .mpsl_c span {display:inline-block; font-family:'Century Gothic'; font-weight:500; color:#fff; letter-spacing:0;}
+
+.m_patient_status .mps_list .mpsl_b {padding-top:8px;}
+.m_patient_status .mps_list .mpsl_b em {display:inline-block; font-size:12px; line-height:20px; color:#fff; padding-right:6px;}
+.m_patient_status .mps_list .mpsl_b span {display:inline-block; font-family:'Century Gothic'; font-size:12px; line-height:20px; color:#fff; letter-spacing:0;}
+
+@media (min-width:1180px) {
+	.m_patient_status .mps_list > ul > li {padding:24px 8px;}
+	.m_patient_status .mps_list .mpsl_t {height:42px;}
+	.m_patient_status .mps_list .mpsl_t span {font-size:18px; line-height:26px;}
+	.m_patient_status .mps_list .mpsl_c span {font-size:36px; line-height:44px;}
+	
+	.m_patient_status .mps_list > ul > li:nth-child(1) .mpsl_c {margin-top:-20px;}
+	.m_patient_status .mps_list > ul > li:nth-child(1) .mpsl_c em {padding-right:0;}
+
+	.m_patient_status .mps_list .mpsl_c {padding-top:8px;}
+	.m_patient_status .mps_list .mpsl_b {padding-top:8px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.m_patient_status .mps_list > ul > li {padding:24px 8px;}
+	.m_patient_status .mps_list .mpsl_t {height:40px;}
+	.m_patient_status .mps_list .mpsl_t span {font-size:16px; line-height:24px;}
+	.m_patient_status .mps_list .mpsl_c span {font-size:30px; line-height:38px;}
+
+	.m_patient_status .mps_list .mpsl_c {padding-top:6px;}
+	.m_patient_status .mps_list .mpsl_b {padding-top:6px;}
+}
+@media (max-width:767px) {
+	.m_patient_status .mps_list > ul > li {padding:16px 8px;}
+
+	/* .m_patient_status .mps_list .mpsl_t {height:44px;}
+	.m_patient_status .mps_list .mpsl_t span {font-size:14px; line-height:22px;}
+	.m_patient_status .mps_list .mpsl_t em {display:none;} */
+
+	.m_patient_status .mps_list .mpsl_t {height:38px;}
+	.m_patient_status .mps_list .mpsl_t span {font-size:14px; line-height:22px;}
+	.m_patient_status .mps_list .mpsl_c span {font-size:24px; line-height:32px;}
+	.m_patient_status .mps_list .mpsl_b em {display:none;}
+	
+	.m_patient_status .mps_list > ul > li:nth-child(1) .mpsl_c {margin-top:-20px;}
+	.m_patient_status .mps_list > ul > li:nth-child(1) .mpsl_c em {padding-right:0;}
+
+	.m_patient_status .mps_list .mpsl_c {padding-top:4px;}
+	.m_patient_status .mps_list .mpsl_b {padding-top:4px;}
+}
+
+/* main inspect status */
+.m_inspect_status {font-size:0; line-height:0;}
+.m_inspect_status * {vertical-align:middle;}
+.m_inspect_status h3 {display:block; padding:8px 16px;}
+.m_inspect_status h3 span {display:inline-block; font-size:18px; line-height:26px; font-weight:500; color:#122c5d; padding-right:6px;}
+.m_inspect_status h3 em {display:inline-block; font-size:12px; line-height:20px; color:#122c5d;}
+
+.m_inspect_status .mis_info .misi_l {background:#eafeff;}
+.m_inspect_status .mis_info .misi_r {background:#fff;}
+.m_inspect_status .mis_info .misi_list > ul > li {position:relative;}
+
+.m_inspect_status .mis_info .misi_list .misil_l span {display:block; font-size:14px; line-height:22px; color:#737371;}
+.m_inspect_status .mis_info .misi_list .misil_l p {display:block; font-size:12px; line-height:20px; color:#646663; margin-top:4px;}
+
+.m_inspect_status .mis_info .misi_list .misil_r {position:absolute; right:0; top:4px; color:#086574;}
+.m_inspect_status .mis_info .misi_list .misil_r span {display:inline-block; font-family:'Century Gothic'; line-height:22px; letter-spacing:0;}
+.m_inspect_status .mis_info .misi_list .misil_r em {display:inline-block; font-size:12px; line-height:22px; padding-left:2px;}
+
+.m_inspect_status .mis_info .misi_chart {position:relative; width:100%; height:100%; background:url(../../image/cn/main_chart/chart_test_0322.png) no-repeat #fff center bottom 0px; text-align:center;}
+.m_inspect_status .mis_info .misi_chart strong {display:block; font-size:11px; line-height:15px; color:#333;}
+.m_inspect_status .mis_info .misi_chart em {display:inline-block; font-family:'Century Gothic'; font-size:13px; line-height:17px; letter-spacing:0; color:#086574;}
+.m_inspect_status .mis_info .misi_chart span {display:inline-block; font-size:13px; line-height:17px; color:#086574;}
+.m_inspect_status .mis_info .misi_chart > div {position:absolute;}
+.m_inspect_status .mis_info .misi_chart .misic_l {right:50%; top:44px; width:64px; margin-right:56px;}
+.m_inspect_status .mis_info .misi_chart .misic_c {left:0; top:12px; width:100%;}
+.m_inspect_status .mis_info .misi_chart .misic_r {left:50%; top:44px; width:64px; margin-left:64px;}
+
+@media (min-width:1180px) {
+	.m_inspect_status {padding-top:16px;}
+	.m_inspect_status .mis_info {display:table; width:100%; table-layout:fixed;}
+	.m_inspect_status .mis_info > div {display:table-cell; vertical-align:top; height:240px;}
+
+	.m_inspect_status .mis_info .misi_list {padding:16px 24px;}
+	.m_inspect_status .mis_info .misi_list > ul {padding:4px 0;}
+	.m_inspect_status .mis_info .misi_list > ul > li {padding:4px 0;}
+	.m_inspect_status .mis_info .misi_list .misil_r {top:4px;}
+	.m_inspect_status .mis_info .misi_list .misil_r span {font-size:20px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.m_inspect_status {padding-top:12px;}
+	.m_inspect_status .mis_info {display:table; width:100%; table-layout:fixed;}
+	.m_inspect_status .mis_info > div {display:table-cell; vertical-align:top; height:200px;}
+
+	.m_inspect_status .mis_info .misi_list {padding:12px 20px;}
+	.m_inspect_status .mis_info .misi_list > ul {padding:3px 0;}
+	.m_inspect_status .mis_info .misi_list > ul > li {padding:3px 0;}
+	.m_inspect_status .mis_info .misi_list .misil_r {top:3px;}
+	.m_inspect_status .mis_info .misi_list .misil_r span {font-size:18px;}
+}
+@media (max-width:767px) {
+	.m_inspect_status {padding-top:8px;}
+	.m_inspect_status .mis_info > div:last-child {height:200px;}
+
+	.m_inspect_status .mis_info .misi_list {padding:8px 16px;}
+	.m_inspect_status .mis_info .misi_list > ul {padding:2px 0;}
+	.m_inspect_status .mis_info .misi_list > ul > li {padding:2px 0;}
+	.m_inspect_status .mis_info .misi_list .misil_r {top:2px;}
+	.m_inspect_status .mis_info .misi_list .misil_r span {font-size:16px;}
+}
+
+/* main country status */
+.m_country_status {font-size:0; line-height:0;}
+.m_country_status * {vertical-align:middle;}
+.m_country_status h3 {display:block; padding:8px 16px;}
+.m_country_status h3 span {display:inline-block; font-size:18px; line-height:26px; font-weight:500; color:#122c5d; padding-right:6px;}
+.m_country_status h3 em {display:inline-block; font-size:12px; line-height:20px; color:#122c5d;}
+.m_country_status .mcs_chart {background:#fff; padding:16px; text-align:center;}
+/* .m_country_status .mcs_chart::before {display:inline-block; content:''; height:100%; vertical-align:middle;}
+.m_country_status .mcs_chart > img {display:inline-block; max-width:100%; vertical-align:middle;} */
+
+@media (min-width:1180px) {
+	.m_country_status .mcs_chart {height:468px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.m_country_status {padding-top:12px;}
+}
+@media (max-width:767px) {
+	.m_country_status {padding-top:8px;}
+}
+
+/* main slide */
+.m_slide {position:relative;}
+.m_slide .slide_list {position:relative; z-index:0;}
+.m_slide .slide_list img {display:block; width:100%;}
+.m_slide .slide_btns {z-index:5;}
+.m_slide .btn_prev {display:block; width:32px; height:32px; border-radius:16px; background:url(../../image/cn/main/btn_prev.png) no-repeat #33296e center center; position:absolute; left:16px; top:50%; margin-top:-16px;}
+.m_slide .btn_next {display:block; width:32px; height:32px; border-radius:16px; background:url(../../image/cn/main/btn_next.png) no-repeat #33296e center center; position:absolute; right:16px; top:50%; margin-top:-16px;}
+.m_slide .ico_window { display:none;}
+@media (min-width:1180px) {
+	.m_slide .slide_list img {width:580px; height:200px;}
+	.m_slide .btn_prev {left:21px;}
+	.m_slide .btn_next {right:21px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.m_slide .btn_prev {left:23px;}
+	.m_slide .btn_next {right:23px;}
+}
+@media (max-width:767px) {
+}
+
+/* main banner */
+.m_banner {font-size:0; line-height:0;}
+.m_banner > ul > li > a {display:block; background:#eee; background-repeat:no-repeat; background-position:center center; background-size:cover;}
+.m_banner > ul > li:nth-child(1) > a {background-image:url(../../image/cn/main/m_banner_bg_01.jpg);}
+.m_banner > ul > li:nth-child(2) > a {background-image:url(../../image/cn/main/m_banner_bg_02.jpg);}
+.m_banner > ul > li > a > span {display:inline-block; font-size:18px; line-height:26px; font-weight:500; color:#222; vertical-align:middle;}
+
+@media (min-width:1180px) {
+	.m_banner > ul {margin:0 -5px;}
+	.m_banner > ul::after {display:block; content:''; clear:both;}
+	.m_banner > ul > li {float:left; width:50%; padding:0 5px;}
+	.m_banner > ul > li > a {height:200px; padding:28px 32px;}
+}
+@media (min-width:768px) and (max-width:1179px) {
+	.m_banner > ul {margin:-8px;}
+	.m_banner > ul::after {display:block; content:''; clear:both;}
+	.m_banner > ul > li {float:left; width:50%; padding:8px;}
+	.m_banner > ul > li > a {height:120px; padding:20px 24px;}
+	.m_banner > ul > li > a::before {display:inline-block; content:''; height:100%; vertical-align:middle;}
+}
+@media (max-width:767px) {
+	.m_banner > ul {margin:-8px;}
+	.m_banner > ul::after {display:block; content:''; clear:both;}
+	.m_banner > ul > li {padding:8px;}
+	.m_banner > ul > li > a {height:120px; padding:20px 24px;}
+	.m_banner > ul > li > a::before {display:inline-block; content:''; height:100%; vertical-align:middle;}
+}
