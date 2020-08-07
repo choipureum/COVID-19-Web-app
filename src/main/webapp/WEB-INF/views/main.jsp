@@ -8,7 +8,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
 
-	<title>코로나바이러스감염증-19(COVID-19)</title>
+	<title>코로나-19 종합관리센터(COVID-19)</title>
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,18 +27,20 @@
 	<meta property="og:description" content="코로나바이러스감염증-19 정식 홈페이지로 발생현황, 국내발생현황, 국외발생현황, 시도별발생현황, 대상별 유의사항,  생활 속 거리 두기, 공적마스크 공급현황, 피해지원정책, 홍보자료, FAQ, 관련기관(보건소, 선별진료소 찾기), 정부 브리핑 안내">
 	<meta property="og:image" content="/resources/static/image/header/homeimg.png"> 
 	
+	
 	<link rel="icon" type="image/png" sizes="64x64" href="/resources/static/image/header/ROK.png">
     <link rel="stylesheet" href="/resources/static/css/co_commonb946.css?ver=20200506">	
     <link rel="stylesheet" href="/resources/static/css/co_component.css">
     <link rel="stylesheet" href="/resources/static/css/lightslider.min.css">
 	<link rel="stylesheet" href="/resources/static/css/co_main_new3708f.css?ver=20200630">	
-
+	
     <script src="/resources/static/js/jquery-1.11.2.min.js"></script>
     <script src="/resources/static/js/lightslider.min.js"></script>
     <script src="/resources/static/js/co_common.js"></script>
 	<script src="/resources/static/js/co_mainb946.js?ver=20200506"></script>
-
 	
+
+		
 	<script type="text/javaScript">
 	
 	function fn_goMenu(url, brd_id, brd_gubun, data_Gubun){
@@ -112,7 +114,7 @@
 		<!-- Navigation -->
 		<div class="navigation t_dp_n m_dp_n">
 			<div>
-				<div class="n_left"><h1 class="corona_h1"><a href="/main.do">코로나바이러스-19종합관리센터<span>(COVID-19)</span></a></h1></div>
+				<div class="n_left"><h1 class="corona_h1"><a href="/main.do">코로나-19 종합관리센터<span>(COVID-19)</span></a></h1></div>
                 <div class="n_right">
                 	<ul class="shim">
                     	<li><a href="http://www.mohw.go.kr/" target="_blank" title="새창">중앙사고수습본부</a></li>
@@ -136,7 +138,7 @@
 		<div id="header" class="header">
 			<div>
             	<div class="h_left">
-					<h1 class="logo"><a href="/main.do">코로나바이러스-19종합관리센터<span>(COVID-19)</span></a></h1>
+					<h1 class="logo"><a href="/main.do">코로나-19 종합관리센터<span>(COVID-19)</span></a></h1>
 					<div class="t_top_other">
 						<ul class="t_sns">
 							<li class="facebook"><a href="http://www.faceook.com/koreacdcpr" target="_blank" title="질병관리본부 페이스북으로 새창">페이스북</a></li>
@@ -230,7 +232,16 @@
                                          <li><a href="guidelineList0a61.html?brdId=6&amp;brdGubun=62&amp;dataGubun=">장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
-                            </li>                       
+                            </li>  
+                            <!-- 쇼핑 -->
+                             <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">쇼핑</a>
+                                <div class="g_sub"><div>
+                                    <ul>
+                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">공동 구매</a></li>
+										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">소상공인 쇼핑몰</a></li>
+                                    </ul>
+                                </div></div>
+                            </li>                            
                         </ul>
 					</div>	
 					
@@ -386,7 +397,8 @@
 			<!--긴급배너 -->
 			<div class="main_embanner">		
 					<div>	
-					<iframe width="100%" height="315" src="https://www.youtube.com/embed/GXcKt4MA9cs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				
+						<iframe width="100%" height="315" src="https://www.youtube.com/embed/GXcKt4MA9cs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- 					<a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61" id="emergency_b"></a> -->
 					</div>										
 			</div>
@@ -822,7 +834,7 @@
 									<li><a href="searchBoardView9bc2.html?brdId=3&amp;brdGubun=33&amp;dataGubun=331&amp;ncvContSeq=2767">[이미지] 정부가 ‘임시생활시설 방역업체 등의 단가를 깎고 지급을 미뤘다’는 보도는 사실과 다릅니다.</a></li><li><a href="searchBoardViewbd2b.html?brdId=3&amp;brdGubun=33&amp;dataGubun=331&amp;ncvContSeq=2700">[이미지] 정부가 요금이 비싸다며 운송비를 지급하지 않는다는 보도는 사실이 아닙니다.</a></li>
 								</ul>
 								<div class="m_now_banner">
-									<a href="https://www.youtube.com/playlist?list=PL_-Emxqwow0B8HTJBS7mccInnQlOKIIo5" target="_blank" title="새창이동 - 유투브 채널 "><span class="b_tit">아리 &amp; 따수가 알려드립니다</a>
+									<a href="https://www.youtube.com/playlist?list=PL_-Emxqwow0B8HTJBS7mccInnQlOKIIo5" target="_blank" title="새창이동 - 유투브 채널 "><span class="b_tit">푸름 &amp; 상옥이가 알려드립니다</a>
 								</div>
 							</div>							
 						</div>
