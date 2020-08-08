@@ -21,7 +21,7 @@ table {border-collapse:collapse; border-spacing:0;}
 
 /* reset custermize */
 html {width:100%; height:100%; box-sizing:border-box;}
-body {width:100%; height:100%; font-family:'Noto Sans KR', '맑은고딕', 'Malgun Gothic', '돋움', 'Dotum', sans-serif; font-weight:400; letter-spacing:-0.024em; overflow-x:hidden;}
+body {width:100%; height:100%; font-family:'Noto Sans KR', '맑은고딕', 'Malgun Gothic', '돋움', 'Dotum', sans-serif; font-weight:400; letter-spacing:-0.024em; overflow-x:hidden; }
 *, ::after, ::before {box-sizing:inherit;}
 a, a:focus, a:hover {text-decoration:none;}
 a, button, input[type="submit"] {cursor:pointer;}
@@ -268,7 +268,7 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .wrap {height:auto; position:relative;}
 
 /* btn top */
-.btn_top {width:40px; height:40px; border:1px solid #c1c1c1; border-left:1px solid #e1e1e1; border-top:1px solid #e1e1e1; background:url(../image/header/header_icon.png) no-repeat #fdfdfd -120px -50px; right:16px; display:none;}
+.btn_top {width:40px; height:40px; border:1px solid #c1c1c1; z-index:99999;border-left:1px solid #e1e1e1; border-top:1px solid #e1e1e1; background:url(../image/header/header_icon.png) no-repeat #fdfdfd -120px -50px; right:16px; display:block;}
 
 /* width catch */
 .w_catch {position:absolute; left:0; top:0; width:100%; height:0; overflow:hidden;}
@@ -282,12 +282,12 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .navigation .n_left {float:left;}
 .navigation .n_right {float:right;}
 
-.navigation .n_left .corona_h1 { font-size:23px; font-weight:500; margin-top:15px;}
-.navigation .n_left .corona_h1 span {font-size:18px}
-.navigation .n_left .corona_h1 a {color:#000}
+.navigation .n_left .corona_h1 { font-size:25px; font-weight:500; margin-top:15px;}
+.navigation .n_left .corona_h1 span {font-size:15px;}
+.navigation .n_left .corona_h1 a {color:#000; font-family: 'Black Han Sans', sans-serif;}
 .navigation .n_right .shim {float:left; padding:9px 0; margin-left:12px;}
 .navigation .n_right .shim li {float:left; padding:0 10px;}
-.navigation .n_right .shim li a { display:block; padding:0 0 0 26px; height:40px; line-height:40px; font-size:15px; font-weight:400; letter-spacing:-0.07em; color:#000; background:url(../image/header/shim.png) no-repeat 0 center; background-size:20px;}
+.navigation .n_right .shim li a { display:block; padding:0 0 0 26px; height:40px; line-height:40px; font-size:18px; font-weight:200; letter-spacing:-0.07em; color:#000; font-family: 'Gothic A1', sans-serif; background:url(../image/header/shim.png) no-repeat 0 center; background-size:20px;}
 .navigation .n_right .sns { float:left; display:table; padding-left:7px; margin-top:19px; height:24px;}
 .navigation .n_right .sns > li {display:table-cell; vertical-align:middle; text-align:center;}
 .navigation .n_right .sns > li > a { display:block; margin:0 2px; width:24px; height:24px; line-height:40px; font-size:0; color:transparent; border-radius:50%; overflow:hidden; background-color:#405985; border:1px solid #dcdcdc}
@@ -295,20 +295,21 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .navigation .n_right .sns > li.facebook > a { background:url(../image/sub_cmn/sns_icon_face.png) no-repeat center center;}
 .navigation .n_right .sns > li.youtube > a { background:url(../image/sub_cmn/sns_icon_you.png) no-repeat center center;}
 .navigation .n_right .sns > li.post > a { background:url(../image/sub_cmn/sns_icon_naver.png) no-repeat center center; border:1px solid #f3f3f3}
-.navigation .n_right .sns > li.twitter > a { background:url(../image/sub_cmn/sns_icon_tw.png) no-repeat center center;}
-.navigation .n_right .country { float:left; display:table; padding-left:7px; margin-top:19px; height:24px;}
-.navigation .n_right .country > li { display:table-cell; padding-left:7px; vertical-align:middle; text-align:center;}
-.navigation .n_right .country > li::before { content:""; display:inline-block; width:4px; height:4px; margin-left:6px; margin-right:5px; line-height:28px; background-color:#8994a8; border-radius:100%; vertical-align:middle}
-.navigation .n_right .country > li:first-child { padding-left:0}
-.navigation .n_right .country > li > a { font-size:13px; line-height:24px; color:#444;}
-.navigation .n_right .country > li > a  i { display:none; }
-.navigation .n_right .country > li:nth-child(2) > a { letter-spacing:-0.03em; font-family:'Dotum'; color:#555; }
+.navigation .n_right .sns > li.github > a { background:url(../image/sub_cmn/sns_icon_github.png) no-repeat center center;}
+.navigation .n_right .main_login { float:left; display:table; padding-left:7px; margin-top:19px; height:24px;}
+.navigation .n_right .main_login > li { display:table-cell; padding-left:7px; vertical-align:middle; text-align:center;}
+.navigation .n_right .main_login > li::before { content:""; display:inline-block; width:4px; height:4px; margin-left:6px; margin-right:5px; line-height:28px; background-color:#8994a8; border-radius:100%; vertical-align:middle}
+.navigation .n_right .main_login > li:first-child { padding-left:0}
+.navigation .n_right .main_login > li > a { font-size:13px; line-height:24px; color:#444; font-family: 'Gothic A1', sans-serif;}
+.navigation .n_right .main_login > li > a  i { display:none; }
+.navigation .n_right .main_login > li:nth-child(2) > a { letter-spacing:-0.03em; font-family: 'Gothic A1', sans-serif; color:#444; }
+.navigation .n_right .main_login > li > a:hover { font-weight:500; color:#459ABC;}
 
 /* header */
-.header {position:relative; border-bottom:1px solid #ddd;background-color:#0b9bc9 }
+.header {position:sticky;top:0px; z-index:99999; border-bottom:1px solid #ddd; background-color:#164165 !important }
 .header > div::after {display:block; content:''; clear:both;}
 .header .logo {display:block; }
-.header .logo a {display:block; font-size:20px; font-weight:500; color:#fff}
+.header .logo a {display:block; font-size:20px; font-weight:500; color:#fff;}
 .header .logo span {font-size:14px}
 
 .header .t_top_other { display:block; margin-top:24px; }
@@ -319,14 +320,14 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .header .t_sns > li.facebook > a { background:url(../image/sub_cmn/sns_icon_face.png) no-repeat center center;}
 .header .t_sns > li.youtube > a { background:url(../image/sub_cmn/sns_icon_you.png) no-repeat center center;}
 .header .t_sns > li.post > a { background:url(../image/sub_cmn/sns_icon_naver.png) no-repeat center center; border:1px solid #f3f3f3}
-.header .t_sns > li.twitter > a { background:url(../image/sub_cmn/sns_icon_tw.png) no-repeat center center;}
+.header .t_sns > li.github > a { background:url(../image/sub_cmn/sns_icon_github.png) no-repeat center center;}
 .header .t_country { float:left; display:table; padding-left:7px;height:24px;}
 .header .t_country > li { display:table-cell; padding-left:7px; vertical-align:middle; text-align:center;}
 .header .t_country > li::before { content:""; display:inline-block; width:4px; height:4px; margin-left:6px; margin-right:5px; line-height:28px; background-color:#c8d8f6; border-radius:100%; vertical-align:middle}
 .header .t_country > li:first-child { padding-left:0}
 .header .t_country > li > a { font-size:13px; line-height:24px; color:#fff;}
 .header .t_country > li > a  i { display:none; }
-.header .t_country > li:nth-child(2) > a { letter-spacing:-0.03em; font-family:'Dotum'; }
+.header .t_country > li:nth-child(2) > a { letter-spacing:-0.03em;font-family: 'Gothic A1', sans-serif; }
 .header .t_camp { float:left;}
 .header .t_camp > li { float:left; padding-left:10px;}
 .header .t_camp > li::before { content:""; display:inline-block; width:4px; height:4px; margin-left:6px; margin-right:5px; line-height:28px; background-color:#c8d8f6; border-radius:100%; vertical-align:middle}
@@ -423,21 +424,21 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 /* gnb */
 .gnb > ul::after {display:block; content:''; clear:both;}
 .gnb > ul > li {float:left; margin-bottom:-1px;}
-.gnb > ul > li > a {position:relative; display:block; padding:20px 15px; font-weight:500; font-size:18px; line-height:20px; letter-spacing:-0.07em; color:#fff;}
-.gnb > ul > li > a::after {display:block; content:''; width:100%; height:5px; background:#0d427f; position:absolute; left:0; bottom:1px; transform:scaleX(0); transform-origin:right bottom; transition:transform 0.24s ease-in-out;}
+.gnb > ul > li > a {position:relative; display:block; padding:20px 15px; font-weight:500; font-size:18px; line-height:20px; letter-spacing:-0.07em; color:#fff; font-family: 'Gothic A1', sans-serif; }
+.gnb > ul > li > a::after {display:block; content:''; width:100%; height:5px; background:#3CB0DE; position:absolute; left:0; bottom:1px; transform:scaleX(0); transform-origin:right bottom; transition:transform 0.24s ease-in-out;}
 .gnb > ul > li.over > a {color:#fff;}
 .gnb > ul > li.over > a::after {transform:scaleX(1); transform-origin:left bottom; transition:transform 0.24s ease-in-out;}
 .gnb > ul > li.on > a {color:#fff;}
 .gnb > ul > li.on > a::after {transform:scaleX(1);}
 .gnb .g_sub {position:absolute; left:0; width:100%; z-index:15; overflow:hidden; display:none;}
-.gnb .g_sub > div {background:#fff; border-bottom:3px solid #007499;}
-.gnb .g_sub > div > ul {width:1180px; margin:0 auto; background:#fff; padding:16px 24px;}
+.gnb .g_sub > div {background:#fff; border-bottom:3px solid #164165;}
+.gnb .g_sub > div > ul {width:1180px; margin:0 auto; background:#fff; padding:12px 24px;}
 .gnb .g_sub > div > ul::after {display:block; content:''; clear:both;}
 .gnb .g_sub > div > ul > li {float:left; width:20%; padding:8px;}
-.gnb .g_sub > div > ul > li > a {display:block; font-size:15px; line-height:21px; font-weight:500; letter-spacing:-0.064em; color:#fff; padding:8px 16px; background:#13669b;}
+.gnb .g_sub > div > ul > li > a {display:block; font-size:16.5px; line-height:21px; font-weight:500; letter-spacing:-0.07em; color:black; padding:8px 16px; background:#fff; font-family: 'Gothic A1', sans-serif;}
 .gnb .g_sub > div > ul > li.on > a,
 .gnb .g_sub > div > ul > li > a:hover,
-.gnb .g_sub > div > ul > li > a:focus {background:#008bb8;}
+.gnb .g_sub > div > ul > li > a:focus {color:#164165; font-weight:700}
 .gnb_bg {position:absolute; left:0; top:55px; width:100%; z-index:50; background:#fff; display:none;}
 .gnb .ico_window {display:none;}
 
@@ -736,6 +737,7 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .f_sns ul:after {display:block; content:''; clear:both;}
 
 /* content */
+.container {background-color:#eeefef;}
 .container > div::after {display:block; content:''; clear:both;}
 
 @media (min-width:1180px) {
