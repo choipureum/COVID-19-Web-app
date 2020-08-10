@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="/resources/static/css/co_component.css">
     <link rel="stylesheet" href="/resources/static/css/lightslider.min.css">
 	<link rel="stylesheet" href="/resources/static/css/co_main_new3708f.css">	
-	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <script src="/resources/static/js/jquery-1.11.2.min.js"></script>
     <script src="/resources/static/js/lightslider.min.js"></script>
     <script src="/resources/static/js/co_common.js"></script>
@@ -41,7 +42,7 @@
 	
 
 		
-	<script type="text/javaScript">
+<script type="text/javaScript">
 	
 	function fn_goMenu(url, brd_id, brd_gubun, data_Gubun){
 		
@@ -91,14 +92,91 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1:wght@400;700&family=Nanum+Myeongjo:wght@700&display=swap');
 </style>
+<!-- sidebar css -->
+<style type="text/css">
 
+/*햄버거 기본모양*/
+.hamburger_container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color:white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/*메뉴바 나오기*/
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 200px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 9999999; /* Stay on top */
+  top: 0;
+  right: -250px;
+  background-color: #164165; /* Black*/
+  overflow-x: hidden;
+  overflow-y:hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+  display: block;
+  transition: 1s;
+}
+.sidenav a span {
+ 	font-weight:bold;
+ 	font-size:16px;
+ 	padding:10px 0px;
+}
+.sidenav a:hover {
+  color: gray;
+}
+
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main_corona {
+  transition: margin-left .5s;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+</style>
 	<link rel="stylesheet" href="/resources/static/css/chart_kr0a6d.css">
 	<script src="/resources/static/js/Chart.min.js"></script>
 	<script src="/resources/static/js/chartjs-plugin-datalabels.min.js"></script>
 	<script src="/resources/static/js/chart_kr0a6d.js?ver=20200710"></script>
-	
+<!-- hamburger -->
+<script>
+function openNav() {
+	  document.getElementById("mySidenav").style.right = "0px";
+	}
+	function closeNav() {
+	  document.getElementById("mySidenav").style.right = "-200px";
+	}
+</script>	
 </head>
 <body>
+<div id="main_corona">
 <form name="menuFrm" id="menuFrm" method="get">
 	<input name="brdId" id="brdId" type="hidden" />
 	<input name="brdGubun" id="brdGubun" type="hidden" />
@@ -107,6 +185,7 @@
 	<input name="contSeq" id="contSeq" type="hidden" />
 	<input name="board_id" id="board_id" type="hidden" />
 </form>
+
 <!--  반응형 --> 
 	<div class="wrap nj">
 		<div class="w_catch">
@@ -137,8 +216,22 @@
                 </div>
 			</div>
 		</div>
+				
 		<!-- // Navigation -->
-		<!-- Header -->
+		<!-- 메뉴바 -->
+		<div id="mySidenav" class="sidenav">
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			  <a href="#"><span>최푸름</span>님 안녕하세요</a><br><br>
+			  	
+			  <a href="#home"><i class="fa fa-virus"></i>코로나 바로알기</a>
+			  <a href="#services"><i class="fa  fa-wrench"></i>각종 서비스</a>
+			  <a href="#clients"><i class="fa  fa-user"></i> 고객정보</a>
+			
+			  <a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>	
+			  <a href="#contact" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>			  
+			</div>
+
+			<!-- Header -->
 		<div id="header" class="header">
 			<div>
             	<div class="h_left">
@@ -245,7 +338,15 @@
 										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 소상공인 쇼핑몰</a></li>
                                     </ul>
                                 </div></div>
-                            </li>                            
+                            </li>  
+                            <!-- 햄버거 메뉴 --> 
+                            <li style="position:absolute; right:15px;top:10px;">
+                            	<div class="hamburger_container" onmouseenter="openNav()" >
+									  <div class="bar1"></div>
+									  <div class="bar2"></div>
+									  <div class="bar3"></div>
+									</div>
+							 </li>                         
                         </ul>
 					</div>	
 					
@@ -393,3 +494,4 @@
 				<a href="#" class="btn_close"><span class="hdn">전체메뉴닫기</span></a>
 			</div>
 		</div>
+		
