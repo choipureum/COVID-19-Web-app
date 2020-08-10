@@ -261,8 +261,7 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
         line-height: 20px;
     }
 }
-
- 
+/*side bar*/
 
 /* wrap */
 .wrap {height:auto; position:relative;}
@@ -306,7 +305,7 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 .navigation .n_right .main_login > li > a:hover { font-weight:500; color:#459ABC;}
 
 /* header */
-.header {position:sticky;top:0px; z-index:99999; border-bottom:1px solid #ddd; background-color:#164165 !important }
+.header {position:sticky;top:0px; z-index:99; border-bottom:1px solid #ddd; background-color:#164165 !important }
 .header > div::after {display:block; content:''; clear:both;}
 .header .logo {display:block; }
 .header .logo a {display:block; font-size:20px; font-weight:500; color:#fff;}
