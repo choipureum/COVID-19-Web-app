@@ -263,7 +263,7 @@ td:first-of-type{
    
 <!--    비밀번호 확인 해주기  -->
 <!--    메인화면 으로 가야하지 않나..?-->
-   <form action="/singup/singup" method="post" id="myForm">
+   <form action="/member/joinimpl.do" method="post" id="myForm">
   
   <table>
   	<tbody>
