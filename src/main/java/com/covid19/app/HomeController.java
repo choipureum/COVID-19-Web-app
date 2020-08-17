@@ -19,5 +19,13 @@ public class HomeController {
 		logger.info("Welcome COVID-19 PROJECT!! KH_FINAL_PROJECT HERE.{}", locale);				
 		return "main";
 	}
+	@RequestMapping(value = "/header.do", method = RequestMethod.GET)
+	public String header(Model model) {
+		return "/include/header";
+	}
+	@RequestMapping(value = "/footer.do", method = RequestMethod.GET)
+	public String footer(Model model) {
+		return "/include/footer";
+	}
 	
 }
