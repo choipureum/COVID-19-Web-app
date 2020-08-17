@@ -20,7 +20,7 @@
 	<logger name="jdbc.resultsettable" additivity="false">
 		<level value="info"/>
 		<appender-ref ref="console-log4jdbc"/>	
-	</logger
+	</logger>
 	
 	<!-- Application Loggers -->
 	<logger name="com.covid19.app">
