@@ -212,7 +212,7 @@ function openNav() {
 					</ul>
 					<ul class="main_login">
 						<li><a href="#" title="새창">로그인</a></li> 
-						<li><a href="#" title="새창">회원가입</a></li> 
+						<li><a href="/member/join.do" title="새창">회원가입</a></li> 
 					</ul>
                 </div>
 			</div>
@@ -250,7 +250,7 @@ function openNav() {
 						</ul>						
 						<ul class="t_country">
 							<li><a href="/resources/en/index.html" target="_blank" title="새창">로그인</a></li>
-							<li><a href="/resources/cn/index.html" target="_blank" title="새창">회원가입</a></li> 
+							<li><a href="/member/join.do" target="_blank" title="새창">회원가입</a></li> 
 						</ul>
 					</div>
 				</div>
