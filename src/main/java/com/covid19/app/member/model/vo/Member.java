@@ -10,6 +10,7 @@ public class Member {
 	private String member_tell;
 	private String member_name;
 	private String member_birth;
+
 	private String member_nick;
 	private String member_add;
 	private int member_auth;
@@ -96,4 +97,5 @@ public class Member {
 				+ ", member_date=" + member_date + ", member_rank=" + member_rank + ", member_point=" + member_point
 				+ "]";
 	}
+	
 }

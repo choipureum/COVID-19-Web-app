@@ -359,8 +359,6 @@ td:first-of-type{
 
 </body>
 
-		
 <!-- footer 임포트 -->
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
-		
 		
