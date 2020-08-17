@@ -11,8 +11,5 @@
 	<typeAliases>
 		<!--타입얼리어스 -->
 	</typeAliases>
-	<mappers>
-		<!-- 매퍼매핑 -->
-	</mappers>
 	
 </configuration>

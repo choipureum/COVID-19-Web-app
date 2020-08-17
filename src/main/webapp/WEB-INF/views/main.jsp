@@ -2,14 +2,8 @@
 <%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 
 <jsp:include page="/header.do" />
-=======
- 
-<!-- header 임포트 -->
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
->>>>>>> 4dad92ebb6d64f2ba0e26855582327ff77465392
 
 		<!-- //Global_menu -->
 		
