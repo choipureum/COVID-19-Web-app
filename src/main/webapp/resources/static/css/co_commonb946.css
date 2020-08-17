@@ -129,6 +129,9 @@ input[type="text"], input[type="password"], textarea, select {width:100%; transi
 
 /* font family Lato */
 .ff_l {font-family:'Lato';}
+.gothic{font-family:'Gothic A1', sans-serif !important;}
+.bold{font-weight:bold;}
+
 
 /* body_bg */
 .body_bg {display:none; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.72); z-index:900;}

@@ -34,14 +34,17 @@
     <link rel="stylesheet" href="/resources/static/css/lightslider.min.css">
 	<link rel="stylesheet" href="/resources/static/css/co_main_new3708f.css">	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/static/css/chart_kr0a6d.css?ver=20200710">
     
     <script src="/resources/static/js/jquery-1.11.2.min.js"></script>
     <script src="/resources/static/js/lightslider.min.js"></script>
     <script src="/resources/static/js/co_common.js"></script>
 	<script src="/resources/static/js/co_mainb946.js?ver=20200506"></script>
+	<script src="/resources/static/js/Chart.min.js"></script>
+	<script src="/resources/static/js/chartjs-plugin-datalabels.min.js"></script>
+	<script src="static/js/chart_krff8e.js?ver=20200724"></script>
 	
-
-		
+	
 <script type="text/javaScript">
 	
 	function fn_goMenu(url, brd_id, brd_gubun, data_Gubun){
@@ -85,8 +88,6 @@
 			window.open("https://www.g-health.kr/mobile/m03/m01_02.do?cm_cd=71");
 		}
 	}
-
-
 	</script>
 <!-- 폰트 다운로드 -->
 <style>
@@ -260,10 +261,10 @@ function openNav() {
                             <li><a href="baroView4f20.html?brdId=4&amp;brdGubun=41">바로알기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="baroView4f20.html?brdId=4&amp;brdGubun=41">&middot; 코로나19 란? </a></li>
-                                        <li><a href="baroView2dfba.html?brdId=4&amp;brdGubun=42">&middot; 대한민국 방역체계</a></li>
-                                        <li><a href="baroView3d57c.html?brdId=4&amp;brdGubun=43">&middot; 환자치료 및 관리</a></li>
-                                        <li><a href="baroView4260b.html?brdId=4&amp;brdGubun=44">&middot; 예방 조치 안내</a></li>
+                                        <li><a href="/info/aboutCorona19.do">&middot; 코로나19 란? </a></li>
+                                        <li><a href="/info/preventionSystem.do">&middot; 대한민국 방역체계</a></li>
+                                        <li><a href="/info/pat_cure.do">&middot; 환자치료 및 관리</a></li>
+                                        <li><a href="/info/CoronaPrecaution.do">&middot; 예방 조치 안내</a></li>
                                     </ul>
                                 </div></div>                            
                             </li>
