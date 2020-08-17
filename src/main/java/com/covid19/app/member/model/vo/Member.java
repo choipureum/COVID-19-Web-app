@@ -1,14 +1,16 @@
 package com.covid19.app.member.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
-
+	
 	private String member_id;
 	private String member_pw;
 	private String member_email;
 	private String member_tell;
 	private String member_name;
+	private String member_birth;
+
 	private String member_nick;
 	private String member_add;
 	private int member_auth;
@@ -44,6 +46,12 @@ public class Member {
 	}
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
+	}
+	public String getMember_birth() {
+		return member_birth;
+	}
+	public void setMember_birth(String member_birth) {
+		this.member_birth = member_birth;
 	}
 	public String getMember_nick() {
 		return member_nick;
@@ -84,10 +92,10 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [member_id=" + member_id + ", member_pw=" + member_pw + ", member_email=" + member_email
-				+ ", member_tell=" + member_tell + ", member_name=" + member_name + ", member_nick=" + member_nick
-				+ ", member_add=" + member_add + ", member_auth=" + member_auth + ", member_date=" + member_date
-				+ ", member_rank=" + member_rank + ", member_point=" + member_point + "]";
+				+ ", member_tell=" + member_tell + ", member_name=" + member_name + ", member_birth=" + member_birth
+				+ ", member_nick=" + member_nick + ", member_add=" + member_add + ", member_auth=" + member_auth
+				+ ", member_date=" + member_date + ", member_rank=" + member_rank + ", member_point=" + member_point
+				+ "]";
 	}
-	
 	
 }
