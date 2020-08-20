@@ -192,17 +192,38 @@ $(document).ready(function(){
 </script>
 
 
+<!-- 아이디 중복체크  -->
+<script type="text/javascript">
+var ajaxFlag = false;
 
+	function idCheck(){	
+// 		ajax 활용
 
+		var userid=document.querySelector("#userid").value;
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('POST','<%= request.getContextPath() %>/member/idcheck.do');
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		
+		xhr.send('member_id='+userid);
+		
+        xhr.addEventListener('load',function(){
+       	 var data = xhr.response;
+       	 
+       	 if(data !=''){
+       		 document.querySelector('#id_check2').textContent = data+'는 이미 존재하는 아이디 입니다';
+       		 ajaxFlag=false;
+       	 } else{
+       		 document.querySelector('#id_check2').textContent = '사용 가능한 아이디입니다';
+			ajaxFlag=true;
+       	 }
+       	 
+       	 
+        })
+     }
 
-
-
-
-
-
-
-
-
+	
+</script>
 
 
 
@@ -280,7 +301,7 @@ td:first-of-type{
   				<button type ="button" value="중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">중복확인</button>
   			
   			</td>
-  			<td><div id="id_check"></div><div id="id_check2"></div></td>
+  			<td><div id="id_check"></div><span id="id_check2"></span></td>
   		</tr>
   		<tr>
   			<td>비밀번호</td>
@@ -322,7 +343,8 @@ td:first-of-type{
   		</tr>
   		<tr>
   			<td>이메일</td>
-  			<td><input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 300px"/></td>
+  			<td><input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 300px"/>
+  				<button type ="button" value="이메일인증" class="id_Button" onclick="email()">이메일인증</button></td>
   			<td></td>
   		</tr>
   		

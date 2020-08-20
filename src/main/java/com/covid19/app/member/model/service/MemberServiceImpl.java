@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService{
 	MemberDao memberDao;
 	
 	@Override
-	public int joinMember(Map<String,Object>commandMap) {
+	public int insertMember(Map<String,Object>commandMap) {
 		//새로운 멤버클래스에 파라미터 삽입	
 		Member member = new Member();
 		member.setMember_id((String)commandMap.get("userid"));
@@ -36,7 +36,13 @@ public class MemberServiceImpl implements MemberService{
 		member.setMember_add(sb.toString());
 		member.setMember_email((String)commandMap.get("useremail"));
 
-		return memberDao.joinMember(member);
+		return memberDao.insertMember(member);
+	}
+
+	@Override
+	public int selectId(String member_id) {
+
+		return memberDao.selectIdcheck(member_id);
 	}
 
 }
