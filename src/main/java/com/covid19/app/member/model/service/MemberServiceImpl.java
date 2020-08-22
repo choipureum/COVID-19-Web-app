@@ -2,7 +2,14 @@ package com.covid19.app.member.model.service;
 
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.covid19.app.member.model.dao.MemberDao;
@@ -14,13 +21,20 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDao memberDao;
 	
+//	이메일인증
+	private JavaMailSender javaMailSender;
+	public void setJavaMailSender(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
+	}
+	
+	
 	@Override
 	public int insertMember(Map<String,Object>commandMap) {
 		//새로운 멤버클래스에 파라미터 삽입	
 		Member member = new Member();
-		member.setMember_id((String)commandMap.get("userid"));
+		member.setMember_id((String)commandMap.get("joinuserid"));
 		member.setMember_name((String)commandMap.get("username"));
-		member.setMember_pw((String)commandMap.get("userpw"));
+		member.setMember_pw((String)commandMap.get("joinuserpw"));
 		member.setMember_tell((String)commandMap.get("usertel"));
 		//birth합쳐주기
 		StringBuilder sb = new StringBuilder();
@@ -45,4 +59,40 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectIdcheck(member_id);
 	}
 
+
+	@Override
+	public boolean send(String subject, String text, String from, String to) {
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		
+		try {
+			
+			// org.springframework.mail.javamail.MimeMessageHelper
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+			helper.setSubject(subject);
+			helper.setText(text, true);
+			helper.setFrom(from);
+			helper.setTo(to);
+
+			javaMailSender.send(message);
+			return true;
+			
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+

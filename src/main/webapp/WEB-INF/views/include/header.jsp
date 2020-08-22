@@ -133,7 +133,7 @@ $(document).ready(function(){
    
 }
 /* 회원가입버튼 */
-.join {
+.loginjoin {
    background-color:#6E6E6E;
    color:white;
    border-radius: 5px;
@@ -182,7 +182,7 @@ $(document).ready(function(){
 .popup .close { 
 	position: absolute; 
 	right:40px; top: 40px; width: 41px; height: 41px; 
-	background: url(/resources/mypageTemplate/img/btn-close.png) no-repeat; 
+	background: url(/resources/static/image/btn-close.png) no-repeat; 
 	color:transparent;
 }
 .popup .con { 
@@ -319,7 +319,7 @@ function openNav() {
       <input type="submit" value="로그인" class="login" />
    </form>
    
-   <input type="button" class="join" value="회원가입" onclick="location.href='/resources/js/joininfo.jsp'" />
+   <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/resources/js/joininfo.jsp'" />
 <!-- 	아이디비밀번호 찾기 -->
 	<a href="/id/find" class="loginsearch">아이디</a>
 	<a href="/pw/find" class="loginsearch">비밀번호찾기</a>

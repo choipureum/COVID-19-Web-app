@@ -21,4 +21,5 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("MEMBER.selectIdcheck",member_id);
 	}
+	
 }
