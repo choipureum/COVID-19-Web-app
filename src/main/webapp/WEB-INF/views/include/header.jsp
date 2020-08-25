@@ -94,6 +94,7 @@
 <!-- 로그인script -->
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$(".loginopen").on('click',function(){
 		$(".popup").show();
 		$(".dim").show();
@@ -307,13 +308,12 @@ function openNav() {
 
       <h3><span>로그인 </span></h3>
    <hr>
-   <form action="/login/login" method="post" >
+   <form action="/member/loginimpl.do" method="post" >
    
       <!-- 로그인 틀ㅇ -->
-      <label for="userid"></label>
+
       <input type="text" id="userid" name="userid" placeholder="아이디" required style="height:30px; width: 380px" /><br>
 
-      <label for="userpw"></label>
       <input type="password" id="userpw" name="userpw"  placeholder="비밀번호" required style="height:30px; width: 380px" /><br>
       <!-- <button>로그인</button> -->
       <input type="submit" value="로그인" class="login" />
@@ -321,27 +321,14 @@ function openNav() {
    
    <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/resources/js/joininfo.jsp'" />
 <!-- 	아이디비밀번호 찾기 -->
-	<a href="/id/find" class="loginsearch">아이디</a>
-	<a href="/pw/find" class="loginsearch">비밀번호찾기</a>
+	<a href="/member/searchId.do" class="loginsearch">아이디</a>
+	<a href="/member/searchPw.do" class="loginsearch">비밀번호찾기</a>
 
 </div>
 <a href="#a" class="close">닫기</a>
 </div>
 
 <div class="dim"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -369,8 +356,23 @@ function openNav() {
                   <li class="github"><a href="https://github.com/COVID-19-WEB-App/COVID-19-Web-app" target="_blank" title="프로젝트 깃헙">깃허브</a></li>
                </ul>
                <ul class="main_login">
-                  <li><a href="#" title="새창" class="loginopen">로그인</a></li> 
-                  <li><a href="/member/join.do" title="새창">회원가입</a></li> 
+               
+               <c:choose>
+               	<c:when test="${sessionScope.member_id == null }">
+               	<li><a href="#" title="새창" class="loginopen">로그인</a></li>
+               	<li><a href="/member/join.do" title="새창">회원가입</a></li> 
+               	</c:when>
+               	<c:otherwise>
+               		${sessionScope.member_id } 환영합니다!
+               		<li><a href="/member/logout.do">로그아웃</a>
+               	
+               	</c:otherwise>
+               </c:choose>
+               
+               
+<!--                   <li><a href="#" title="새창" class="loginopen">로그인</a></li>  -->
+<!--                   <li><a href="/member/join.do" title="새창">회원가입</a></li>  -->
+               
                </ul>
                 </div>
          </div>
@@ -380,7 +382,7 @@ function openNav() {
       <!-- 메뉴바 -->
       <div id="mySidenav" class="sidenav">
            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-           <a href="#"><span>최푸름</span>님 안녕하세요</a><br><br>
+           <a href="#"><span>${sessionScope.member_name }</span>님 안녕하세요</a><br><br>
               
            <a href="#home"><i class="fa fa-virus"></i>코로나 바로알기</a>
            <a href="#services"><i class="fa  fa-wrench"></i>각종 서비스</a>
@@ -407,7 +409,7 @@ function openNav() {
                      <li><a href="http://www.cdc.go.kr/" target="_blank" title="새창">중앙방역대책본부</a></li>
                   </ul>                  
                   <ul class="t_country">
-                     <li><a href="/member/login.do" target="_blank" title="새창" class="loginopen">로그인</a></li>
+                     <li><a href="#" title="새창" class="loginopen">로그인</a></li>
                      <li><a href="/member/join.do" target="_blank" title="새창">회원가입</a></li> 
                   </ul>
                </div>

@@ -136,6 +136,7 @@ var ajaxFlag = false;
 // 		ajax 활용
 
 		var joinuserid= document.querySelector("#joinuserid").value;
+		
 		var xhr = new XMLHttpRequest();
 		console.log("joinuserid : " +joinuserid);
 		xhr.open('POST','<%= request.getContextPath() %>/member/idcheck.do');
@@ -152,6 +153,7 @@ var ajaxFlag = false;
        	 } else{
        		 document.querySelector('#id_check2').textContent = '사용 가능한 아이디입니다';
 			ajaxFlag=true;
+			$("#hiddenIdCheck").attr("value","ok");
        	 }
        	 
        	 
@@ -161,6 +163,7 @@ var ajaxFlag = false;
 	
 </script>
 
+<!-- 버튼눌렀을시 유효성검사 -->
 <script>
 function DosignUp() {
 	

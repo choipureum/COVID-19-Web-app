@@ -5,9 +5,9 @@
   
 <configuration>
 	<!-- DB컬럼명을 Java의 Camel표기법으로 변경 -->
-	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
+<!-- 	<settings> -->
+<!-- 		<setting name="mapUnderscoreToCamelCase" value="true"/> -->
+<!-- 	</settings> -->
 	<typeAliases>
 		<typeAlias type="com.covid19.app.member.model.vo.Member" alias="MEMBER"/>	
 	</typeAliases>
