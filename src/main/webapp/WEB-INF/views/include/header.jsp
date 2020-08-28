@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE HTML>
 <html lang="ko">
@@ -126,7 +126,7 @@ $(document).ready(function(){
 
 /* 로그인버튼 */
 .login {
-   background-color: #6E6E6E;
+   background-color:#164165 ;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -135,7 +135,7 @@ $(document).ready(function(){
 }
 /* 회원가입버튼 */
 .loginjoin {
-   background-color:#6E6E6E;
+   background-color:#164165;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -287,6 +287,11 @@ function openNav() {
 </script>   
 </head>
 <body>
+
+
+
+
+
 <div id="main_corona">
 <form name="menuFrm" id="menuFrm" method="get">
    <input name="brdId" id="brdId" type="hidden" />
@@ -319,7 +324,7 @@ function openNav() {
       <input type="submit" value="로그인" class="login" />
    </form>
    
-   <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/resources/js/joininfo.jsp'" />
+   <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/member/joininfo.do'" />
 <!-- 	아이디비밀번호 찾기 -->
 	<a href="/member/searchId.do" class="loginsearch">아이디</a>
 	<a href="/member/searchPw.do" class="loginsearch">비밀번호찾기</a>
@@ -358,12 +363,13 @@ function openNav() {
                <ul class="main_login">
                
                <c:choose>
-               	<c:when test="${sessionScope.member_id == null }">
+               	<c:when test="${logInInfo.member_id == null}">
                	<li><a href="#" title="새창" class="loginopen">로그인</a></li>
-               	<li><a href="/member/join.do" title="새창">회원가입</a></li> 
+               	<li><a href="/member/joininfo.do" title="새창">회원가입</a></li> 
                	</c:when>
                	<c:otherwise>
-               		${sessionScope.member_id } 환영합니다!
+               		${logInInfo.member_id} 환영합니다!
+
                		<li><a href="/member/logout.do">로그아웃</a>
                	
                	</c:otherwise>
@@ -381,8 +387,9 @@ function openNav() {
       <!-- // Navigation -->
       <!-- 메뉴바 -->
       <div id="mySidenav" class="sidenav">
+      
            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-           <a href="#"><span>${sessionScope.member_name }</span>님 안녕하세요</a><br><br>
+           <a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br>
               
            <a href="#home"><i class="fa fa-virus"></i>코로나 바로알기</a>
            <a href="#services"><i class="fa  fa-wrench"></i>각종 서비스</a>
@@ -409,8 +416,19 @@ function openNav() {
                      <li><a href="http://www.cdc.go.kr/" target="_blank" title="새창">중앙방역대책본부</a></li>
                   </ul>                  
                   <ul class="t_country">
-                     <li><a href="#" title="새창" class="loginopen">로그인</a></li>
-                     <li><a href="/member/join.do" target="_blank" title="새창">회원가입</a></li> 
+                                    <c:choose>
+               	<c:when test="${logInInfo.member_id == null}">
+               	<li><a href="#" title="새창" class="loginopen">로그인</a></li>
+               	<li><a href="/member/joininfo.do" title="새창">회원가입</a></li> 
+               	</c:when>
+               	<c:otherwise>
+               		${logInInfo.member_id} 환영합니다!
+
+               		<li><a href="/member/logout.do">로그아웃</a>
+               	
+               	</c:otherwise>
+               </c:choose>
+               
                   </ul>
                </div>
             </div>

@@ -26,9 +26,12 @@ public class MemberServiceImpl implements MemberService{
 	
 //	이메일인증
 	private JavaMailSender javaMailSender;
-	public void setJavaMailSender(JavaMailSender javaMailSender) {
-		this.javaMailSender = javaMailSender;
+	
+	@Autowired
+	public MemberServiceImpl(JavaMailSender javaMailsender) {
+		this.javaMailSender = javaMailsender;
 	}
+
 	
 	/**
 	 *  회원가입
@@ -53,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 		sb.append(commandMap.get("mem_address")+" ");
 		sb.append(commandMap.get("mem_detailaddress"));
 		member.setMember_add(sb.toString());
-		member.setMember_email((String)commandMap.get("useremail"));
+		member.setMember_email((String)commandMap.get("member_email"));
 
 		return memberDao.insertMember(member);
 	}
@@ -78,10 +81,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		try {
 			
-			// org.springframework.mail.javamail.MimeMessageHelper
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 			helper.setSubject(subject);
-			helper.setText(text, true);
+			helper.setText(text);
 			helper.setFrom(from);
 			helper.setTo(to);
 
@@ -99,32 +101,12 @@ public class MemberServiceImpl implements MemberService{
 	 * 로그인
 	 */
 	@Override
-	public boolean login(Member member, HttpSession session) {
-		
-		boolean result = memberDao.login(member);
-		
-		System.out.println("result 값" + result);
-		
-		if(result) {
-			Member member2 = memberDao.viewMember(member.getMember_id());
-			System.out.println("member2:"+member2);
-			//세션에 등록
-			session.setAttribute("member_id", member2.getMember_id());
-			session.setAttribute("member_name", member2.getMember_name());			
-		}
-		return result;
-	}
-	/**
-	 * 아이디를 넣었을때 Member반환
-	 * @param String memberid
-	 * @return Member member
-	 * 
-	 */
-	@Override
-	public Member viewMember(String member_id) {
-		return memberDao.viewMember(member_id);
+	public Member login(Map<String, Object> commandMap) {
+		// TODO Auto-generated method stub
+		return memberDao.login(commandMap);
 	}
 
+	
 	/**
 	 * 로그아웃
 	 */
@@ -143,17 +125,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
-	
-	
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
 
 

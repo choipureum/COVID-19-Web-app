@@ -1,11 +1,23 @@
 package com.covid19.app.member.controller;
 
+import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -33,15 +45,29 @@ import com.covid19.app.member.model.vo.Member;
 public class MemberController {
 	 @Autowired   
 	 public MemberService memberService;
+	 
+
 	
 	 /**
-	  * 회원가입
+	  * 회원가입 GET
 	  */
 	@RequestMapping(value="/join.do",method = RequestMethod.GET)
 	public String join() {
 		return "/member/join";
 	}
+	/**
+	 * 회원가입 약관페이지
+	 */
+	@RequestMapping(value="/joininfo.do",method=RequestMethod.GET)
+	public String joinfo() {
+		return "/member/joininfo";
+	}
 	
+	/**
+	 * 회원가입 POST
+	 * @param commandMap 멤버
+	 * @return mav
+	 */
 	@RequestMapping(value="/joinimpl.do",method = RequestMethod.POST)
 	public ModelAndView joinimpl(@RequestParam Map<String,Object> commandMap,HttpServletRequest request) {		
 	
@@ -69,52 +95,54 @@ public class MemberController {
 	@ResponseBody
 	public String idcheck(String member_id) {
 		
-		System.out.println("userid가 넘어오나?"+ member_id);
 		int res = memberService.selectId(member_id);
 		if(res > 0) {
-			System.out.println("res가뭐냐? "+ res);
 			return member_id;
 		}
 		return "";
-
-		
 	}
 
-//	/**
-//	 * 로그인
-//	 */
-//	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-//	public String login() {
-//		return "/member/login";
-//	}
-//	
 
-	@RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
-	public ModelAndView loginImpl(@ModelAttribute Member member, String userid, String userpw, HttpSession session,HttpServletRequest request) {
-
-//		확인완료	
-		member.setMember_id(userid);
-		member.setMember_pw(userpw);
-		
-		boolean result = memberService.login(member,session);
-		System.out.println(session.getAttribute("member_id"));
-		System.out.println(session.getAttribute("member_name"));
-		ModelAndView mav = new ModelAndView();
-		
-		if(result == true) { //로그인성공!
-			
-		
-			mav.addObject("alertMsg", "로그인성공!");
-			mav.addObject("url",request.getContextPath()+"/main.do");
-			mav.setViewName("member/result");
-			
-		} else { //실패하면  로그인
-			mav.addObject("alertMsg", "로그인실패!");
-			mav.addObject("url", request.getContextPath()+"/main.do");
-			mav.setViewName("member/result");
-		}
-		return mav;
+	/**
+	 * 로그인
+	 */
+	@RequestMapping(value="/login.do", method = RequestMethod.GET)
+	public String login() {
+		return "/member/login";
 	}
+	
+	/**
+	 * 로그인 처리
+	 */
+	   @RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
+	   public ModelAndView loginImpl(@RequestParam Map<String,Object> commandMap,HttpSession session,HttpServletRequest request) {
+
+	      ModelAndView mav = new ModelAndView();  
+	      
+	      Member res = memberService.login(commandMap);
+
+	      System.out.println(res);
+	      
+	
+
+	      if(res != null) { //로그인성공!
+	    	  
+	    	 session.setAttribute("logInInfo", res);
+	         System.out.println("memberid = " + session.getAttribute("logInInfo"));
+	    	 
+	         mav.addObject("alertMsg", "로그인성공!");
+	         mav.addObject("url",request.getContextPath()+"/main.do");
+	     
+	      } else { //실패하면  로그인
+	         mav.addObject("alertMsg", "로그인실패!");
+	         mav.addObject("url", request.getContextPath()+"/main.do");
+	      }
+	      mav.setViewName("member/result");
+	      return mav;
+	   }
+	
+
+	
 	
 	/**
 	 * 로그아웃
@@ -125,14 +153,13 @@ public class MemberController {
 		memberService.logout(session);
 		ModelAndView mav = new ModelAndView();
 		//로그아웃시 main.do
-		mav.setViewName("/main.do");
+		mav.setViewName("/main");
 		
 		return mav;
 	}
 
 	/**
 	 * 아이디찾기 
-	 * @return 아이디찾기 jsp
 	 */
 	@RequestMapping(value="/searchId.do",method = RequestMethod.GET)
 	public String searchId() {
@@ -146,14 +173,10 @@ public class MemberController {
 		System.out.println("member" + member);
 		
 		String searchid = memberService.searchId(member);
-		
 		System.out.println(searchid);
 
 		return searchid;
 	}
-	
-	
-	
 	
 	/**
 	 * 비밀번호 찾기
@@ -164,57 +187,30 @@ public class MemberController {
 		return "/member/searchPw";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	
-//	@RequestMapping(value="/email.do", method = RequestMethod.POST)
-//	public ModelAndView mail() {
-//		ModelAndView mav = new ModelAndView();
-//		int random = new Random().nextInt(900000) + 100000;
-////		와우 
-//		mav.setViewName("/member/email");
-//		mav.addObject("random", random);
-//		return mav;
-//		
-//	}
-//	
-//	
-//	
-//	@RequestMapping(value="/sendMail.do", method= RequestMethod.POST)
-//	@ResponseBody
-//	public boolean sendMail(HttpSession session, @RequestParam String email) {
-//		
-//		int randomCode = new Random().nextInt(10000)+1000;
-//		String joinCode = String.valueOf(randomCode);
-//		session.setAttribute("joinCode", joinCode);
-//		
-//		String subject = "회원가입 인증 코드 발급 안내 입니다.";
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("귀하의 인증 코드는 " + joinCode + "입니다.");
-//		return memberService.send(subject, sb.toString(), "vnfmaghkdwp@naver.com", email);
-//		
-//	}
-	
+
+	@RequestMapping(value="/sendMail.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String sendMail(HttpSession session, @RequestParam String member_email) {
+		
+		System.out.println("member_email " + member_email);
+		int randomCode = new Random().nextInt(10000) + 1000;
+		String joinCode = String.valueOf(randomCode);
+		session.setAttribute("joinCode", joinCode);
+		
+		String subject = "COVID-19 회원가입 승인 번호 입니다";
+		StringBuilder sb = new StringBuilder();
+		sb.append("회원가입 승인번호는").append(joinCode).append("입니다");
+		boolean success=memberService.send(subject, sb.toString(), "vnfmaghkdwp@naver.com",member_email );
+		if(success) {
+			return joinCode;
+		}else {
+			return null ;
+		}		
+	}
 	
 
 
-
+	
 }
 
 

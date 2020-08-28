@@ -224,21 +224,72 @@ function DosignUp() {
 	   }
 
 }
-
-
-
 </script>
 
-<!-- <!-- 이메일 인증 --> 
-<!-- <!-- <script> --> 
-<!-- // 	var clientEmail = document.getElementById('useremail').value; -->
-<!-- // 	var emailYN = isEmail(clientEmail); -->
+
+<!-- 이메일 인증버튼 -->
+<script type="text/javascript">
+var ran=0;
+function emailSend(){
+	if($("#member_email").val()==""){
+		alert("이메일을 입력하세요");
+		return false;
+	}
 	
-<!-- // 	console.log('입력 이메일 : '+clientEmail); -->
+	if($('#emailcheckbox').css("display") =="none") {
+		$("#emailcheckbox").show();
+	} 		
+	
+	//ajax 이용
+	var member_email= $("#member_email").val();
+	$.ajax({
+		type: 'POST',
+		url: "<c:url value='/member/sendMail.do' />",
+//			파라미터 변수 이름 값(사용자아이디값)
+		data : {"member_email" : member_email},
+		success : function(random){		
+			//왜일까? ----------여기 짊ㄴ아ㅓ
+			alert("이메일을 보냈습니다"+random);	
+			if(random!=null){
+				ran=random;		
+			}			
+		}
+	});
+};
+
+// if (ran == 이메일인증.val()) emailCheck버튼
+function emailCheckFunc(){
+	
+	if(ran == $("#useremailcheck").val()){
+		$("#email_check").text('이메일이 인증되었습니다');
+		$("#email_check").css('color','blue');	
+		$("#hiddenEmailCheck").attr("value","ok");
+	} else{
+		$("#email_check").text('인증번호가 틀립니다  다시 확인해주세요!');
+		$("#email_check").css('color','red');		
+	}
+}
+</script>
 
 
 
-<!-- <!-- </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- css -->
@@ -250,9 +301,12 @@ function DosignUp() {
    line-height: 16px;
 }
 
+#emailcheckbox{
+	display: none;
+}
 
 .join {
-   background-color: blue;
+   background-color: #164165;
    color:white;
    border-radius: 5px;
    border: 0;
@@ -368,17 +422,18 @@ td:first-of-type{
   		</tr>
   		<tr>
   			<td>이메일</td>
-  			<td><input type="email" placeholder="이메일" name="useremail" id="useremail" required style="height:30px; width: 300px">
+  			<td><input type="email" placeholder="이메일" name="member_email" id="member_email" required style="height:30px; width: 300px">
 				<button type ="button" value="이메일인증" id="email_btn" class="id_Button" onclick="emailSend()">이메일인증</button>  			
   			</td>
+  			<!-- 이메일인증 -->
+  			<td><div id="emailcheckbox">이메일 인증
+			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="5" style="display:inline-block; width: 230px" />
+			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()" style="display:inline-block;" >인증 확인</button>
+			<div id="email_check"></div>
+			</div></td>
   		</tr>
-<!--   		<tr id="joincode"> -->
-<!--   			<td>인증번호</td> -->
-<!--   			<td> -->
-<!--   				<input type="number" name="inputCode" id="inputCode" class="code-control" required style="height:30px; width: 300px" placeholder="Enter Code" /> -->
-<!--   				<button id="certificationBtn" onclick="emailCertification()">인증하기</button> -->
-<!--   			</td> -->
-<!--   		</tr> -->
+
+		
   		
   		<tr>
   			<td>주소</td>

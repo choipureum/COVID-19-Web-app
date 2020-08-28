@@ -9,10 +9,17 @@ import com.covid19.app.member.model.vo.Member;
 
 public interface MemberService {
 	
-	//회원가입
+	/**
+	 * 회원가입
+	 * @param commandMap
+	 */
 	public int insertMember(Map<String,Object>commandMap);
 
-	//아이디 중복체크
+	/**
+	 * 아이디 중복 체크
+	 * @param member_id  아이디 확인
+	 * @return
+	 */
 	public int selectId(String member_id);
 	
 
@@ -26,16 +33,12 @@ public interface MemberService {
 
 	/**
 	 * 회원 로그인
-	 * @param member
+	 * @param commandMap
 	 * @param session
 	 * @return
 	 */
-	public boolean login(Member member, HttpSession session);
+	public Member login(Map<String, Object> commandMap);
 
-	/**
-	 * 회원 로그인 정보
-	 */
-	public Member viewMember(String member_id);
 	
 	/**
 	 * 로그아웃
@@ -49,6 +52,9 @@ public interface MemberService {
 	 * @return 이름과 이메일로
 	 */
 	public String searchId(Member member);
+
+	
+
 	
 
 

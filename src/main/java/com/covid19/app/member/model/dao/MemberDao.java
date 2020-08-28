@@ -43,25 +43,11 @@ public class MemberDao {
 	 * @param member 전체 id pw 확인
 	 * @return
 	 */
-	public boolean login(Member member) {
-		boolean flag=false;
-		Member member2 = session.selectOne("MEMBER.login", member);
-		System.out.println(member2);
-		if(member2.getMember_id()!=null) {
-			flag=true;
-		}else {
-			flag=false;
-		}
-		return flag;		
+	public Member login(Map<String, Object> commandMap) {
+		System.out.println(commandMap);
+		return session.selectOne("MEMBER.login", commandMap);
 	}	
-	/**
-	 * 회원 로그인 정보
-	 * @param String member_id
-	 * @return Member
-	 */
-	public Member viewMember(String member_id) {				
-		return session.selectOne("MEMBER.viewMember", member_id);
-	}
+
 	
 	/**
 	 * 로그아웃
