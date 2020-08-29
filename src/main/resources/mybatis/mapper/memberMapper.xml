@@ -35,6 +35,15 @@
 		where MEMBER_NAME=#{member_name} and MEMBER_EMAIL=#{member_email}
 	</select>
 
+	<select id="searchPw" resultType="int">
+		select count(*) from member
+		where MEMBER_ID = #{member_id} and MEMBER_EMAIL=#{member_email} and MEMBER_NAME=#{member_name}
+	</select>
+	
+	<update id="changePw">
+		update member set MEMBER_PW = #{member_pw}
+		where MEMBER_ID = #{member_id}
+	</update>
 </mapper>
 
 

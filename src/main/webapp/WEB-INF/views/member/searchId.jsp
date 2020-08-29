@@ -21,18 +21,11 @@ function idFind(event){
 	
 	if($("#member_name").val()==""){
 		alert("이름을 입력하세요");
-
 	} else if($("#member_email").val()==""){
 		alert("이메일을 입력하세요");
-
 	} 
-	
-// 	//배열에 유저정보 삽입
-// 	var userinfo=new Array;
-// 	userinfo.push(username);
-// 	userinfo.push(useremail);
-	
-	
+
+	//정보 삽입
 	var obj = {"member_name":member_name,"member_email":member_email};
 	//확인
 	console.log(obj);
@@ -40,16 +33,13 @@ function idFind(event){
 	$.ajax({
 		type : 'POST',
 		url : "<c:url value='/member/searchIdimpl.do' />",
-// 		data: JSON.stringify(obj),
 		data: obj,
 		dataType: "text",
 		async:false,
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		
 		success : function(data){
 			//확인
 			console.log(data);
-			
 			if(data != null && data != ''){				
 				$("#id_find").text('회원님의 아이디는 : ' + data);
 				$("#id_find").css('color','blue');
@@ -61,7 +51,6 @@ function idFind(event){
 		, error: function() {
 			console.log("ajax 실패")
 		}
-		
 	});
 }
 </script>
@@ -73,36 +62,13 @@ function idFind(event){
    margin :40px auto;
    line-height: 16px;
 }
-h5{
-   text-align: center;
-}
-h5 span{
-   color:blue;
-   
-}
-
-
-input {
-    border: 1px solid lightgray;
-    border-radius: 3px;
-}
-#red{
-   color:red;
-}
-
-tr{
-	height: 50px;
-	width:100%;
-}
-
-td{
-	height: 50px;
-	border-bottom:3px solid #000;
-}
-td:first-of-type{
-	border-right:1px solid #000;
-	width: 120px;
-}
+h5{ text-align: center; }
+h5 span{ color:blue; }
+input { border: 1px solid lightgray; border-radius: 3px; }
+#red{ color:red; }
+tr{ height: 50px; width:100%; }
+td{ height: 50px; border-bottom:3px solid #000; }
+td:first-of-type{ border-right:1px solid #000; width: 120px; }
 </style>
 
 <!-- 입력  -->
@@ -110,9 +76,6 @@ td:first-of-type{
 
    <h5><span>아이디 </span>찾기</h5>
    <hr>
-   
-<!-- 비밀번호 확인 해주기  -->
-<!-- 메인화면 으로 가야하지 않나..?-->
 	<form action="/id/find" method="post" id="myForm">
 	<table>
 		<tr>
@@ -120,14 +83,12 @@ td:first-of-type{
 			<td><input type="text" placeholder="이름" name="member_name" id="member_name" required style="height:30px; width: 300px"/></td>
 			<td><div id="name_check"></div></td>
 		</tr>
-		
 		<tr>
 			<td>이메일</td>
 			<td><input type="email" placeholder="이메일" name="member_email" id="member_email" required style="height:30px; width: 300px"/></td>
 		</tr>
 	</table>
 
-	
 	<!-- 아이디찾기 로그인 버튼 -->
 		<hr>
 		<div style="margin:0 auto;text-align:center;">
@@ -140,12 +101,6 @@ td:first-of-type{
   		<br><br>
    </form>
 </div>
-
-
-
-
-
-
 <!-- footer 임포트 -->
 <jsp:include page="/footer.do" />
 </body>

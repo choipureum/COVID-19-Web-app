@@ -65,6 +65,24 @@ public class MemberDao {
 		return session.selectOne("MEMBER.searchId", member);
 	}
 
+	/**
+	 * 비밀번호 찾기
+	 * @param member
+	 * @return count 해서 맞는 정보 확인
+	 */
+	public int searchPw(Member member) {
+		return session.selectOne("MEMBER.searchPw", member);
+	}
+
+	/**
+	 * 비밀번호 바꾸기 
+	 * @param commandMap
+	 * @return 완벽하면 return 1해서 돌리기 mav
+	 */
+	public int changePw(Member member) {
+		return session.update("MEMBER.changePw", member);
+	}
+
 
 	
 	

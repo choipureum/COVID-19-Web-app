@@ -31,8 +31,6 @@ public class MemberServiceImpl implements MemberService{
 	public MemberServiceImpl(JavaMailSender javaMailsender) {
 		this.javaMailSender = javaMailsender;
 	}
-
-	
 	/**
 	 *  회원가입
 	 */
@@ -57,7 +55,6 @@ public class MemberServiceImpl implements MemberService{
 		sb.append(commandMap.get("mem_detailaddress"));
 		member.setMember_add(sb.toString());
 		member.setMember_email((String)commandMap.get("member_email"));
-
 		return memberDao.insertMember(member);
 	}
 
@@ -70,15 +67,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectIdcheck(member_id);
 	}
 
-
 	/**
-	 * 이메일인증 미완성
+	 * 이메일인증 완성
 	 */
 	@Override
 	public boolean send(String subject, String text, String from, String to) {
 		
 		MimeMessage message = javaMailSender.createMimeMessage();
-		
 		try {
 			
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -89,13 +84,11 @@ public class MemberServiceImpl implements MemberService{
 
 			javaMailSender.send(message);
 			return true;
-			
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-
 
 	/**
 	 * 로그인
@@ -106,14 +99,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.login(commandMap);
 	}
 
-	
 	/**
 	 * 로그아웃
 	 */
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
-		
 	}
 
 	/**
@@ -123,11 +114,27 @@ public class MemberServiceImpl implements MemberService{
 	public String searchId(Member member) {
 		return memberDao.searchId(member);
 	}
+	
+	/**
+	 * 비밀번호 찾기
+	 */
+	@Override
+	public int searchPw(Member member) {
+		return memberDao.searchPw(member);
+	}
+	/**
+	 * 비밀번호 바꾸기 change update
+	 */
+	@Override
+	public int changePw(Member member) {
+		return memberDao.changePw(member);
+	}
 
 
 
 
-
+	
+	
 
 }
 

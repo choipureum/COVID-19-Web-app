@@ -10,14 +10,9 @@
  <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
         Kakao.init('e721ebffa13f4046dd1872bd485f5506');
-
         // SDK 초기화 여부를 판단합니다.
         console.log(Kakao.isInitialized());
 </script>
-
-
-
-
 <body>
 <a id="login-form-btn" href="javascript:loginFormWithKakao()">
   <img

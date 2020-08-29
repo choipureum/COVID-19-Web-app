@@ -24,9 +24,6 @@ function init(){
 }
 
 init();
-
-
-
 </script>
 </head>
 <body>

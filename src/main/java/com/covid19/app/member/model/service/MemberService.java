@@ -53,6 +53,20 @@ public interface MemberService {
 	 */
 	public String searchId(Member member);
 
+	/**
+	 * 비밀번호 찾기
+	 * @param member
+	 * @return 이름 아이디 이메일 
+	 */
+	public int searchPw(Member member);
+
+	/**
+	 * 비밀번호 업데이트 하는 부분 
+	 * @param commandMap member_id만 보고 pw 업데이트
+	 * @return 비밀번호 업데이트 해야하는데 .. 
+	 */
+	public int changePw(Member member);
+
 	
 
 	

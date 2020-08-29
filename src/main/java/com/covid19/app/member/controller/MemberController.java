@@ -114,36 +114,28 @@ public class MemberController {
 	/**
 	 * 로그인 처리
 	 */
-	   @RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
-	   public ModelAndView loginImpl(@RequestParam Map<String,Object> commandMap,HttpSession session,HttpServletRequest request) {
+	@RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
+	public ModelAndView loginImpl(@RequestParam Map<String,Object> commandMap,HttpSession session,HttpServletRequest request) {
 
-	      ModelAndView mav = new ModelAndView();  
+		ModelAndView mav = new ModelAndView();  
+		Member res = memberService.login(commandMap);
+		System.out.println(res);
 	      
-	      Member res = memberService.login(commandMap);
-
-	      System.out.println(res);
-	      
-	
-
-	      if(res != null) { //로그인성공!
+		if(res != null) { //로그인성공!
 	    	  
-	    	 session.setAttribute("logInInfo", res);
-	         System.out.println("memberid = " + session.getAttribute("logInInfo"));
+			session.setAttribute("logInInfo", res);
+			System.out.println("memberid = " + session.getAttribute("logInInfo"));
 	    	 
-	         mav.addObject("alertMsg", "로그인성공!");
-	         mav.addObject("url",request.getContextPath()+"/main.do");
+			mav.addObject("alertMsg", "로그인성공!");
+			mav.addObject("url",request.getContextPath()+"/main.do");
 	     
-	      } else { //실패하면  로그인
-	         mav.addObject("alertMsg", "로그인실패!");
-	         mav.addObject("url", request.getContextPath()+"/main.do");
-	      }
-	      mav.setViewName("member/result");
-	      return mav;
-	   }
-	
-
-	
-	
+		} else { //실패하면  로그인
+			mav.addObject("alertMsg", "로그인실패!");
+			mav.addObject("url", request.getContextPath()+"/main.do");
+		}
+		mav.setViewName("member/result");
+		return mav;
+	}
 	/**
 	 * 로그아웃
 	 */
@@ -154,7 +146,6 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		//로그아웃시 main.do
 		mav.setViewName("/main");
-		
 		return mav;
 	}
 
@@ -169,12 +160,9 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/searchIdimpl.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String searchIdimpl(@ModelAttribute Member member) {
-//		@RequestBody
 		System.out.println("member" + member);
-		
 		String searchid = memberService.searchId(member);
 		System.out.println(searchid);
-
 		return searchid;
 	}
 	
@@ -187,7 +175,39 @@ public class MemberController {
 		return "/member/searchPw";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/searchPwimpl.do",method = RequestMethod.POST)
+	public int searchPwimpl(@ModelAttribute Member member) {
+		System.out.println("member" + member);
+		int searchpw = memberService.searchPw(member);
+		System.out.println("searchpw " + searchpw);
+		return searchpw;
+	}
+	
+	/**
+	 * 비밀번호 찾기
+	 */
+	@RequestMapping(value="/changePw.do", method = RequestMethod.GET)
+	public String changePw() {
+		return "/member/changePw";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/changePwimpl.do", method = RequestMethod.POST)
+	public int changePwimpl(@RequestParam Member member,HttpSession session,HttpServletRequest request) {
+	      System.out.println();
+	      int res = memberService.changePw(member);
+	      String userid= member.getMember_id();
+	      
+	      System.out.println(userid);
+	      
+	      return res;
+	}
 
+	
+	/**
+	 * 이메일 인증
+	 */
 	@RequestMapping(value="/sendMail.do",method = RequestMethod.POST)
 	@ResponseBody
 	public String sendMail(HttpSession session, @RequestParam String member_email) {
@@ -199,7 +219,8 @@ public class MemberController {
 		
 		String subject = "COVID-19 회원가입 승인 번호 입니다";
 		StringBuilder sb = new StringBuilder();
-		sb.append("회원가입 승인번호는").append(joinCode).append("입니다");
+		sb.append("회원가입 승인번호는 < ").append(joinCode).append(" >입니다");
+		
 		boolean success=memberService.send(subject, sb.toString(), "vnfmaghkdwp@naver.com",member_email );
 		if(success) {
 			return joinCode;

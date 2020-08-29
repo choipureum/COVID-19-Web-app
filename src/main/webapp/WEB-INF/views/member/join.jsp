@@ -92,12 +92,10 @@ $(document).ready(function(){
 		if($("#joinuserpw").val() == '') {
 			$('#pw_check2').text('비밀번호를 입력하세요');
 			$('#pw_check2').css('color','green');
-			
 		} else if($('#joinuserpw').val() != $(this).val()){		
 			$('#pw_check2').text('비밀번호가 일치하지 않습니다');
 			$('#pw_check2').css('color','red');
 		} else {
-		
 			$('#pw_check2').text('비밀번호가 일치합니다');
 			$('#pw_check2').css('color','blue');
 		} 
@@ -106,27 +104,22 @@ $(document).ready(function(){
 	$('#username').blur(function(){
 		if(unameReg.test($('#username').val())){
 			$('#pw_check').text('');
-		
 		} else{
 			$("#name_check").text('2글자 이상  5글자 이하 한글로 작성하세요');
 			$("#name_check").css('color','red');
 		}
 	})
-	
 	// 	userbirth_yy 출생년도
 	$('#userbirth_yy').blur(function(){
 		if(yearReg.test($('#userbirth_yy').val())){
 			$('#year_check').text('');
-		
 		} else{
 			$("#year_check").text('19__ - 20__ 형식에 맞게 입력하세요');
 			$("#year_check").css('color','red');
 		}
 	}) //blur
-	
 })
 </script>
-
 
 <!-- 아이디 중복체크  -->
 <script type="text/javascript">
@@ -134,16 +127,14 @@ var ajaxFlag = false;
 
 	function idCheck(){	
 // 		ajax 활용
-
 		var joinuserid= document.querySelector("#joinuserid").value;
-		
 		var xhr = new XMLHttpRequest();
+		
 		console.log("joinuserid : " +joinuserid);
+		
 		xhr.open('POST','<%= request.getContextPath() %>/member/idcheck.do');
 		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		
 		xhr.send('member_id='+joinuserid);
-		
         xhr.addEventListener('load',function(){
        	 var data = xhr.response;
        	 
@@ -155,12 +146,8 @@ var ajaxFlag = false;
 			ajaxFlag=true;
 			$("#hiddenIdCheck").attr("value","ok");
        	 }
-       	 
-       	 
         })
      }
-
-	
 </script>
 
 <!-- 버튼눌렀을시 유효성검사 -->
@@ -180,66 +167,54 @@ function DosignUp() {
   	var yearReg = /^(19|20)[0-9]{2}$/;
         
 	   if(!unameReg.test($("#username").val())) {
-			
-		   alert("이름한글로 2-5자!");
+		  alert("이름한글로 2-5자!");
 	      return false;
 	   }
 		if(!uidReg.test($("#joinuserid").val())){
 			alert("아이디확인!");
 		    return false;
 		}
-    
 	   if(!($("#hiddenIdCheck").val()=="ok")){
 		   alert("아이디 중복 체크 !");
 		   return false;
 	   }
 	   if(!upwReg.test($("#joinuserpw").val())){
 		   alert("비밀번호는 6에서 18자리 소문자, 숫자!");
-
 	  	   return false;
 	   }
-
-	   if(!($("#hiddenEmailCheck").val()=="ok")){
-		   
-		   alert("이메일 인증을 해주세요!");
-
-		   return false;
-	   }
-	   
 	   //#joinuserpw_ck
 	   if( $("#joinuserpw").val() != $("#joinuserpw_ck").val() ){
 		   
 		   alert("비밀번호가 달라요!");
-
 	      $("#joinuserpw").focus();      
 	      //select 이벤트발생
 	      $("#joinuserpw_ck").select();
 	      return false;		   
 	   }
-	   if(!yearReg.test($("#userbirth_yy").val())){
-		   
-		   alert("년도를 확인해주세요!");
-	   
+
+	   if(!($("#hiddenEmailCheck").val()=="ok")){
+		   alert("이메일 인증을 해주세요!");
 		   return false;
 	   }
-
+	   if(!yearReg.test($("#userbirth_yy").val())){
+		   alert("년도를 확인해주세요!");
+		   return false;
+	   }
 }
 </script>
-
 
 <!-- 이메일 인증버튼 -->
 <script type="text/javascript">
 var ran=0;
+
 function emailSend(){
 	if($("#member_email").val()==""){
 		alert("이메일을 입력하세요");
 		return false;
 	}
-	
 	if($('#emailcheckbox').css("display") =="none") {
 		$("#emailcheckbox").show();
 	} 		
-	
 	//ajax 이용
 	var member_email= $("#member_email").val();
 	$.ajax({
@@ -270,40 +245,15 @@ function emailCheckFunc(){
 	}
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- css -->
 <style type="text/css">
-
 .joincontainer{
    width:800px;
    margin :40px auto;
    line-height: 16px;
 }
 
-#emailcheckbox{
-	display: none;
-}
+#emailcheckbox{ display: none; }
 
 .join {
    background-color: #164165;
@@ -312,47 +262,33 @@ function emailCheckFunc(){
    border: 0;
    padding: 10px 375px;
    text-align: center;
-   
-   
 }
+.id_Button{ 
+    background-color: rgb(220,220,220); 
+    color:black; 
+    border-radius: 2px; 
+    border: 0;
+    padding: 6px 20px; 
+} 
+ 
 
-input {
-    border: 1px solid lightgray;
+input { border: 1px solid lightgray; }
+table{ width:100%; }
 
-}
-table{width:100%;}
+select{ height:35px; width: 100px; }
+tr{ height: 50px; width:100%; }
 
-select{
-   height:35px; 
-   width: 100px;
-}
-
-tr{
-	height: 50px;
-	width:100%;
-}
-
-td{
-	height: 50px;
-	border-bottom:3px solid #000;
-}
-td:first-of-type{
-	border-right:1px solid #000;
-	width: 120px;
-}
+td{ height: 50px; border-bottom:3px solid #000; }
+td:first-of-type{ border-right:1px solid #000; width: 120px; }
 
 </style>
 </head>
 <body>
-
-
 <div class="joincontainer">
 
 <header class="text-left createHeader">기본정보입력&nbsp;
 <span class="subCreateHeader">기본정보를 정확히 입력해주세요</span>
 </header>
-
-   
 <!--    비밀번호 확인 해주기  -->
 <!--    메인화면 으로 가야하지 않나..?-->
    <form action="/member/joinimpl.do" method="post" id="myForm">
@@ -361,7 +297,6 @@ td:first-of-type{
   <input type="hidden" id="hiddenIdCheck"/>
 	<!-- 이메일인증 값 체크용 힐든 벨류  -->
 	<input type="hidden" id="hiddenEmailCheck"/>
-	
   <table>
   	<tbody>
   		 <tr>
@@ -369,14 +304,10 @@ td:first-of-type{
   			<td><input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 300px"/></td>
   			<td><div id="name_check"></div></td>
   		</tr>
-  	
-  	
   		<tr>
- 
   			<td>아이디</td>
   			<td> <input type="text" placeholder="아이디" name="joinuserid" id="joinuserid" required style="height:30px; width: 300px" />
   				<button type ="button" value="중복확인" id="idCheckbutton" class="id_Button" onclick="idCheck()">중복확인</button>
-  			
   			</td>
   			<td><div id="id_check"></div><span id="id_check2"></span></td>
   		</tr>
@@ -385,20 +316,17 @@ td:first-of-type{
   			<td><input type="password" placeholder="비밀번호" name="joinuserpw" id="joinuserpw" class="pw" required style="height:30px; width: 300px"/></td>
   			<td><div id="pw_check"></div></td>
   		</tr>
-  		
   		 <tr>
   			<td>비밀번호 확인</td>
   			<td><input type="password" placeholder="비밀번호확인" name="joinuserpw_ck" id="joinuserpw_ck" class="pw" required style="height:30px; width: 300px"/></td>
   			<td><div id="pw_check2"></div></td>
   		</tr>
-  		
   		<tr>
   			<td>핸드폰</td>
   			<td><input type="tel" maxlength="11" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 300px"/></td>
   			<td><div style="color:gray;"> - 표시없이 숫자만 입력해주세요</div>
   			</td>
   		</tr>
-  		
   		<tr>
   			<td>생년월일</td>
   			<td><input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px;width: 90px">
@@ -425,46 +353,34 @@ td:first-of-type{
   			<td><input type="email" placeholder="이메일" name="member_email" id="member_email" required style="height:30px; width: 300px">
 				<button type ="button" value="이메일인증" id="email_btn" class="id_Button" onclick="emailSend()">이메일인증</button>  			
   			</td>
-  			<!-- 이메일인증 -->
-  			<td><div id="emailcheckbox">이메일 인증
-			<input type="text"  name="useremailcheck" id="useremailcheck" maxlength="5" style="display:inline-block; width: 230px" />
+  		</tr>
+  		<!-- 이메일인증 -->
+  		<tr id="emailcheckbox">
+  			<td>이메일 인증</td>
+			<td><input type="text"  name="useremailcheck" id="useremailcheck" maxlength="5" style="display:inline-block; height:30px; width: 300px;" />
 			<button type ="button" class="id_Button" id="emailCheck" onclick="emailCheckFunc()" style="display:inline-block;" >인증 확인</button>
 			<div id="email_check"></div>
-			</div></td>
+			</td>
   		</tr>
-
-		
-  		
   		<tr>
   			<td>주소</td>
   			<td><div class="form-group">                   
 			<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style="display:inline-block; height:30px; width: 100px">
     		<button type="button" class="id_Button" onclick="execPostCode();" style="display:inline-block;">우편번호 찾기</button>                               
 			<br>
-	
     		<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 250px" readonly="readonly" />
    	 		<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="display:inline-block;height:30px; width: 200px"/>
 			</div>
 			</td>
 			<td></td>
   		</tr>
-
   	</tbody>
-  
-  
-  
   </table> 
    <hr>
       <input type="submit" value="가입하기" class="join" onclick="DosignUp();" /><br>
-      
    </form>
-   
 </div>
-
 
 <!-- footer 임포트 -->
 <jsp:include page="/footer.do" />
 </body>
-
-
-		
