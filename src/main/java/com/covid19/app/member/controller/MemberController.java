@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.codehaus.jackson.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,11 @@ public class MemberController {
 	 @Autowired   
 	 public MemberService memberService;
 	 
-
+	 /**
+	  * 카카오 로그인
+	  */
+	 private kakao_restapi kakao_restapi = new kakao_restapi();
+	 
 	
 	 /**
 	  * 회원가입 GET
@@ -148,6 +153,35 @@ public class MemberController {
 		mav.setViewName("/main");
 		return mav;
 	}
+	
+	/**
+	 * 카카오 로그인
+	 */
+	@RequestMapping(value = "/oauth", produces = "application/json")
+	public String kakaoLogin(@RequestParam("code") String code, Member member, HttpSession session) {
+		System.out.println("로그인 임시 코드값");
+		
+		System.out.println(code);
+		System.out.println("로그인 결과값");
+		
+		//카카오 restapi 
+		kakao_restapi kr = new kakao_restapi();
+		
+		JsonNode node = kr.getAccessToken(code);
+		
+		System.out.println(node);
+		
+		String token = node.get("access_token").toString();
+		session.setAttribute("token", token);
+
+		return "/main.do";
+	}
+	
+	
+//	https://kauth.kakao.com/oauth/authorize?client_id=a299cea4428cc95365d36f9a401470f4&redirect_uri=http://localhost:8888/app/oauth&response_type=code
+
+	
+	
 
 	/**
 	 * 아이디찾기 
@@ -195,13 +229,13 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/changePwimpl.do", method = RequestMethod.POST)
 	public int changePwimpl(@RequestParam Member member,HttpSession session,HttpServletRequest request) {
-	      System.out.println();
-	      int res = memberService.changePw(member);
-	      String userid= member.getMember_id();
+	     
+		int res = memberService.changePw(member);
+	    String userid= member.getMember_id();
 	      
-	      System.out.println(userid);
+	    System.out.println(userid);
 	      
-	      return res;
+	    return res;
 	}
 
 	

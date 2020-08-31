@@ -65,17 +65,22 @@ function pwChangeFunc(){
 		alert("비밀번호는 6에서 18자리 소문자, 숫자!");
 	    return false;
 	}
+	
+	var obj = {"member_id":member_id, "member_pw":member_pw};
+	
 	$.ajax({
 		type:'POST',
-		url:'/member/changeImpl.do',
-		data : {
-			"member_id":member_id
-			, "member_pw":member_pw
-		},
-		success:function(res){			
-// 	if문
-			alert("비밀번호 변경이 완료되었습니다!");
-			location.href="/main.do";
+		url:"<c:url value='/member/changePwimpl.do' />",
+		data : obj,
+		success: function(res){	
+			
+			if( res == 1){
+				alert("비밀번호 변경이 완료되었습니다!");
+				location.href="/main.do";
+			}
+		}
+		, error: function(){
+			console.log("혹시 여기가 안되니?")
 		}
 	})
 }
