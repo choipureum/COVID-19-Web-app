@@ -219,7 +219,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 비밀번호 찾기
+	 * 비밀번호 바꾸기
 	 */
 	@RequestMapping(value="/changePw.do", method = RequestMethod.GET)
 	public String changePw() {
