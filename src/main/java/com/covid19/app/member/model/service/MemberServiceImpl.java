@@ -129,6 +129,13 @@ public class MemberServiceImpl implements MemberService{
 	public int changePw(Member member) {
 		return memberDao.changePw(member);
 	}
+	/**
+	 * 회원 정보 수정
+	 */
+	@Override
+	public int membermodify(Member member) {
+		return memberDao.membermodify(member);
+	}
 
 
 

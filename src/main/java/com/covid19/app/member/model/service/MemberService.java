@@ -67,6 +67,13 @@ public interface MemberService {
 	 */
 	public int changePw(Member member);
 
+	/**
+	 * 회원정보 수정 member
+	 * @param member
+	 * @return
+	 */
+	public int membermodify(Member member);
+
 	
 
 	

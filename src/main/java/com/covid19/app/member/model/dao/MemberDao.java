@@ -83,6 +83,16 @@ public class MemberDao {
 		return session.update("MEMBER.changePw", member);
 	}
 
+	/**
+	 * 회원 정보 수정
+	 * @param member
+	 * @return
+	 */
+	public int membermodify(Member member) {
+		return session.update("MEMBER.membermodify", member);
+		
+	}
+
 
 	
 	

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -96,7 +95,7 @@ $(document).ready(function(){
 
 <!-- 버튼눌렀을시 유효성검사 -->
 <script>
-function DosignUp() {	
+function modifyform() {	
 	//#userpassword 검증
 	var upwReg = /^[A-Za-z0-9]{6,18}$/;
   	//출생년도 정규식 ( 생년월일 )
@@ -123,18 +122,29 @@ function DosignUp() {
 </script>
 
 
+<!-- 클릭함수 탈퇴하기 -->
+<script type="text/javascript">
+function withDraw(){
+   var userid= "${member.userid}";
+   alert("탈퇴!");
 
+}
+</script>
 
-
-
-
-
-
-
-
-
-
-
+<!-- 탈퇴하기 팝업 -->
+<script>
+$(document).ready(function(){
+   
+   $(".open").on('click',function(){
+      $(".modifypopup").show();
+      $(".withdrawdim").show();
+   });
+   $(".modifypopup .close").on('click',function(){
+      $(this).parent().hide();
+      $(".withdrawdim").hide();
+   });
+});
+</script>
 
 
 
@@ -190,7 +200,7 @@ input {
    cursor: pointer;
 }
 /* 팝업처리 */
-.popup { 
+.modifypopup { 
    display: none; 
    position: fixed; 
     left: 50%;  
@@ -202,7 +212,7 @@ input {
    box-sizing: border-box; 
    background: #fff;
 }
-.popup h2 { 
+.modifypopup h2 { 
    padding: 0 0 42px; 
    border-bottom: 3px solid #444; 
    font-weight: normal;
@@ -211,17 +221,17 @@ input {
    text-align: center; 
    line-height: 100%;
 }
-.popup .close { 
+.modifypopup .close { 
    position: absolute; 
    right:40px; top: 40px; width: 41px; height: 41px; 
-   background: url(/resources/mypageTemplate/img/btn-close.png) no-repeat; 
+   background: url(/resources/static/image/btn-close.png) no-repeat; 
    color:transparent;
 }
-.popup .con { 
+.modifypopup .con { 
    padding: 20px 48px; 
    border-bottom:1px solid #e8e8e8;
 }
-.dim { 
+.withdrawdim { 
    display: none;
    position: fixed; 
    left: 0; top: 0; 
@@ -242,12 +252,12 @@ input {
       <h2 id="one"> 회원 정보 변경</h2>
    <hr>
    
-   <form action="/mypage/modifyimpl.do" method="post" id="myForm">
+   <form action="/mypage/memberModifyimpl.do" method="post" id="modifyform">
   <table>
   	<tbody>
   		 <tr>
   			<td>이름</td>
-  			<td><input type="text" placeholder="이름" name="username" id="username" required style="height:30px; width: 300px"/></td>
+  			<td><input type="text" readonly="readonly" name="member_name" id="member_name" required style="height:30px; width: 300px" value="${modify.member_name }"/></td>
   			<td><div id="name_check"></div></td>
   		</tr>
   		<tr>
@@ -324,7 +334,7 @@ input {
    <div class="second" style="display: inline-block;">
       <button type="button" id="open" value="탈퇴하기" class="open" >탈퇴하기</button>
          
-         <div class="popup">
+         <div class="modifypopup">
             <h2 style="font-weight: bold;">탈퇴하기</h2>
                <div class="con">
 <!--                   <table class="type1"> -->
@@ -344,7 +354,7 @@ input {
             </div>
          <a href="#a" class="close">닫기</a>
          </div>
-      <div class="dim"></div>
+      <div class="withdrawdim"></div>
    </div>
 </div>
    </form>
