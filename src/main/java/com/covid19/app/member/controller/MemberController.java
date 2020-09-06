@@ -222,18 +222,23 @@ public class MemberController {
 	 * 비밀번호 바꾸기
 	 */
 	@RequestMapping(value="/changePw.do", method = RequestMethod.GET)
-	public String changePw() {
-		return "/member/changePw";
+	public ModelAndView changePw(String member_id) {
+		ModelAndView mav = new ModelAndView();  
+		
+		mav.addObject("member_id", member_id);
+		mav.setViewName("/member/changePw");
+		
+		return mav;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/changePwimpl.do", method = RequestMethod.POST)
-	public int changePwimpl(@RequestParam Member member,HttpSession session,HttpServletRequest request) {
-	     
+	public int changePwimpl(@ModelAttribute Member member,HttpSession session,HttpServletRequest request) {
+	    System.out.println("member다"+member);
 		int res = memberService.changePw(member);
-	    String userid= member.getMember_id();
-	      
-	    System.out.println(userid);
+	    String member_id= member.getMember_id();
+	    System.out.println("넌 res고" + res);
+	    System.out.println(member_id);
 	      
 	    return res;
 	}

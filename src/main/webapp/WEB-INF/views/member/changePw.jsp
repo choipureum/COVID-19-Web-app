@@ -44,9 +44,10 @@ $(document).ready(function(){
 <script type="text/javascript">
 function pwChangeFunc(){
 	
-	var member_id="${param.member_id}";
+	var member_id="${member_id}";
 	var member_pw=$("#member_pw").val();
 	var userpw_ck=$("#userpw_ck").val();
+	
 	//#userpassword 검증
 	var upwReg = /^[A-Za-z0-9]{6,18}$/;
 	
@@ -85,6 +86,7 @@ function pwChangeFunc(){
 	})
 }
 </script>
+
 <!-- css -->
 <style type="text/css">
 /* 전체틀 */

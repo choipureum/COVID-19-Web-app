@@ -14,7 +14,7 @@ function email(){
 	} 
 }
 </script>
-<!-- //아이디 찾기  -->
+<!-- 비밀번호 찾기  -->
 <script type="text/javascript">
 $(window).load(function(){
 	$("#pwFind").click(pwFind);
