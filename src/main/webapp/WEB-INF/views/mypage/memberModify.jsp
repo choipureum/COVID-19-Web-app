@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- header 임포트 -->
 <jsp:include page="/header.do" />
 <!-- 다음 주소 api -->
@@ -95,7 +95,7 @@ $(document).ready(function(){
 
 <!-- 버튼눌렀을시 유효성검사 -->
 <script>
-function modifyform() {	
+function memberModify() {	
 	//#userpassword 검증
 	var upwReg = /^[A-Za-z0-9]{6,18}$/;
   	//출생년도 정규식 ( 생년월일 )
@@ -125,7 +125,7 @@ function modifyform() {
 <!-- 클릭함수 탈퇴하기 -->
 <script type="text/javascript">
 function withDraw(){
-   var userid= "${member.userid}";
+   var userid= "${joinuserid}";
    alert("탈퇴!");
 
 }
@@ -146,6 +146,13 @@ $(document).ready(function(){
 });
 </script>
 
+<!--생년월일 기본값 가져오기 -->
+<script type="text/javascript">
+$(document).ready(function() {
+   $("select[name='userbirth_mm']").val('${fn:substring(memberInfo.member_birth,5,7) }');
+   $("select[name='userbirth_dd']").val('${fn:substring(memberInfo.member_birth,8,10) }');
+})
+</script>
 
 
 
@@ -257,12 +264,12 @@ input {
   	<tbody>
   		 <tr>
   			<td>이름</td>
-  			<td><input type="text" readonly="readonly" name="member_name" id="member_name" required style="height:30px; width: 300px" value="${modify.member_name }"/></td>
+  			<td><input type="text" readonly="readonly" name="member_name" id="member_name" required style="height:30px; width: 300px" value="${memberInfo.member_name }"/></td>
   			<td><div id="name_check"></div></td>
   		</tr>
   		<tr>
   			<td>아이디</td>
-  			<td> <input type="text" placeholder="아이디" name="joinuserid" id="joinuserid" required style="height:30px; width: 300px" />
+  			<td> <input type="text" readonly="readonly" name="joinuserid" id="joinuserid" required style="height:30px; width: 300px" value="${memberInfo.member_id }"/>
   			</td>
   			<td><div id="id_check"></div><span id="id_check2"></span></td>
   		</tr>
@@ -278,13 +285,12 @@ input {
   		</tr>
   		<tr>
   			<td>핸드폰</td>
-  			<td><input type="tel" maxlength="11" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 300px"/></td>
-  			<td><div style="color:gray;"> - 표시없이 숫자만 입력해주세요</div>
-  			</td>
+  			<td><input type="tel" maxlength="11" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 300px" value="${memberInfo.member_tell }"/></td>
+
   		</tr>
   		<tr>
   			<td>생년월일</td>
-  			<td><input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px;width: 90px">
+  			<td><input type="text" name="userbirth_yy" id="userbirth_yy" maxlength="4" placeholder="년(4자)" size="10" required style="height:30px;width: 90px" value="${fn:substring(memberInfo.member_birth,0,4) }">
   			<select name="userbirth_mm" >
          		<option value="">월</option>
          		<option value="01">1</option>
@@ -305,18 +311,22 @@ input {
   		</tr>
   		<tr>
   			<td>이메일</td>
-  			<td><input type="email" placeholder="이메일" name="member_email" id="member_email" required style="height:30px; width: 300px">
+  			<td><input type="email" readonly="readonly" name="member_email" id="member_email" required style="height:30px; width: 300px" value="${memberInfo.member_email }">
   			</td>
   		</tr>
 
   		<tr>
   			<td>주소</td>
-  			<td><div class="form-group">                   
+  			 
+  			<td><div class="form-group">
+  			<br>
+  			<div>기존 주소 : ${memberInfo.member_add }</div>
+  			<br>            
 			<input class="form-control"  placeholder="우편번호" name="mem_oaddress" id="mem_oaddress" type="text" readonly="readonly" required style="display:inline-block; height:30px; width: 100px">
     		<button type="button" class="id_Button" onclick="execPostCode();" style="display:inline-block;">우편번호 찾기</button>                               
 			<br>
     		<input type="text" class="form-control"  placeholder="도로명 주소" name="mem_address" id="mem_address" required style="height:30px; width: 250px" readonly="readonly" />
-   	 		<input type="text" class="form-control" placeholder="상세주소" name="mem_detailaddress" id="mem_detailaddress" required style="display:inline-block;height:30px; width: 200px"/>
+   	 		<input type="text" class="form-control" placeholder="상세주소" value= " " name="mem_detailaddress" id="mem_detailaddress" required style="display:inline-block;height:30px; width: 200px"/>
 			</div>
 			</td>
 			<td></td>
@@ -328,7 +338,7 @@ input {
    
 <div style="margin:0 auto;text-align:center;">   
    <div class="first" style="display: inline-block;">
-      <input type="submit" value="수정하기" class="modify" />
+      <input type="submit" value="수정하기" class="modify" onclick="memberModify()" />
    </div>
    
    <div class="second" style="display: inline-block;">
@@ -339,7 +349,7 @@ input {
                <div class="con">
 <!--                   <table class="type1"> -->
                      <div class="popup_text" style="border: 1px solid #BDBDBD; padding: 10px; height: 150px;">
-                         <p class="a">다솜을 이용해 주셔서 감사합니다.<br>   
+                         <p class="a">COVID - 19 을 이용해 주셔서 감사합니다.<br>   
                         * 탈퇴 후에는 아이디와 예약내역 등의 데이터 복구가 불가능합니다.<br>
                         * 탈퇴 후에는 등록된 게시물 삭제가 불가능합니다. <br>
                         * 탈퇴하기 버튼을 누르면 바로 탈퇴가 됩니다<br><br>

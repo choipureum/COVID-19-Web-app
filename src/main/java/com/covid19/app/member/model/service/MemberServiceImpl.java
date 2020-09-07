@@ -136,6 +136,14 @@ public class MemberServiceImpl implements MemberService{
 	public int membermodify(Member member) {
 		return memberDao.membermodify(member);
 	}
+	/**
+	 * member_id이용해서 조회
+	 */
+	@Override
+	public Member selectAll(String member_id) {
+		return memberDao.selectAll(member_id);
+	}
+
 
 
 

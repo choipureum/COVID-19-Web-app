@@ -74,7 +74,12 @@ public interface MemberService {
 	 */
 	public int membermodify(Member member);
 
-	
+	/**
+	 * member_id 이용해서 전체 조회
+	 * @param member_id
+	 */
+	public Member selectAll(String member_id);
+
 
 	
 

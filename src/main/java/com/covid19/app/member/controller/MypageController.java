@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.covid19.app.member.model.service.MemberService;
 import com.covid19.app.member.model.vo.Member;
@@ -20,8 +21,19 @@ public class MypageController {
 	public MemberService memberService;
 	
 	@RequestMapping(value = "/memberModify.do", method = RequestMethod.GET)
-	public String mypageModify() {
-		return "/mypage/memberModify";
+	public ModelAndView mypageModify(HttpSession session) {		
+		ModelAndView mav = new ModelAndView();
+		Member res = (Member) session.getAttribute("logInInfo");
+		String member_id=res.getMember_id();
+		//id로 전체 멤버만들기
+		Member member2 = new Member();
+		
+		member2 = memberService.selectAll(member_id);
+		System.out.println("넌 member2다" + member2);
+		//member를 mav addobject하기
+		mav.addObject("memberInfo", member2);
+		mav.setViewName("/mypage/memberModify");
+		return mav;
 		
 	}
 	
@@ -32,7 +44,7 @@ public class MypageController {
 		session.setAttribute("modify",memberService.membermodify(member));
 		
 		System.out.println(session.getAttribute("modify"));
-		return "redirect:/mypage/memberModify.do";
+		return "/mypage/memberModify.do";
 	}
 	 
 	 

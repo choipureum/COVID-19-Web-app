@@ -73,9 +73,8 @@ function pwChangeFunc(){
 		type:'POST',
 		url:"<c:url value='/member/changePwimpl.do' />",
 		data : obj,
-		success: function(res){	
-			
-			if( res == 1){
+		success: function(res){				
+			if(res == 1){
 				alert("비밀번호 변경이 완료되었습니다!");
 				location.href="/main.do";
 			}

@@ -54,6 +54,13 @@
 		where MEMBER_ID = #{member_id}
 	</update>
 	
+	<!-- 아이디 이용해서 전체 조회 -->
+	<select id="selectAll" resultType="Member">
+		select *
+		from member
+		where MEMBER_ID = #{member_id}
+	
+	</select>
 </mapper>
 
 

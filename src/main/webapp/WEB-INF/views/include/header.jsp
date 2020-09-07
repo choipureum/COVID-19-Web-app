@@ -387,16 +387,32 @@ function openNav() {
       <!-- // Navigation -->
       <!-- 메뉴바 -->
       <div id="mySidenav" class="sidenav">
-      
-           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-           <a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br>
-              
-           <a href="#home"><i class="fa fa-virus"></i>MYPAGE</a>
-           <a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i>회원정보수정</a>
-           <a href="#clients"><i class="fa  fa-user"></i> 고객정보</a>
+      		<c:choose>
+      			<c:when test="${logInInfo.member_id == null}"></c:when>
+      			<c:otherwise>
+      				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+           			<a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br>
+      				<a href="#home"><i class="fa fa-virus"></i>MYPAGE</a>
+        	   		<a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i>회원정보수정</a>
+        		   	<a href="#clients"><i class="fa  fa-user"></i> 고객정보</a>
          
-           <a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>   
-           <a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>           
+           			<a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>   
+           			<a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>           
+      			
+      			</c:otherwise>
+      		</c:choose>
+      
+      
+      
+<!--            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+<%--            <a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br> --%>
+              
+<!--            <a href="#home"><i class="fa fa-virus"></i>MYPAGE</a> -->
+<!--            <a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i>회원정보수정</a> -->
+<!--            <a href="#clients"><i class="fa  fa-user"></i> 고객정보</a> -->
+         
+<!--            <a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>    -->
+<!--            <a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>            -->
          </div>
 
          <!-- Header -->

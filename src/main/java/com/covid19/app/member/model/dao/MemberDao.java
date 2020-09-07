@@ -47,7 +47,6 @@ public class MemberDao {
 		System.out.println(commandMap);
 		return session.selectOne("MEMBER.login", commandMap);
 	}	
-
 	
 	/**
 	 * 로그아웃
@@ -91,6 +90,15 @@ public class MemberDao {
 	public int membermodify(Member member) {
 		return session.update("MEMBER.membermodify", member);
 		
+	}
+
+	/**
+	 * member_id이용해서 하기
+	 * @param member_id
+	 * @return
+	 */
+	public Member selectAll(String member_id) {
+		return session.selectOne("MEMBER.selectAll", member_id);
 	}
 
 
