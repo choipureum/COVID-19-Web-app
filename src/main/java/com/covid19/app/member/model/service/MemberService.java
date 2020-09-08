@@ -69,16 +69,23 @@ public interface MemberService {
 
 	/**
 	 * 회원정보 수정 member
-	 * @param member
+	 * @param commandMap
 	 * @return
 	 */
-	public int membermodify(Member member);
+	public int membermodify(Map<String, Object> commandMap);
 
+	/**
+	 * 주소빼고 수정
+	 */
+	public Object membermodifyAdd(Map<String, Object> commandMap);
+	
 	/**
 	 * member_id 이용해서 전체 조회
 	 * @param member_id
 	 */
 	public Member selectAll(String member_id);
+
+	
 
 
 	

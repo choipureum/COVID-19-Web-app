@@ -44,8 +44,8 @@ public class MemberServiceImpl implements MemberService{
 		member.setMember_tell((String)commandMap.get("usertel"));
 		//birth합쳐주기
 		StringBuilder sb = new StringBuilder();
-		sb.append(commandMap.get("userbirth_yy")+"-");
-		sb.append(commandMap.get("userbirth_mm")+"-");
+		sb.append(commandMap.get("userbirth_yy"));
+		sb.append(commandMap.get("userbirth_mm"));
 		sb.append(commandMap.get("userbirth_dd"));
 		member.setMember_birth(sb.toString());
 		//sb 초기화 & 주소 합쳐주기
@@ -54,7 +54,9 @@ public class MemberServiceImpl implements MemberService{
 		sb.append(commandMap.get("mem_address")+" ");
 		sb.append(commandMap.get("mem_detailaddress"));
 		member.setMember_add(sb.toString());
+		
 		member.setMember_email((String)commandMap.get("member_email"));
+		
 		return memberDao.insertMember(member);
 	}
 
@@ -133,9 +135,57 @@ public class MemberServiceImpl implements MemberService{
 	 * 회원 정보 수정
 	 */
 	@Override
-	public int membermodify(Member member) {
-		return memberDao.membermodify(member);
+	public int membermodify(Map<String, Object> commandMap) {
+		
+		//새로운 멤버클래스에 파라미터 삽입	
+		Member member = new Member();
+		member.setMember_id((String)commandMap.get("member_id"));
+		member.setMember_name((String)commandMap.get("member_name"));
+		member.setMember_pw((String)commandMap.get("member_pw"));
+		member.setMember_tell((String)commandMap.get("member_tell"));
+		//birth합쳐주기
+		StringBuilder sb = new StringBuilder();
+		sb.append(commandMap.get("userbirth_yy"));
+		sb.append(commandMap.get("userbirth_mm"));
+		sb.append(commandMap.get("userbirth_dd"));
+		member.setMember_birth(sb.toString());
+		//sb 초기화 & 주소 합쳐주기
+
+		sb = new StringBuilder();
+		sb.append(commandMap.get("mem_oaddress")+" ");
+		sb.append(commandMap.get("mem_address")+" ");
+		sb.append(commandMap.get("mem_detailaddress"));
+		member.setMember_add(sb.toString());
+		member.setMember_email((String)commandMap.get("member_email"));
+
+		return memberDao.membermodify(commandMap);
 	}
+	/**
+	 * 주소빼고 수정 
+	 */
+	@Override
+	public Object membermodifyAdd(Map<String, Object> commandMap) {
+		//새로운 멤버클래스에 파라미터 삽입	
+		Member member = new Member();
+		member.setMember_id((String)commandMap.get("member_id"));
+		member.setMember_name((String)commandMap.get("member_name"));
+		member.setMember_pw((String)commandMap.get("member_pw"));
+		member.setMember_tell((String)commandMap.get("member_tell"));
+		//birth합쳐주기
+		StringBuilder sb = new StringBuilder();
+		sb.append(commandMap.get("userbirth_yy"));
+		sb.append(commandMap.get("userbirth_mm"));
+		sb.append(commandMap.get("userbirth_dd"));
+		member.setMember_birth(sb.toString());
+		//sb 초기화 & 주소 합쳐주기
+
+		member.setMember_email((String)commandMap.get("member_email"));
+		
+		return memberDao.membermodifyAdd(commandMap);
+		
+	}
+	
+	
 	/**
 	 * member_id이용해서 조회
 	 */
@@ -143,6 +193,8 @@ public class MemberServiceImpl implements MemberService{
 	public Member selectAll(String member_id) {
 		return memberDao.selectAll(member_id);
 	}
+	
+
 
 
 

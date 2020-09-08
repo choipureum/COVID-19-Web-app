@@ -53,7 +53,13 @@
 		set MEMBER_PW=#{member_pw}, MEMBER_EMAIL=#{member_email}, MEMBER_TELL=#{member_tell}, MEMBER_BIRTH=#{member_birth}, MEMBER_ADD=#{member_add} 
 		where MEMBER_ID = #{member_id}
 	</update>
+	<!-- 주소빼고 -->
+	<update id="membermodifyAdd">
+		update member 
+		set MEMBER_PW=#{member_pw}, MEMBER_EMAIL=#{member_email}, MEMBER_TELL=#{member_tell}, MEMBER_BIRTH=#{member_birth}
+		where MEMBER_ID = #{member_id}
 	
+	</update>
 	<!-- 아이디 이용해서 전체 조회 -->
 	<select id="selectAll" resultType="Member">
 		select *

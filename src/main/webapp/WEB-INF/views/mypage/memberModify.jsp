@@ -149,8 +149,8 @@ $(document).ready(function(){
 <!--생년월일 기본값 가져오기 -->
 <script type="text/javascript">
 $(document).ready(function() {
-   $("select[name='userbirth_mm']").val('${fn:substring(memberInfo.member_birth,5,7) }');
-   $("select[name='userbirth_dd']").val('${fn:substring(memberInfo.member_birth,8,10) }');
+   $("select[name='userbirth_mm']").val('${fn:substring(memberInfo.member_birth,4,6) }');
+//    $("select[name='userbirth_dd']").val('${fn:substring(memberInfo.member_birth,6,8) }');
 })
 </script>
 
@@ -269,13 +269,13 @@ input {
   		</tr>
   		<tr>
   			<td>아이디</td>
-  			<td> <input type="text" readonly="readonly" name="joinuserid" id="joinuserid" required style="height:30px; width: 300px" value="${memberInfo.member_id }"/>
+  			<td> <input type="text" readonly="readonly" name="member_id" id="joinuserid" required style="height:30px; width: 300px" value="${memberInfo.member_id }"/>
   			</td>
   			<td><div id="id_check"></div><span id="id_check2"></span></td>
   		</tr>
   		<tr>
   			<td>비밀번호</td>
-  			<td><input type="password" placeholder="비밀번호" name="joinuserpw" id="joinuserpw" class="pw" required style="height:30px; width: 300px"/></td>
+  			<td><input type="password" placeholder="비밀번호" name="member_pw" id="joinuserpw" class="pw" required style="height:30px; width: 300px"/></td>
   			<td><div id="pw_check"></div></td>
   		</tr>
   		 <tr>
@@ -285,7 +285,7 @@ input {
   		</tr>
   		<tr>
   			<td>핸드폰</td>
-  			<td><input type="tel" maxlength="11" placeholder="핸드폰번호입력" name="usertel" id="usertel" required style="height:30px; width: 300px" value="${memberInfo.member_tell }"/></td>
+  			<td><input type="tel" maxlength="11" placeholder="핸드폰번호입력" name="member_tell" id="usertel" required style="height:30px; width: 300px" value="${memberInfo.member_tell }"/></td>
 
   		</tr>
   		<tr>
@@ -306,7 +306,7 @@ input {
          		<option value="11">11</option>
          		<option value="12">12</option>   
       			</select>
-      		<input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px; width: 100px"></td>
+      		<input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px; width: 100px;" value="${fn:substring(memberInfo.member_birth,6,8) }"></td>
   			<td><div id="year_check"></div></td>
   		</tr>
   		<tr>

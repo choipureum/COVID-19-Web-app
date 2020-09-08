@@ -23,7 +23,6 @@ public class MemberDao {
 	 * @return
 	 */
 	public int insertMember(Member member) {
-		System.out.println(member);
 		return session.insert("MEMBER.insertMember", member);
 		
 	}
@@ -34,7 +33,6 @@ public class MemberDao {
 	 * @return
 	 */
 	public int selectIdcheck(String member_id) {
-		// TODO Auto-generated method stub
 		return session.selectOne("MEMBER.selectIdcheck",member_id);
 	}
 
@@ -44,7 +42,6 @@ public class MemberDao {
 	 * @return
 	 */
 	public Member login(Map<String, Object> commandMap) {
-		System.out.println(commandMap);
 		return session.selectOne("MEMBER.login", commandMap);
 	}	
 	
@@ -84,12 +81,21 @@ public class MemberDao {
 
 	/**
 	 * 회원 정보 수정
-	 * @param member
+	 * @param commandMap
 	 * @return
 	 */
-	public int membermodify(Member member) {
-		return session.update("MEMBER.membermodify", member);
+	public int membermodify(Map<String, Object> commandMap) {
+		return session.update("MEMBER.membermodify", commandMap);
 		
+	}
+	
+	/**
+	 * 회원정보 수정
+	 * @param commandMap
+	 * @return
+	 */
+	public Object membermodifyAdd(Map<String, Object> commandMap) {
+		return session.update("MEMBER.membermodifyAdd", commandMap);
 	}
 
 	/**
@@ -100,6 +106,8 @@ public class MemberDao {
 	public Member selectAll(String member_id) {
 		return session.selectOne("MEMBER.selectAll", member_id);
 	}
+
+
 
 
 	
