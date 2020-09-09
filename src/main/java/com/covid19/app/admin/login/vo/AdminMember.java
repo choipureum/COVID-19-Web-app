@@ -1,6 +1,5 @@
 package com.covid19.app.admin.login.vo;
 
-
 public class AdminMember {
 
 	private String adminId;
