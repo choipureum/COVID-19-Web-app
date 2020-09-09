@@ -405,17 +405,6 @@ function openNav() {
       			</c:otherwise>
       		</c:choose>
       
-      
-      
-<!--            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-<%--            <a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br> --%>
-              
-<!--            <a href="#home"><i class="fa fa-virus"></i>MYPAGE</a> -->
-<!--            <a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i>회원정보수정</a> -->
-<!--            <a href="#clients"><i class="fa  fa-user"></i> 고객정보</a> -->
-         
-<!--            <a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>    -->
-<!--            <a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>            -->
          </div>
 
          <!-- Header -->
@@ -517,11 +506,11 @@ function openNav() {
                                     </ul>
                                 </div></div>
                             </li>
-                            <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">생활 속 거리 두기</a>
+                            <li><a href="/basicRule.do">생활 속 거리 두기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
-										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                        <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
+										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
@@ -672,11 +661,11 @@ function openNav() {
                                     </ul>
                                 </div>
                             </li>
-                          <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">생활 속 거리 두기</a>
+                          <li><a href="/basicRule.do">생활 속 거리 두기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
-										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                        <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
+										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
