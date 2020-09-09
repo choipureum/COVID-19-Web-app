@@ -36,7 +36,7 @@ public class Paging {
 	private int start;
 	//sql에서 사용할 끝 값
 	private int end;
-	
+	private String filter;
 	public Paging() {
 		
 	}
@@ -46,7 +46,7 @@ public class Paging {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.cntPerPage = cntPerPage;
-		//
+		
 		calAllPage(total,cntPerPage);
 		calBlockEnd(currentPage, blockCnt);
 		calBlockStart(blockEnd, blockCnt);
@@ -54,6 +54,14 @@ public class Paging {
 		calStart();
 	}
 	
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
+
 	//전체 페이지 숫자 구하기
 	public void calAllPage(int total, int cntPerPage) {
 		//total/cntPerPage 한 후 올림처리 한 것과 같다.

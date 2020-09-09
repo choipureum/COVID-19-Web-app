@@ -47,11 +47,6 @@ public class MemberController {
 	 @Autowired   
 	 public MemberService memberService;
 	 
-	 /**
-	  * 카카오 로그인
-	  */
-	 private kakao_restapi kakao_restapi = new kakao_restapi();
-	 
 	
 	 /**
 	  * 회원가입 GET
@@ -154,31 +149,9 @@ public class MemberController {
 		return mav;
 	}
 	
-	/**
-	 * 카카오 로그인
-	 */
-	@RequestMapping(value = "/oauth", produces = "application/json")
-	public String kakaoLogin(@RequestParam("code") String code, Member member, HttpSession session) {
-		System.out.println("로그인 임시 코드값");
-		
-		System.out.println(code);
-		System.out.println("로그인 결과값");
-		
-		//카카오 restapi 
-		kakao_restapi kr = new kakao_restapi();
-		
-		JsonNode node = kr.getAccessToken(code);
-		
-		System.out.println(node);
-		
-		String token = node.get("access_token").toString();
-		session.setAttribute("token", token);
-
-		return "/main.do";
-	}
 	
 	
-//	https://kauth.kakao.com/oauth/authorize?client_id=a299cea4428cc95365d36f9a401470f4&redirect_uri=http://localhost:8888/app/oauth&response_type=code
+	
 
 	
 	

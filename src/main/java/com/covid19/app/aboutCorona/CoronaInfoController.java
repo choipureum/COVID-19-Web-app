@@ -17,7 +17,7 @@ public class CoronaInfoController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	//코로나19란?
+	//코로나19란?.
 	@RequestMapping(value = "/aboutCorona19.do", method = RequestMethod.GET)
 	public String aboutCorona19(Locale locale, Model model) {
 		logger.info(" About CORONA....{}", locale);				

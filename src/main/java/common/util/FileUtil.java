@@ -22,15 +22,15 @@ public class FileUtil {
 				
 		for(MultipartFile mf: files) {
 			System.out.println(root);
-			String savePath = root+"resources/upload/";
+			String savePath = root+"resources/upload/share/";
 			//사용자가 올린 이름
 			String originFileName=mf.getOriginalFilename();
-			String renameFileName=getRenameFileName(originFileName, idx);
+			String renameFileName=getRenameFileName(originFileName, idx ,root);
 			
 			savePath+=renameFileName;
 			Map<String,String> map = new HashMap<String,String>();
-			map.put("originFileName",originFileName);
-			map.put("renameFileName", renameFileName);
+			map.put("originfile",originFileName);
+			map.put("renamefile", renameFileName);
 			map.put("savePath", savePath);
 			//tb_file에 등록할 데이터를  list에 추가
 			fileData.add(map);
@@ -42,12 +42,11 @@ public class FileUtil {
 		return fileData;
 	}
 	
-	public String getRenameFileName(String originFileName, int idx) {
+	public String getRenameFileName(String originFileName, int idx ,String root) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		//밀리초 단위 날짜 + 인덱스 + 확장자 .
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))+idx+"."+originFileName.substring(originFileName.lastIndexOf(".")+1);
 		return renameFileName;
-		
 	}
 	public void saveFile(MultipartFile mf, String savePath) {
 		//사용자가 등록한 파일을 옮겨담을 파일 객체 생성
@@ -66,6 +65,7 @@ public class FileUtil {
 		File file = new File(path);
 		file.delete();
 	}
+
 }
 
 

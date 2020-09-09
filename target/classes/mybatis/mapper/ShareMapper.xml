@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+<mapper namespace="SHARE">
+	<insert id="shareUpload">
+		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney,share_dday)
+		values(
+		SHARE_SEQ.nextval,#{shareField},#{shareName}
+		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney},#{sharedDay}
+		)
+	</insert>
+		<insert id="insertFile">
+		insert into share_file
+		(f_idx, origin_file,
+		 rename_file, save_path , reg_date)
+		values(
+		SHFILE_SEQ.nextval, 
+		#{originfile},
+		#{renamefile},
+		#{savepath},
+		sysdate
+		)
+	</insert>
+	
+	<insert id="insertThumb">
+		
+		insert into share_thumb
+			(t_idx, share_idx , origin_file,
+			 rename_file, save_path)
+		values(
+			thumb_seq.nextval, 
+			SHARE_SEQ.currval,
+			#{originfile},
+			#{renamefile},
+			#{savePath}
+		)
+		
+	
+	</insert>	
+	<select id = "selectshar" resultType="HashMap">
+	select share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,sharedate,rename_file
+                from(
+                    select rownum rnum , s3.*
+			from(
+				select s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
+				from shar s, share_thumb st
+                where s.share_idx = st.share_idx
+            <choose>
+			    <when test='filter != "*"'>
+			      and s.sharefield = #{filter}
+			   	</when>
+			    <when test='filter == "*"'>
+			      and 1=1
+			   	</when>
+		 	</choose>
+
+				order by s.share_idx desc
+			)s3
+		)where rnum between #{start} and #{end}
+
+	</select>
+	
+	<select id="selectContentCnt" resultType="int">
+		select count(*) from shar
+	</select>
+	
+
+	<select id="selectContentCnt2" parameterType="String" resultType="int">
+		select count(*) from shar where sharefield = #{value}
+	</select>
+	
+	<select id="selectDetail" resultType="hashmap">
+		select s.*, st.rename_file
+		from shar s, share_thumb st
+		where s.share_idx = st.share_idx
+        and s.share_idx = #{share_idx}
+	</select>
+	
+	<insert id="insertGoods">
+		insert into share_goods
+		values(goods_seq.nextval,share_seq.currval,#{goodsName},#{price},#{goodsStock} )
+	</insert>
+
+
+</mapper>

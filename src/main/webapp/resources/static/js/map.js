@@ -224,6 +224,7 @@ function displayPlaces(places) {
         // 마커와 검색결과 항목에 click시 해당 장소에 커스텀 오버레이 표시
         (function(marker, places, placePosition) {
             kakao.maps.event.addListener(marker, 'click', function() {
+            	
             	displayPlaceInfo(places);
             });
             
@@ -282,7 +283,7 @@ function getListItem(index, places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수
 function addMarker(position, idx, title) {
-    var imageSrc = '../images/map/marker_number_blue.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    var imageSrc = '/static/image/map/marker_number_blue.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
     var imageSize = new kakao.maps.Size(36, 37);  // 마커 이미지의 크기
     var imgOptions =  {
             spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
@@ -357,17 +358,6 @@ function displayPlaceInfo(place) {
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
     placeOverlay.setMap(map); 
 }
-/*
-function displayList() {
-	if($(".mp_place_list").css("display") == "none") {
-		$(".mp_place_list").css("display", "");
-		$("#list_btn").text("목록 닫기");
-	} else {
-		$(".mp_place_list").css("display", "none");
-		$("#list_btn").text("목록 열기");
-	}
-}
-*/
 
 function listViewResponse() {
 	var status = wCatch();

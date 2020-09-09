@@ -2,7 +2,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE HTML>
 <html lang="ko">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -455,41 +454,39 @@ function openNav() {
                <div id="gnb" class="gnb t_dp_n m_dp_n">
                         
                         <ul>
-                            <li><a href="baroView4f20.html?brdId=4&amp;brdGubun=41">바로알기</a>
+                           <li><a href="/info/aboutCorona19.do">바로알기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="/info/aboutCorona19.do">&middot; 코로나19 란? </a></li>
+                                     	<li><a href="/info/aboutCorona19.do">&middot; 코로나19 란? </a></li>
                                         <li><a href="/info/preventionSystem.do">&middot; 대한민국 방역체계</a></li>
                                         <li><a href="/info/pat_cure.do">&middot; 환자치료 및 관리</a></li>
                                         <li><a href="/info/CoronaPrecaution.do">&middot; 예방 조치 안내</a></li>
                                     </ul>
                                 </div></div>                            
                             </li>
-                            <li><a href="bdBoardList62bd.html?brdId=1&amp;brdGubun=11">발생동향</a>
+                         <li><a href="/domesticPat.do">발생동향</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="bdBoardList62bd.html?brdId=1&amp;brdGubun=11">&middot; 국내 발생 현황</a></li>
-                                        <li><a href="bdBoardListb8cf.html?brdId=1&amp;brdGubun=14">&middot; 국외 발생 현황</a></li>
-                                        <li><a href="bdBoardList0949.html?brdId=1&amp;brdGubun=13">&middot; 시도별 발생동향</a></li>
-                                        <li><a href="bdBoardList98a5.html?brdId=1&amp;brdGubun=12">&middot; 확진환자 이동경로</a></li>
+                                        <li><a href="/domesticPat.do">&middot; 국내 발생 현황</a></li>
+                                        <li><a href="/overseaPat.do">&middot; 국외 발생 현황</a></li>
+                                        <li><a href="/detailPat.do">&middot; 시도별 발생동향</a></li>
+                                        <li><a href="/movingPat.do">&middot; 확진환자 이동경로</a></li>
                                     </ul>
                                 </div></div>                              
                             </li>
-                            <li><a href="tcmBoardList81c5.html?brdId=3&amp;brdGubun=">뉴스 & 이슈</a>
+                             <li><a href="covidNews.do">뉴스 & 이슈</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="tcmBoardList81c5.html?brdId=3&amp;brdGubun=">&middot; 보도자료</a></li>
-                                        <li><a href="factBoardListacb8.html?brdId=3&amp;brdGubun=33">&middot; 코로나19 이슈체크</a></li>
-                                        <li><a href="maskBoardList3767.html?brdId=3&amp;brdGubun=36">&middot; 공적마스크 공급현황</a></li>
-                                        <li><a href="lastBannerListced8.html?brdId=3&amp;brdGubun=38">&middot; 일별 브리핑 모아보기</a></li>
+                                        <li><a href="covidNews.do">&middot; 보도자료</a></li>
+                                        <li><a href="covidFact.do">&middot; 코로나19팩트 & 이슈체크</a></li>
                                     </ul>
                                 </div></div>
                             </li>
-                            <li><a href="infoBoardList306c.html?brdId=3&amp;brdGubun=32">홍보자료 & FAQ</a>
+                            <li><a href="infoBoard.do">정보공유 & FAQ</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="infoBoardList306c.html?brdId=3&amp;brdGubun=32">&middot; 홍보자료</a></li>
-                                        <li><a href="faqBoardList0b7a.html?brdId=3&amp;brdGubun=37">&middot; FAQ</a></li>
+                                        <li><a href="infoBoard.do">&middot; 정보공유</a></li>
+                                        <li><a href="faqBoard.do">&middot; FAQ</a></li>
                                     </ul>
                                 </div></div>
                             </li>
@@ -523,11 +520,11 @@ function openNav() {
                                 <div class="g_sub"><div>
                                     <ul>
                                         <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
-                                 <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
-                                         <li><a href="guidelineList0a61.html?brdId=6&amp;brdGubun=62&amp;dataGubun=">&middot; 장소별 실천수칙</a></li>
+										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                         <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
-                            </li>  
+                            </li> 
                             <!-- 쇼핑 -->
                              <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">쇼핑</a>
                                 <div class="g_sub"><div>
@@ -612,43 +609,41 @@ function openNav() {
             <div class="gm_content">
                <div>
                         <ul>
-                            <li><a href="javascript:void(0);" class="gmc_title">바로알기</a>
-                               <div class="gmc_list">
+                              <li><a href="/info/aboutCorona19.do">바로알기</a>
+                                <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="baroView4f20.html?brdId=4&amp;brdGubun=41">코로나19 란? </a></li>
-                                        <li><a href="baroView2dfba.html?brdId=4&amp;brdGubun=42">대한민국 방역체계</a></li>
-                                        <li><a href="baroView3d57c.html?brdId=4&amp;brdGubun=43">환자치료 및 관리</a></li>
-                                        <li><a href="baroView4260b.html?brdId=4&amp;brdGubun=44">예방 조치 안내</a></li>
+                                        <li><a href="/info/aboutCorona19.do">&middot; 코로나19 란? </a></li>
+                                        <li><a href="/info/preventionSystem.do">&middot; 대한민국 방역체계</a></li>
+                                        <li><a href="/info/pat_cure.do">&middot; 환자치료 및 관리</a></li>
+                                        <li><a href="/info/CoronaPrecaution.do">&middot; 예방 조치 안내</a></li>
                                     </ul>
-                                  </div>         
+                                </div></div>                            
                             </li>
-                            <li><a href=href%3d_javascript_void(0)%3b_.html class="gmc_title">발생동향</a>
-                               <div class="gmc_list">
+                            <li><a href="/domesticPat.do">발생동향</a>
+                                <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="bdBoardList62bd.html?brdId=1&amp;brdGubun=11">국내 발생 현황</a></li>
-                                        <li><a href="bdBoardListb8cf.html?brdId=1&amp;brdGubun=14">국외 발생 현황</a></li>
-                                        <li><a href="bdBoardList0949.html?brdId=1&amp;brdGubun=13">시도별 발생동향</a></li>
-                                        <li><a href="bdBoardList98a5.html?brdId=1&amp;brdGubun=12">확진환자 이동경로</a></li>
-                                    </ul>                                 
-                               </div>
-                            </li>                      
-                            <li><a href="javascript:void(0);" class="gmc_title">뉴스 & 이슈</a>
-                                <div class="gmc_list">
-                                    <ul>
-                              <li><a href="tcmBoardList81c5.html?brdId=3&amp;brdGubun=">보도자료</a></li>
-                              <li><a href="factBoardListacb8.html?brdId=3&amp;brdGubun=33">코로나19 팩트 & 이슈체크</a></li>
-                              <li><a href="maskBoardList3767.html?brdId=3&amp;brdGubun=36">공적마스크 공급현황</a></li>
-                              <li><a href="lastBannerListced8.html?brdId=3&amp;brdGubun=38">일별 브리핑 이슈 모아보기</a></li>
+                                        <li><a href="/domesticPat.do">&middot; 국내 발생 현황</a></li>
+                                        <li><a href="/overseaPat.do">&middot; 국외 발생 현황</a></li>
+                                        <li><a href="/detailPat.do">&middot; 시도별 발생동향</a></li>
+                                        <li><a href="/movingPat.do">&middot; 확진환자 이동경로</a></li>
                                     </ul>
-                                </div>
+                                </div></div>                              
+                            </li>                   
+                             <li><a href="covidNews.do">뉴스 & 이슈</a>
+                                <div class="g_sub"><div>
+                                    <ul>
+                                        <li><a href="covidNews.do">&middot; 보도자료</a></li>
+                                        <li><a href="covidFact.do">&middot; 코로나19팩트 & 이슈체크</a></li>
+                                    </ul>
+                                </div></div>
                             </li>
-                            <li><a href="javascript:void(0);" class="gmc_title">홍보자료 & FAQ</a>
-                                <div class="gmc_list">
+                           <li><a href="infoBoard.do">정보공유 & FAQ</a>
+                                <div class="g_sub"><div>
                                     <ul>
-                              <li><a href="infoBoardList306c.html?brdId=3&amp;brdGubun=32">홍보자료</a></li>
-                              <li><a href="faqBoardList0b7a.html?brdId=3&amp;brdGubun=37">FAQ</a></li>
+                                        <li><a href="infoBoard.do">&middot; 정보공유</a></li>
+                                        <li><a href="faqBoard.do">&middot; FAQ</a></li>
                                     </ul>
-                                </div>
+                                </div></div>
                             </li>
                             <li><a href="javascript:void(0);" class="gmc_title">피해지원정책</a>
                                 <div class="gmc_list">
@@ -676,15 +671,15 @@ function openNav() {
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="javascript:void(0);" class="gmc_title">생활 속 거리 두기</a>
-                                <div class="gmc_list">
+                          <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">생활 속 거리 두기</a>
+                                <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">기본 수칙</a> </li>
-                                        <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">공동체 수칙</a> </li>
-                                        <li><a href="guidelineList0a61.html?brdId=6&amp;brdGubun=62&amp;dataGubun=">장소별 실천 수칙</a> </li>
+                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
+										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                         <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
-                                </div>
-                            </li>
+                                </div></div>
+                            </li>  
                                                         
                         </ul>
                </div>

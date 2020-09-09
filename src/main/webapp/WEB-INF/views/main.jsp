@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<!-- header 임포트 -->
 <jsp:include page="/header.do" />
 
 		<!-- //Global_menu -->
@@ -44,7 +45,7 @@
 					<div class="liveboard_layout">
 						<!--실시간 집계-->
 						<div class="liveNumOuter">
-							<h2><a title="국내 환자현황 자세히 보기" href="bdBoardList62bd.html?brdId=1&amp;brdGubun=11">환자 현황<span class="livedate">(8.5. 00시 기준, 1.3 이후 누계)</span><span class="more">자세히</span></a></h2>							
+							<h2><a title="국내 환자현황 자세히 보기" href="/domesticPat.do">환자 현황<span class="livedate">(8.5. 00시 기준, 1.3 이후 누계)</span><span class="more">자세히</span></a></h2>							
 							<h3 class="hdn">일일 집계현황</h3>
 							<div class="liveNum_today_new">
 								<strong class="tit">일일확진자</strong>
@@ -218,7 +219,7 @@
 									<span>시도별 확진환자 현황 <span class="txt">펼쳐보기</span></span>
 								</button>
 								<div class="live_right main_box_toggle">
-									<h2><a title="시도별 확진환자 현황 자세히 보기" href="bdBoardList0949.html?brdId=1&amp;brdGubun=13">시도별 확진환자 현황<span class="livedate">( 08.05. 00시 기준, 1.3 이후 누계)</span><span class="more">자세히</span></a></h2>
+									<h2><a title="시도별 확진환자 현황 자세히 보기" href="/detailPat.do">시도별 확진환자 현황<span class="livedate">( 08.05. 00시 기준, 1.3 이후 누계)</span><span class="more">자세히</span></a></h2>
 																		
 									<!--<div class="livemap mgt8">
 										<div class="main_maparea">
@@ -498,6 +499,7 @@
 		
 		<!-- // Victory_container -->	
 		
+		<!-- footer 임포트 -->
 		<jsp:include page="/footer.do" />
 		
 		
@@ -533,8 +535,8 @@
 			    date: ["07.30","07.31","08.01","08.02","08.03","08.04","08.05"],
 			    complete_day:[63,51,50,26,21,72,54],
 			    confirm_day:[18,36,31,30,23,34,33],
-			   //cure_total:[837,821,802,806,808,770,748],
-			   //complete_total:[13132,13183,13233,13259,13280,13352,13406]
+			  	//cure_total:[837,821,802,806,808,770,748],
+			  // complete_total:[13132,13183,13233,13259,13280,13352,13406]
 			};
 			
 			ISChart();
