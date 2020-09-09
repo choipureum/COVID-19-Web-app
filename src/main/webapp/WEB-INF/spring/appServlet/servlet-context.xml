@@ -38,7 +38,7 @@
 	</tx:advice>
 	<aop:config>
 		<!-- 접근제한자(생략가능) 반환형(필수) 패키지(생략가능) 클래스명(생략가능) 메서드(필수)(매개변수(필수)) -->	
-		<aop:pointcut expression="execution(* com.kh.welcome..*.*ServiceImpl.*(..))" id="requiredTx"/>
+		<aop:pointcut expression="execution(* com.covid19.app..*.*ServiceImpl.*(..))" id="requiredTx"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx"/>
 	</aop:config>
 	

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 시스템에서 지속적으로 사용되는(어디서나 참조가 가능해야하는)
@@ -45,6 +47,7 @@
   		<property name="dataSource" ref="dataSource" />
   		<property name="configLocation" 
   		value="classpath:mybatis/config.xml"/>
+  		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
 	</bean>	
 	<!-- SqlSessionTemplate 생성 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -55,8 +58,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com"/>
 		<property name="port" value="465"/>
-		<property name="username" value="dydy969@naver.com"/>
-		<property name="password" value="DUD@)wns13375"/>
+		<property name="username" value="vnfmaghkdwp@naver.com"/>
+		<property name="password" value="chl58004180!"/>
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
@@ -74,4 +77,7 @@
 		<property name="maxInMemorySize" value="100000000"/>	
 	</bean>
 
+		
+		
+		
 </beans>

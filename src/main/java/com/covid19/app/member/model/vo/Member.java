@@ -17,6 +17,7 @@ public class Member {
 	private Date member_date;
 	private String member_rank;
 	private int member_point;
+	
 	public String getMember_id() {
 		return member_id;
 	}
