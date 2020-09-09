@@ -54,25 +54,19 @@ public class MypageController {
 	 */
 	@RequestMapping(value="/memberModifyimpl.do", method = RequestMethod.POST)
 	public String mypageModifyimpl(@RequestParam Map<String,Object> commandMap, HttpSession session, Model model) {
-
-		Member res= (Member)session.getAttribute("logInInfo");
-		String member_id=res.getMember_id();
-		System.out.println("mypage" + commandMap);
-	
-		Member member3 = new Member();
 		
+		Member res= (Member)session.getAttribute("logInInfo");
+		String member_id=res.getMember_id();	
+		Member member3 = new Member();	
 		member3 = memberService.selectAll(member_id);
 		String address=member3.getMember_add();
 		
-		System.out.println("addressdfsd 나와라 좀" + address);
-
-		System.out.println("command map " + commandMap);
+		System.out.println("address : "+address);
 		
-		session.setAttribute("modify",memberService.membermodify(commandMap));
+		session.setAttribute("modify",memberService.membermodify(commandMap,address));
 
-		
 		System.out.println(session.getAttribute("modify"));
-		return "/mypage/memberModify.do";
+		return "redirect:/mypage/memberModify.do";
 	}
 	 
 	

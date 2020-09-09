@@ -116,7 +116,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
 	public ModelAndView loginImpl(@RequestParam Map<String,Object> commandMap,HttpSession session,HttpServletRequest request) {
-
+		
 		ModelAndView mav = new ModelAndView();  
 		Member res = memberService.login(commandMap);
 		System.out.println(res);

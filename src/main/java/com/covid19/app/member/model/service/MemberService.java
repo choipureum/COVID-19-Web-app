@@ -72,7 +72,7 @@ public interface MemberService {
 	 * @param commandMap
 	 * @return
 	 */
-	public int membermodify(Map<String, Object> commandMap);
+	public int membermodify(Map<String, Object> commandMap,String address);
 
 	/**
 	 * 주소빼고 수정

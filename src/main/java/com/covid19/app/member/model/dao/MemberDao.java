@@ -81,11 +81,11 @@ public class MemberDao {
 
 	/**
 	 * 회원 정보 수정
-	 * @param commandMap
+	 * @param member
 	 * @return
 	 */
-	public int membermodify(Map<String, Object> commandMap) {
-		return session.update("MEMBER.membermodify", commandMap);
+	public int membermodify(Member member) {
+		return session.update("MEMBER.membermodify", member);
 		
 	}
 	
