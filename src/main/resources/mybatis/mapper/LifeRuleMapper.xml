@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="LifeRule">
+    
+    <!-- 기본수칙 - 섹션 1 -->
+    <select id="selectBasicRuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE WHERE  boundary=1
+    </select>
+     
+    <select id="selectBasicRuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end} and boundary=1   
+    </select>
+     <select id="selectBasicDetail" resultType="map">
+    	SELECT * FROM LifeRule
+    	WHERE lfNo = #{lfNo}
+    </select>
+	
+
+ 	<!-- 기본수칙 - 섹션 2 -->
+    <select id="selectBasic2RuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE WHERE  boundary=2
+    </select>
+    
+     <select id="selectBasic2RuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end} and boundary=2
+    </select>
+        
+    </mapper>
