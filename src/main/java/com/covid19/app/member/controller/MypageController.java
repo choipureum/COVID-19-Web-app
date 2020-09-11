@@ -68,8 +68,17 @@ public class MypageController {
 		System.out.println(session.getAttribute("modify"));
 		return "redirect:/mypage/memberModify.do";
 	}
-	 
 	
+	/**
+	 * 회원탈퇴
+	 */
+	@RequestMapping(value="/memberDeleteimpl.do", method = RequestMethod.POST)
+	public int memberDeleteimpl(@ModelAttribute Member member, HttpSession session) {
+		
+		int res = memberService.memberdelete(member);
+		
+		return res;
+	}
 	
 	
 	/**

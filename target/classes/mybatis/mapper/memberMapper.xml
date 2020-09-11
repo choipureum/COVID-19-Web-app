@@ -67,6 +67,11 @@
 		where MEMBER_ID = #{member_id}
 	
 	</select>
+	
+	<delete id="memberdelete">
+		delete from member
+		where MEMBER_ID = #{member_id}
+	</delete>
 </mapper>
 
 

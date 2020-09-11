@@ -199,6 +199,14 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectAll(member_id);
 	}
 	
+	/**
+	 * 회원 탈퇴
+	 */
+	@Override
+	public int memberdelete(Member member) {
+		return memberDao.memberdelete(member);
+	}
+	
 
 
 

@@ -85,6 +85,13 @@ public interface MemberService {
 	 */
 	public Member selectAll(String member_id);
 
+	/**
+	 * 회원 탈퇴
+	 * @param member
+	 * @return member
+	 */
+	public int memberdelete(Member member);
+
 	
 
 

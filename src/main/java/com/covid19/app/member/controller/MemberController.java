@@ -1,5 +1,6 @@
 package com.covid19.app.member.controller;
 
+import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.covid19.app.member.model.service.MemberService;
 import com.covid19.app.member.model.vo.Member;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 //컨트롤러설정
 @Controller
@@ -47,6 +49,13 @@ public class MemberController {
 	 @Autowired   
 	 public MemberService memberService;
 	 
+	 private NaverLoginBO naverLoginBO;
+	 private String apiResult = null;
+	    
+	 @Autowired
+	 private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		 this.naverLoginBO = naverLoginBO;
+	 }
 	
 	 /**
 	  * 회원가입 GET
@@ -207,11 +216,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/changePwimpl.do", method = RequestMethod.POST)
 	public int changePwimpl(@ModelAttribute Member member,HttpSession session,HttpServletRequest request) {
-	    System.out.println("member다"+member);
 		int res = memberService.changePw(member);
 	    String member_id= member.getMember_id();
-	    System.out.println("넌 res고" + res);
-	    System.out.println(member_id);
 	      
 	    return res;
 	}
@@ -240,6 +246,74 @@ public class MemberController {
 			return null ;
 		}		
 	}
+	
+	
+	/**
+	 * 네이버 로그인
+	 */
+	
+    //로그인 첫 화면 요청 메소드
+    @RequestMapping(value = "/naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+    public String naverlogin(Model model, HttpSession session) {
+        
+        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+        
+        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+        System.out.println("네이버:" + naverAuthUrl);
+        
+        //네이버 
+        model.addAttribute("url", naverAuthUrl);
+ 
+        /* 생성한 인증 URL을 View로 전달 */
+        return "/member/naverlogin";
+    }
+    
+    //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+            throws IOException {
+        System.out.println("여기는 callback");
+        OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+        apiResult = naverLoginBO.getUserProfile(oauthToken);
+        model.addAttribute("logInInfo", apiResult);
+ 
+        /* 네이버 로그인 성공 페이지 View 호출 */
+        return "/main.do";
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 

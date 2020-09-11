@@ -51,6 +51,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.covid19.app.member.controller.NaverLoginBO" />
+	
 	
 	<beans:bean name="logAop" class="common.aop.LogAop"></beans:bean>
 	

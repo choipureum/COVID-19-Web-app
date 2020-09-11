@@ -56,6 +56,8 @@ select{ height:35px; width: 100px; }
 <h2> E V E N T </h2>
 <br>
 <hr>
+<div>회원에게 드리는 특별 혜택</div>
+<br>
 	<!-- Table -->
 	<div class="Gradetable">
 		<table>
@@ -67,29 +69,49 @@ select{ height:35px; width: 100px; }
 					<th>GOLD</th>
 					<th>VIP</th>           
 				</tr>
-				<tr>
-					<td>구매등급</td>
 
-					<td><img src="<c:url value='/resources/static/image/bronze.JPG'/>"></td>
-					<td><img src="<c:url value='/resources/static/image/silver.JPG'/>"></td>
-					<td><img src="<c:url value='/resources/static/image/gold.JPG'/>"></td>
-					<td><img src="<c:url value='/resources/static/image/vip.JPG'/>"></td>
 			</thead>
 			<tbody>
 
 				<tr>
-					<td></td>
-					<td></td>
-
-				</tr>		
-
+					<td>구매등급</td>
+					<td><img src="<c:url value='/resources/static/image/bronze.JPG'/>"></td>
+					<td><img src="<c:url value='/resources/static/image/silver.JPG'/>"></td>
+					<td><img src="<c:url value='/resources/static/image/gold.JPG'/>"></td>
+					<td><img src="<c:url value='/resources/static/image/vip.JPG'/>"></td>
+				</tr>
+				<tr>
+					<td>등급할인</td>
+					<td>1%</td>
+					<td>2%</td>
+					<td>3%</td>
+					<td>5%</td>
+				</tr>	
 			</tbody>
+		</table>
 		
+		<br>
 		
-		
-		
-		
-		
+		<table>
+			<tr>
+				<td rowspan = "6">N O T I C E </td>
+				<td colspan = "6" style="text-align: left;">* 매월 혜택이 변경 될 수도 있습니다.</td>
+
+			</tr>
+			<tr style="text-align: left;">
+				<td>* 등급 할인은 회원 기준으로 할인율에 따라 적용 됩니다. </td>
+			</tr>
+			<tr style="text-align: left;">
+				<td>* 등급할인은 1% ~ 5% 까지 등급별로 가능합니다. </td>
+			</tr>
+			<tr style="text-align: left;">
+				<td>* 여기는 COVID - 19 홈페이지 등급확인 페이지 입니다</td>
+			</tr>
+			<tr style="text-align: left;">
+				<td>* 현재 등급을 확인해 주세요! </td>
+			</tr>
+
+			
 		</table>	
 	</div>
 </div>

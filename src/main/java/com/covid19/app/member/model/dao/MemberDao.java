@@ -106,6 +106,15 @@ public class MemberDao {
 	public Member selectAll(String member_id) {
 		return session.selectOne("MEMBER.selectAll", member_id);
 	}
+	
+	/**
+	 * member 이용해서 delete
+	 * @param member
+	 * @return
+	 */
+	public int memberdelete(Member member) {
+		return session.delete("MEMBER.memberdelete", member);
+	}
 
 
 
