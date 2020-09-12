@@ -13,14 +13,14 @@
 <script type="text/javaScript">
 $(document).ready(function(){
 	
-	if(	${boundary}==1 ){
-		 $('#boundary1').addClass("on");
-		 $('#boundary2').removeClass("on");
+	if(	${boundary}==3 ){
+		 $('#boundary3').addClass("on");
+		 $('#boundary4').removeClass("on");
 		 return false;
 	}
 	else{
-		 $('#boundary2').addClass("on");
-		 $('#boundary1').removeClass("on");
+		 $('#boundary3').addClass("on");
+		 $('#boundary4').removeClass("on");
 		 return false;
 	}
 
@@ -38,12 +38,12 @@ $(document).ready(function(){
 		                    <ul>
 		                        <li><a href="/main.do" ><span class="hdn">홈</span></a></li>
 		                        <li><a href="/basicRule.do">생활 속 거리 두기</a></li>
-		                        <li><a href="/basicRule.do">기본 수칙</a></li>		                       		                        
+		                        <li><a href="/basicRule.do?boundary=3">공동체 수칙</a></li>		                       		                        
 		                    </ul>
 		                </div>
 		                <div class="st_title">
 		                    <div class="fl_l">
-		                    <h3>기본수칙</h3>           
+		                    <h3>공동체수칙</h3>           
 		                    </div>
 		                </div>
 		            </div>
@@ -51,8 +51,8 @@ $(document).ready(function(){
 		             <!-- 기본 수칙 -->
                         <div class="tab_flt cnt2-2-2">
                             <ul id="boundary">
-                                <li class="on" id="boundary1"><a href="/basicRule.do" class="tabcontent"><span>설명 자료</span></a></li>                                
-                                <li id="boundary2"><a href="/basicRule.do?boundary=2" class="tabcontent"><span>홍보 자료</span></a></li>
+                                <li class="on" id="boundary3"><a href="/basicRule.do?boundary=3" class="tabcontent"><span>설명 자료</span></a></li>                                
+                                <li id="boundary4"><a href="/basicRule.do?boundary=4" class="tabcontent"><span>홍보 자료</span></a></li>
                             </ul>
                         </div>
 
@@ -85,7 +85,7 @@ $(document).ready(function(){
 	                                    </div>
 	                                </div>
 	                            </fieldset>
-	                               <input type="hidden" name="boundary" value="${boundary}"/>
+	                            <input type="hidden" name="boundary" value="${boundary}"/>
 	                            </form>
 	                    </div>
 	                </div>

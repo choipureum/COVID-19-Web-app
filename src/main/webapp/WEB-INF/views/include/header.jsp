@@ -510,7 +510,7 @@ function openNav() {
                                 <div class="g_sub"><div>
                                     <ul>
                                         <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
-										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
@@ -665,7 +665,7 @@ function openNav() {
                                 <div class="g_sub"><div>
                                     <ul>
                                         <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
-										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>

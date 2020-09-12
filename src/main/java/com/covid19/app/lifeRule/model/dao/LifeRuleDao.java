@@ -14,24 +14,42 @@ public class LifeRuleDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 		
-	
-	public int selectBasicRuleContentCnt() {	
-		return sqlSession.selectOne("LifeRule.selectBasicRuleContentCnt");
+	public Map<String, Object> selectBasicDetail(int lfNo) {
+		return sqlSession.selectOne("LifeRule.selectBasicDetail",lfNo);
+	}
+	//1번
+	public int selectBasicRuleContentCnt(Map<String,Object> commandMap) {	
+		return sqlSession.selectOne("LifeRule.selectBasicRuleContentCnt",commandMap);
 	}
 
 	public List<Map<String, Object>> selecBasicRuleList(RulePaging p) {
 		return sqlSession.selectList("LifeRule.selectBasicRuleList", p);
 	}
-
-	public Map<String, Object> selectBasicDetail(int lfNo) {
-		return sqlSession.selectOne("LifeRule.selectBasicDetail",lfNo);
-	}
 	
-	public int selectBasic2RuleContentCnt() {
-		return sqlSession.selectOne("LifeRule.selectBasic2RuleContentCnt");
+	//2번
+	public int selectBasic2RuleContentCnt(Map<String,Object> commandMap) {
+		return sqlSession.selectOne("LifeRule.selectBasic2RuleContentCnt",commandMap);
 	}
 
 	public List<Map<String, Object>> selecBasic2RuleList(RulePaging p) {
 		return sqlSession.selectList("LifeRule.selectBasic2RuleList", p);
+	}
+	
+	//3번
+	public int selectBasic3RuleContentCnt(Map<String,Object> commandMap) {
+		return sqlSession.selectOne("LifeRule.selectBasic3RuleContentCnt",commandMap);
+	}
+
+	public List<Map<String, Object>> selecBasic3RuleList(RulePaging p) {
+		return sqlSession.selectList("LifeRule.selectBasic3RuleList", p);
+	}
+	
+	//4번
+	public int selectBasic4RuleContentCnt(Map<String,Object> commandMap) {
+		return sqlSession.selectOne("LifeRule.selectBasic4RuleContentCnt",commandMap);
+	}
+
+	public List<Map<String, Object>> selecBasic4RuleList(RulePaging p) {
+		return sqlSession.selectList("LifeRule.selectBasic4RuleList", p);
 	}
 }
