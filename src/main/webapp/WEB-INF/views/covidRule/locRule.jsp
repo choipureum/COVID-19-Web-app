@@ -102,8 +102,7 @@ $(document).ready(function() {
 				 	 		  		
 									<ul>				
 							 				<li><a class="listLink" href="javascript:void(0);" >사업장</a></li>
-								 		
-							 		
+								 									 	
 								 		
 							 				<li ><a class="listLink" href="javascript:void(0);" onclick="javascript:fn_boardView('/guidelineView.do','6','62','3112', '', '625');">회의</a></li>
 								 		
