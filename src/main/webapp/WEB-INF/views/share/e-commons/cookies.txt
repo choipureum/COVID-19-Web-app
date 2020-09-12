@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.ohmycompany.com	TRUE	/	FALSE	1999999999	SCOUTER	x234ou93233jat
+www.ohmycompany.com	TRUE	/	FALSE	1999999999	JSESSIONID	D398F57A40258D0D02F083DE8E899427.server01
+www.ohmycompany.com	TRUE	/	FALSE	1999999999	SameSite	None
+

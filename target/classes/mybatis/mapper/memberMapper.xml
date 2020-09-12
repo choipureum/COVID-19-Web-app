@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- 마이바티스 3 Mapper DTD -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MEMBER">
+
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" >
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_TELL, MEMBER_NAME, MEMBER_BIRTH, MEMBER_ADD)
+		VALUES (#{member_id}, #{member_pw}, #{member_email}, #{member_tell}, #{member_name}, #{member_birth}, #{member_add})
+	</insert>
+	
+	<!-- 아이디중복체크 -->
+	<select id="selectIdcheck" resultType="int">
+		select count(*) from member
+		where MEMBER_ID = #{member_id}
+   
+	</select>
+	
+	<!-- 로그인 확인 -->
+	<select id="login" resultType="MEMBER">
+		select MEMBER_ID,MEMBER_NAME
+		from member
+		where MEMBER_ID=#{userid} and MEMBER_PW=#{userpw}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="searchId" resultType="String">
+		select MEMBER_ID from member
+		where MEMBER_NAME=#{member_name} and MEMBER_EMAIL=#{member_email}
+	</select>
+
+	<!-- 패스워드 찾기 -->
+	<select id="searchPw" resultType="int">
+		select count(*) from member
+		where MEMBER_ID = #{member_id} and MEMBER_EMAIL=#{member_email} and MEMBER_NAME=#{member_name}
+	</select>
+	
+	<!-- 패스워드 업데이트 -->
+	<update id="changePw">
+		update member set MEMBER_PW = #{member_pw}
+		where MEMBER_ID = #{member_id}
+	</update>
+	
+	<!-- 회원 정보 업데이트 -->
+	<update id="membermodify">
+		update member 
+		set MEMBER_PW=#{member_pw}, MEMBER_EMAIL=#{member_email}, MEMBER_TELL=#{member_tell}, MEMBER_BIRTH=#{member_birth}, MEMBER_ADD=#{member_add} 
+		where MEMBER_ID = #{member_id}
+	</update>
+	<!-- 주소빼고 -->
+	<update id="membermodifyAdd">
+		update member 
+		set MEMBER_PW=#{member_pw}, MEMBER_EMAIL=#{member_email}, MEMBER_TELL=#{member_tell}, MEMBER_BIRTH=#{member_birth}
+		where MEMBER_ID = #{member_id}
+	
+	</update>
+	<!-- 아이디 이용해서 전체 조회 -->
+	<select id="selectAll" resultType="Member">
+		select *
+		from member
+		where MEMBER_ID = #{member_id}
+	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

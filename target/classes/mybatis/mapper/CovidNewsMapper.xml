@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="News">
+    
+<!--     	DB에 뉴스 기사 입력 -->
+	    <insert id="insertNews">
+			INSERT INTO COVID_NEWS (NEWS_IDX, NEWSTITLE, THUMBNAIL, NEWSCONTENTS,
+			LINK, REGDATE, COMPANY)	VALUES(covid_news_seq.nextval, #{newsTitle}, #{thumbNail}, #{newsContents}, #{link}, #{regDate}, #{company})  
+	    </insert>
+	    
+<!-- 	    중본된 뉴스기사 제거 -->
+	    <delete id="deleteNews" parameterType="int">
+	    	DELETE FROM COVID_NEWS
+	    	WHERE NEWS_IDX IN ( SELECT NEWS_IDX FROM(SELECT ROW_NUMBER() OVER(PARTITION BY NEWSTITLE ORDER BY NEWS_IDX) RN, NEWS_IDX FROM COVID_NEWS) A
+	    	WHERE RN > 1
+	    	)
+	    </delete>
+	    
+<!-- 	    뉴스기사 조회 -->
+	    <select id="selectNewsList" resultType="NEWS">
+	    	SELECT * 
+	    	FROM( 
+	    		select rownum rnum, i1.* from(select * from covid_news order by regdate DESC
+	    		)i1
+	    )where rnum between #{start} and #{end} 
+	    </select>
+	    
+<!-- 	    총 뉴스기사 조회 -->
+	    <select id="selectNewsCnt" resultType="int">
+	    	SELECT COUNT(*) FROM COVID_NEWS
+	    </select>
+    </mapper>

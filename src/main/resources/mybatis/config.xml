@@ -5,14 +5,17 @@
   
 <configuration>
 	<!-- DB컬럼명을 Java의 Camel표기법으로 변경 -->
-	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
 	<typeAliases>
 		<!--타입얼리어스 -->
+		<typeAlias type="com.covid19.app.admin.login.vo.AdminMember" alias="Admin"/>
+		<typeAlias type="com.covid19.app.admin.login.vo.AdMemberList" alias="Admember"/>
+		<typeAlias type="com.covid19.app.board.model.vo.InfoShare" alias="INFO"/>
+		<typeAlias type="com.covid19.app.board.model.vo.Faq" alias="FAQ"/>
+		<typeAlias type="com.covid19.app.coronaNews.model.vo.CovidNews" alias="NEWS"/>
+		<typeAlias type="com.covid19.app.member.model.vo.Member" alias="MEMBER"/>
+<!-- 		<typeAlias type="com.covid19.app.shareper.model.dto.Share" alias="Share"/> -->
+<!--       	<typeAlias type="com.covid19.app.shareper.model.dto.ShareQna" alias="ShareQna"/> -->
+<!--       	<typeAlias type="com.covid19.app.shareper.model.dto.ShareCheering" alias="ShareCheering"/> -->
 	</typeAliases>
-	<mappers>
-		<!-- 매퍼매핑 -->
-	</mappers>
 	
 </configuration>

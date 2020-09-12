@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="Info">
+    <select id="selectInfoList" resultType="INFO">
+     select * 
+     from(
+    		select rownum rnum, i1.* from(select * from info_board order by info_idx desc
+    		) i1
+    	)where rnum between #{start} and #{end}
+    </select>
+    
+    <select id="selectInfoCnt" resultType="int">
+    	SELECT COUNT(*) FROM info_board
+    </select>
+    
+    <select id="selectInfoDetail" resultType="INFO">
+    	SELECT * FROM info_board
+    	WHERE info_idx = #{info_idx}
+    </select>
+    
+    <update id="updateInfoHit" parameterType="int">
+    	UPDATE info_board SET 
+    	info_hits = info_hits+1 
+    	where info_idx = #{info_idx}
+    </update>
+    
+    <delete id="deleteInfo" parameterType="int">
+    	DELETE FROM info_board WHERE info_idx = #{info_idx}
+    </delete>
+    
+    <resultMap type="map" id="info_FileData">
+    	<result column="Info_OriginFile" property="infoOriginFile"/>
+		<result column="Info_RenameFile" property="infoRenameFile"/>
+		<result column="Info_SavePath" property="infoSavePath"/> 
+		<result column="info_idx" property="info_idx"/>   
+    	<result column="info_Fidx" property="info_Fidx"/>
+    </resultMap>
+
+    <insert id="insertInfo">
+    	INSERT INTO info_board
+    	(member_id, member_nick, member_rank, info_idx, info_title, info_content, info_date, )
+    	VALUES( #{member_id}, #{member_nick}, #{member_rank}, #{info_idx}, #{info_title}, #{info_content}, sysdate)
+    </insert>
+    
+    <insert id="insertFile">
+    	INSERT INTO info_filedata
+    	(info_originfile, info_renamefile, info_savepath, info_idx, info_fidx)
+    	VALUES(
+    	#{info_originfile},#{info_renamefile},#{info_savepath}, info_board.nextval, info_filedata.nextval 
+    	)
+    </insert>
+
+    
+	<select id="selectFileWithInfo" resultMap="info_FileData">
+		SELECT * FROM info_filedata
+		WHERE info_idx = #{info_idx}
+	</select>
+    
+    <select id="selectFileWithFidx" resultMap="info_FileData">
+    	SELECT * FROM info_filedata
+    	WHERE info_fidx = #{info_fidx}
+    </select>
+    
+    </mapper>
