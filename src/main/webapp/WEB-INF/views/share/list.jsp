@@ -9,48 +9,31 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/static/css/sharelist.css" />
 
-<link rel="stylesheet" type="text/css"
-	href="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.css">
 
-<script src="https://www.ohmycompany.com/omc/asset/js/jquery-1.12.4.js"></script>
-<script src="https://www.ohmycompany.com/omc/asset/js/isMobile.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery.form.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery-scrollLock.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.min.js"></script>
-<script src="https://www.ohmycompany.com/omc/asset/js/ui.js"></script>
-
-<script type="text/javascript">
-
-
-        $('#sorting').change(function () {
-          $(this).blur();
-          changeHashParameters();
-          loadInitialPage(1);
-        });
-
-
-      
-      </script>
 <!-- 공통 유틸 js -->
 <script
 	src="https://www.ohmycompany.com/omc/asset/js/common/commonUtil.js?ver=20191030">
 
 </script>
+<style type="text/css">
 
+.select{ border: 3px soild black;
+color:green;}
+
+</style>
 
 <!-- 무한스크롤 -->
-
 <!-- 및 필터링 기능 -->
 <script type="text/javascript">
 var page = ${paging.currentPage };
 $(document).ready(function () {
 	
 	
-	$(".link_cate").click(function(){
-	
+	$("a").click(function(){
+		
+		$(this).addClass("select");
+		$(this).sibling().removeClass("select");
+
 		console.log($(this).children(0).val());
 		var filter_val = $(this).children(0).val();
 		$("#fival").val(filter_val);
