@@ -1,6 +1,7 @@
 package com.covid19.app.shareper.model.service;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.covid19.app.shareper.model.dao.ShareDao;
 import com.covid19.app.shareper.model.dto.Goods;
+import com.covid19.app.shareper.model.dto.Pay;
 import com.covid19.app.shareper.model.dto.Share;
 import com.covid19.app.shareper.model.dto.ShareFile;
 
@@ -36,9 +38,9 @@ public class ShareService {
 	
 		for(int i=0; i<gn.length; i++){
 			Goods goods = new Goods();
-			goods.setGoodsName(gn[i]);
-			goods.setPrice(pr[i]);
-			goods.setGoodsStock(Integer.parseInt(gs[i]));
+			goods.setGoods_Name(gn[i]);
+			goods.setGoods_Price(pr[i]);
+			goods.setGoods_Stock(Integer.parseInt(gs[i]));
 			sharedao.insertGoods(goods);
 		}
 		
@@ -94,6 +96,25 @@ public class ShareService {
 		commandMap.put("dlist", dlist);
 		System.out.println(commandMap);
 		return commandMap;
+		
+	}
+
+	public List<Goods> selectGoods(int share_idx) {
+		List<Goods> gList = sharedao.selectGoods(share_idx);
+		return gList;
+	}
+
+	public void insertPay(HashMap<String, Object> pay) {
+		Pay payy = new Pay();
+		payy.setPayment(Integer.parseInt(pay.get("payment").toString()));
+		payy.setMember_id((String)pay.get("mem_id"));
+		payy.setShare_idx(Integer.parseInt(pay.get("share_idx").toString()));
+		payy.setGoods_name((String)pay.get("good_name"));
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
+		String paydate = sdf.format(date);
+		payy.setPay_day(paydate);
+		sharedao.insertPayment(payy);
 		
 	}
 

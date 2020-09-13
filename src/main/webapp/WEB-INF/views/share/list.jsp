@@ -30,9 +30,6 @@ $(document).ready(function () {
 	
 	
 	$("a").click(function(){
-		
-		$(this).addClass("select");
-		$(this).sibling().removeClass("select");
 
 		console.log($(this).children(0).val());
 		var filter_val = $(this).children(0).val();

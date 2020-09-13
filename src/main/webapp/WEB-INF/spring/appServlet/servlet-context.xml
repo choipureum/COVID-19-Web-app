@@ -57,5 +57,17 @@
 	<context:component-scan base-package="com.covid19.app" />
 	
 	
+<!-- 인터셉터 등록 -->
+	<interceptors>
+		<interceptor>
+			<!-- 모든 요청이 인터셉터를 거치도록 작성  -->		
+			<mapping path="/**"/>
+			<beans:bean class="common.interceptor.AuthInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
+
+
+
+

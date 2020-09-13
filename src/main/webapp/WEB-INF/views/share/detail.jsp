@@ -175,8 +175,7 @@
 		<!-- aside -->
 
 		<!--  aside -->
-
-		<input type="hidden" id="projectSeq" value="8725" /> <input
+	 <input type="hidden" id="projectSeq" value="8725" /> <input
 			type="hidden" id="simulationFlag" value="N" />
 
 		<h2 id="omcBody" class="screen_out">후원형 프로젝트</h2>
@@ -211,10 +210,6 @@
 
 							<div class="author_profile">
 								<div class="user_profile">
-									<span class="img_profile"> <img
-										src="https://www.ohmycompany.com/uploads/member/profile/MEMBER_20200628081127301.png">
-
-									</span>
 									<div class="author_cont">
 										<div class="builder_profile_wrapper">
 											<p>
@@ -277,7 +272,7 @@
 
 									<span class="num_value"> D-<span class="screen_out">Day</span>${dDay }
 									</span><span class="txt_value"> 일 남음</span> <a
-										href="https://www.ohmycompany.com/reward/8725/join/select;jsessionid=40EF219E555115950018A131E1EFDCF0.server01"
+										href="/share/slog/payment.do?share_idx=${list[0].SHARE_IDX }"
 										class="link_join">참여하기</a>
 
 								</div>
@@ -354,19 +349,7 @@
 
 
 
-									<div class="btn_area stickable">
-
-
-
-
-										<a
-											href="https://www.ohmycompany.com/reward/8725/join/select;jsessionid=40EF219E555115950018A131E1EFDCF0.server01"
-											class="link_join">참여하기</a>
-
-
-
-
-									</div>
+									<div class="btn_area stickable"></div>
 								</div>
 							</nav>
 							<!-- 탭이 눌려질 때 동적으로 페이지를 로드한다. -->
@@ -427,95 +410,24 @@
 					<div class="box_reward_select">
 						<form name="rewardForm" id="rewardForm" action="#">
 							<fieldset>
-
-
-
-
-
-
-
-
 								<ul class="list_reward">
-
-
-
-
-
-
-
-
-
-
-									<!-- 리워드 수량이 무한한 경우 -->
+									<c:forEach items="${goods }" var="glist">
 									<li><a
-										href="https://www.ohmycompany.com/reward/8725/join/select?selectrewardseq=15001"
-										class="box_reward"> <strong class="tit_reward">10,000원
+										href=""
+										class="box_reward"> <strong class="tit_reward">${glist.goods_Price }원
 												펀딩</strong>
-											<p class="txt_desc">뱃지 1개 + 후원자 표기(리플렛발송)</p> <span
+											<p class="txt_desc">${glist.goods_Name }</p> <span
 											class="info_dely"><span class="tit_info">배송 예정일</span>
-												: <span class="txt_info">펀딩 종료 후 리플렛, 뱃지 제작으로 인해 10월
-													5일 이후 순차배송됩니다.</span></span> <span class="txt_satea"><em
-												class="num_state">56명</em> 참여하였습니다.</span>
+												: <span class="txt_info">목표금액 달성 시 개별공지</span>
+												</span> <span class="txt_satea">
+												<em class="num_state">56명</em> 참여하였습니다.</span>
 									</a></li>
-
-
-
-
-
-
-
-
-
-
-
-									<!-- 리워드 수량이 무한한 경우 -->
-									<li><a
-										href="https://www.ohmycompany.com/reward/8725/join/select?selectrewardseq=15002"
-										class="box_reward"> <strong class="tit_reward">29,800원
-												펀딩</strong>
-											<p class="txt_desc">[1+1 콘서트 티켓] + 뱃지 1개 + 후원자 표기</p> <span
-											class="info_dely"><span class="tit_info">배송 예정일</span>
-												: <span class="txt_info">[현장수령] 리워드 상품입니다. (자율좌석제 운영)</span></span>
-											<span class="txt_satea"><em class="num_state">13명</em>
-												참여하였습니다.</span>
-									</a></li>
-
-
-									<!-- 리워드 수량 제한이 있는 경우 -->
-
-
-									<li><a
-										href="https://www.ohmycompany.com/reward/8725/join/select?selectrewardseq=15003"
-										class="box_reward"> <strong class="tit_reward">54,900원
-												펀딩</strong>
-											<p class="txt_desc">[2+2 콘서트 티켓] + 뱃지 2개 + 후원자 표기</p> <span
-											class="info_dely"><span class="tit_info">배송 예정일</span>
-												: <span class="txt_info">[현장수령] 리워드 상품입니다. (자율좌석제 운영)</span></span>
-											<span class="txt_satea"><em class="num_state">6명</em>
-												참여하였습니다.<small class="txt_count">(수량 118개 남음)</small></span>
-									</a></li>
-
-
-
-									<!-- 리워드 수량이 무한한 경우 -->
-									<li><a
-										href="https://www.ohmycompany.com/reward/8725/join/select?selectrewardseq=15004"
-										class="box_reward"> <strong class="tit_reward">100,000원
-												펀딩</strong>
-											<p class="txt_desc">♥후원하기♥_액자포장뱃지(장식용) + 후원자 표기(리플렛 발송)</p> <span
-											class="info_dely"><span class="tit_info">배송 예정일</span>
-												: <span class="txt_info">펀딩 종료 후 리플렛, 뱃지 제작으로 인해 10월
-													5일 이후 순차배송됩니다.</span></span> <span class="txt_satea"><em
-												class="num_state">7명</em> 참여하였습니다.</span>
-									</a></li>
-
-
-
+									</c:forEach>
 								</ul>
 							</fieldset>
 						</form>
 					</div>
 
 				</div>
-</div>
-				<jsp:include page="/footer.do" />
+		</div>
+		<jsp:include page="/footer.do" />

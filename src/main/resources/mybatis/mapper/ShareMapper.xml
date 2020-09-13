@@ -7,10 +7,10 @@
     
 <mapper namespace="SHARE">
 	<insert id="shareUpload">
-		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney,share_dday)
+		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney)
 		values(
 		SHARE_SEQ.nextval,#{shareField},#{shareName}
-		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney},#{sharedDay}
+		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney}
 		)
 	</insert>
 		<insert id="insertFile">
@@ -82,8 +82,15 @@
 	
 	<insert id="insertGoods">
 		insert into share_goods
-		values(goods_seq.nextval,share_seq.currval,#{goodsName},#{price},#{goodsStock} )
+		values(goods_seq.nextval,share_seq.currval,#{goods_Name},#{goods_Price},#{goods_Stock} )
 	</insert>
-
+	
+	<select id="selectGoods" resultType="GOODS">
+		SELECT * FROM share_goods WHERE share_idx = #{share_idx}
+	</select>
+	<insert id="insertpayment">
+	insert into share_pay
+	values(sh_pay_seq.nextval,#{member_id},#{share_idx},#{payment},#{pay_day},#{goods_name})
+	</insert>
 
 </mapper>
