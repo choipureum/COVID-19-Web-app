@@ -348,6 +348,13 @@ td:first-of-type{ border-right:1px solid #000; width: 120px; }
       		<input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px; width: 100px"></td>
   			<td><div id="year_check"></div></td>
   		</tr>
+  		
+  		<tr>	
+  			<td>구분</td>
+  			<td><input type="radio" name="auth" value="일반" id="gen"><label for="gen">일반</label>
+  				<input type="radio" name="auth" value="사업자" id="ath"><label for="ath">사업자</label>
+  			</td>
+  		</tr>
   		<tr>
   			<td>이메일</td>
   			<td><input type="email" placeholder="이메일" name="member_email" id="member_email" required style="height:30px; width: 300px">
