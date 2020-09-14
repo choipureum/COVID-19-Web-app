@@ -11,8 +11,8 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember" >
-		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_TELL, MEMBER_NAME, MEMBER_BIRTH, MEMBER_ADD)
-		VALUES (#{member_id}, #{member_pw}, #{member_email}, #{member_tell}, #{member_name}, #{member_birth}, #{member_add})
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_TELL, MEMBER_NAME, MEMBER_BIRTH, MEMBER_ADD, MEMBER_AUTH)
+		VALUES (#{member_id}, #{member_pw}, #{member_email}, #{member_tell}, #{member_name}, #{member_birth}, #{member_add},#{member_auth})
 	</insert>
 	
 	<!-- 아이디중복체크 -->

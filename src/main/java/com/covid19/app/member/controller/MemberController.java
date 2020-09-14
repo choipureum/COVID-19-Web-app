@@ -86,11 +86,11 @@ public class MemberController {
 		String root = request.getContextPath();
 		
 		if(res > 0) {
-			mav.addObject("alertMsg", "회원가입성공!");
+			mav.addObject("alertMsg", "회원가입을 성공했습니다. 로그인하여 이용해주세요!");
 			mav.addObject("url", "/main.do");
 			mav.setViewName("/member/result");
 		} else {
-			mav.addObject("alertMsg", "회원가입에 실패");
+			mav.addObject("alertMsg", "회원가입에 실패했습니다. 다시 시도해 주세요");
 			mav.addObject("url", root+"/member/join.do");
 			mav.setViewName("/member/result");
 		}
@@ -135,11 +135,11 @@ public class MemberController {
 			session.setAttribute("logInInfo", res);
 			System.out.println("memberid = " + session.getAttribute("logInInfo"));
 	    	 
-			mav.addObject("alertMsg", "로그인성공!");
+			mav.addObject("alertMsg", "환영합니다 COVID - 19 종합 홈페이지 입니다");
 			mav.addObject("url",request.getContextPath()+"/main.do");
 	     
 		} else { //실패하면  로그인
-			mav.addObject("alertMsg", "로그인실패!");
+			mav.addObject("alertMsg", "아이디 또는 비밀번호를 확인해주세요!");
 			mav.addObject("url", request.getContextPath()+"/main.do");
 		}
 		mav.setViewName("member/result");

@@ -13,7 +13,7 @@ public class Member {
 
 	private String member_nick;
 	private String member_add;
-	private int member_auth;
+	private String member_auth;
 	private Date member_date;
 	private String member_rank;
 	private int member_point;
@@ -66,10 +66,10 @@ public class Member {
 	public void setMember_add(String member_add) {
 		this.member_add = member_add;
 	}
-	public int getMember_auth() {
+	public String getMember_auth() {
 		return member_auth;
 	}
-	public void setMember_auth(int member_auth) {
+	public void setMember_auth(String member_auth) {
 		this.member_auth = member_auth;
 	}
 	public Date getMember_date() {

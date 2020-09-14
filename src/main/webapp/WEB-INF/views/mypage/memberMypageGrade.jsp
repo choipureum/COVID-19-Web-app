@@ -17,11 +17,6 @@ td{
 	padding: 15px 5px 10px 5px;
 }
 
-</style>
-
-
-<!-- css 만지는중 -->
-<style type="text/css">
 .Gradecontainer{
    width:800px;
    margin :40px auto;

@@ -288,6 +288,8 @@ input {
 <div class="modifycontainer">
 <br><br>
       <h2 id="one"> 회원 정보 변경</h2>
+      <br>
+      <div>회원님은   ${memberInfo.member_auth }  입니다</div>
    <hr>
    
    <form action="/mypage/memberModifyimpl.do" method="post" id="modifyform">

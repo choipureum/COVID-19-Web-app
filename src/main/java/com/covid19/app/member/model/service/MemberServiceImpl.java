@@ -42,6 +42,8 @@ public class MemberServiceImpl implements MemberService{
 		member.setMember_name((String)commandMap.get("username"));
 		member.setMember_pw((String)commandMap.get("joinuserpw"));
 		member.setMember_tell((String)commandMap.get("usertel"));
+		member.setMember_auth((String)commandMap.get("auth"));
+		
 		//birth합쳐주기
 		StringBuilder sb = new StringBuilder();
 		sb.append(commandMap.get("userbirth_yy"));

@@ -76,6 +76,7 @@ public class MypageController {
 	public int memberDeleteimpl(@ModelAttribute Member member, HttpSession session) {
 		
 		int res = memberService.memberdelete(member);
+	
 		
 		return res;
 	}
