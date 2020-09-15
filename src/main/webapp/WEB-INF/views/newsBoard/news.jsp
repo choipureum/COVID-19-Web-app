@@ -36,7 +36,7 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 <!-- <input type="hidden" id="dataGubun" name="dataGubun" value="" /> -->
 <!-- <input type="hidden" id="ncvContSeq" name="ncvContSeq" /> -->
 
-	<div class="container">
+	<div class="container" style="background:white">
 	
 			<div>
 			<div id="content" class="content">
@@ -45,8 +45,8 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 		                <div class="st_navigation">
 		                    <ul>
 		                        <li><a href="main.do"><span class="hdn">홈</span></a></li>
-		                        <li><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/covidNews.do');">뉴스 </a></li>
-		                        <li><a href="infoBoard.do">SBS</a></li>
+		                        <li><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/covidNews.do');">뉴스&이슈 </a></li>
+		                        <li><a href="infoBoard.do">보도자료</a></li>
 		                    </ul>
 		                </div>
 		                <div class="st_title">
