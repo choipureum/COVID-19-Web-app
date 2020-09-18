@@ -29,7 +29,7 @@
                         <h4 class="s_title_in2">국내 발생 현황</h4>                        
                         <p class="s_descript">코로나바이러스감염증-19 국내 발생현황</p>
                         
-                        <h5 class="s_title_in3">누적 확진자 현황 <span class="t_date">(9.6. 00시 기준)</span></h5>
+                        <h5 class="s_title_in3">누적 확진자 현황 <span class="t_date">(9.22. 00시 기준)</span></h5>
 						<div class="caseTable">
 							<div>
 								<strong class="ca_top">확진환자</strong>
