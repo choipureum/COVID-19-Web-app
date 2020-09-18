@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   
@@ -147,33 +146,27 @@ function fn_fileDown(name, path, seq){
 		            <div class="sub_top">
 		                <div class="st_navigation">
 		                    <ul>
-		                        <li><a href="index.html"><span class="hdn">홈</span></a></li>
-		                        <li><a href="tcmBoardListf884.html?brdId=3">뉴스 & 이슈</a></li>
-		                        <li><a href="factBoardListacb8.html?brdId=3&amp;brdGubun=33">코로나19 팩트 & 이슈체크</a></li>
+		                        <li><a href="/main.do"><span class="hdn">홈</span></a></li>
+		                        <li><a href="/infoBoard.do">정보공유 & FAQ</a></li>
+		                        <li><a href="/noticeBoard.do">공지사항</a></li>
 		                    </ul>
 		                </div>
 		                <div class="st_title">
 		                    <div class="fl_l">
-		                        <h3>코로나19 팩트 & 이슈체크</h3>
+		                        <h3>공지사항</h3>
 		                    </div>
 		                </div>
 		            </div>
-		            
-		            <!--텝메뉴-->
-					
-                    <!--텝메뉴-->
-                    
-	                <!--게시판 목록-->	                
-	                 <div class="tab_flt cnt2-2-2">
-                      <ul>
-                          <li class="on"><a href="/covidFact.do"><span>코로나19 팩트</span></a></li>
-                         <li ><a href="/issueCheck.do"><span>이슈체크</span></a></li>
-                      </ul>
-                    </div>
-                    
-	                
 	                 
 	                <!--게시판 목록-->
+	                  <div class="tab_flt cnt2-2-2">
+                      <ul>
+                         <li style="width: 33.3%"><a href="/infoBoard.do"><span>정보공유</span></a></li>
+                         <li style="width: 33.3%" ><a href="/faqBoard.do"><span>FAQ</span></a></li>
+                         <li class="on" style="width: 33.3%"><a href="/noticeBoard.do"><span>공지사항</span></a></li>
+                      </ul>
+                    </div>
+	                
 	                <div class="board_top">
 	                    <div class="fl_l">
 	                        <p class="bt_count">총<strong>56</strong>건</p>
