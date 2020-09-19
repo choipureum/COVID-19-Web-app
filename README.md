@@ -111,27 +111,11 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- ACKNOWLEDGEMENTS -->
 ## contact
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
+* [최푸름](https://github.com/choipureum)
+* [최상옥](https://shields.io)
+* [최광호](https://choosealicense.com)
+* [김민철](https://pages.github.com)
+* [김영준](https://daneden.github.io/animate.css)
+* [안태선](https://connoratherton.com/loaders)
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
-[contributors-url]: https://github.comCOVID-19-WEB-App/COVID-19-Web-app/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
-[forks-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/network/members
-[stars-shield]: https://img.shields.io/github/stars/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
-[stars-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/stargazers
-[issues-shield]: https://img.shields.io/github/issues/COVID-19-WEB-App/COVID-19-Web-app.svg?style=flat-square
-[issues-url]: https://github.com/COVID-19-WEB-App/COVID-19-Web-app/issues
-[product-screenshot]: images/screenshot.png
 
