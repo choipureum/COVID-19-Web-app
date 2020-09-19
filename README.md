@@ -1,7 +1,7 @@
-![Contributors][contributors-shield]
-![Forks][forks-shield]
-![Stargazers][stars-shield]][stars-url]
-![Issues][issues-shield]][issues-url]
+[![Contributors][contributors-shield]]
+[![Forks][forks-shield]]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
 
 <!-- PROJECT LOGO -->
@@ -35,7 +35,7 @@
 
 * [코로나19 종합 웹 프로젝트](#코로나19 종합 웹 프로젝트)
   * [프로젝트 기간](#프로젝트 기간)
-* [프로젝트 개요](#프로젝트 개요)
+* [프로젝트 개요](#배경)
   * [배경](#배경) 
   * [WAS](#WAS)
   * [Pattern](#Pattern)
@@ -43,7 +43,7 @@
   * [Tool](#Tool)
 * [주요기능](#주요기능)
 * [프로젝트관리툴](#프로젝트관리툴)
-* [개발 이미지](#개발 이미지)
+* [개발이미지](#개발이미지)
 
 
 
