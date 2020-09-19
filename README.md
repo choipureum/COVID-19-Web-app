@@ -1,7 +1,7 @@
 ![Contributors][contributors-shield]
 ![Forks][forks-shield]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+![Stargazers][stars-shield]][stars-url]
+![Issues][issues-shield]][issues-url]
 
 
 <!-- PROJECT LOGO -->
@@ -99,7 +99,8 @@ SQL Developer
 <!-- LICENSE -->
 ## 프로젝트관리툴
 **NOTION**
-[![NOTION][NOTION]](http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png)
+
+<img src="http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png" alt=""/>
 
 <!-- CONTACT -->
 ## 개발이미지
