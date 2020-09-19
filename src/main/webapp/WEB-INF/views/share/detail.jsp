@@ -66,32 +66,12 @@
 									<div class="author_cont">
 										<div class="builder_profile_wrapper">
 											<p>
-												<span class="txt_name">주식회사 케이아트팩토리</span>
+												<span class="txt_name">작성자 : ${list[0].MEMBER_ID }</span>
 											</p>
-											<span class="txt_mail">k-**********@k-artfactory.com</span> <span
-												class="sns_area"> <span class="box_links"> <span
-													class="screen_out">프로젝트SNS</span> <a
-													href="http://www.k-artfactory.com/" target="_blank"
-													class="link_home"> <span class="ico_comm"></span> <span
-														class="sns_name"></span>
-												</a> <a href="http://www.facebook.com/K.Factory.2020"
-													target="_blank" class="link_facebook"> <span
-														class="ico_comm"></span> <span class="sns_name"></span>
-												</a> <a href="http://www.instagram.com/kart__factory/"
-													target="_blank" class="link_insta"> <span
-														class="ico_comm"></span> <span class="sns_name"></span>
-												</a>
-
-											</span>
-											</span>
-
 										</div>
 									</div>
 								</div>
 								<div class="mms_profile">
-
-									<a href="#none" class="link_mms" id="link_profile">프로필보기</a> <a
-										href="#none" class="link_profile" id="link_message">개설자문의</a>
 								</div>
 							</div>
 						</div>
@@ -216,55 +196,7 @@
 							</nav>
 							<!-- 탭이 눌려질 때 동적으로 페이지를 로드한다. -->
 							<div class="article_intro">${list[0].SHARECONTENT }</div>
-							<div id="accordionCont" class="accordion_g">
-								<h2 class="screen_out">프로젝트 주요안내</h2>
-
-								<div class="panel">
-									<button type="button" class="btn_accordion">
-										리워드 배송 안내<span class="fa fa-angle-down"></span>
-									</button>
-									<div class="cont">
-										<p>
-											- 프로젝트 종료 후 후원금을 우수리스크 민족학교에 보낼 예정입니다. <br>- 이를 러시아
-											우수리스크 현지에서 영수증과 후원물품 사진을 보낼 예정입니다. <br>- 2020년 10월 10일
-											손편지 및 기부금영수증이 일괄발송 됩니다. <br>- 아이들의 손편지는 책상과 의자를 후원해주셨을 때
-											전해드립니다.&nbsp;
-										</p>
-									</div>
-								</div>
-
-								<div class="panel">
-									<button type="button" class="btn_accordion">
-										리워드 배송 지연 시<span class="fa fa-angle-down"></span>
-									</button>
-									<div class="cont">
-										<p>
-											- 펀딩해 주신 참여자분들께 약속드린 후원 일정을 지키기 위해 최선을 다할 것을 약속합니다. 단, 펀딩을
-											받아야만 진행을 시작할 수 있는 크라우드펀딩 특성 상 예상치 못한 상황으로 인해 프로젝트 일정이 다소 지연될
-											수 있는 점을 알려드립니다. <br>- 약속된 날로부터 프로젝트 일정 지연이 예상되는 즉시,
-											최근소식에 상세한 사유와 변경되는 일정을 공지하겠습니다.
-										</p>
-									</div>
-								</div>
-
-								<div class="panel">
-									<button type="button" class="btn_accordion">
-										환불 및 교환정책<span class="fa fa-angle-down"></span>
-									</button>
-									<div class="cont">
-										<p>
-											- 환불은 펀딩종료일 1일 전까지 가능하며 이후는 환불이 불가능합니다. 또한 펀딩기간 중 리워드가 배송된
-											경우에도 환불이 불가능하오니 이 점 양해해주세요. <br>- 펀딩 종료일 이후 단순 변심으로 인한
-											환불 및 교환은 불가능합니다. <br>- 리워드가 손편지인 관계로 참여자의 배송지 기재 오류,
-											참여자가 개설자에게 사전 고지 없이 배송지를 수정해 배송사고가 발생할 경우에 재 발송은 어렵습니다. <br>-
-											관련 문의가 있을 시 프로젝트 상단 'Q&amp;A'에 질문을 등록해주세요. <br>- 지속적인
-											리워드 배송 지연 및 개설자의 개인적인 사유로 리워드 제공이 이루어지지 않는 경우 개설자가 직접 참여자의
-											환불계좌를 받아 참여금액의 100%를 환불해드리겠습니다.
-										</p>
-									</div>
-								</div>
-
-							</div>
+						
 						</section>
 					</div>
 
@@ -282,14 +214,14 @@
 											class="info_dely"><span class="tit_info">배송 예정일</span>
 												: <span class="txt_info">목표금액 달성 시 개별공지</span>
 												</span> <span class="txt_satea">
-												<em class="num_state">56명</em> 참여하였습니다.</span>
+												<em class="num_state">${list[0].JOINPER}명</em> 참여하였습니다.</span>
 									</a></li>
 									</c:forEach>
 								</ul>
 							</fieldset>
 						</form>
 					</div>
-
+					
 				</div>
 		</div>
 		<jsp:include page="/footer.do" />

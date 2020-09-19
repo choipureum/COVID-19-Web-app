@@ -34,15 +34,23 @@ public class AuthInterceptor implements HandlerInterceptor{
 			, Object handler) throws ServletException, IOException{
 		
 		//사용자가 요청한 URI에 share가 포함되어 있고	
-		if(request.getRequestURI().contains("erqwfsadfasdf/")
+		if(request.getRequestURI().contains("/slog")
 			&& request.getSession().getAttribute("logInInfo") == null) {
 			
-			request.setAttribute("alertMsg", "비회원은 접근할 권한이 없습니다.");
-			request.setAttribute("url", request.getContextPath()+"/main.do");
+			request.setAttribute("alertMsg", "결제는 회원가입 후 가능합니다.");
+			request.setAttribute("url", request.getContextPath()+"/share/list.do");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp");
 			rd.forward(request, response);
 			
 			//컨트롤러 메서드를 호출하지 않음.
+			return false;
+		}else if(request.getRequestURI().contains("/share/board.do")
+				&& request.getSession().getAttribute("logInInfo") == null) {
+			request.setAttribute("alertMsg", "일반회원은 접근할 권한이 없습니다.");
+			request.setAttribute("url", request.getContextPath()+"/main.do");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp");
+			rd.forward(request, response);
+			
 			return false;
 		}
 		

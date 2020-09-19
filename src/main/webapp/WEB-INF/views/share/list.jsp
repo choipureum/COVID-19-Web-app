@@ -34,7 +34,7 @@ $(document).ready(function () {
 		      type:"post"
 		      , url: "/share/filter.do"
 		      , data: {
-				filter : $(this).children(0).val()
+				filter : $(this).children(0).val(),
 		      }
 		      , dataType: "html"
 		      , success: function(data) {
@@ -127,10 +127,9 @@ function loadlist() {
 				<div class="box_select">
 					<select id="sorting" name="sorting" class="select_sort"
 						title="후원형 프로젝트 목록 분류">
-						<option value="highest">펀딩금액순</option>
-						<option value="impendence">마감임박순</option>
-						<option value="latest">최신순</option>
-						<option value="largest">참여자순</option>
+						<option value="100">펀딩금액순</option>
+						<option value="200">마감임박순</option>
+						<option value="300">최신순</option>
 					</select>
 				</div>
 
@@ -162,11 +161,9 @@ function loadlist() {
 											<span class="screen_out">프로젝트 설명</span> ${list.SIMPLEINFO }
 										</p>
 										<span class="user_profile"> <span
-											class="img_profile clear_empty_picture"> <img
-												src="/uploads/member/profile/MEMBER_20200804093209983.png"
-												alt="profile">
+											class="img_profile clear_empty_picture"> 
 										</span>
-										 <span class="txt_name">사단법인 희망래일</span>
+										 <span class="txt_name">${list.MEMBER_ID }</span>
 										</span>
 										 <span class="project_category"> <span
 											class="screen_out">카테고리</span> ${list.FEIELD }

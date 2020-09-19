@@ -7,10 +7,10 @@
     
 <mapper namespace="SHARE">
 	<insert id="shareUpload">
-		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney)
+		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney,member_id)
 		values(
 		SHARE_SEQ.nextval,#{shareField},#{shareName}
-		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney}
+		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney},#{member_id}
 		)
 	</insert>
 		<insert id="insertFile">
@@ -44,11 +44,11 @@
 	
 	<select id = "selectshar" resultType="HashMap">
 	
-	select nvl(payper,0) payper,nvl(pay,0) pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate) day,sharedate,rename_file
+	select nvl(payper,0) payper,nvl(pay,0) pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate) day,sharedate,rename_file,member_id
                 from(
                     select rownum rnum , s3.*
 			from(
-				select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,sum(sp.payment) pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
+				select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,s.member_id,sum(sp.payment) pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
 				from shar s, share_thumb st,share_pay sp
                 where s.share_idx = st.share_idx
                 and s.share_idx = sp.share_idx(+)
@@ -61,7 +61,7 @@
 			   	</when>
 		 		</choose>
                 group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent, s.sharemoney, 
-                s.sharedateen, s.share_idx, s.sharedate, st.rename_file
+                s.sharedateen, s.share_idx, s.sharedate, st.rename_file,s.member_id
 				order by s.share_idx desc
 			)s3
 		)where rnum between #{start} and #{end}
@@ -80,13 +80,13 @@
 	</select>
 	
 	<select id="selectDetail" resultType="hashmap">
-        select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,s.sharecontent,s.share_idx,s.sharefield,s.sharename,s.simpleinfo,s.sharedate,s.sharemoney,st.rename_file,nvl(sum(sp.payment),0) pay,nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0),s.joinper
+        select nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0) payper,s.member_id,s.sharecontent,s.share_idx,s.sharefield,s.sharename,s.simpleinfo,s.sharedate,s.sharemoney,st.rename_file,nvl(sum(sp.payment),0) pay,nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0),s.joinper
     	from shar s, share_thumb st,share_pay sp
         where s.share_idx = st.share_idx
         and s.share_idx = sp.share_idx(+)
         and s.share_idx = #{share_idx}
         group by s.sharecontent, s.share_idx, s.sharefield, s.sharename, s.simpleinfo, 
-        s.sharedate, s.sharemoney, st.rename_file,s.joinper
+        s.sharedate, s.sharemoney, st.rename_file,s.joinper,s.member_id
 	</select>
 	
 	<insert id="insertGoods">
