@@ -480,7 +480,7 @@ public class ShareController {
 		model.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
 		model.addAttribute("shareQnaContent", qna.getShareQnaContent());
 		model.addAttribute("share_idx", qna.getShare_idx());
-		return "share/qna_Delete";
+		return "redirect:list.do";
 
 	}
 
