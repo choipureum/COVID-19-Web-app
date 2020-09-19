@@ -147,7 +147,7 @@ $(document).ready(function(){
 			        	</c:otherwise>
 			        </c:choose>
 			        <c:forEach begin="${paging.blockStart}" end="${paging.blockEnd}" var="page">
-			         <a href="<%= request.getContextPath() %>/basicRule.do?currentPage=${page}" class="num active"><span>${page}</span></a>
+			         <a href="<%= request.getContextPath() %>/basicRule.do?boundary=${boundary}&currentPage=${page}" class="num active"><span>${page}</span></a>
 			        </c:forEach> 
 			        
 			        <c:choose>

@@ -503,11 +503,10 @@ function openNav() {
                                 </div></div>
                             </li> 
                             <!-- 쇼핑 -->
-                             <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">쇼핑</a>
+                             <li><a href="/share/list.do">쇼핑</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 공동 구매</a></li>
-                                 <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 소상공인 쇼핑몰</a></li>
+                                        <li><a href="/share/list.do">&middot; 공동 구매</a></li>
                                     </ul>
                                 </div></div>
                             </li>  

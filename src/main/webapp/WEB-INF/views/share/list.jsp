@@ -9,48 +9,23 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/static/css/sharelist.css" />
 
-<link rel="stylesheet" type="text/css"
-	href="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.css">
 
-<script src="https://www.ohmycompany.com/omc/asset/js/jquery-1.12.4.js"></script>
-<script src="https://www.ohmycompany.com/omc/asset/js/isMobile.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery.form.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery-scrollLock.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.min.js"></script>
-<script src="https://www.ohmycompany.com/omc/asset/js/ui.js"></script>
+<style type="text/css">
 
-<script type="text/javascript">
+.select{ border: 3px soild black;
+color:green;}
 
-
-        $('#sorting').change(function () {
-          $(this).blur();
-          changeHashParameters();
-          loadInitialPage(1);
-        });
-
-
-      
-      </script>
-<!-- 공통 유틸 js -->
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/commonUtil.js?ver=20191030">
-
-</script>
-
+</style>
 
 <!-- 무한스크롤 -->
-
 <!-- 및 필터링 기능 -->
 <script type="text/javascript">
 var page = ${paging.currentPage };
 $(document).ready(function () {
 	
 	
-	$(".link_cate").click(function(){
-	
+	$("a").click(function(){
+
 		console.log($(this).children(0).val());
 		var filter_val = $(this).children(0).val();
 		$("#fival").val(filter_val);
@@ -59,7 +34,7 @@ $(document).ready(function () {
 		      type:"post"
 		      , url: "/share/filter.do"
 		      , data: {
-				filter : $(this).children(0).val()
+				filter : $(this).children(0).val(),
 		      }
 		      , dataType: "html"
 		      , success: function(data) {
@@ -152,10 +127,9 @@ function loadlist() {
 				<div class="box_select">
 					<select id="sorting" name="sorting" class="select_sort"
 						title="후원형 프로젝트 목록 분류">
-						<option value="highest">펀딩금액순</option>
-						<option value="impendence">마감임박순</option>
-						<option value="latest">최신순</option>
-						<option value="largest">참여자순</option>
+						<option value="100">펀딩금액순</option>
+						<option value="200">마감임박순</option>
+						<option value="300">최신순</option>
 					</select>
 				</div>
 
@@ -187,25 +161,45 @@ function loadlist() {
 											<span class="screen_out">프로젝트 설명</span> ${list.SIMPLEINFO }
 										</p>
 										<span class="user_profile"> <span
-											class="img_profile clear_empty_picture"> <img
-												src="/uploads/member/profile/MEMBER_20200804093209983.png"
-												alt="profile">
-										</span> <span class="txt_name">사단법인 희망래일</span>
-										</span> <span class="project_category"> <span
+											class="img_profile clear_empty_picture"> 
+										</span>
+										 <span class="txt_name">${list.MEMBER_ID }</span>
+										</span>
+										 <span class="project_category"> <span
 											class="screen_out">카테고리</span> ${list.FEIELD }
 										</span>
 									</div>
+									<c:set var="dDay" value="${list.DAY }"/>
+									<c:choose>
+									    <c:when test="${dDay <= 0}">
 									<div class="project_state">
-										<span class="total_amount"> <span class="screen_out">현재
-												참여금액</span> ${list.SHAREMONEY }
+										<span class="total_amount">
+										 <span class="screen_out">마감된 프로젝트입니다. </span>
 										</span>
 										<div class="project_card_graph">
 											<span class="screen_out">참여율</span> <span class="bar_graph"
-												style="width: 20%;"></span> <span class="invest_rate">
-												20% </span>
+												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
+												${list.PAYPER }% </span>
 										</div>
-										<span class="funding_type">무조건 리워드</span>
+										<span class="funding_type">금액 달성 시 배송진행</span>
 									</div>
+									    </c:when>
+									    <c:otherwise>
+									<div class="project_state">
+										<span class="total_amount"> <span class="screen_out">현재
+												참여금액</span> ${list.PAY }
+										</span>
+										<div class="project_card_graph">
+											<span class="screen_out">참여율</span> <span class="bar_graph"
+												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
+												${list.PAYPER }% </span>
+										</div>
+										<span class="funding_type">금액 달성 시 배송진행</span>
+									</div>
+									    </c:otherwise>
+									</c:choose>
+									
+									
 								</div>
 							</li>
 						</c:forEach>
