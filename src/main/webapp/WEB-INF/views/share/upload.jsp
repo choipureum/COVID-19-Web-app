@@ -1,6 +1,4 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -104,6 +102,10 @@ $(document).ready(function() {
 						<tr>
 							<th scope="row">프로젝트명</th>
 							<td class="ta_l"><input type ="text" name = "shareName"></td>
+						</tr>
+						<tr>
+							<th scope="row">작성자</th>
+							<td class="ta_l"><input type ="text" name = "member_id" value ="${logInInfo.member_id}" readonly="readonly"></td>
 						</tr>
 						
 						<tr>

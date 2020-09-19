@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.covid19.app.shareper.model.dto.Goods;
+import com.covid19.app.shareper.model.dto.Pay;
 import com.covid19.app.shareper.model.dto.Share;
 import com.covid19.app.shareper.model.dto.ShareFile;
 import com.covid19.app.shareper.model.dto.Thumb;
@@ -56,6 +57,34 @@ public class ShareDao {
 
 	public int selectContentCnt2(String filter) {
 		return sqlSession.selectOne("SHARE.selectContentCnt2",filter);
+	}
+
+
+	public List<Goods> selectGoods(int share_idx) {
+		return sqlSession.selectList("SHARE.selectGoods", share_idx);
+	}
+
+
+	public void insertPayment(Pay payy) {
+		sqlSession.insert("SHARE.insertpayment", payy);
+	}
+
+
+	public void insertMempoint(Map<String,Object> map) {
+		 
+		sqlSession.insert("SHARE.insertPoint",map);
+	
+	}
+
+
+	public void insertjoinper(int share_idx) {
+		sqlSession.insert("SHARE.insertJoinper",share_idx);
+		
+	}
+
+
+	public void insertDonate(int mem_pay) {
+		sqlSession.insert("SHARE.insertDonate",mem_pay);
 	}
 
 
