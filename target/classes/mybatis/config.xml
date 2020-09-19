@@ -13,13 +13,15 @@
 		<typeAlias type="com.covid19.app.board.model.vo.Faq" alias="FAQ"/>
 		<typeAlias type="com.covid19.app.coronaNews.model.vo.CovidNews" alias="NEWS"/>
 		<typeAlias type="com.covid19.app.member.model.vo.Member" alias="MEMBER"/>
-		<typeAlias type="com.covid19.app.board.model.vo.InfoReply" alias="REPLY"/>
-		<typeAlias type="com.covid19.app.shareper.model.dto.Goods" alias="GOODS"/>
-				
-      	<typeAlias type="com.covid19.app.shareper.model.dto.Pay" alias="PAY"/>
-<!-- 		<typeAlias type="com.covid19.app.shareper.model.dto.Share" alias="Share"/> -->
-<!--       	<typeAlias type="com.covid19.app.shareper.model.dto.ShareQna" alias="ShareQna"/> -->
-<!--       	<typeAlias type="com.covid19.app.shareper.model.dto.ShareCheering" alias="ShareCheering"/> -->
-	</typeAliases>
-	
+
+     <typeAlias type="com.covid19.app.shareper.model.dto.Goods" alias="GOODS"/>
+     <typeAlias type="com.covid19.app.shareper.model.dto.Pay" alias="PAY"/>
+		<typeAlias type="com.covid19.app.board.model.vo.InfoReply" alias="REPL"/>
+		<typeAlias type="com.covid19.app.shareper.model.dto.ShareQna" alias="ShareQna"/>
+		<typeAlias type="com.covid19.app.shareper.model.dto.Reply" alias="Reply"/>
+		<typeAlias type="com.covid19.app.shareper.model.dto.ShareCheering" alias="ShareCheering"/>
+		<typeAlias type="com.covid19.app.shareper.model.dto.ShareLike" alias="ShareLike"/>
+
+	</typeAliases>	
+
 </configuration>

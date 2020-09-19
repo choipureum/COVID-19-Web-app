@@ -1,9 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<jsp:include page="/header.do"/>
+<jsp:include page="/header.do" />
 
 
 <link rel="stylesheet" type="text/css"
@@ -11,82 +12,115 @@
 
 
 <style type="text/css">
-
-.select{ border: 3px soild black;
-color:green;}
-
+.select {
+	border: 3px soild black;
+	color: green;
+}
 </style>
 
 <!-- 무한스크롤 -->
 <!-- 및 필터링 기능 -->
 <script type="text/javascript">
-var page = ${paging.currentPage };
-$(document).ready(function () {
-	
-	
-	$("a").click(function(){
+	var page = ${paging.currentPage };
+	$(document).ready(
+			function() {
+				$("#shli1").click(function() {
+					$("#shli11").addClass("on");
+					$("#shli44").removeClass("on");
+					$("#shli22").removeClass("on");
+					$("#shli33").removeClass("on");
+					$("#shli55").removeClass("on");
+				})
+				$("#shli2").click(function() {
+					$("#shli22").addClass("on");
+					$("#shli11").removeClass("on");
+					$("#shli33").removeClass("on");
+					$("#shli44").removeClass("on");
+					$("#shli55").removeClass("on");
+				})
+				$("#shli3").click(function() {
+					$("#shli33").addClass("on");
+					$("#shli55").removeClass("on");
+					$("#shli11").removeClass("on");
+					$("#shli22").removeClass("on");
+					$("#shli44").removeClass("on");
+				})
+				$("#shli4").click(function() {
+					$("#shli44").addClass("on");
+					$("#shli11").removeClass("on");
+					$("#shli22").removeClass("on");
+					$("#shli33").removeClass("on");
+					$("#shli55").removeClass("on");
+				})
+				$("#shli5").click(function() {
+					$("#shli55").addClass("on");
+					$("#shli11").removeClass("on");
+					$("#shli22").removeClass("on");
+					$("#shli33").removeClass("on");
+					$("#shli44").removeClass("on");
+				})
 
-		console.log($(this).children(0).val());
-		var filter_val = $(this).children(0).val();
-		$("#fival").val(filter_val);
-		//여기부터 필터처리
-		$.ajax({
-		      type:"post"
-		      , url: "/share/filter.do"
-		      , data: {
-				filter : $(this).children(0).val(),
-		      }
-		      , dataType: "html"
-		      , success: function(data) {
-		    	  $(".page-wrapper").html(data);
-					
-		      }
-		      , error: function() {
-		         console.log("AJAX error")
-		      }
-		   })
-		
-		
-	
-	});
+				$("a").click(function() {
 
-	
+					console.log($(this).children(0).val());
+					var filter_val = $(this).children(0).val();
+					$("#fival").val(filter_val);
+					//여기부터 필터처리
+					$.ajax({
+						type : "post",
+						url : "/share/filter.do",
+						data : {
+							filter : $(this).children(0).val(),
+						},
+						dataType : "html",
+						success : function(data) {
+							$(".page-wrapper").html(data);
 
-$(window).scroll(function(){
-   
-   if($(window).scrollTop() >= $(document).height() - $(window).height()){
-		page++
-      console.log(page);
-	   if('${paging.lastPage }' >= page  ) {
-	      loadlist();
-      }      
-   }
+						},
+						error : function() {
+							console.log("AJAX error")
+						}
+					})
 
-   });
+				});
 
-function loadlist() {
-   
-	$.ajax({
-      type:"post"
-      , url: "/share/list.do"
-      , data: {
-    	  cPage : page,
-    	  filter : $("#fival").val()
-      }
-      , dataType: "html"
-      , success: function(data) {
+				$(window).scroll(
+						function() {
 
-    	  $(".scroll-final").append(data)
-      	
-      }
-      , error: function() {
-         console.log("AJAX error")
-      }
-   })
+							if ($(window).scrollTop() >= $(document).height()
+									- $(window).height()) {
+								page++
+								console.log(page);
+								if ('${paging.lastPage }' >= page) {
+									loadlist();
+								}
+							}
 
-}
+						});
 
-});
+				function loadlist() {
+
+					$.ajax({
+						type : "post",
+						url : "/share/list.do",
+						data : {
+							cPage : page,
+							filter : $("#fival").val()
+						},
+						dataType : "html",
+						success : function(data) {
+
+							$(".scroll-final").append(data)
+
+						},
+						error : function() {
+							console.log("AJAX error")
+						}
+					})
+
+				}
+
+			});
 </script>
 
 
@@ -101,27 +135,29 @@ function loadlist() {
 					전체분야 <span class="ico_comm"></span>
 				</button>
 				<ul id="category_list" class="list_cate" role="tablist">
-					<li class="on" role="tab"><a class="link_cate">전체 <input id="shli_1" type="hidden" value ="*"/>
+					<li role="tab" id="shli11"><a id="shli1" class="link_cate">전체
+							<input id="shli_1" type="hidden" value="*" />
 					</a></li>
 
-					<li><a class="link_cate"> 공간/리빙<input id="shli_2" type="hidden" value ="li"/>
+					<li role="tab" id="shli22"><a id="shli2" class="link_cate">
+							공간/리빙<input id="shli_2" type="hidden" value="li" />
 					</a></li>
 
-					<li role="tab" data-category-code="CATE_0006"><a
-						class="link_cate"> 지역재생<input id="shli_3" type="hidden" value ="re"/>
+					<li role="tab" id="shli33"><a id="shli3" class="link_cate">
+							지역재생<input id="shli_3" type="hidden" value="re" />
 					</a></li>
 
-					<li role="tab" data-category-code="CATE_0007"><a
-						class="link_cate"> 푸드<input id="shli_4" type="hidden" value ="fo"/>
+					<li role="tab" id="shli44"><a id="shli4" class="link_cate">
+							푸드<input id="shli_4" type="hidden" value="fo" />
 					</a></li>
 
-					<li role="tab" data-category-code="CATE_0010"><a
-						class="link_cate"> 테크<input id="shli_5" type="hidden" value ="te"/>
+					<li role="tab" id="shli55"><a id="shli5" class="link_cate">
+							테크<input id="shli_5" type="hidden" value="te" />
 					</a></li>
 
 				</ul>
 			</div>
-			<input type = "hidden" id = "fival"/>
+			<input type="hidden" id="fival" />
 			<div class="wrap_project">
 				<!-- 2017-08-07 수정 클래스 추가 -->
 				<div class="box_select">
@@ -161,45 +197,43 @@ function loadlist() {
 											<span class="screen_out">프로젝트 설명</span> ${list.SIMPLEINFO }
 										</p>
 										<span class="user_profile"> <span
-											class="img_profile clear_empty_picture"> 
-										</span>
-										 <span class="txt_name">${list.MEMBER_ID }</span>
-										</span>
-										 <span class="project_category"> <span
+											class="img_profile clear_empty_picture"> </span> <span
+											class="txt_name">${list.MEMBER_ID }</span>
+										</span> <span class="project_category"> <span
 											class="screen_out">카테고리</span> ${list.FEIELD }
 										</span>
 									</div>
-									<c:set var="dDay" value="${list.DAY }"/>
+									<c:set var="dDay" value="${list.DAY }" />
 									<c:choose>
-									    <c:when test="${dDay <= 0}">
-									<div class="project_state">
-										<span class="total_amount">
-										 <span class="screen_out">마감된 프로젝트입니다. </span>
-										</span>
-										<div class="project_card_graph">
-											<span class="screen_out">참여율</span> <span class="bar_graph"
-												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
-												${list.PAYPER }% </span>
-										</div>
-										<span class="funding_type">금액 달성 시 배송진행</span>
-									</div>
-									    </c:when>
-									    <c:otherwise>
-									<div class="project_state">
-										<span class="total_amount"> <span class="screen_out">현재
-												참여금액</span> ${list.PAY }
-										</span>
-										<div class="project_card_graph">
-											<span class="screen_out">참여율</span> <span class="bar_graph"
-												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
-												${list.PAYPER }% </span>
-										</div>
-										<span class="funding_type">금액 달성 시 배송진행</span>
-									</div>
-									    </c:otherwise>
+										<c:when test="${dDay <= 0}">
+											<div class="project_state">
+												<span class="total_amount"> <span class="screen_out">마감된
+														프로젝트입니다. </span>
+												</span>
+												<div class="project_card_graph">
+													<span class="screen_out">참여율</span> <span class="bar_graph"
+														style="width: ${list.PAYPER}%;"></span> <span
+														class="invest_rate"> ${list.PAYPER }% </span>
+												</div>
+												<span class="funding_type">금액 달성 시 배송진행</span>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="project_state">
+												<span class="total_amount"> <span class="screen_out">현재
+														참여금액</span> ${list.PAY }
+												</span>
+												<div class="project_card_graph">
+													<span class="screen_out">참여율</span> <span class="bar_graph"
+														style="width: ${list.PAYPER}%;"></span> <span
+														class="invest_rate"> ${list.PAYPER }% </span>
+												</div>
+												<span class="funding_type">금액 달성 시 배송진행</span>
+											</div>
+										</c:otherwise>
 									</c:choose>
-									
-									
+
+
 								</div>
 							</li>
 						</c:forEach>
