@@ -1,5 +1,5 @@
-[![Contributors][contributors-shield]]
-[![Forks][forks-shield]]
+![Contributors][contributors-shield]
+![Forks][forks-shield]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
@@ -33,8 +33,8 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [코로나19 종합 웹 프로젝트](#코로나19 종합 웹 프로젝트)
-  * [프로젝트 기간](#프로젝트 기간)
+* [코로나19 종합 웹 프로젝트](# 코로나19 종합 웹 프로젝트)
+  * [프로젝트 기간](# 프로젝트 기간)
 * [프로젝트 개요](#배경)
   * [배경](#배경) 
   * [WAS](#WAS)
