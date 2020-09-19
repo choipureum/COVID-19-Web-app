@@ -33,106 +33,73 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [코로나19 종합 웹 프로젝트](#about-the-project)
-  * [프로젝트 기간](#built-with)
-* [프로젝트 개요](#getting-started)
-  * [배경](#prerequisites) 
-  * [WAS](#usage)
-  * [Pattern](#roadmap)
-  * [DataBase](#contributing)
-  * [Tool](#license)
-* [주요기능](#installation)
-* [프로젝트관리툴](#contact)
-* [개발 이미지](#acknowledgements)
+* [코로나19 종합 웹 프로젝트](#코로나19 종합 웹 프로젝트)
+  * [프로젝트 기간](#프로젝트 기간)
+* [프로젝트 개요](#프로젝트 개요)
+  * [배경](#배경) 
+  * [WAS](#WAS)
+  * [Pattern](#Pattern)
+  * [DataBase](#DataBase)
+  * [Tool](#Tool)
+* [주요기능](#주요기능)
+* [프로젝트관리툴](#프로젝트관리툴)
+* [개발 이미지](#개발 이미지)
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## 코로나19 종합 웹 프로젝트
 
-*코로나19 웹페이지 구현 프로젝트
-*6인 팀프로젝트
-*KH 정보교육원 프로젝트
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+* 코로나19 웹페이지 구현 프로젝트
+* 6인 팀프로젝트
+* KH 정보교육원 프로젝트 
 
 ### 프로젝트 기간
 * [20.08 ~ 20.09]
 
 ### 배경
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+코로나 바이러스와 관련된 사용자 편리성과 사회공헌 이념에 주안점을 둔 종합 관리 웹페이지
 
-### WAS
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+### WAS, SERVER
+* Apache Tomcat 9.0v
+* AWS EC2 UBUNTU SERVER
 
 ### Pattern
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
+MVC2 Pattern
 
 ### DataBase
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+* amazon RDS
+* ORACLE DataBase
 
 <!-- ROADMAP -->
 ## Tool
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
+SpringFramework v3.5
+SQL Developer
 
 <!-- CONTRIBUTING -->
-## 주요기능
+## 설계시 주안점
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+   * 원하는 정보를 직관적으로 제공할 수 있는 사이트
+   * 현재 바이러스 사태에 대한 정보를 같이 공유할 수 있는 커뮤니티
+   * 사용자 중심 UI 코로나맵과 통계자료
+   * 편리한 크라우드펀딩 및 공동구매 시스템
+   * 구매금액의 1%는 코로나 관련 재단 사회 기부 시스템 구축
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## 구현기능
 
-
+* 국내외 코로나 바이러스 현황을 통계데이터로 제공
+* 코로나 맵 제작 : 사용자 주변 선별진료소 표시 및 정보 제공, 거리 측정 및 주변 편의시설 표시
+* 코로나 관련 정보 제공
+* 코로나로 피해를 입은 소상공인을 위한 상생 쇼핑몰 구현(공동구매 및 협력업체 e-commerce)
 
 <!-- LICENSE -->
 ## 프로젝트관리툴
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
+**NOTION**
+[![NOTION][NOTION]](http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png)
 
 <!-- CONTACT -->
 ## 개발이미지
@@ -140,7 +107,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
 
 
 <!-- ACKNOWLEDGEMENTS -->
