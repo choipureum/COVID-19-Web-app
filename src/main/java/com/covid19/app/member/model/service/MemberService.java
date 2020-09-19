@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 public interface MemberService {
 	
@@ -72,7 +73,7 @@ public interface MemberService {
 	 * @param commandMap
 	 * @return
 	 */
-	public int membermodify(Map<String, Object> commandMap);
+	public int membermodify(Map<String, Object> commandMap,String address);
 
 	/**
 	 * 주소빼고 수정
@@ -84,6 +85,20 @@ public interface MemberService {
 	 * @param member_id
 	 */
 	public Member selectAll(String member_id);
+
+	/**
+	 * 회원 탈퇴
+	 * @param member
+	 * @return member
+	 */
+	public int memberdelete(Member member);
+
+	/**
+	 * 결제 완료 목록
+	 * @param member_id
+	 * @return
+	 */
+	public Pay mypagePay(String member_id);
 
 	
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 @Repository
 public class MemberDao {
@@ -81,11 +82,11 @@ public class MemberDao {
 
 	/**
 	 * 회원 정보 수정
-	 * @param commandMap
+	 * @param member
 	 * @return
 	 */
-	public int membermodify(Map<String, Object> commandMap) {
-		return session.update("MEMBER.membermodify", commandMap);
+	public int membermodify(Member member) {
+		return session.update("MEMBER.membermodify", member);
 		
 	}
 	
@@ -106,6 +107,22 @@ public class MemberDao {
 	public Member selectAll(String member_id) {
 		return session.selectOne("MEMBER.selectAll", member_id);
 	}
+	
+	/**
+	 * member 이용해서 delete
+	 * @param member
+	 * @return
+	 */
+	public int memberdelete(Member member) {
+		return session.delete("MEMBER.memberdelete", member);
+	}
+
+	public Pay mypagePay(String member_id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("MEMBER.mypagePay", member_id);
+	}
+
+
 
 
 

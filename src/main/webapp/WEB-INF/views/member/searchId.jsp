@@ -69,6 +69,52 @@ input { border: 1px solid lightgray; border-radius: 3px; }
 tr{ height: 50px; width:100%; }
 td{ height: 50px; border-bottom:3px solid #000; }
 td:first-of-type{ border-right:1px solid #000; width: 120px; }
+
+button{
+  background:#164165;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:30px;
+  font-size:1em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#164165;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #164165;
+  transition:400ms ease all;
+}
+/* #164165 */
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+
+
+
+
+
+
 </style>
 
 <!-- 입력  -->
@@ -92,8 +138,8 @@ td:first-of-type{ border-right:1px solid #000; width: 120px; }
 	<!-- 아이디찾기 로그인 버튼 -->
 		<hr>
 		<div style="margin:0 auto;text-align:center;">
-			<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" value="아이디찾기">아이디찾기</button>
-			<button type="button" value="로그인" id="login" onclick="location.href='/main.do'" value="로그인">로그인</button>
+			<button type="button" value="아이디 찾기" id="findid" onclick="idFind()" >아이디찾기</button>
+			<button type="button" value="로그인" id="login" onclick="location.href='/main.do'" >로그인</button>
 		</div>
 		<hr>
 	<!-- 찾은아이디 반환넣어줄 -->

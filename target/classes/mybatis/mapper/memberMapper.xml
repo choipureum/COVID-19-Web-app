@@ -11,8 +11,8 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember" >
-		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_TELL, MEMBER_NAME, MEMBER_BIRTH, MEMBER_ADD)
-		VALUES (#{member_id}, #{member_pw}, #{member_email}, #{member_tell}, #{member_name}, #{member_birth}, #{member_add})
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_TELL, MEMBER_NAME, MEMBER_BIRTH, MEMBER_ADD, MEMBER_AUTH)
+		VALUES (#{member_id}, #{member_pw}, #{member_email}, #{member_tell}, #{member_name}, #{member_birth}, #{member_add},#{member_auth})
 	</insert>
 	
 	<!-- 아이디중복체크 -->
@@ -61,11 +61,24 @@
 	
 	</update>
 	<!-- 아이디 이용해서 전체 조회 -->
-	<select id="selectAll" resultType="Member">
+	<select id="selectAll" resultType="MEMBER">
 		select *
 		from member
 		where MEMBER_ID = #{member_id}
 	
+	</select>
+	
+	<!-- 멤버 삭제 -->
+	<delete id="memberdelete">
+		delete from member
+		where MEMBER_ID = #{member_id}
+	</delete>
+	
+	<!-- 결제 목록 확인 -->
+	<select id="mypagePay" resultType="PAY">
+		select GOODS_NAME, PAY_DAY, ADDRESS
+		from SHARE_PAY
+		WHERE MEMBER_ID = #{member_id}
 	</select>
 </mapper>
 
