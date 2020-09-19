@@ -3,116 +3,357 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    
+
+
 <mapper namespace="SHARE">
 	<insert id="shareUpload">
-		insert into shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney,member_id)
+		insert into
+		shar(share_idx,shareField,shareName,simpleInfo,shareContent,shareDate,shareDateEn,sharemoney,member_id)
 		values(
 		SHARE_SEQ.nextval,#{shareField},#{shareName}
-		, #{simpleInfo} , #{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney},#{member_id}
+		, #{simpleInfo} ,
+		#{shareContent} , #{shareDate} , SYSDATE ,#{sharemoney},#{member_id}
 		)
 	</insert>
-		<insert id="insertFile">
+	<insert id="insertFile">
 		insert into share_file
 		(f_idx, origin_file,
-		 rename_file, save_path , reg_date)
+		rename_file, save_path , reg_date)
 		values(
-		SHFILE_SEQ.nextval, 
+		SHFILE_SEQ.nextval,
 		#{originfile},
 		#{renamefile},
 		#{savepath},
 		sysdate
 		)
 	</insert>
-	
-	<insert id="insertThumb">
-		
-		insert into share_thumb
-			(t_idx, share_idx , origin_file,
-			 rename_file, save_path)
-		values(
-			thumb_seq.nextval, 
-			SHARE_SEQ.currval,
-			#{originfile},
-			#{renamefile},
-			#{savePath}
-		)
-		
-	
-	</insert>	
-	
-	<select id = "selectshar" resultType="HashMap">
-	
-	select nvl(payper,0) payper,nvl(pay,0) pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate) day,sharedate,rename_file,member_id
-                from(
-                    select rownum rnum , s3.*
-			from(
-				select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,s.member_id,sum(sp.payment) pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
-				from shar s, share_thumb st,share_pay sp
-                where s.share_idx = st.share_idx
-                and s.share_idx = sp.share_idx(+)
-                <choose>
-                <when test='filter != "*"'>
-			      and s.sharefield = #{filter}
-			   	</when>
-			    <when test='filter == "*"'>
-			      and 1=1
-			   	</when>
-		 		</choose>
-                group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent, s.sharemoney, 
-                s.sharedateen, s.share_idx, s.sharedate, st.rename_file,s.member_id
-				order by s.share_idx desc
-			)s3
-		)where rnum between #{start} and #{end}
-	
-	
-	</select>
-	
-	
-	<select id="selectContentCnt" resultType="int">
-		select count(*) from shar
-	</select>
-	
 
-	<select id="selectContentCnt2" parameterType="String" resultType="int">
+	<insert id="insertThumb">
+
+		insert into share_thumb
+		(t_idx, share_idx , origin_file,
+		rename_file, save_path)
+		values(
+		thumb_seq.nextval,
+		SHARE_SEQ.currval,
+		#{originfile},
+		#{renamefile},
+		#{savePath}
+		)
+
+
+	</insert>
+
+	<select id="selectshar" resultType="HashMap">
+
+		select nvl(payper,0) payper,nvl(pay,0)
+		pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate)
+		day,sharedate,rename_file,member_id
+		from(
+		select rownum rnum , s3.*
+		from(
+		select ROUND((sum(sp.payment)/s.sharemoney) * 100,1)
+		payper,s.member_id,sum(sp.payment)
+		pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file
+		from shar s, share_thumb st,share_pay sp
+		where s.share_idx = st.share_idx
+		and s.share_idx = sp.share_idx(+)
+		<choose>
+			<when test='filter != "*"'>
+				and s.sharefield = #{filter}
+			</when>
+			<when test='filter == "*"'>
+				and 1=1
+			</when>
+		</choose>
+		group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent,
+		s.sharemoney,
+		s.sharedateen, s.share_idx, s.sharedate, st.rename_file,s.member_id
+		order by s.share_idx desc
+		)s3
+		)where rnum between #{start} and #{end}
+
+
+	</select>
+
+
+	<select id="selectContentCnt" resultType="int">
+		select count(*) from
+		shar
+	</select>
+
+
+	<select id="selectContentCnt2" parameterType="String"
+		resultType="int">
 		select count(*) from shar where sharefield = #{value}
 	</select>
-	
+
 	<select id="selectDetail" resultType="hashmap">
-        select nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0) payper,s.member_id,s.sharecontent,s.share_idx,s.sharefield,s.sharename,s.simpleinfo,s.sharedate,s.sharemoney,st.rename_file,nvl(sum(sp.payment),0) pay,nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0),s.joinper
-    	from shar s, share_thumb st,share_pay sp
-        where s.share_idx = st.share_idx
-        and s.share_idx = sp.share_idx(+)
-        and s.share_idx = #{share_idx}
-        group by s.sharecontent, s.share_idx, s.sharefield, s.sharename, s.simpleinfo, 
-        s.sharedate, s.sharemoney, st.rename_file,s.joinper,s.member_id
+		select nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0)
+		payper,s.member_id,s.sharecontent,s.share_idx,s.sharefield,s.sharename,s.simpleinfo,s.sharedate,s.sharemoney,st.rename_file,nvl(sum(sp.payment),0)
+		pay,nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0),s.joinper
+		from shar s, share_thumb st,share_pay sp
+		where s.share_idx = st.share_idx
+		and s.share_idx = sp.share_idx(+)
+		and s.share_idx = #{share_idx}
+		group by s.sharecontent, s.share_idx, s.sharefield, s.sharename,
+		s.simpleinfo,
+		s.sharedate, s.sharemoney, st.rename_file,s.joinper,s.member_id
 	</select>
-	
+
 	<insert id="insertGoods">
 		insert into share_goods
-		values(goods_seq.nextval,share_seq.currval,#{goods_Name},#{goods_Price},#{goods_Stock} )
+		values(goods_seq.nextval,share_seq.currval,#{goods_Name},#{goods_Price},#{goods_Stock}
+		)
 	</insert>
-	
+
 	<select id="selectGoods" resultType="GOODS">
-		SELECT * FROM share_goods WHERE share_idx = #{share_idx}
+		SELECT * FROM share_goods
+		WHERE share_idx = #{share_idx}
 	</select>
 	<insert id="insertpayment">
-	insert into share_pay(pay_idx,member_id,share_idx,payment,pay_day,goods_name,address)
-	values(sh_pay_seq.nextval,#{member_id},#{share_idx},#{payment},#{pay_day},#{goods_name},#{address})
+		insert into
+		share_pay(pay_idx,member_id,share_idx,payment,pay_day,goods_name,address)
+		values(sh_pay_seq.nextval,#{member_id},#{share_idx},#{payment},#{pay_day},#{goods_name},#{address})
 	</insert>
 	<insert id="insertPoint">
-	UPDATE member SET member_point = member_point + #{mem_pay}
-	WHERE member_id = #{mem_id}
-	
+		UPDATE member SET member_point = member_point + #{mem_pay}
+		WHERE member_id = #{mem_id}
+
 	</insert>
-	
+
 	<insert id="insertJoinper">
-	update shar set joinper = joinper + 1 where share_idx = #{share_idx}
+		update shar set joinper = joinper + 1 where share_idx = #{share_idx}
 	</insert>
-	
+
 	<insert id="insertDonate">
-	insert into share_donate values(SHARE_DONATE_SEQ.nextval,#{mem_pay})
+		insert into share_donate values(SHARE_DONATE_SEQ.nextval,#{mem_pay})
 	</insert>
+
+
+	<!-- 장바구니에 담기 -->
+	<insert id="insertCart">
+		insert into SHARE_Like (sharelike_id, share_idx, member_id, like_check)
+		values
+		(SHARE_LIKE_SEQ.nextval, #{share_idx}, #{member_id}, #{like_check} )
+	</insert>
+
+
+	<select id="listCart" parameterType="String"
+		resultType="ShareLike">
+
+		select sharelike_id, p.share_idx, c.member_id, shareName, like_check,
+		sharemoney, (sharemoney*like_check) money
+		from member m, SHARE_Like c, shar p
+		where m.member_id=c.member_id and
+		c.share_idx=p.share_idx and
+		c.member_id=#{member_id}
+		order by sharelike_id
+
+	</select>
+	<select id="sumMoney" resultType="int">
+
+		select nvl(sum(sharemoney*like_check),0)
+		from SHARE_Like c,shar p
+		<!-- 장바구니 테이블과 상품 테이블로 부터 -->
+		where c.share_idx=p.share_idx and member_id=#{member_id}
+		<!--조건 : 장바구니테이블의 상품 id가 상품테이블의 상품 id와 같고, 요청하는 회원의 id와 같은 경우 -->
+	</select>
+
+	<!-- 특정 장바구니 삭제 -->
+	<delete id="deleteCart">
+		delete from SHARE_Like
+		where sharelike_id =#{sharelike_id}
+	</delete>
+
+	<!-- 장바구니 비우기 -->
+	<delete id="deleteAllCart">
+		delete from SHARE_Like
+		where member_id=#{member_id}
+		<!-- 장바구니테이블로부터 회원의 아이디와 삭제하고자하는 회원의 아이디가 같으면 장바구니에 있는 자료를 전부다 삭제 -->
+	</delete>
+	
+	<!-- 장바구니 수량 얻기 -->
+	<!-- <select id="detailCart" resultType="ShareLike"> -->
+	<!-- select * from SHARE_Like -->
+	<!-- where sharelike_id =#{sharelike_id} -->
+	<!-- </select> -->
+
+	<!-- 장바구니 수량 변경 -->
+	<update id="modifiyCart">
+		UPDATE SHARE_Like
+		SET like_check = #{like_check}
+		WHERE member_id=#{member_id} and
+		share_idx = #{share_idx}
+
+	</update>
+
+
+	<!-- 장바구니에 동일한 상품 레코드 확인 -->
+	<select id="countCart" resultType="int">
+		SELECT COUNT(*)
+		FROM SHARE_Like
+		WHERE member_id= #{member_id}
+		AND share_idx = #{share_idx}
+	</select>
+
+	<!-- 장바구니에 동일한 상품이 존재하면 수정 -->
+
+	<update id="updateCart">
+		UPDATE SHARE_Like
+		SET like_check = #{like_check}
+		WHERE member_id=#{member_id} and
+		share_idx = #{share_idx}
+
+	</update>
+
+	<!-- QnA 작성 -->
+	<insert id="insertQna">
+		insert into share_Qna
+		(share_Qna_Idx,share_idx, member_id, share_Qna_Content,
+		share_Qna_Reg_Date, secret_qna)
+		values(
+
+		SHARE_QNA_SEQ.nextval,
+		#{share_idx},
+		#{member_id},
+		#{shareQnaContent},
+		sysdate,
+		#{secretReply} )
+	</insert>
+
+
+
+
+	<resultMap id="QnaList" type="ShareQna">
+		<result property="shareQnaIdx" column="share_Qna_Idx" />
+		<result property="share_idx" column="share_idx" />
+		<!-- 오라클에서 TEXT 컬럼을 읽어오기 위해서 VARCHAR로 변환 -->
+		<result property="member_id" column="member_id"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result property="shareQnaContent" column="share_Qna_Content"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result property="shareQnaRegDate" column="share_Qna_Reg_Date" />
+		<result property="secret_qna" column="secret_qna"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+	</resultMap>
+	<select id="readQna" resultType="ShareQna">
+		select * from share_Qna
+		WHERE
+		share_idx = #{share_idx}
+	</select>
+
+
+	<select id="listQna"
+		parameterType="com.covid19.app.shareper.model.dto.QnaPager"
+		resultMap="QnaList">
+		<include refid="pagingHeader" />
+
+		SELECT
+		r.share_idx, r.share_qna_idx, r.share_qna_content, r.member_id, r.secret_qna AS
+		secretReply, r.share_qna_reg_date
+		FROM share_qna r, member m
+		WHERE
+		r.member_id = m.member_id
+		AND share_idx = #{share_idx}
+		ORDER BY share_idx
+		<include refid="pagingFooter" />
+	</select>
+
+	<!-- 페이징 sql -->
+	<sql id="pagingHeader">
+		SELECT * FROM (
+		SELECT ROWNUM rnum, n1.*
+		FROM (
+	</sql>
+	<sql id="pagingFooter">
+		) n1
+		) WHERE rnum BETWEEN #{start} AND #{end}
+	</sql>
+
+
+	<select id="count" resultType="int">
+		select count(*) from share_Qna
+		WHERE share_idx = #{share_idx }
+
+	</select>
+
+	<select id="detailQna" resultType="ShareQna">
+		select * from share_Qna
+		WHERE
+		share_Qna_Idx = #{shareQnaIdx}
+	</select>
+
+	<update id="updateQna" parameterType="shareQna">
+		UPDATE share_Qna
+		SET SHARE_QNA_CONTENT = #{shareQnaContent}
+		WHERE share_Qna_Idx =
+		#{shareQnaIdx}
+
+	</update>
+
+	<delete id="deleteQna" parameterType="int">
+		DELETE
+		FROM share_Qna
+		WHERE share_Qna_Idx = #{shareQnaIdx}
+
+	</delete>
+
+
+	<!-- 댓글 입력 -->
+	<insert id="createReply">
+		INSERT INTO SHARE_QNA_Reply (reply_idx, SHARE_qna_idx, member_id,
+		reply_CONTENT, reply_REG_DATE)
+		VALUES (SHARE_QNA_Reply_SEQ.NEXTVAL, #{shareQnaIdx}, #{member_id},
+		#{reply_content}, sysdate)
+	</insert>
+
+	<!-- 댓글 목록 -->
+	<select id="listReply" resultType="Reply">
+		SELECT r.reply_idx, r.SHARE_qna_idx, r.member_id, r.reply_CONTENT,
+		r.reply_REG_DATE
+		FROM SHARE_QNA_Reply r, member m
+		WHERE r.member_id = m.member_id AND SHARE_qna_idx=#{shareQnaIdx}
+		ORDER BY SHARE_qna_idx
+	</select>
+
+	<!-- 응원 작성 -->
+	<insert id="insertCheering">
+		INSERT INTO SHARE_CHEERING(
+		SHAR_CHEERING_IDX
+		, SHARE_IDX
+		, member_id
+		, SHAR_CHEERING_CONTENT
+		, SHAR_CHEERING_REGDATE )
+		values( SHARE_CHEERING_SEQ.nextval
+		, #{share_idx}
+		, #{member_id}
+		, #{shareCheeringContent}
+		, sysdate )
+
+	</insert>
+
+	<select id="listCheering" resultMap="CheeringList">
+		select * from SHARE_CHEERING
+		WHERE share_idx = #{share_idx}
+	</select>
+
+	<select id="readCheering" resultType="ShareCheering">
+		select * from SHARE_CHEERING
+		where share_idx = #{share_idx}
+	</select>
+
+	<resultMap id="CheeringList" type="ShareCheering">
+		<result property="shareCheeringIdx" column="SHAR_CHEERING_IDX" />
+		<result property="share_idx" column="share_idx" />
+		<!-- mysql에서 TEXT 컬럼을 읽어오기 위해서 VARCHAR로 변환 -->
+		<result property="member_id" column="member_id"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result property="shareCheeringContent"
+			column="SHAR_CHEERING_CONTENT" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result property="shareCheeringRegdate"
+			column="SHAR_CHEERING_REGDATE" />
+	</resultMap>
 
 </mapper>
