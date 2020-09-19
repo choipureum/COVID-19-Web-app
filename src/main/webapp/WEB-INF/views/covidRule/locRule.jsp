@@ -56,7 +56,7 @@ $(document).ready(function() {
                         <div class="tab_flt cnt2-2-2">
                             <ul>
                                 <li class="on"><a href="/locRule.do"><span>설명 자료</span></a></li>
-                                <li ><a href="guidelineListf207.html?brdId=6&amp;brdGubun=62&amp;dataGubun=622"><span>홍보 자료</span></a></li>
+                                <li ><a href=""><span>홍보 자료</span></a></li>
                             </ul>
                         </div>
                     
