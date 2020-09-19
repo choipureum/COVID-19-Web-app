@@ -2,6 +2,7 @@ package com.covid19.app.admin.login.vo;
 
 import java.sql.Date;
 
+
 public class AdMemberList {
 
 	private int member_No;

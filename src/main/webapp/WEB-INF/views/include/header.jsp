@@ -44,6 +44,10 @@
    <script src="/resources/static/js/chartjs-plugin-datalabels.min.js"></script>
    <script src="static/js/chart_krff8e.js?ver=20200724"></script>
    
+   <!-- 네이버 -->
+   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+   
+   
    
 <script type="text/javaScript">
    
@@ -323,8 +327,8 @@ function openNav() {
       <!-- <button>로그인</button> -->
       <input type="submit" value="로그인" class="login" />
    </form>
-   
    <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/member/joininfo.do'" />
+      <div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223"src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 <!-- 	아이디비밀번호 찾기 -->
 	<a href="/member/searchId.do" class="loginsearch">아이디</a>
 	<a href="/member/searchPw.do" class="loginsearch">비밀번호찾기</a>
@@ -369,7 +373,7 @@ function openNav() {
                	</c:when>
                	<c:otherwise>
                		${logInInfo.member_id} 환영합니다!
-
+					
                		<li><a href="/member/logout.do">로그아웃</a>
                	
                	</c:otherwise>

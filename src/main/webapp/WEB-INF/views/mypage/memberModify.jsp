@@ -155,6 +155,37 @@ $(document).ready(function() {
 </script>
 
 
+<!-- 클릭함수 탈퇴하기 -->
+<script type="text/javascript">
+function memberDelete(){
+   var member_id= "${memberInfo.member_id }";
+
+   console.log(member_id);
+   
+   var obj ={"member_id":member_id};
+   
+   $.ajax({
+		type:'POST',
+		url:"<c:url value='/mypage/memberDeleteimpl.do' />",
+		data : obj,
+		success: function(res){				
+			if(res == 1){
+				alert("회원이 탈퇴되었습니다!");
+				location.href="/main.do";
+			}
+		}
+		, error: function(){
+			console.log("혹시 여기가 안되니?")
+		}
+	})
+   
+   
+}
+</script>
+
+
+
+
 
 <!-- css -->
 <style type="text/css">
@@ -257,6 +288,8 @@ input {
 <div class="modifycontainer">
 <br><br>
       <h2 id="one"> 회원 정보 변경</h2>
+      <br>
+      <div>회원님은   ${memberInfo.member_auth }  입니다</div>
    <hr>
    
    <form action="/mypage/memberModifyimpl.do" method="post" id="modifyform">
@@ -360,7 +393,8 @@ input {
                </div>
             <div class="txt_center">
 
-               <button type="button" class="popupwithdraw" onclick="withDraw()" >탈퇴하기</button>
+               <button type="button" class="popupwithdraw" onclick="memberDelete()" >탈퇴하기</button>
+               
             </div>
          <a href="#a" class="close">닫기</a>
          </div>

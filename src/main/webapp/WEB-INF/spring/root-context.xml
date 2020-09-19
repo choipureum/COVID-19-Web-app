@@ -56,20 +56,23 @@
 	
 	<!-- 메일링 처리를 위해 JavaMailSenderImpl 객체를 빈으로 등록 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-      <property name="host" value="smtp.naver.com"/>
-      <property name="port" value="465"/>
-      <property name="username" value="vnfmaghkdwp@naver.com"/>
-      <property name="password" value="chl97983140!"/>
-      <property name="javaMailProperties">
-         <props>
-            <prop key="mail.transport.protocol">smtp</prop>
-            <prop key="mail.smtp.auth">true</prop>
-            <prop key="mail.smtp.starttls.enable">true</prop>
-            <prop key="mail.smtp.ssl.enable">true</prop>
-            <prop key="mail.debug">true</prop>
-         </props>
-      </property>
-   </bean>   
+
+		<property name="host" value="smtp.naver.com"/>
+		<property name="port" value="465"/>
+		<property name="username" value="vnfmaghkdwp@naver.com"/>
+		<property name="password" value="chl97983140!"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>	
+
+
 	
 	<!--  스프링에서 multipart 데이터 처리를 담당하는 클래스 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

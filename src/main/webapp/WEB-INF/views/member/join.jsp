@@ -83,7 +83,7 @@ $(document).ready(function(){
 			
 		} else{
 			
-			$("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
+			$("#pw_check").text('6자-18자 소문자, 숫자를 섞어서 입력하시오');
 			$("#pw_check").css('color','red');
 		}
 	});
@@ -347,6 +347,13 @@ td:first-of-type{ border-right:1px solid #000; width: 120px; }
       			</select>
       		<input type="text" name="userbirth_dd" id="userbirth_dd" maxlength="2" placeholder="일" size="10" required style="height:30px; width: 100px"></td>
   			<td><div id="year_check"></div></td>
+  		</tr>
+  		
+  		<tr>	
+  			<td>구분</td>
+  			<td><input type="radio" name="auth" value="일반" id="gen"><label for="gen">일반</label>
+  				<input type="radio" name="auth" value="사업자" id="ath"><label for="ath">사업자</label>
+  			</td>
   		</tr>
   		<tr>
   			<td>이메일</td>

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ViewMethodReturnVal
 
 import com.covid19.app.member.model.dao.MemberDao;
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -42,6 +43,8 @@ public class MemberServiceImpl implements MemberService{
 		member.setMember_name((String)commandMap.get("username"));
 		member.setMember_pw((String)commandMap.get("joinuserpw"));
 		member.setMember_tell((String)commandMap.get("usertel"));
+		member.setMember_auth((String)commandMap.get("auth"));
+		
 		//birth합쳐주기
 		StringBuilder sb = new StringBuilder();
 		sb.append(commandMap.get("userbirth_yy"));
@@ -135,7 +138,7 @@ public class MemberServiceImpl implements MemberService{
 	 * 회원 정보 수정
 	 */
 	@Override
-	public int membermodify(Map<String, Object> commandMap) {
+	public int membermodify(Map<String, Object> commandMap, String address) {
 		
 		//새로운 멤버클래스에 파라미터 삽입	
 		Member member = new Member();
@@ -150,15 +153,20 @@ public class MemberServiceImpl implements MemberService{
 		sb.append(commandMap.get("userbirth_dd"));
 		member.setMember_birth(sb.toString());
 		//sb 초기화 & 주소 합쳐주기
-
-		sb = new StringBuilder();
-		sb.append(commandMap.get("mem_oaddress")+" ");
-		sb.append(commandMap.get("mem_address")+" ");
-		sb.append(commandMap.get("mem_detailaddress"));
-		member.setMember_add(sb.toString());
+		
+		if(((String)commandMap.get("mem_oaddress")).length()<2 && ((String)commandMap.get("mem_address")).length()<2 && ((String)commandMap.get("mem_detailaddress")).length()<3) {
+			member.setMember_add(address);
+		}
+		else {
+			sb = new StringBuilder();
+			sb.append(commandMap.get("mem_oaddress")+" ");
+			sb.append(commandMap.get("mem_address")+" ");
+			sb.append(commandMap.get("mem_detailaddress"));
+			member.setMember_add(sb.toString());
+		}
 		member.setMember_email((String)commandMap.get("member_email"));
 
-		return memberDao.membermodify(commandMap);
+		return memberDao.membermodify(member);
 	}
 	/**
 	 * 주소빼고 수정 
@@ -192,6 +200,22 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member selectAll(String member_id) {
 		return memberDao.selectAll(member_id);
+	}
+	
+	/**
+	 * 회원 탈퇴
+	 */
+	@Override
+	public int memberdelete(Member member) {
+		return memberDao.memberdelete(member);
+	}
+	
+	/**
+	 * 결제 완료 목록
+	 */
+	@Override
+	public Pay mypagePay(String member_id) {
+		return memberDao.mypagePay(member_id);
 	}
 	
 
