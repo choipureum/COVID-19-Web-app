@@ -109,7 +109,7 @@ public class MypageController {
 		
 		Pay pay = new Pay();
 		
-		System.out.println("아이디 나오니? " + member_id);
+		
 		
 		pay = memberService.mypagePay(member_id);
 		
