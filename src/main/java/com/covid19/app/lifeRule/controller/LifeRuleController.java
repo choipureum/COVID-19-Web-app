@@ -1,9 +1,6 @@
 package com.covid19.app.lifeRule.controller;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
+import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +21,15 @@ public class LifeRuleController {
 	private LifeRuleService lifeRuleService;
 	private static final Logger logger = LoggerFactory.getLogger(LifeRuleController.class);
 	
-	//1,2 -기본수칙 / 3,4 - 공동체수칙
+	//1,2 -기본수칙 / 3,4 - 공동체수칙 , 검색
 	@RequestMapping(value="/basicRule.do")
 	public ModelAndView basicList(						
 		@RequestParam(required=false, defaultValue="1")int currentPage,
-		@RequestParam(required=false, defaultValue="1")int boundary) { 		
-		
+		@RequestParam(required=false, defaultValue="1")int boundary,
+		@RequestParam(required=false, defaultValue="t")String search_item, //검색카테고리
+		@RequestParam(required=false, defaultValue="")String search_content	//검색내용	
+			) { 
+		search_content=search_content.trim(); //공백제거
 		ModelAndView mav = new ModelAndView();
 		int cntPerPage = 10;
 		Map<String, Object> commandMap=null;
@@ -39,13 +39,12 @@ public class LifeRuleController {
 			switch(boundary) {
 			//1번 - 설명자료(if(boundary=1
 			case 1:
-				 commandMap= lifeRuleService.selectBasicRuleList(currentPage, cntPerPage);
-				 cnt= lifeRuleService.selectBasicRuleContentCnt();
-				 
+				 commandMap= lifeRuleService.selectBasicRuleList(currentPage, cntPerPage,search_item,search_content);
+				 cnt= lifeRuleService.selectBasicRuleContentCnt(search_item,search_content);				 
 				break;
 			case 2:
-				 commandMap= lifeRuleService.selectBasic2RuleList(currentPage, cntPerPage);
-				 cnt= lifeRuleService.selectBasic2RuleContentCnt();
+				 commandMap= lifeRuleService.selectBasic2RuleList(currentPage, cntPerPage,search_item,search_content);
+				 cnt= lifeRuleService.selectBasic2RuleContentCnt(search_item,search_content);
 				break;
 			}
 			mav.setViewName("/covidRule/basicRule");		
@@ -55,14 +54,17 @@ public class LifeRuleController {
 			switch(boundary) {
 			//3번 - 설명자료
 			case 3:
-				 commandMap= lifeRuleService.selectBasicRuleList(currentPage, cntPerPage);	
+				commandMap= lifeRuleService.selectBasic3RuleList(currentPage, cntPerPage,search_item,search_content);
+				cnt= lifeRuleService.selectBasic3RuleContentCnt(search_item,search_content);		
 				break;
 			//4번 - 홍보자료
 			case 4:
+				commandMap= lifeRuleService.selectBasic4RuleList(currentPage, cntPerPage,search_item,search_content);
+				cnt= lifeRuleService.selectBasic4RuleContentCnt(search_item,search_content);		
 				break;
 			}
 			mav.setViewName("/covidRule/corRule");		
-		}		
+		}	
 		//paging 객체를 paging이라는 키로 담아서 보낸다.
 		mav.addObject("paging", commandMap.get("paging"));
 		mav.addObject("RuleList", commandMap);		
@@ -80,20 +82,20 @@ public class LifeRuleController {
 		mav.addObject("basic", commandMap);
 		mav.setViewName("/covidRule/basicRuleDetail");	
 		return mav;
-		
-	}
-	//공동체 수칙
-	@RequestMapping(value = "/corRule.do", method = RequestMethod.GET)
-	public String corRule(Locale locale, Model model) {
-
-		logger.info(" About CORONA corporation Rule....{}", locale);	
-		return "/covidRule/corRule";
 	}
 	
-	//장소별 실천수칙
+	
+	//장소별 실천수칙(메뉴)
 	@RequestMapping(value = "/locRule.do", method = RequestMethod.GET)
 	public String locRule(Locale locale, Model model) {
-		logger.info(" About CORONA location Rule....{}", locale);				
+		logger.info(" About CORONA location Rule....{}", locale);	
 		return "/covidRule/locRule";
 	}
 }
+
+
+
+
+
+
+

@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   
@@ -89,6 +88,7 @@ function search( where ){
 
 <script type="text/javaScript" language="javascript">
 
+
 function fn_search(pageNo){
 	$("#pageIndex").val(pageNo);
 	fn_submit();
@@ -101,9 +101,33 @@ function fn_submit(){
 }
 
 
+</script>
+
+<script type="text/javascript">
+
+//아작스 처리로 해보려고 했지만 header랑 footer가 붙어있어서 실패
+// function acyncMovePage(url){
+//     // ajax option
+//     var ajaxOption = {
+//             url : url,
+//             async : true,
+//             type : "GET",
+//             dataType : "html",
+//             cache : false
+//     };
+    
+//     $.ajax(ajaxOption).done(function(data){
+//         // Contents 영역 삭제
+//         $('#board_list').children().remove();
+//         // Contents 영역 교체
+//         $('#board_list').html(data);
+//     });
+// }
+
 
 
 </script>
+
 
 <form name="form1" id="form1" method="post">
 <input name="pageIndex" id="pageIndex" type="hidden" value="" />
@@ -116,7 +140,7 @@ function fn_submit(){
 <input type="hidden" id="dataGubun" name="dataGubun" value="" />
 <input type="hidden" id="ncvContSeq" name="ncvContSeq" />
 
-	<div class="container"><!-- main_container -->
+	<div class="container" style="background-color: white;"><!-- main_container -->
 		<div>
 			<div id="content" class="content">
 				<div>
@@ -127,6 +151,8 @@ function fn_submit(){
 		                        <li><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoard.do');">정보공유 & FAQ</a></li>
 		                        <li><a href="infoBoard.do">정보공유</a></li>
 		                    </ul>
+<!-- 		                    <input type="button" value="페이지 이동" onclick="acyncMovePage('/infoBoard.do')"> -->
+
 		                </div>
 		                <div class="st_title">
 		                    <div class="fl_l">
@@ -136,32 +162,38 @@ function fn_submit(){
 		            </div>
 		            <!--텝메뉴-->
 		            
-                        <div class="tab_flt cnt6-3-2">
-                            <ul>
-                                <li class="on"><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '', '');"><span>전체</span></a></li>
-                                <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '324', '');"><span>공지사항</span></a></li>
-                                <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '321', '');"><span>일반인</span></a></li>
-                                <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '323', '');"><span>입국자 및 해외여행객</span></a></li>
-                                <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '322', '');"><span>자가격리자</span></a></li>
-                                <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '326', '');"><span>기업 및 시장</span></a></li>
-                            </ul>
-                        </div>
+<!--                         <div class="tab_flt cnt6-3-2"> -->
+<!--                             <ul> -->
+<!--                                 <li class="on"><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '', '');"><span>전체</span></a></li> -->
+<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '324', '');"><span>공지사항</span></a></li> -->
+<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '321', '');"><span>일반인</span></a></li> -->
+<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '323', '');"><span>입국자 및 해외여행객</span></a></li> -->
+<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '322', '');"><span>자가격리자</span></a></li> -->
+<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '326', '');"><span>기업 및 시장</span></a></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
                     
                         <!--텝메뉴-->
                        
                        <!-- 사회적거리두기 안내 -->
-						<div class="menuinfo">
-							<p class="m_descript mgt0">*<strong>생활 속 거리 두기</strong> 관련 자료는 <strong>생활 속 거리 두기</strong>메뉴 에서 확인 가능합니다. <a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61"><span class="t_mini">자료 바로가기</span></a></p>
-						</div>
+<!-- 						<div class="menuinfo"> -->
+<!-- 							<p class="m_descript mgt0">*<strong>생활 속 거리 두기</strong> 관련 자료는 <strong>생활 속 거리 두기</strong>메뉴 에서 확인 가능합니다. <a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61"><span class="t_mini">자료 바로가기</span></a></p> -->
+<!-- 						</div> -->
                        <!-- 사회적거리두기 안내 //-->
 	                <!--게시판 목록-->
 	                
-	                
+	                 <div class="tab_flt cnt2-2-2">
+                      <ul>
+                         <li class="on" style="width: 33.3%"><a href="/infoBoard.do"><span>정보공유</span></a></li>
+                         <li style="width: 33.3%" ><a href="/faqBoard.do"><span>FAQ</span></a></li>
+                         <li style="width: 33.3%"><a href="/noticeBoard.do"><span>공지사항</span></a></li>
+                      </ul>
+                    </div>
 	                 
 	                <!--게시판 상단부-->
 	                <div class="board_top">
 	                    <div class="fl_l">
-	                        <p class="bt_count">총<strong>태선이 때리고싶은 횟수 1043</strong>건</p>
+	                        <p class="bt_count" style="font-weight: bold">총<strong>${paging.total }</strong>건</p>
 	                    </div>
 	                    <div class="fl_r">
 	                            <fieldset>
@@ -185,7 +217,7 @@ function fn_submit(){
 	                </div>
 	                
 	                
-					<div class="board_list">
+					<div class="board_list" id="board_list">
                         <table>
                             <caption><span class="hdn">전체 목록 : 번호, 제목, 담당, 작성일, 첨부 구성 제목 클릭시 게시물 상세 내용으로
                                     이동</span></caption>
@@ -193,34 +225,37 @@ function fn_submit(){
                                 <col class="m_dp_n" style="width:64px;">
                                 <col>
                                 <col class="m_dp_n" style="width:192px;">
-                                <col style="width:96px;">
-                                <col class="m_dp_n" style="width:64px;">
+                                <col style="width:120px;">
                                 <col class="m_dp_n" style="width:64px;">
                             </colgroup>
                             <thead>
                                 <tr>
                                     <th class="m_dp_n" scope="col">번호</th>
                                     <th scope="col">제목</th>
-                                    <th class="m_dp_n" scope="col">담당</th>
+                                    <th class="m_dp_n" scope="col">작성자</th>
                                     <th scope="col">작성일</th>
-                                    <th class="m_dp_n" scope="col">첨부</th>
                                     <th class="m_dp_n" scope="col">조회수</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${list.ilist }" var="info">
-                            
+                            <fmt:formatDate value="${info.info_date }" pattern="yy-MM-dd HH:mm" var="regDate"/>
+                            <fmt:formatDate value="${info.info_date }" pattern="yy-MM-dd HH" var="reghour"/>
+                            <fmt:formatDate value="${sysdate }" pattern="yy-MM-dd HH" var="syshour"/>
                             	 <tr>
                                     <td class="m_dp_n">${info.info_idx}</td>
                                    
                                     <td class="ta_l">
 <%--                                         <a class="bl_link" href="javascript:void(0);" onclick="javascript:fn_boardView('/infoBoardView.do','3','32','3293', '' , '');">${info.info_title }</a> --%>
 										<a class="bl_link" href="<%= request.getContextPath() %>infoBoardDetail.do?info_idx=${info.info_idx}">${info.info_title }</a>
+                               			<c:if test="${reghour eq syshour }">
                                			<span class="ico_new"><span class="hdn">새글</span></span>
+                               			</c:if>
                                     </td>
-                                    <td class="m_dp_n">${info.member_nick }</td>
-                                    <td>${info.info_date }</td>
-                                    <td class="m_dp_n">${info.info_hits }</td>
+                                    <td class="m_dp_n">${info.info_writer }</td>
+                                    <td class="m_dp_n">${regDate }</td>
+<%--                                     <c:if test="${info.info_img == null}">X</c:if> --%>
+<%--                                     <c:if test="${info.info_img != null}">O</c:if> --%>
                                     <td class="m_dp_n">${info.info_hits }</td>
                                 </tr>
                             
@@ -230,7 +265,7 @@ function fn_submit(){
                         </table>
                     </div>
                     <br>
-                    <button type="button" class="boardInsert" style="float: right;">글쓰기</button>
+                    <button type="button" class="boardInsert" onclick="location.href='infoBoardUpload.do'" style="float: right;">글쓰기</button>
 	                <!--페이징-->
 <!-- 					<div class="paging"> -->
 <!-- 						<a href="#" class="p_first" title="처음" onclick="fn_search(1); return false;"><span class="hdn">처음페이지</span></a><a href="#" class="p_prev" title="이전" onclick="fn_search(1); return false;"><span class="hdn">이전페이지</span></a>&nbsp;&nbsp;<strong>1</strong>&nbsp;&nbsp;<a href="#" onclick="fn_search(2); return false;">2</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(3); return false;">3</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(4); return false;">4</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(5); return false;">5</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(6); return false;">6</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(7); return false;">7</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(8); return false;">8</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(9); return false;">9</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(10); return false;">10</a>&nbsp;&nbsp;<a href="#" class="p_next" title="다음" onclick="fn_search(11); return false;"><span class="hdn">다음페이지</span></a><a href="#" class="p_last" title="끝" onclick="fn_search(105); return false;"><span class="hdn">끝페이지</span></a> -->

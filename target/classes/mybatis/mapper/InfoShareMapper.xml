@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="Info">
+   <mapper namespace="Info">
     <select id="selectInfoList" resultType="INFO">
      select * 
      from(
@@ -21,7 +21,7 @@
     	WHERE info_idx = #{info_idx}
     </select>
     
-    <update id="updateInfoHit" parameterType="int">
+    <update id="updateInfoHit" parameterType="INFO">
     	UPDATE info_board SET 
     	info_hits = info_hits+1 
     	where info_idx = #{info_idx}
@@ -40,28 +40,36 @@
     </resultMap>
 
     <insert id="insertInfo">
-    	INSERT INTO info_board
-    	(member_id, member_nick, member_rank, info_idx, info_title, info_content, info_date, )
-    	VALUES( #{member_id}, #{member_nick}, #{member_rank}, #{info_idx}, #{info_title}, #{info_content}, sysdate)
+    	INSERT INTO info_board (member_rank, info_idx, info_title, info_content, info_date, info_img, info_writer)
+    	VALUES( #{member_rank}, info_board_seq.nextval, #{info_title}, #{info_content}, sysdate, #{info_img}, #{info_writer})
     </insert>
     
-    <insert id="insertFile">
-    	INSERT INTO info_filedata
-    	(info_originfile, info_renamefile, info_savepath, info_idx, info_fidx)
-    	VALUES(
-    	#{info_originfile},#{info_renamefile},#{info_savepath}, info_board.nextval, info_filedata.nextval 
-    	)
+    
+    <insert id="insertInfoReply" parameterType="REPLY">
+    	<selectKey resultType="String" keyProperty="reply_idx" order="BEFORE">
+    		SELECT NVL(MAX(reply_idx),0)+1 FROM INFO_REPLY
+    	</selectKey>
+    	INSERT INTO INFO_REPLY(info_idx, reply_idx, reply_content, reply_writer, redeleteflag)
+    	VALUES(#{info_idx}, #{reply_idx}, #{reply_content}, #{reply_writer}, 'N')
     </insert>
-
     
-	<select id="selectFileWithInfo" resultMap="info_FileData">
-		SELECT * FROM info_filedata
-		WHERE info_idx = #{info_idx}
-	</select>
+    <!-- 댓글 수정 -->
+    <update id="updateInfoReply" parameterType="REPLY">
+    	UPDATE info_reply
+    	set reply_content=#{reply_content}
+    	WHERE reply_idx=#{reply_idx}
+    </update>
     
-    <select id="selectFileWithFidx" resultMap="info_FileData">
-    	SELECT * FROM info_filedata
-    	WHERE info_fidx = #{info_fidx}
+    <!-- 댓글 목록 -->
+    <select id="selectInfoReplyList" resultType="REPLY">
+    	SELECT * FROM info_reply
+    	WHERE info_idx = #{info_idx}
     </select>
     
-    </mapper>
+    <!-- 댓글 삭제 -->
+    <delete id="deleteInfoReply" parameterType="REPLY">
+    	DELETE FROM info_reply
+    	WHERE reply_idx = #{reply_idx}
+    </delete>
+    
+   </mapper>

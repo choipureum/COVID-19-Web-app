@@ -464,19 +464,20 @@ function openNav() {
                                     </ul>
                                 </div></div>                              
                             </li>
-                             <li><a href="covidNews.do">뉴스 & 이슈</a>
+                             <li><a href="/covidNews.do">뉴스 & 이슈</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="covidNews.do">&middot; 보도자료</a></li>
-                                        <li><a href="covidFact.do">&middot; 코로나19팩트 & 이슈체크</a></li>
+                                        <li><a href="/covidNews.do">&middot; 보도자료</a></li>
+                                        <li><a href="/covidFact.do">&middot; 코로나19팩트 & 이슈체크</a></li>
                                     </ul>
                                 </div></div>
                             </li>
-                            <li><a href="infoBoard.do">정보공유 & FAQ</a>
+                            <li><a href="/infoBoard.do">정보공유 & FAQ</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="infoBoard.do">&middot; 정보공유</a></li>
-                                        <li><a href="faqBoard.do">&middot; FAQ</a></li>
+                                        <li><a href="/infoBoard.do">&middot; 정보공유</a></li>
+                                        <li><a href="/faqBoard.do">&middot; FAQ</a></li>
+                                        <li><a href="/noticeBoard.do">&middot; 공지사항</a></li>
                                     </ul>
                                 </div></div>
                             </li>
@@ -492,25 +493,11 @@ function openNav() {
                                     </ul>
                                 </div></div>
                             </li>  
-                            <li><a href="duBoardList2048.html?brdId=2&amp;brdGubun=21">공지사항</a>
-                                <div class="g_sub"><div>
-                                    <ul>
-                                       <li><a href="duBoardList2048.html?brdId=2&amp;brdGubun=21">&middot; 일반인</a></li>
-                                        <li><a href="duBoardLista087.html?brdId=2&amp;brdGubun=23">&middot; 입국자 및 해외여행객</a></li>
-                                        <li><a href="duBoardList31a7.html?brdId=2&amp;brdGubun=22">&middot; 자가격리자</a></li>
-                                     <li><a href="duBoardList0c4d.html?brdId=2&amp;brdGubun=24">&middot; 의료기관</a></li>
-                                        <li><a href="duBoardList7b7a.html?brdId=2&amp;brdGubun=25">&middot; 집단 및 다중이용시설</a></li>
-                                        <li><a href="duBoardListcd10.html?brdId=2&amp;brdGubun=28">&middot; 지자체</a></li>
-                                        <li><a href="duBoardList3201.html?brdId=2&amp;brdGubun=26">&middot; 기업 및 시장</a></li>
-                                        <li><a href="duBoardList42ba.html?brdId=2&amp;brdGubun=27">&middot; 사회적 거리 두기</a></li>
-                                    </ul>
-                                </div></div>
-                            </li>
                             <li><a href="/basicRule.do">생활 속 거리 두기</a>
                                 <div class="g_sub"><div>
                                     <ul>
                                         <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
-										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
@@ -665,7 +652,7 @@ function openNav() {
                                 <div class="g_sub"><div>
                                     <ul>
                                         <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
-										   <li><a href="/corRule.do">&middot; 공동체 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>

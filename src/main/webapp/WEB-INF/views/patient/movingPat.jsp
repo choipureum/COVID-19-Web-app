@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -31,7 +30,7 @@
 							<li><span class="w_bold">"확진환자의 이동경로 등 정보 공개 안내(3판)('20.6.30.)"</span>에 따라  확진자가 마지막 접촉자와 접촉한 날로부터 14일 경과 시, 이동경로에 대한 부분은 공개되지 않음을 알려드립니다. </li>
 						</ul>
 						<div class="etc_box mgt8">
-							<strong class="tit">※ 집단발생 관련 반복대량 노출장소 현황 <br class="p_dp_n t_dp_n" />( 기준)</span></strong>
+							<strong class="tit">※ 집단발생 관련 반복대량 노출장소 현황 <br class="p_dp_n t_dp_n" />(2020년 9월 22일 00시 기준)</span></strong>
 							<p class="notice">해당 시간대에 아래 시설을 방문하신 분은 증상이 없어도 진단검사를 꼭 받아주세요.</p>				
 							<div class="data_table midd">
 								<table class="midsize big">
@@ -54,7 +53,13 @@
 										</tr>
 									</thead>
 									<tbody>
-									
+										<tr>
+											<td>광주</td>
+											<td>북구</td>
+											<td>시장</td>
+											<td>말바우시장 (광주 북구 동문대로85번길 62)</td>
+											<td>8/22~9/4</td>		
+											<td>완료</td>									
 									</tbody>
 								</table>
 							</div>
