@@ -2,6 +2,10 @@ package com.covid19.app.member.model.vo;
 
 import java.sql.Date;
 
+import javax.servlet.http.HttpSession;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 public class Member {
 	
 	private String member_id;
@@ -98,5 +102,6 @@ public class Member {
 				+ ", member_date=" + member_date + ", member_rank=" + member_rank + ", member_point=" + member_point
 				+ "]";
 	}
+
 	
 }

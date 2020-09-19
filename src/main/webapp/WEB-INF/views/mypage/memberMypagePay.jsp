@@ -5,6 +5,7 @@
 <!-- header 임포트 -->
 <jsp:include page="/header.do" />
 <style type="text/css">
+
 table, th {
    text-align: center;
 }
@@ -31,35 +32,20 @@ table thead th {
     background: darkgray;
     color:white;
 }
-.mypagedogout{
+.MypagePay{
    width:1100px;
    margin :40px auto;
-   line-height: 16px;
+
 }
-h5,h2{
+h2{
    text-align: center;
 }
-th{
-   height: 30px;
-}
 
 
-#btnWrite{
-    height: 60px; 
-    width: 100px; 
-   color:white;
-   border: solid 1px gray;
-   transition: all 0.5s;
-   float :right;
-}
-#btnWrite:hover {
-   background-color: white;
-   color:black;
-}
 
 </style>
 
-<div class="mypagedogout">
+<div class="MypagePay">
 
 <br>
 <h2> 결 제 목 록 </h2>
@@ -70,24 +56,20 @@ th{
 		<table>
 			<thead>
 				<tr style="border:1px;">
-					<th>사진</th>
-					<th>이름</th>
-					<th>날짜</th>
-					<th>가격</th>
-					<th>뭐 또 있나?</th>           
+					<th>상품 이름</th>
+					<th>결제 일자</th>
+					<th>주소 </th>
+        
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${dogout }" var="dogout">
+
 				<tr>
-					<td>
-					<img  id="img" src="/upload/${ dogout.dog_stored_file_name }" alt="" style="width:100px;height:70px;border-radius:20px;"/></td>			                
-			        <td>${dogout.dogname }</td>	
-			        <td>${dogout.dogkind }</td>
-			        <td>${dogout.doggender }</td>	
-			        <td>${dogout.outdate }</td>
+					<td></td>
+			        <td></td>	
+			        <td></td>	
 				</tr>		
-		</c:forEach>
+
 			</tbody>
 		</table>	
 	</div>

@@ -327,8 +327,8 @@ function openNav() {
       <!-- <button>로그인</button> -->
       <input type="submit" value="로그인" class="login" />
    </form>
-   <div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/static/image/NAVERLOGIN.PNG"/></a></div>
    <input type="button" class="loginjoin" value="회원가입" onclick="location.href='/member/joininfo.do'" />
+      <div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223"src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 <!-- 	아이디비밀번호 찾기 -->
 	<a href="/member/searchId.do" class="loginsearch">아이디</a>
 	<a href="/member/searchPw.do" class="loginsearch">비밀번호찾기</a>
@@ -409,17 +409,6 @@ function openNav() {
       			</c:otherwise>
       		</c:choose>
       
-      
-      
-<!--            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-<%--            <a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br> --%>
-              
-<!--            <a href="#home"><i class="fa fa-virus"></i>MYPAGE</a> -->
-<!--            <a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i>회원정보수정</a> -->
-<!--            <a href="#clients"><i class="fa  fa-user"></i> 고객정보</a> -->
-         
-<!--            <a href="#contact"><i class="fa  fa-envelope"></i> Contact us</a>    -->
-<!--            <a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>            -->
          </div>
 
          <!-- Header -->
@@ -521,11 +510,11 @@ function openNav() {
                                     </ul>
                                 </div></div>
                             </li>
-                            <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">생활 속 거리 두기</a>
+                            <li><a href="/basicRule.do">생활 속 거리 두기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
-										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                        <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>
@@ -676,11 +665,11 @@ function openNav() {
                                     </ul>
                                 </div>
                             </li>
-                          <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">생활 속 거리 두기</a>
+                          <li><a href="/basicRule.do">생활 속 거리 두기</a>
                                 <div class="g_sub"><div>
                                     <ul>
-                                        <li><a href="guidelineList2bef.html?brdId=6&amp;brdGubun=61">&middot; 기본 수칙</a></li>
-										   <li><a href="guidelineList99ba.html?brdId=6&amp;brdGubun=63">&middot; 공동체 수칙</a></li>
+                                        <li><a href="/basicRule.do">&middot; 기본 수칙</a></li>
+										   <li><a href="/basicRule.do?boundary=3">&middot; 공동체 수칙</a></li>
                                          <li><a href="/locRule.do">&middot; 장소별 실천수칙</a></li>
                                     </ul>
                                 </div></div>

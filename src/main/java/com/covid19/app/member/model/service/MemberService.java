@@ -92,6 +92,13 @@ public interface MemberService {
 	 */
 	public int memberdelete(Member member);
 
+	/**
+	 * 결제 완료 목록
+	 * @param member_id
+	 * @return
+	 */
+	public Member mypagePay(String member_id);
+
 	
 
 

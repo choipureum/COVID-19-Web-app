@@ -68,6 +68,7 @@
 	
 	</select>
 	
+	<!-- 멤버 삭제 -->
 	<delete id="memberdelete">
 		delete from member
 		where MEMBER_ID = #{member_id}

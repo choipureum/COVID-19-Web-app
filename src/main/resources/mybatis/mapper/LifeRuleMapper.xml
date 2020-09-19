@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="LifeRule">
+    
+      <!--검색 SQL -->
+    <sql id="search">
+    	WHERE
+    	<choose>
+    		<!--  검색내용 없는경우 -->
+    		<when test="search_content ==''"> 1=1</when>
+    		<when test="search_item =='t'.toString() and search_content !=''">    lfTITLE LIKE '%'|| #{search_content} || '%'</when>
+    		<when test="search_item =='c'.toString() and search_content !=''">    lfCONTENT LIKE '%'|| #{search_content} || '%'</when>
+    	</choose>
+    </sql>
+    <!-- 공통 디테일 -->
+     <select id="selectBasicDetail" resultType="map">
+    	SELECT * FROM LifeRule
+    	WHERE lfNo = #{lfNo}
+    </select>
+    
+    <!-- 세션별 -->
+    <!-- 기본수칙 - 섹션 1 -->
+    <select id="selectBasicRuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE 
+    		<include refid="search"/>
+    		AND boundary=1
+    </select>
+     
+    <select id="selectBasicRuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE 
+    		<include refid="search"/>
+    		and boundary=1   
+    		order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end} 
+    </select>
+   
+	
+
+ 	<!-- 기본수칙 - 섹션 2 -->
+    <select id="selectBasic2RuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE
+    		<include refid="search"/>
+    		AND boundary=2
+    </select>
+    
+     <select id="selectBasic2RuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE 
+    		<include refid="search"/>
+    		 and boundary=2
+    		order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end}
+    </select>
+    
+    <!-- 기본수칙 - 섹션 2 -->
+    <select id="selectBasic3RuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE
+    		<include refid="search"/>
+    		AND boundary=3
+    </select>
+    
+     <select id="selectBasic3RuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE  
+    		<include refid="search"/>
+    		and boundary=3
+    		order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end} 
+    </select>
+    
+    <!-- 기본수칙 - 섹션 2 -->
+    <select id="selectBasic4RuleContentCnt" resultType="int">
+    		SELECT count(*) FROM LIFERULE
+    		<include refid="search"/>
+    		AND boundary=4
+    </select>
+    
+     <select id="selectBasic4RuleList" resultType="map">
+    	select lfNO, lfTITLE, lfCONTENT, lfWriter, lfDate 
+    	from(
+    		select rownum rnum, n1.* from(select * from LifeRULE 
+    		<include refid="search"/>
+    		and boundary=4
+    		order by lfNO desc
+    		) n1
+    	)where rnum between #{start} and #{end} 
+    </select>
+      
+      
+ </mapper> 
+      
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -83,7 +83,7 @@ $(document).ready(function(){
 			
 		} else{
 			
-			$("#pw_check").text('6자-12자 소문자, 숫자를 섞어서 입력하시오');
+			$("#pw_check").text('6자-18자 소문자, 숫자를 섞어서 입력하시오');
 			$("#pw_check").css('color','red');
 		}
 	});

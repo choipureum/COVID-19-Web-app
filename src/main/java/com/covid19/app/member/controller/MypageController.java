@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.covid19.app.member.model.service.MemberService;
@@ -41,7 +42,6 @@ public class MypageController {
 		
 		member2 = memberService.selectAll(member_id);
 		
-		System.out.println("넌 member2다" + member2);
 		
 		//member를 mav addobject하기
 		mav.addObject("memberInfo", member2);
@@ -72,12 +72,12 @@ public class MypageController {
 	/**
 	 * 회원탈퇴
 	 */
+	@ResponseBody
 	@RequestMapping(value="/memberDeleteimpl.do", method = RequestMethod.POST)
 	public int memberDeleteimpl(@ModelAttribute Member member, HttpSession session) {
-		
+		//int.jsp
 		int res = memberService.memberdelete(member);
-	
-		
+		session.invalidate();
 		return res;
 	}
 	
@@ -94,20 +94,33 @@ public class MypageController {
 	 * 회원 결제목록
 	 */
 	@RequestMapping(value = "/memberMypagePay.do", method = RequestMethod.GET)
-	public String mypagePay() {
-		return "/mypage/memberMypagePay";
-	}
-	
-	
-	
-	/**
-	 * 회원 장바구니
-	 */
-	@RequestMapping(value = "/memberMypageBag.do", method = RequestMethod.GET)
-	public String mypageBag() {
+	public ModelAndView mypagePay(HttpSession session) {
 		
-		return "/mypage/memberMypageBag";
+		ModelAndView mav = new ModelAndView();
+		
+		Member res = (Member) session.getAttribute("logInInfo");
+		
+		//세션 값에 아이디랑 이름만
+		System.out.println("res" + res);
+		
+		String member_id=res.getMember_id();
+		//id로 전체 멤버만들기
+		Member member2 = new Member();
+		
+		member2 = memberService.mypagePay(member_id);
+		
+		
+		//member를 mav addobject하기
+		mav.addObject("memberInfo", member2);
+		mav.setViewName("/mypage/memberMypagePay");
+		return mav;
+	
+
+		
 	}
+	
+	
+
 }
 
 

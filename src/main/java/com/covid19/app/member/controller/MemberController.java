@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+
 import org.codehaus.jackson.JsonNode;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,8 @@ import com.covid19.app.member.model.service.MemberService;
 import com.covid19.app.member.model.vo.Member;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 //컨트롤러설정
 @Controller
 @RequestMapping("member")
@@ -252,8 +256,8 @@ public class MemberController {
 	 * 네이버 로그인
 	 */
 	
-    //로그인 첫 화면 요청 메소드
-    @RequestMapping(value = "/naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+	//로그인 첫 화면 요청 메소드
+    @RequestMapping(value = "/naverlogin", method = { RequestMethod.GET, RequestMethod.POST })
     public String naverlogin(Model model, HttpSession session) {
         
         /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
@@ -265,25 +269,62 @@ public class MemberController {
         
         //네이버 
         model.addAttribute("url", naverAuthUrl);
- 
+        
         /* 생성한 인증 URL을 View로 전달 */
         return "/member/naverlogin";
     }
     
-    //네이버 로그인 성공시 callback호출 메소드
-    @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-            throws IOException {
-        System.out.println("여기는 callback");
-        OAuth2AccessToken oauthToken;
-        oauthToken = naverLoginBO.getAccessToken(session, code, state);
-        //로그인 사용자 정보를 읽어온다.
-        apiResult = naverLoginBO.getUserProfile(oauthToken);
-        model.addAttribute("logInInfo", apiResult);
- 
-        /* 네이버 로그인 성공 페이지 View 호출 */
-        return "/main.do";
-    }
+//    //네이버 로그인 성공시 callback호출 메소드
+//    @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+//    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request, Member member)
+//            throws IOException, ParseException, MessagingException {
+//        
+//    	int resultCnt =0;
+//    	
+//    	System.out.println("여기는 callback");
+//        OAuth2AccessToken oauthToken;
+//        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+//        
+//        //로그인 사용자 정보를 읽어온다.
+//        apiResult = naverLoginBO.getUserProfile(oauthToken);
+//        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+//        
+//        model.addAttribute("result", apiResult);
+//        
+//        System.out.println("result"+apiResult);
+//        
+//        //DB와 세션에 넣기
+//        JSONParser jsonParser = new JSONParser();
+//        JSONObject jsonObject = (JSONObject)jsonParser.parse(naverLoginBO.getUserProfile(oauthToken).toString());
+//        
+//        JSONObject response = (JSONObject)jsonObject.get("response");
+//        
+//        System.out.println("이것은" + jsonObject.get("response"));
+//        String member_id=(String)response.get("id");
+//        
+//        System.out.println("아이디는" + member_id);
+//        
+//        member.setMember_id((String)response.get("id"));
+//        member.setMember_pw("0000"); //DB에서 Not null로 처리했기에 임의로 준 값
+//        member.setMember_name((String) response.get("name"));
+//        member.setMember_email((String) response.get("email"));
+//        member.setMember_birth((String) response.get("birthday"));
+//        
+//        System.out.println("멤바아이디는 " + member.getMember_id());
+//        
+//        session.setAttribute("logInInfo", member_id);
+//         
+//        model.addAttribute("result", apiResult);
+//        //생략 가능_세션에 담기 위해 사용했다.
+//        request.getSession(true).setAttribute("id", member.getMember_id());
+//        
+//        /* 네이버 로그인 성공 페이지 View 호출 */
+//        return "/member/naversuccess";
+//        
+//        
+//    }
+    
+
 	
 	
 	

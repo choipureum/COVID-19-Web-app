@@ -209,6 +209,14 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberdelete(member);
 	}
 	
+	/**
+	 * 결제 완료 목록
+	 */
+	@Override
+	public Member mypagePay(String member_id) {
+		return memberDao.mypagePay(member_id);
+	}
+	
 
 
 
