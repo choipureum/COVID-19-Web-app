@@ -63,7 +63,7 @@ function fn_submit(){
 <input type="hidden" id="file_name" name="file_name" value="" />
 <input type="hidden" id="brdId" name="brdId" value="3" />
 <input type="hidden" id="brdGubun" name="brdGubun" value="37" />
-	<div class="container"><!-- main_container -->
+	<div class="container" style="background-color: white;"><!-- main_container -->
 		<div>
 			<div id="content" class="content">
 				<div>
@@ -81,6 +81,15 @@ function fn_submit(){
                              </div>
                          </div>
 		            </div>
+	      
+	      			 <div class="tab_flt cnt2-2-2">
+                      <ul>
+                         <li style="width: 33.3%"><a href="/infoBoard.do"><span>정보공유</span></a></li>
+                         <li class="on" style="width: 33.3%" ><a href="/faqBoard.do"><span>FAQ</span></a></li>
+                         <li style="width: 33.3%"><a href="/noticeBoard.do"><span>공지사항</span></a></li>
+                      </ul>
+                    </div>
+	      
 	      
 					<h4 class="s_title_1">병원체 정보</h4>
 					<div class="faq_list">

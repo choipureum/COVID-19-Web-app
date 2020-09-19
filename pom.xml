@@ -221,6 +221,7 @@
 			<version>1.11.3</version>
 		</dependency>
 		
+
 		<!-- naver -->
 		<dependency>
 		    <groupId>com.github.scribejava</groupId>
@@ -243,6 +244,13 @@
             <version>1.1.1</version>
         </dependency>
 		
+		
+			<!-- 썸네일 dependency -->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.8</version>
+		</dependency>
 		
 	</dependencies>
     <build>
