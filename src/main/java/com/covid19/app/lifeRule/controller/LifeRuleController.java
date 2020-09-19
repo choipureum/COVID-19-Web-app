@@ -33,6 +33,7 @@ public class LifeRuleController {
 		ModelAndView mav = new ModelAndView();
 		int cntPerPage = 10;
 		Map<String, Object> commandMap=null;
+		
 		int cnt=0;
 		//기본수칙
 		if(boundary==1 ||boundary==2) {

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.covid19.app.member.model.service.MemberService;
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 @Controller
 @RequestMapping("mypage")
@@ -105,13 +106,16 @@ public class MypageController {
 		
 		String member_id=res.getMember_id();
 		//id로 전체 멤버만들기
-		Member member2 = new Member();
 		
-		member2 = memberService.mypagePay(member_id);
+		Pay pay = new Pay();
+		
+		System.out.println("아이디 나오니? " + member_id);
+		
+		pay = memberService.mypagePay(member_id);
 		
 		
 		//member를 mav addobject하기
-		mav.addObject("memberInfo", member2);
+		mav.addObject("mypagePay", pay);
 		mav.setViewName("/mypage/memberMypagePay");
 		return mav;
 	

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ViewMethodReturnVal
 
 import com.covid19.app.member.model.dao.MemberDao;
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -213,7 +214,7 @@ public class MemberServiceImpl implements MemberService{
 	 * 결제 완료 목록
 	 */
 	@Override
-	public Member mypagePay(String member_id) {
+	public Pay mypagePay(String member_id) {
 		return memberDao.mypagePay(member_id);
 	}
 	

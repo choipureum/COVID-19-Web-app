@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 @Repository
 public class MemberDao {
@@ -116,9 +117,9 @@ public class MemberDao {
 		return session.delete("MEMBER.memberdelete", member);
 	}
 
-	public Member mypagePay(String member_id) {
+	public Pay mypagePay(String member_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("MEMBER.mypagePay", member_id);
 	}
 
 

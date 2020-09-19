@@ -65,9 +65,9 @@ h2{
 			<tbody>
 
 				<tr>
-					<td></td>
-			        <td></td>	
-			        <td></td>	
+					<td>${mypagePay.goods_name }</td>
+			        <td>${mypagePay.pay_day }</td>	
+			        <td>${mypagePay.address }</td>	
 				</tr>		
 
 			</tbody>

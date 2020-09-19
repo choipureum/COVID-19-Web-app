@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.covid19.app.member.model.vo.Member;
+import com.covid19.app.shareper.model.dto.Pay;
 
 public interface MemberService {
 	
@@ -97,7 +98,7 @@ public interface MemberService {
 	 * @param member_id
 	 * @return
 	 */
-	public Member mypagePay(String member_id);
+	public Pay mypagePay(String member_id);
 
 	
 

@@ -5,11 +5,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-
-import java.lang.ProcessBuilder.Redirect;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -20,12 +18,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.covid19.app.shareper.model.dto.Goods;
 import com.covid19.app.shareper.model.dto.Share;
 import com.covid19.app.shareper.model.dto.ShareFile;
 import com.covid19.app.shareper.model.service.ShareService;
@@ -50,7 +50,10 @@ public class ShareController {
 		ModelAndView mav = new ModelAndView();
 		int cntPerPage = 16;
 		Map<String,Object> map = shareSer.selectSlist(cPage, cntPerPage,filter);
-
+		
+		System.out.println(map);
+		
+		
 		mav.addObject("paging", map.get("paging"));
 		mav.addObject("list", map);
 		
@@ -74,7 +77,6 @@ public class ShareController {
 			HttpServletResponse res
 			) {
 		 
-		System.out.println("여기는 컨트롤러 필터링 맵을 받을거야 : " + filter);
 		ModelAndView mav = new ModelAndView();
 		int cntPerPage = 16;
 		Map<String,Object> map = shareSer.selectSlist(cPage, cntPerPage,filter);
@@ -100,9 +102,9 @@ public class ShareController {
 		Date sysdate = new java.sql.Date(new java.util.Date().getTime());
 		long hidate = endday.getTime() - sysdate.getTime();
 		int dDay = (int)Math.floor(hidate/(1000*60*60*24)+1);
-		
+		List<Goods> goods = shareSer.selectGoods(share_idx);
 		Map<String,Object> map = shareSer.sharedetail(share_idx);
-		
+		mav.addObject("goods", goods);
 		mav.addObject("list", map.get("dlist"));
 		mav.addObject("dDay", dDay);
 		mav.setViewName("share/detail");
@@ -123,7 +125,6 @@ public class ShareController {
 	
 	@RequestMapping(value = "/share/boardup.do", method = RequestMethod.POST)
 	public ModelAndView supload(
-
 			HttpSession session,
 			Share share,
 			List<MultipartFile> file,
@@ -142,9 +143,9 @@ public class ShareController {
 	@RequestMapping(value = "/share/fileup.do", method = RequestMethod.POST)
 	public void file_uploader_html5(HttpServletRequest request,
 				HttpServletResponse response)
-		{ 
-			try {
-				ShareFile shf = new ShareFile();
+	{ 
+		try {
+			ShareFile shf = new ShareFile();
 			//파일정보
 			String sFileInfo = ""; 
 			//파일명을 받는다 - 일반 원본파일명
@@ -159,7 +160,8 @@ public class ShareController {
 			int fidx = 0;
 			
 			//돌리면서 확장자가 이미지인지 
-			int cnt = 0; for(int i=0; i<allow_file.length; i++) 
+			int cnt = 0; 
+			for(int i=0; i<allow_file.length; i++) 
 			{ 
 				if(filename_ext.equals(allow_file[i])){ cnt++; } 
 				
@@ -205,12 +207,39 @@ public class ShareController {
 				sFileInfo += "&sFileURL="+"/resources/upload/share/"+realFileNm;
 				PrintWriter print = response.getWriter(); print.print(sFileInfo); 
 				print.flush();
-				print.close(); } 
+				print.close();
 			} 
-		catch (Exception e) { e.printStackTrace(); }
-			}
-
 			
+		} 
+		catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+	}
+
+	@RequestMapping("/share/slog/payment.do")
+	public ModelAndView payment(HttpSession session,
+			@RequestParam int share_idx) {
+		ModelAndView mav = new ModelAndView();
+		List<Goods> goods = shareSer.selectGoods(share_idx);
+		mav.addObject("shidx",share_idx);
+		mav.addObject("goods", goods);
+		mav.addObject("attr", session.getAttribute("logInInfo"));
+		mav.setViewName("share/payment");
+
+		return mav;
+	}
+	
+	@RequestMapping(value ="/share/slog/paycomple.do" ,method = RequestMethod.POST,
+			produces = "application/json; charset=utf8")
+	public ModelAndView paymentcomple(@RequestBody HashMap<String, Object> pay) {
+		ModelAndView mav = new ModelAndView();
+		
+		shareSer.insertPay(pay);
+		mav.setViewName("redirect:/share/list.do");
+		return mav;
+	}
+	
+		
 	
 }
 
