@@ -1,7 +1,7 @@
-![Contributors][contributors-shield]
-![Forks][forks-shield]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+![Contributors][contributors-shield]  
+![Forks][forks-shield]  
+[![Stargazers][stars-shield]][stars-url]  
+[![Issues][issues-shield]][issues-url]  
 
 
 <!-- PROJECT LOGO -->
