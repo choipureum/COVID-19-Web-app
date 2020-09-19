@@ -70,6 +70,24 @@ public class ShareDao {
 	}
 
 
+	public void insertMempoint(Map<String,Object> map) {
+		 
+		sqlSession.insert("SHARE.insertPoint",map);
+	
+	}
+
+
+	public void insertjoinper(int share_idx) {
+		sqlSession.insert("SHARE.insertJoinper",share_idx);
+		
+	}
+
+
+	public void insertDonate(int mem_pay) {
+		sqlSession.insert("SHARE.insertDonate",mem_pay);
+	}
+
+
 
 
 

@@ -41,28 +41,34 @@
 		
 	
 	</insert>	
+	
 	<select id = "selectshar" resultType="HashMap">
-	select share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,sharedate,rename_file
+	
+	select nvl(payper,0) payper,nvl(pay,0) pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate) day,sharedate,rename_file
                 from(
                     select rownum rnum , s3.*
 			from(
-				select s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
-				from shar s, share_thumb st
+				select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,sum(sp.payment) pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file 
+				from shar s, share_thumb st,share_pay sp
                 where s.share_idx = st.share_idx
-            <choose>
-			    <when test='filter != "*"'>
+                and s.share_idx = sp.share_idx(+)
+                <choose>
+                <when test='filter != "*"'>
 			      and s.sharefield = #{filter}
 			   	</when>
 			    <when test='filter == "*"'>
 			      and 1=1
 			   	</when>
-		 	</choose>
-
+		 		</choose>
+                group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent, s.sharemoney, 
+                s.sharedateen, s.share_idx, s.sharedate, st.rename_file
 				order by s.share_idx desc
 			)s3
 		)where rnum between #{start} and #{end}
-
+	
+	
 	</select>
+	
 	
 	<select id="selectContentCnt" resultType="int">
 		select count(*) from shar
@@ -74,10 +80,13 @@
 	</select>
 	
 	<select id="selectDetail" resultType="hashmap">
-		select s.*, st.rename_file
-		from shar s, share_thumb st
-		where s.share_idx = st.share_idx
+        select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,s.sharecontent,s.share_idx,s.sharefield,s.sharename,s.simpleinfo,s.sharedate,s.sharemoney,st.rename_file,nvl(sum(sp.payment),0) pay,nvl(ROUND((sum(sp.payment)/s.sharemoney) * 100,1),0),s.joinper
+    	from shar s, share_thumb st,share_pay sp
+        where s.share_idx = st.share_idx
+        and s.share_idx = sp.share_idx(+)
         and s.share_idx = #{share_idx}
+        group by s.sharecontent, s.share_idx, s.sharefield, s.sharename, s.simpleinfo, 
+        s.sharedate, s.sharemoney, st.rename_file,s.joinper
 	</select>
 	
 	<insert id="insertGoods">
@@ -89,8 +98,21 @@
 		SELECT * FROM share_goods WHERE share_idx = #{share_idx}
 	</select>
 	<insert id="insertpayment">
-	insert into share_pay
-	values(sh_pay_seq.nextval,#{member_id},#{share_idx},#{payment},#{pay_day},#{goods_name})
+	insert into share_pay(pay_idx,member_id,share_idx,payment,pay_day,goods_name,address)
+	values(sh_pay_seq.nextval,#{member_id},#{share_idx},#{payment},#{pay_day},#{goods_name},#{address})
+	</insert>
+	<insert id="insertPoint">
+	UPDATE member SET member_point = member_point + #{mem_pay}
+	WHERE member_id = #{mem_id}
+	
+	</insert>
+	
+	<insert id="insertJoinper">
+	update shar set joinper = joinper + 1 where share_idx = #{share_idx}
+	</insert>
+	
+	<insert id="insertDonate">
+	insert into share_donate values(SHARE_DONATE_SEQ.nextval,#{mem_pay})
 	</insert>
 
 </mapper>

@@ -41,12 +41,14 @@ function requestPayment() {
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	        msg += '[rsp.success]';
 	        var memid = $("#memid").val();
 	        var shidx = ${shidx };
 			var pay = JSON.stringify(
 					{pay_id:rsp.imp_uid , payment : rsp.paid_amount 
-						,mem_id : memid, share_idx : shidx , good_name : $("#goods_price option:selected").text()} );
+						,mem_id : memid, share_idx : shidx , good_name : $("#goods_price option:selected").text(),
+						address : $("#sample4_roadAddress" ).val() + " 상세주소 " + $("#sample4_detailAddress" ).val()
+					} 
+						);
 	        
 	        // 결제 완료 처리 로직
 			//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -65,10 +67,10 @@ function requestPayment() {
 					msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 					msg += '\n결제 금액 : ' + rsp.paid_amount;
 					msg += '\n카드 승인번호 : ' + rsp.apply_num;
-			        msg += '\n[done]';
-
-					alert(msg);
+			        msg += '\n[done]';										
 					
+					
+								
 	    		} else {
 	    			//[3] 아직 제대로 결제가 되지 않았습니다.
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -79,7 +81,8 @@ function requestPayment() {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
 	    }
-	    alert(msg);
+		alert(msg);
+	    location.href="/share/list.do";
 	});
 }
 

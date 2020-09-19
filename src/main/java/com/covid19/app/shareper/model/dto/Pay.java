@@ -7,6 +7,13 @@ private int share_idx;
 private int payment;
 private String pay_day;
 private String goods_name;
+private String address;
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
 public int getPay_idx() {
 	return pay_idx;
 }
@@ -46,6 +53,6 @@ public void setPay_day(String pay_day) {
 @Override
 public String toString() {
 	return "Pay [pay_idx=" + pay_idx + ", member_id=" + member_id + ", share_idx=" + share_idx + ", payment=" + payment
-			+ ", pay_day=" + pay_day + ", good_name=" + goods_name + "]";
+			+ ", pay_day=" + pay_day + ", goods_name=" + goods_name + ", address=" + address + "]";
 }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.covid19.app.shareper.model.dao.ShareDao;
+import com.covid19.app.shareper.model.dto.Donate;
 import com.covid19.app.shareper.model.dto.Goods;
 import com.covid19.app.shareper.model.dto.Pay;
 import com.covid19.app.shareper.model.dto.Share;
@@ -45,17 +46,14 @@ public class ShareService {
 		}
 		
 		
-		if(!(file.size() == 1
-				&& file.get(0).getOriginalFilename().equals(""))) {
-				
-				//파일업로드를 위해 FileUtil.fileUpload() 호출
-				List<Map<String,String>> filedata 
-						= new FileUtil().fileupload(file, root);
-				for(Map<String,String> f : filedata) {
-					sharedao.insertThumb(f);
-				}
+		if(!(file.size() == 1 && file.get(0).getOriginalFilename().equals(""))) {
+			//파일업로드를 위해 FileUtil.fileUpload() 호출
+			List<Map<String,String>> filedata 
+					= new FileUtil().fileupload(file, root);
+			for(Map<String,String> f : filedata) {
+				sharedao.insertThumb(f);
 			}
-	
+		}
 	}
 
 	public void insertFile(ShareFile shf) {
@@ -72,7 +70,7 @@ public class ShareService {
 		 if(filter.equals("*")) {
 			total = sharedao.selectContentCnt(filter);
 		 }else{
-			 total = sharedao.selectContentCnt2(filter);
+			total = sharedao.selectContentCnt2(filter);
 		 }
 		 //페이징 처리를 위한 객체 생성
 		 Paging p = new Paging(total
@@ -82,7 +80,7 @@ public class ShareService {
 		 List<Object> nlist = sharedao.selectshar(p);
 		 commandMap.put("nlist", nlist);
 		 commandMap.put("paging", p);
-		return commandMap;
+		 return commandMap;
 			
 		}
 
@@ -92,7 +90,6 @@ public class ShareService {
  		= new HashMap<String, Object>();
 		
 		List<Share> dlist = sharedao.sharedetail(share_idx);
-		
 		commandMap.put("dlist", dlist);
 		System.out.println(commandMap);
 		return commandMap;
@@ -106,14 +103,33 @@ public class ShareService {
 
 	public void insertPay(HashMap<String, Object> pay) {
 		Pay payy = new Pay();
+		
 		payy.setPayment(Integer.parseInt(pay.get("payment").toString()));
 		payy.setMember_id((String)pay.get("mem_id"));
 		payy.setShare_idx(Integer.parseInt(pay.get("share_idx").toString()));
 		payy.setGoods_name((String)pay.get("good_name"));
+		payy.setAddress((String)pay.get("address"));
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
 		String paydate = sdf.format(date);
 		payy.setPay_day(paydate);
+		int share_idx = Integer.parseInt(pay.get("share_idx").toString());
+		//member pay 1% 적립---------------
+		int mem_pay = payy.getPayment()*1/100;
+		
+		//--------기부테이블 1% 적립-----------
+		sharedao.insertDonate(mem_pay);
+		//---------------------------------
+		
+		String mem_id = payy.getMember_id();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_id", mem_id);
+		map.put("mem_pay", mem_pay);
+		sharedao.insertMempoint(map);
+		//--------------------------------
+		//참여자 +1
+		sharedao.insertjoinper(share_idx);
+		//--------------------------------
 		sharedao.insertPayment(payy);
 		
 	}

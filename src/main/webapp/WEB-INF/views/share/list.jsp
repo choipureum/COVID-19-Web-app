@@ -10,11 +10,6 @@
 	href="/resources/static/css/sharelist.css" />
 
 
-<!-- 공통 유틸 js -->
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/commonUtil.js?ver=20191030">
-
-</script>
 <style type="text/css">
 
 .select{ border: 3px soild black;
@@ -170,22 +165,44 @@ function loadlist() {
 											class="img_profile clear_empty_picture"> <img
 												src="/uploads/member/profile/MEMBER_20200804093209983.png"
 												alt="profile">
-										</span> <span class="txt_name">사단법인 희망래일</span>
-										</span> <span class="project_category"> <span
+										</span>
+										 <span class="txt_name">사단법인 희망래일</span>
+										</span>
+										 <span class="project_category"> <span
 											class="screen_out">카테고리</span> ${list.FEIELD }
 										</span>
 									</div>
+									<c:set var="dDay" value="${list.DAY }"/>
+									<c:choose>
+									    <c:when test="${dDay <= 0}">
 									<div class="project_state">
-										<span class="total_amount"> <span class="screen_out">현재
-												참여금액</span> ${list.SHAREMONEY }
+										<span class="total_amount">
+										 <span class="screen_out">마감된 프로젝트입니다. </span>
 										</span>
 										<div class="project_card_graph">
 											<span class="screen_out">참여율</span> <span class="bar_graph"
-												style="width: 20%;"></span> <span class="invest_rate">
-												20% </span>
+												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
+												${list.PAYPER }% </span>
 										</div>
-										<span class="funding_type">무조건 리워드</span>
+										<span class="funding_type">금액 달성 시 배송진행</span>
 									</div>
+									    </c:when>
+									    <c:otherwise>
+									<div class="project_state">
+										<span class="total_amount"> <span class="screen_out">현재
+												참여금액</span> ${list.PAY }
+										</span>
+										<div class="project_card_graph">
+											<span class="screen_out">참여율</span> <span class="bar_graph"
+												style="width: ${list.PAYPER}%;"></span> <span class="invest_rate">
+												${list.PAYPER }% </span>
+										</div>
+										<span class="funding_type">금액 달성 시 배송진행</span>
+									</div>
+									    </c:otherwise>
+									</c:choose>
+									
+									
 								</div>
 							</li>
 						</c:forEach>

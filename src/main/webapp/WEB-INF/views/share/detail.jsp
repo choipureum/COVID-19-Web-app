@@ -6,175 +6,17 @@
 
 <link rel="stylesheet" type="text/css"
 	href="/resources/static/css/sharelist.css" />
-<link rel="stylesheet" type="text/css"
-	href="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.css">
 <style type="text/css">
 .article_intro>p {
 	text-align: center;
 }
 </style>
 
-<script src="https://www.ohmycompany.com/omc/asset/js/isMobile.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery.form.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/jquery-scrollLock.min.js"></script>
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/uikit/uikit.min.js"></script>
-
-<!-- Swiper -->
-<link rel="stylesheet"
-	href="../../cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css">
-<script
-	src="../../cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
-
-<!-- 공통 유틸 js -->
-<script
-	src="https://www.ohmycompany.com/omc/asset/js/common/commonUtil.js?ver=20191030"></script>
-
-
 <jsp:include page="/header.do" />
-
-<!-- Facebook Pixel Code -->
-<script>
-	!function(f, b, e, v, n, t, s) {
-		if (f.fbq)
-			return;
-		n = f.fbq = function() {
-			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
-					.push(arguments)
-		};
-		if (!f._fbq)
-			f._fbq = n;
-		n.push = n;
-		n.loaded = !0;
-		n.version = '2.0';
-		n.queue = [];
-		t = b.createElement(e);
-		t.async = !0;
-		t.src = v;
-		s = b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t, s)
-	}(window, document, 'script',
-			'../../connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '1596038603991444');
-	fbq('track', 'PageView');
-</script>
-<noscript>
-	<img height="1" width="1" style="display: none"
-		src="https://www.facebook.com/tr?id=1596038603991444&amp;ev=PageView&amp;noscript=1" />
-</noscript>
-<!-- End Facebook Pixel Code -->
-
-
-<script type="text/javascript" charset="UTF-8"
-	src="../../t1.daumcdn.net/adfit/static/kp.js"></script>
-<script type="text/javascript">
-	if (typeof kakaoPixel === 'function') {
-		kakaoPixel('3359785880917884039').pageView();
-	}
-</script>
-
-
-
-<!-- Hotjar Tracking Code for https://www.ohmycompany.com/ -->
-
-<script src="../../developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script
-	src="../../cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-<div id="omcIndex">
-	<a href="#omcGnb" class="shortcut">주메뉴 바로가기</a> <a href="#omcSearch"
-		class="shortcut">검색 바로가기</a> <a href="#omcBody" class="shortcut">본문
-		바로가기</a>
-</div>
-
-<div id="omcWrap">
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			var body = $("body");
-
-			$("#inpSearch").keydown(function(e) {
-				if (e.keyCode === 13) {//키가 13이면 실행 (엔터는 13)
-					fnSearchWord();
-				}
-			});
-
-			$("#inpMenubarSearch").keydown(function(e) {
-				if (e.keyCode === 13) {//키가 13이면 실행 (엔터는 13)
-					fnMenubarSearchWord();
-				}
-			});
-
-			$("#menubarSearchButton").click(fnMenubarSearchWord);
-
-			$("#btn_logout").on("click", function() {
-				location.href = "https://www.ohmycompany.com/login/logout";
-			});
-
-			// $("#inpSearch").on("click", function(){
-			//     $("#omcSearch").addClass("on");
-			// });
-
-			$("#topSearchBtn").click(focusSearchInput);
-		});
-
-		function focusSearchInput() {
-			$("#omcSearch").addClass("on");
-			var $input = $('#inpSearch');
-			$input.focus();
-		}
-
-		function fnSearchWord() {
-			var searchSelector = $("#omcSearch");
-			if (searchSelector.is(".search_g", ".on")) {
-				var inpSearch = $("#inpSearch");
-				inpSearch.val(function() {
-					return $(this).val().trim();
-				});
-
-				if (inpSearch.val().length === 0) {
-					alert("검색어를 입력하세요.");
-					inpSearch.focus();
-					return false;
-				}
-				var form = document.omcSearch;
-				form.action = "/main/search;jsessionid=40EF219E555115950018A131E1EFDCF0.server01";
-				form.submit();
-
-			} else if (searchSelector.hasClass("search_g")) {
-				$("#inpSearch").focus();
-			}
-		}
-
-		function fnMenubarSearchWord() {
-
-			var inpSearch = $("#inpMenubarSearch");
-			inpSearch.val(function() {
-				return $(this).val().trim();
-			});
-
-			if (inpSearch.val().length === 0) {
-				alert("검색어를 입력하세요.");
-				inpSearch.focus();
-				return false;
-			}
-			var form = document.omcSearch;
-			form.inpSearch.value = inpSearch.val();
-			form.action = "/main/search;jsessionid=40EF219E555115950018A131E1EFDCF0.server01";
-			form.submit();
-		}
-	</script>
-	<!-- header -->
-
-
 
 	<main id="omcContainer" class="cont_support">
 
-		<%--       	${list }   --%>
-		<!-- aside -->
 
-		<!--  aside -->
 	 <input type="hidden" id="projectSeq" value="8725" /> <input
 			type="hidden" id="simulationFlag" value="N" />
 
@@ -184,10 +26,21 @@
 				<div class="top_box">
 					<header class="head_cont">
 						<span class="txt_category"> <span class="screen_out">카테고리</span>
-							<a
-							href="https://www.ohmycompany.com/reward/list#category=CATE_0005">
-								문화예술 </a>
-
+						<c:set var="name" value="${list[0].SHAREFIELD }" />
+						<c:choose>
+						    <c:when test="${name eq 'li'}">
+						        <a href="#">리빙</a>
+						    </c:when>
+						   <c:when test="${name eq 're'}">
+						        <a href="#">지역재생</a>
+						    </c:when>
+						   <c:when test="${name eq 'fo'}">
+						        <a href="#">푸드</a>
+						    </c:when>
+						   <c:when test="${name eq 'te'}">
+						        <a href="#">테크</a>
+						    </c:when>
+						</c:choose>
 						</span>
 						<h1>${list[0].SHARENAME }</h1>
 
@@ -247,20 +100,20 @@
 								<p>
 									<span class="txt_statetitle">모인금액</span>
 								</p>
-								<span class="screen_out">현재 참여금액</span><span class="num_value">${list[0].SHAREMONEY }</span>
+								<span class="screen_out">현재 참여금액</span><span class="num_value">${list[0].PAY }</span>
 								<span class="txt_value">원&nbsp;모금</span>
 							</div>
 							<div class="state_project">
 								<div class="graph_support">
 									<span class="screen_out">참여율</span> <span class="bar_graph"
-										style="width: 21%"></span> <span class="num_per">21%</span>
+										style="width: ${list[0].PAYPER }%"></span> <span class="num_per">${list[0].PAYPER }%</span>
 								</div>
 
 								<div class="item_state">
 									<p>
 										<span class="txt_statetitle">참여인원</span>
 									</p>
-									<span class="screen_out">참여자 수</span><span class="num_value">82</span>
+									<span class="screen_out">참여자 수</span><span class="num_value">${list[0].JOINPER}</span>
 									<span class="txt_value">명 참여</span>
 								</div>
 
@@ -268,12 +121,21 @@
 									<p>
 										<span class="txt_statetitle">남은기간</span>
 									</p>
-
-
-									<span class="num_value"> D-<span class="screen_out">Day</span>${dDay }
-									</span><span class="txt_value"> 일 남음</span> <a
-										href="/share/slog/payment.do?share_idx=${list[0].SHARE_IDX }"
-										class="link_join">참여하기</a>
+									<c:set var="dDay" value="${dDay }"/>
+									<c:choose>
+									    <c:when test="${dDay <= 0}">
+											<span class="num_value"><span class="screen_out"></span>
+											</span><span class="txt_value">마감된 공동구매 입니다</span> <a
+											href="#"
+											class="link_join" draggable="false">마감했습니다</a>
+									    </c:when>
+									    <c:otherwise>
+									   <span class="num_value"> D-<span class="screen_out">Day</span>${dDay }
+	                          				</span><span class="txt_value"> 일 남음</span> <a
+	                            		 	href="/share/slog/payment.do?share_idx=${list[0].SHARE_IDX }"
+	                             			class="link_join">참여하기</a>
+									    </c:otherwise>
+									</c:choose>
 
 								</div>
 
@@ -281,8 +143,8 @@
 								<div class="txt_notice ">
 
 									<span class="sign_notice">성공해야<br />리워드
-									</span> <span class="txt"> 목표액 10,000,000원에 미달하면 결제가 진행되지 않는
-										프로젝트입니다.<br /> 결제는 목표액달성시 2020년09월01일에 진행됩니다.
+									</span> <span class="txt"> 목표액 ${list[0].SHAREMONEY }원에 미달하면 결제가 진행되지 않는
+										공동구매입니다.<br /> 결제는 목표액달성시 ${list[0].SHAREDATE }일에 진행됩니다.
 									</span>
 
 

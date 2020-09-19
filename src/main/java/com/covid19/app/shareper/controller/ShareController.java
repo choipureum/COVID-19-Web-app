@@ -50,7 +50,10 @@ public class ShareController {
 		ModelAndView mav = new ModelAndView();
 		int cntPerPage = 16;
 		Map<String,Object> map = shareSer.selectSlist(cPage, cntPerPage,filter);
-
+		
+		System.out.println(map);
+		
+		
 		mav.addObject("paging", map.get("paging"));
 		mav.addObject("list", map);
 		
@@ -122,7 +125,6 @@ public class ShareController {
 	
 	@RequestMapping(value = "/share/boardup.do", method = RequestMethod.POST)
 	public ModelAndView supload(
-
 			HttpSession session,
 			Share share,
 			List<MultipartFile> file,
@@ -141,9 +143,9 @@ public class ShareController {
 	@RequestMapping(value = "/share/fileup.do", method = RequestMethod.POST)
 	public void file_uploader_html5(HttpServletRequest request,
 				HttpServletResponse response)
-		{ 
-			try {
-				ShareFile shf = new ShareFile();
+	{ 
+		try {
+			ShareFile shf = new ShareFile();
 			//파일정보
 			String sFileInfo = ""; 
 			//파일명을 받는다 - 일반 원본파일명
@@ -158,7 +160,8 @@ public class ShareController {
 			int fidx = 0;
 			
 			//돌리면서 확장자가 이미지인지 
-			int cnt = 0; for(int i=0; i<allow_file.length; i++) 
+			int cnt = 0; 
+			for(int i=0; i<allow_file.length; i++) 
 			{ 
 				if(filename_ext.equals(allow_file[i])){ cnt++; } 
 				
@@ -204,10 +207,14 @@ public class ShareController {
 				sFileInfo += "&sFileURL="+"/resources/upload/share/"+realFileNm;
 				PrintWriter print = response.getWriter(); print.print(sFileInfo); 
 				print.flush();
-				print.close(); } 
+				print.close();
 			} 
-		catch (Exception e) { e.printStackTrace(); }
-			}
+			
+		} 
+		catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+	}
 
 	@RequestMapping("/share/slog/payment.do")
 	public ModelAndView payment(HttpSession session,
@@ -222,13 +229,16 @@ public class ShareController {
 		return mav;
 	}
 	
-	@RequestMapping(value ="/share/slog/paycomple.do" ,method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@RequestMapping(value ="/share/slog/paycomple.do" ,method = RequestMethod.POST,
+			produces = "application/json; charset=utf8")
 	public ModelAndView paymentcomple(@RequestBody HashMap<String, Object> pay) {
 		ModelAndView mav = new ModelAndView();
 		
 		shareSer.insertPay(pay);
+		mav.setViewName("redirect:/share/list.do");
 		return mav;
 	}
+	
 		
 	
 }

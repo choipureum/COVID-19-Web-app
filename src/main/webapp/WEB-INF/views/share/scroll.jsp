@@ -37,13 +37,13 @@
 		        <div class="project_state">
 		                    <span class="total_amount">
 		                        <span class="screen_out">현재 참여금액</span>
-		                        ${list.SHAREMONEY }
+		                        ${list.PAY }
 		                    </span>
 		                    <div class="project_card_graph">
 		                        <span class="screen_out">참여율</span>
-		                                <span class="bar_graph" style="width:20%;"></span>
+		                                <span class="bar_graph" style="width:${list.PAYPER };"></span>
 		                        <span class="invest_rate">
-		                            20%
+		                            ${list.PAYPER }
 		                        </span>
 		                    </div>
 		                            <span class="funding_type">무조건 리워드</span>
