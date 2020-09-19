@@ -33,8 +33,8 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [코로나19 종합 웹 프로젝트](# 코로나19 종합 웹 프로젝트)
-  * [프로젝트 기간](# 프로젝트 기간)
+* [코로나19 종합 웹 프로젝트](#1)
+  * [프로젝트 기간](#2)
 * [프로젝트 개요](#배경)
   * [배경](#배경) 
   * [WAS](#WAS)
@@ -100,7 +100,7 @@ SQL Developer
 ## 프로젝트관리툴
 **NOTION**
 
-<img src="http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png" alt=""/>
+<img src="http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png" alt="" width="300px" height="100px"/>
 
 <!-- CONTACT -->
 ## 개발이미지
