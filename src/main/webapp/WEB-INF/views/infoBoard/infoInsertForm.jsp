@@ -1,9 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   
 <jsp:include page="/header.do" />
+<style>
+.inputArea {margin:10px 0; }
+label {display: inline-block; width:100%; padding:5px;}
+label[for='info_content']{display:block;}
+input {width: 150px; }
+textarea#info_content {width:100%; height: 180px;}
+
+.select_img img { margin:20px 0;}
+</style>
 <!-- 	<div class="infoForm" style="padding: 50px; margin-left: 600px"> -->
 		
 <!-- 		<div class="infoShare"> -->
@@ -80,7 +88,6 @@
 <!--         </div> -->
 <%--         </c:if> --%>
         <input type="hidden" name="pwVal" id="pwVal"/>
-   </div>
    
    
    
@@ -89,7 +96,7 @@
 <input type="hidden" id="file_path" name="file_path" value="" />
 <input type="hidden" id="file_name" name="file_name" value="" />
 </form>
-	<div class="container"><!-- main_container -->
+	<div class="container" style="background-color: white;"><!-- main_container -->
 		<div>
 			<div id="content" class="content">
 				<div>
@@ -109,48 +116,92 @@
 		            </div>
  
 	                <!--게시글 보기-->
-                    <div class="board_view">
-                      <div class="bv_top">
-                                <div class="bv_ttl">
-                                    <h4></h4>
-                                </div>
-                                <div class="bv_category">
-                                
-                                    <ul>
-                                        <li><span class="bvc_ttl" style="">제목 :</span><span class="bvc_detail"></span><input>
-                                        </li>
-                                    </ul>
-                                    
-                                    <ul>
-                                        <li><span class="bvc_ttl">작성자 :</span><span class="bvc_detail"></span><input>
-                                        
-                                        </li>
-                                    </ul> 
-                                        
-                                </div>
-                            </div>
-                        
-                    <div class="bv_content">
+	                <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+<!-- 		                      	<div class="inputArea"> -->
+<!-- 		                      		<label>카테고리</label> -->
+<!-- 		                      		<select class="category1"> -->
+<!-- 		                      			<option value="">팩트체크</option> -->
+<!-- 		                      			<option value="">이슈체크</option> -->
+<!-- 		                      		</select> -->
+<!-- 		                      	</div> -->
+<!-- 		                      	<div class="inputArea"> -->
+<!-- 		                      		<label for="member_id">유저 아이디</label> -->
+<!-- 		                      		<input type="text" id="member_id" name="member_id"/> -->
+<!-- 		                      	</div> -->
+		                      	
+<!-- 		                      	<div class="inputArea"> -->
+<!-- 		                      		<label for="member_nick">유저 닉네임</label> -->
+<!-- 		                      		<input type="text" id="member_nick" name="member_nick"/> -->
+<!-- 		                      	</div> -->
+
+		                      	<div class="inputArea">
+		                      		<label for="member_rank">유저 등급</label>
+		                      		<input type="text" id="member_rank" name="member_rank"/>
+		                      	</div>
+		                      	
+		                      	<div class="inputArea">
+		                      		<label for="info_title">제목</label>
+		                      		<input type="text" id="info_title" name="info_title"/>
+		                      	</div>
+		                      	
+		                      	<div class="inputArea">
+		                      		<label for="info_writer">작성자</label>
+		                      		<input type="text" id="info_writer" name="info_writer" value="${logInInfo.member_id}" readonly="readonly"/>
+		                      	</div>
+	           
+                          <div class="bv_content">
                                 
                                 <div class="bvc_txt">
-                                	<p>&nbsp;내용
-                                	</p>
-                                	<textarea rows="" cols="">
-                                	</textarea>
 
+                                	<div class="inputArea">
+	                                	<label for="info_content">&nbsp;내용</label>
+	                                	<textarea rows="5" cols="50" id="info_content" name="info_content">
+	                                	</textarea>
+                                	</div>
+                                	
+                                	<div class="inputArea">
+                                		<label for="info_img"></label>
+                                		<input type="file" id="info_img" name="file"/>
+                                		<div class="select_img"><img src="" /></div>
+                                		
+                                		<script type="text/javascript">
+											$("#info_img").change(function(){
+												if(this.files && this.files[0]){
+													var reader = new FileReader;
+													reader.onload = function(data){
+														$(".select_img img").attr("src", data.target.result).width(500);
+													}
+													reader.readAsDataURL(this.files[0]);
+												}	
+											})		                                		
+                                		</script>
+                                		
+                                		
+                                		<h3 style="font-weight: bold">저장경로 : <%=request.getRealPath("/") %></h3>
+                                	</div>
+                                	
+                                	
+                                	
                                 </div>
                                 
-                    </div>
+                                
+                                
+                   		 </div>
 
-
+						<div class="inputArea" style="float: right">
+							<button type="submit" id="register_Btn" class="tag tag_lg tag_blue">등록</button>
                         </div>
-                    	<br>
-						<div class="info_btn" style="float: right">
-							<button id="btnUpdate" class="tag tag_lg tag_blue">작성완료</button>
-                        	<button id="btnDelete" class="tag tag_lg tag_red" onclick="alert('삭제되었습니다.');">취소</button>
-                        </div>
-				</div>
-			</div>
-		</div>
-	</div>
+                      </form>
+                      	<div class="inputArea" style="float: right">
+                        	<button id="Cancel_Btn" class="tag tag_lg tag_red" onclick="history.go(-1)">취소</button>
+                      	</div>
+                      
+                      
+                                     
+                  </div>
+             </div>
+         </div>
+      </div>            
+                  
+            
 <jsp:include page="/footer.do" />

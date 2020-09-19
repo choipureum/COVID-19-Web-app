@@ -166,8 +166,8 @@ function fn_fileDown(name, path, seq){
 	                <!--게시판 목록-->	                
 	                 <div class="tab_flt cnt2-2-2">
                       <ul>
-                          <li class="on"><a href="/covidFact.do"><span>코로나19 팩트</span></a></li>
-                         <li ><a href="/issueCheck.do"><span>이슈체크</span></a></li>
+                          <li><a href="/covidFact.do"><span>코로나19 팩트</span></a></li>
+                         <li class="on" ><a href="/issueCheck.do"><span>이슈체크</span></a></li>
                       </ul>
                     </div>
                     

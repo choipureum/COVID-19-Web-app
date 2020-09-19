@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -30,7 +29,7 @@
                         <h4 class="s_title_in2">국내 발생 현황</h4>                        
                         <p class="s_descript">코로나바이러스감염증-19 국내 발생현황</p>
                         
-                        <h5 class="s_title_in3">누적 확진자 현황 <span class="t_date">(9.6. 00시 기준)</span></h5>
+                        <h5 class="s_title_in3">누적 확진자 현황 <span class="t_date">(9.22. 00시 기준)</span></h5>
 						<div class="caseTable">
 							<div>
 								<strong class="ca_top">확진환자</strong>
@@ -38,7 +37,7 @@
 									<li>
 										<dl>
 											<dt class="ca_subtit">누적</dt>
-											<dd class="ca_value">21,177</dd>
+											<dd class="ca_value">22,783</dd>
 										</dl>
 									</li>
 									<li>
@@ -48,15 +47,15 @@
 												<ul>
 													<li>
 														<strong class="inner_tit sum">소계</strong>
-														<p class="inner_value">+ 167</p>
+														<p class="inner_value">+ 126</p>
 													</li>
 													<li>
 														<strong class="inner_tit">해외유입</strong>
-														<p class="inner_value">15</p>
+														<p class="inner_value">17</p>
 													</li>
 													<li>
 														<strong class="inner_tit">국내발생</strong>
-														<p class="inner_value">152</p>
+														<p class="inner_value">109</p>
 													</li>
 												</ul>
 											</dd>
@@ -70,14 +69,14 @@
 									<li>
 										<dl>
 											<dt class="ca_subtit">누적</dt>
-											<dd class="ca_value">16,146</dd>
+											<dd class="ca_value">19,771</dd>
 										</dl>
 									</li>
 									<li>
 										<dl>
 											<dt class="ca_subtit">전일대비</dt>
 											<dd class="ca_value">
-												<span class="txt_ntc">+ 137</span>
+												<span class="txt_ntc">+ 228</span>
 											</dd>
 										</dl>
 									</li>
@@ -89,14 +88,14 @@
 									<li>
 										<dl>
 											<dt class="ca_subtit">누적</dt>
-											<dd class="ca_value">4,697</dd>
+											<dd class="ca_value">2,635</dd>
 										</dl>
 									</li>
 									<li>
 										<dl>
 											<dt class="ca_subtit">전일대비</dt>
 											<dd class="ca_value">
-												<span class="txt_ntc">+ 29</span>
+												<span class="txt_ntc">- 107</span>
 											</dd>
 										</dl>
 									</li>
@@ -108,14 +107,14 @@
 									<li>
 										<dl>
 											<dt class="ca_subtit">누적</dt>
-											<dd class="ca_value">334</dd>
+											<dd class="ca_value">377</dd>
 										</dl>
 									</li>
 									<li>
 										<dl>
 											<dt class="ca_subtit">전일대비</dt>
 											<dd class="ca_value">
-												<span class="txt_ntc">+ 1</span>
+												<span class="txt_ntc">+ 5</span>
 											</dd>
 										</dl>
 									</li>
@@ -125,7 +124,7 @@
                         
                         
                         <!--20200415 추가 시작-->
-                        <h5 class="s_title_in3">해외유입 환자현황 <span class="t_date">(9.6 00시 기준)</span></h5>						
+                        <h5 class="s_title_in3">해외유입 환자현황 <span class="t_date">(9.22 00시 기준)</span></h5>						
 						<div class="data_table mgt16">
 						  <table class="num">
 							<caption><span class="hdn">해외유입 환자현황표 - 구분, 합계, 유입국가(중국, 중국외 아시아, 유럽, 미주, 아프리카), 확인단계(검역 단계, 지역사회), 국적(내국인, 외국인)으로 구성</span></caption>
@@ -149,8 +148,8 @@
 								  <th scope="row"  colspan="2">합계</th>
 							  
 					          
-								  <td>15</td>
-								  <td colspan="2">2,892</td>
+								  <td>17</td>
+								  <td colspan="2">3,063</td>
 							  
 							  
 								</tr>
@@ -254,7 +253,7 @@
 						</div>                        
                         <!-- 20200415 추가 끝// -->
                         
-                        <h5 class="s_title_in3">누적 검사현황 <span class="t_date">(9.6. 00시 기준)</span></h5>
+                        <h5 class="s_title_in3">누적 검사현황 <span class="t_date">(9.22. 00시 기준)</span></h5>
                         <div class="data_table mgt16 mini">
 	                        <table class="num minisize">
 	                            <caption><span class="hdn">누적 검사현황 - 검사완료(확진환자수 (격리중, 격리해제, 사망, 소계), 결과음성, 소계), 검사중, 합계로 구성</span></caption>
@@ -288,14 +287,14 @@
 	                            </thead>
 	                            <tbody>
 	                            	<tr>
-	                                	<td>4,697</td>
-	                                	<td>16,146</td>
-	                                	<td>334</td>
-	                                	<td>21,177</td>
-	                                	<td>1,975,137</td>
-	                                	<td>1,996,314</td>
-	                                	<td>49,621</td>
-	                                	<td>2,045,935</td>
+	                                	<td>2,635</td>
+	                                	<td>19,771</td>
+	                                	<td>377</td>
+	                                	<td>22,783</td>
+	                                	<td>2,158,179</td>
+	                                	<td>2,180,962</td>
+	                                	<td>25,403</td>
+	                                	<td>2,206,365</td>
 	                                </tr>
 	                            </tbody>
 	                         </table>    
@@ -303,7 +302,7 @@
                         
                         <div class="liveMoveChart mgt16">
                         	<div>
-                        		<div class="title"><h6 class="s_title_in3">확진환자 지역별 비율 <span class="t_date">(9.6 00시 기준)</span></h6></div>
+                        		<div class="title"><h6 class="s_title_in3">확진환자 지역별 비율 <span class="t_date">(9.22 00시 기준)</span></h6></div>
                         		
                         		<div class="c_chart c_chart_rpr_B">
 									<div class="cc_graph">
@@ -312,7 +311,7 @@
 								</div>
                         	</div>
                         	<div>
-                        		<div class="title"><h6 class="s_title_in3">감염경로별 확진자 비율 <span class="t_date">(9.6. 00시 기준)</span></h6></div>
+                        		<div class="title"><h6 class="s_title_in3">감염경로별 확진자 비율 <span class="t_date">(9.22. 00시 기준)</span></h6></div>
                         		                       		
                         		<div class="c_chart c_chart_gir">
 									<div class="cc_graph">
@@ -367,31 +366,31 @@
 										
 									
 										
-											<tr><td>20200831</td><td>19947</td><td>248</td></tr>
+											<tr><td>20200916</td><td>22055</td><td>118</td></tr>
 										
 									
 										
-											<tr><td>20200901</td><td>20182</td><td>235</td></tr>
+											<tr><td>20200917</td><td>22176</td><td>99</td></tr>
 										
 									
 										
-											<tr><td>20200902</td><td>20449</td><td>267</td></tr>
+											<tr><td>20200918</td><td>22285</td><td>98</td></tr>
 										
 									
 										
-											<tr><td>20200903</td><td>20644</td><td>195</td></tr>
+											<tr><td>20200919</td><td>22391</td><td>91</td></tr>
 										
 									
 										
-											<tr><td>20200904</td><td>20842</td><td>198</td></tr>
+											<tr><td>20200920</td><td>22504</td><td>105</td></tr>
 										
 									
 										
-											<tr><td>20200905</td><td>21010</td><td>168</td></tr>
+											<tr><td>20200921</td><td>22657</td><td>145</td></tr>
 										
 									
 										
-											<tr><td>20200906</td><td>21177</td><td>167</td></tr>
+											<tr><td>20200922</td><td>22783</td><td>109</td></tr>
 										
 									
 								
@@ -432,31 +431,31 @@
 										
 									
 										
-											<tr><td>20200831</td><td>14973</td><td>70</td></tr>
+											<tr><td>20200916</td><td>18029</td><td>413</td></tr>
 										
 									
 										
-											<tr><td>20200901</td><td>15198</td><td>225</td></tr>
+											<tr><td>20200917</td><td>18226</td><td>197</td></tr>
 										
 									
 										
-											<tr><td>20200902</td><td>15356</td><td>158</td></tr>
+											<tr><td>20200918</td><td>18489</td><td>263</td></tr>
 										
 									
 										
-											<tr><td>20200903</td><td>15529</td><td>173</td></tr>
+											<tr><td>20200919</td><td>18873</td><td>389</td></tr>
 										
 									
 										
-											<tr><td>20200904</td><td>15783</td><td>254</td></tr>
+											<tr><td>20200920</td><td>19310</td><td>432</td></tr>
 										
 									
 										
-											<tr><td>20200905</td><td>16009</td><td>226</td></tr>
+											<tr><td>20200921</td><td>19543</td><td>233</td></tr>
 										
 									
 										
-											<tr><td>20200906</td><td>16146</td><td>137</td></tr>
+											<tr><td>20200922</td><td>19771</td><td>228</td></tr>
 										
 																
                         		</tbody>
@@ -465,7 +464,7 @@
                         
                         <div class="board_top mgt16">							
 							<div class="fl_l">
-								<h5 class="s_title_in3">확진자 성별 현황<span class="title_info">(9.6 00시 기준)</span></h5>
+								<h5 class="s_title_in3">확진자 성별 현황<span class="title_info">(9.22 00시 기준)</span></h5>
 							</div>
 						</div>
 						<div class="data_table">
@@ -490,16 +489,16 @@
 								
 									<tr>
 										<th scope="row">남성</th>
-										<td><span>9,614</span>&nbsp;<span class="txt_clr_nh">(45.4)</span></td>
-										<td><span>176</span>&nbsp;<span class="txt_clr_nh">(52.69)</span></td>
-										<td><span class="txt_clr_nh">1.83</span></td>
+										<td><span>10,423</span>&nbsp;<span class="txt_clr_nh">(45.75)</span></td>
+										<td><span>198</span>&nbsp;<span class="txt_clr_nh">(52.52)</span></td>
+										<td><span class="txt_clr_nh">1.9</span></td>
 									</tr>	
 								
 									<tr>
 										<th scope="row">여성</th>
-										<td><span>11,563</span>&nbsp;<span class="txt_clr_nh">(54.6)</span></td>
-										<td><span>158</span>&nbsp;<span class="txt_clr_nh">(47.31)</span></td>
-										<td><span class="txt_clr_nh">1.37</span></td>
+										<td><span>12,360</span>&nbsp;<span class="txt_clr_nh">(54.25)</span></td>
+										<td><span>179</span>&nbsp;<span class="txt_clr_nh">(47.48)</span></td>
+										<td><span class="txt_clr_nh">1.45</span></td>
 									</tr>	
 								
 																
@@ -511,7 +510,7 @@
 
                         <div class="board_top mgt16">							
 							<div class="fl_l">
-								<h5 class="s_title_in3">확진자 연령별 현황<span class="title_info">(9.6 00시 기준 )</span></h5>
+								<h5 class="s_title_in3">확진자 연령별 현황<span class="title_info">(9.22 00시 기준 )</span></h5>
 							</div>
 						</div>
 						<div class="data_table">
@@ -534,23 +533,23 @@
                         		<tbody>
                         		
 								
-									<tr><th scope="row">80 이상</th><td><span>858</span>&nbsp;<span class="txt_clr_nh">(4.05)</span></td><td><span>169</span>&nbsp;<span class="txt_clr_nh">(50.60)</span></td><td><span class="txt_clr_nh">19.7</span></td></tr>
+									<tr><th scope="row">80 이상</th><td><span>923</span>&nbsp;<span class="txt_clr_nh">(4.05)</span></td><td><span>194</span>&nbsp;<span class="txt_clr_nh">(51.46)</span></td><td><span class="txt_clr_nh">21.02</span></td></tr>
 								
-									<tr><th scope="row">70-79</th><td><span>1,612</span>&nbsp;<span class="txt_clr_nh">(7.61)</span></td><td><span>101</span>&nbsp;<span class="txt_clr_nh">(30.24)</span></td><td><span class="txt_clr_nh">6.27</span></td></tr>
+									<tr><th scope="row">70-79</th><td><span>1,792</span>&nbsp;<span class="txt_clr_nh">(7.87)</span></td><td><span>118</span>&nbsp;<span class="txt_clr_nh">(31.30)</span></td><td><span class="txt_clr_nh">6.58</span></td></tr>
 								
-									<tr><th scope="row">60-69</th><td><span>3,217</span>&nbsp;<span class="txt_clr_nh">(15.19)</span></td><td><span>42</span>&nbsp;<span class="txt_clr_nh">(12.57)</span></td><td><span class="txt_clr_nh">1.31</span></td></tr>
+									<tr><th scope="row">60-69</th><td><span>3,582</span>&nbsp;<span class="txt_clr_nh">(15.72)</span></td><td><span>42</span>&nbsp;<span class="txt_clr_nh">(11.14)</span></td><td><span class="txt_clr_nh">1.17</span></td></tr>
 								
-									<tr><th scope="row">50-59</th><td><span>3,880</span>&nbsp;<span class="txt_clr_nh">(18.32)</span></td><td><span>16</span>&nbsp;<span class="txt_clr_nh">(4.79)</span></td><td><span class="txt_clr_nh">0.41</span></td></tr>
+									<tr><th scope="row">50-59</th><td><span>4,204</span>&nbsp;<span class="txt_clr_nh">(18.45)</span></td><td><span>17</span>&nbsp;<span class="txt_clr_nh">(4.51)</span></td><td><span class="txt_clr_nh">0.4</span></td></tr>
 								
-									<tr><th scope="row">40-49</th><td><span>2,841</span>&nbsp;<span class="txt_clr_nh">(13.42)</span></td><td><span>4</span>&nbsp;<span class="txt_clr_nh">(1.20)</span></td><td><span class="txt_clr_nh">0.14</span></td></tr>
+									<tr><th scope="row">40-49</th><td><span>3,044</span>&nbsp;<span class="txt_clr_nh">(13.36)</span></td><td><span>4</span>&nbsp;<span class="txt_clr_nh">(1.06)</span></td><td><span class="txt_clr_nh">0.13</span></td></tr>
 								
-									<tr><th scope="row">30-39</th><td><span>2,619</span>&nbsp;<span class="txt_clr_nh">(12.37)</span></td><td><span>2</span>&nbsp;<span class="txt_clr_nh">(0.60)</span></td><td><span class="txt_clr_nh">0.08</span></td></tr>
+									<tr><th scope="row">30-39</th><td><span>2,785</span>&nbsp;<span class="txt_clr_nh">(12.22)</span></td><td><span>2</span>&nbsp;<span class="txt_clr_nh">(0.53)</span></td><td><span class="txt_clr_nh">0.07</span></td></tr>
 								
-									<tr><th scope="row">20-29</th><td><span>4,460</span>&nbsp;<span class="txt_clr_nh">(21.06)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
+									<tr><th scope="row">20-29</th><td><span>4,647</span>&nbsp;<span class="txt_clr_nh">(20.4)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
 								
-									<tr><th scope="row">10-19</th><td><span>1,197</span>&nbsp;<span class="txt_clr_nh">(5.65)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
+									<tr><th scope="row">10-19</th><td><span>1,259</span>&nbsp;<span class="txt_clr_nh">(5.53)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
 								
-									<tr><th scope="row">0-9</th><td><span>493</span>&nbsp;<span class="txt_clr_nh">(2.33)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
+									<tr><th scope="row">0-9</th><td><span>547</span>&nbsp;<span class="txt_clr_nh">(2.4)</span></td><td><span>0</span>&nbsp;<span class="txt_clr_nh">(0.00)</span></td><td><span class="txt_clr_nh">-</span></td></tr>
 								
 									
                         		</tbody>
@@ -594,19 +593,19 @@
 			    figure: []
 			};			
 				RPR_B_data.label.push("대구");
-				RPR_B_data.figure.push("7082");
+				RPR_B_data.figure.push("7120");
 			
 				RPR_B_data.label.push("기타");
-				RPR_B_data.figure.push("4681");
+				RPR_B_data.figure.push("9257");
 			
 				RPR_B_data.label.push("서울");
-				RPR_B_data.figure.push("4314");
+				RPR_B_data.figure.push("4904");
 			
 				RPR_B_data.label.push("경기");
-				RPR_B_data.figure.push("3625");
+				RPR_B_data.figure.push("4089");
 			
 				RPR_B_data.label.push("경북");
-				RPR_B_data.figure.push("1475");
+				RPR_B_data.figure.push("1502");
 			
 			
 // 			// 집단 별 확진자 비율
@@ -631,22 +630,22 @@
 			
 			
 				TC_data.label.push("집단발병");
-				TC_data.figure.push("7579");
+				TC_data.figure.push("8142");
 			
 				TC_data.label.push("신천지관련");
 				TC_data.figure.push("5214");
 			
 				TC_data.label.push("해외유입");
-				TC_data.figure.push("2892");
+				TC_data.figure.push("3046");
 			
 				TC_data.label.push("기타");
-				TC_data.figure.push("2851");
+				TC_data.figure.push("3222");
 			
 				TC_data.label.push("조사중");
-				TC_data.figure.push("2412");
+				TC_data.figure.push("2802");
 			
 				TC_data.label.push("해외유입관련");
-				TC_data.figure.push("229");
+				TC_data.figure.push("231");
 			
 			
 			// 주간확진자 동향

@@ -53,5 +53,15 @@ public class NewsFactController {
 		return mav; 
 	}
 	
+	@RequestMapping(value="/issueCheck.do", method = RequestMethod.GET)
+	public ModelAndView issueCheck(Model model) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("newsBoard/issueCheck");
+		
+		return mav;
+	}
+	
 	
 }

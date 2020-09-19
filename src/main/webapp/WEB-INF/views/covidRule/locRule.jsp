@@ -1,9 +1,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <jsp:include page="/header.do"/>
+<!-- js AJAX 검색구현 -->
+<script>
+$(document).ready(function() {
+    $("#search_content").keyup(function() {
+    	var k = $(this).val();
+    	$(".subGrp").hide();
+        var temp = $(".listLink:contains('" + k + "')");
+        $(temp).parent().parent().parent().show();
+        
+        var item = document.getElementsByClassName("listLink");
+        for(i=0;i<item.length;i++){      
+        	if(item[i].innerHTML.indexOf(k)>-1){       		
+        		 item[i].style.display = "inline-block";
+        	}
+        	else{
+        		item[i].style.display = "none";
+        	}
+        }
+        
+    });
+});
+</script>
+
+
 
 
 	<div class="container" style="background:white;"><!-- main_container -->
@@ -33,7 +56,7 @@
                         <div class="tab_flt cnt2-2-2">
                             <ul>
                                 <li class="on"><a href="/locRule.do"><span>설명 자료</span></a></li>
-                                <li ><a href="guidelineListf207.html?brdId=6&amp;brdGubun=62&amp;dataGubun=622"><span>홍보 자료</span></a></li>
+                                <li ><a href=""><span>홍보 자료</span></a></li>
                             </ul>
                         </div>
                     
@@ -46,8 +69,8 @@
 							<fieldset>
 								<legend><span class="hdn">장소별 실천수칙 통합검색</span></legend>
 								    <label class="hdn" for="place_word">검색어</label>
-									<input type="text" id="search_content" name="search_content" value="" placeholder="검색어를 입력해 주세요." />
-									<input type="submit" class="submit" value="검색" /><a href="javascript:void();" class="allList" onClick="javascript:fn_allList()">전체목록</a>
+									<input type="text" id="search_content" name="search_content" value=""  placeholder="검색어를 입력해 주세요." />
+									<input type="submit" class="submit" value="검색" /><a href="/locRule.do" class="allList" >전체목록</a>
 							</fieldset>
 						</div>
 					 </div>
@@ -74,14 +97,13 @@
 							
 							
 								<div class="subGrp">
-									<p class="subtitle">일할 때</p>
+									<p class="subtitle" style="text-align:left">일할 때</p>
 				 	 		  		
 									<ul>				
-							 				<li><a class="listLink" href="javascript:void(0);" onclick="javascript:fn_boardView('/guidelineView.do','6','62','3111', '', '625');">사업장</a></li>
+							 				<li><a class="listLink" href="javascript:void(0);" >사업장</a></li>
+								 									 	
 								 		
-							 		
-								 		
-							 				<li><a class="listLink" href="javascript:void(0);" onclick="javascript:fn_boardView('/guidelineView.do','6','62','3112', '', '625');">회의</a></li>
+							 				<li ><a class="listLink" href="javascript:void(0);" onclick="javascript:fn_boardView('/guidelineView.do','6','62','3112', '', '625');">회의</a></li>
 								 		
 							 		
 								 		

@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -31,7 +30,7 @@
                        <h4 class="s_title_in2">국외 발생 현황</h4>
                      
 						<h5 class="s_title_in3">전체 국가 발생 현황</h5>
-						<p class="s_descript">코로나바이러스감염증-19 환자 총 26,746,273명 (사망 877,007 명) ( 09.06. 09시 기준)</p>
+						<p class="s_descript">코로나바이러스감염증-19 환자 총 30,010,484명 (사망 943,095 명) ( 09.22. 09시 기준)</p>
 				
 						<div class="box_toggle">
 							<div class="btnarea">
@@ -3478,7 +3477,7 @@
 										
 										<tr>
 											<th colspan="2" scope="row">합계</th>
-											<td class="w_bold">26,746,273명<br />(사망 877,007)</td>
+											<td class="w_bold">30,010,484명<br />(사망 943,095)</td>
 										</tr>
 								</tbody>
 							</table>
@@ -3571,13 +3570,13 @@
 								<thead>
 									<tr>
 										<th scope="col">국가/일</th>										
-										<th scope="col">08.31</th>
-										<th scope="col">09.01</th>
-										<th scope="col">09.02</th>
-										<th scope="col">09.03</th>
-										<th scope="col">09.04</th>
-										<th scope="col">09.05</th>
-										<th scope="col">09.06</th>
+										<th scope="col">09.16</th>
+										<th scope="col">09.17</th>
+										<th scope="col">09.18</th>
+										<th scope="col">09.19</th>
+										<th scope="col">09.20</th>
+										<th scope="col">09.21</th>
+										<th scope="col">09.22</th>
 										<th scope="col">누적<br />사망자수</th>
 									</tr>
 								</thead>
@@ -4243,13 +4242,13 @@
 												<th scope="row">한국</th>
 												<td>
 													
-														2,037,045건
+														2,206,365건
 														
 													
 												</td>
 												<td>
 													
-														21,010명
+														22,783명
 														
 													
 												<td>
@@ -4391,38 +4390,38 @@
 									
 										
 											
-												중국 (  09월 04일 24시 기준)
+												중국 (  09월 21일 24시 기준)
 												
 											
 										
 											
 												
-												, 한국 (  09월 05일 00시 기준)
+												, 한국 (  09월 22일 00시 기준)
 											
 										
 											
 												
-												, 이탈리아 (  09월 05일 00시 기준)
+												, 이탈리아 (  09월 22일 00시 기준)
 											
 										
 											
 												
-												, 이란 (  09월 05일 16시 기준)
+												, 이란 (  09월 21일 16시 기준)
 											
 										
 											
 												
-												, 일본 (  09월 05일 00시 기준)
+												, 일본 (  09월 22일 00시 기준)
 											
 										
 											
 												
-												, 미국 (  09월 05일 16시 기준)
+												, 미국 (  09월 21일 16시 기준)
 											
 										
 											
 												
-												, 영국 (  09월 05일 00시 기준)
+												, 영국 (  09월 22일 00시 기준)
 											
 										
 									

@@ -36,6 +36,10 @@ public class RulePaging {
 	private int start;
 	//sql에서 사용할 끝 값
 	private int end;
+	//sql에서 사용할 검색 카테고리
+	private String search_item;
+	//sql에서 사용할 검색 내용
+	private String search_content;
 	private String filter;
 	public RulePaging() {
 		
@@ -166,12 +170,33 @@ public class RulePaging {
 		this.end = end;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Paging [currentPage=" + currentPage + ", total=" + total + ", cntPerPage=" + cntPerPage + ", blockCnt="
-				+ blockCnt + ", blockStart=" + blockStart + ", blockEnd=" + blockEnd + ", lastPage=" + lastPage
-				+ ", start=" + start + ", end=" + end + "]";
+		return "RulePaging [currentPage=" + currentPage + ", total=" + total + ", cntPerPage=" + cntPerPage
+				+ ", blockCnt=" + blockCnt + ", blockStart=" + blockStart + ", blockEnd=" + blockEnd + ", lastPage="
+				+ lastPage + ", start=" + start + ", end=" + end + ", search_item=" + search_item + ", search_content="
+				+ search_content + ", filter=" + filter + "]";
 	}
+
+	//검색
+	public String getSearch_item() {
+		return search_item;
+	}
+
+	public void setSearch_item(String search_item) {
+		this.search_item = search_item;
+	}
+
+	public String getSearch_content() {
+		return search_content;
+	}
+
+	public void setSearch_content(String search_content) {
+		this.search_content = search_content;
+	}
+	
 
 	
 

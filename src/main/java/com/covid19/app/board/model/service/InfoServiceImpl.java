@@ -1,19 +1,19 @@
 package com.covid19.app.board.model.service;
 
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.processing.FilerException;
 
-import org.apache.commons.io.FileExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.covid19.app.board.model.dao.InfoDao;
+import com.covid19.app.board.model.vo.InfoReply;
 import com.covid19.app.board.model.vo.InfoShare;
 
 import common.exception.FileException;
@@ -49,6 +49,13 @@ public class InfoServiceImpl implements InfoService{
 		
 		return commandMap;
 	}
+	
+	@Override
+	public List<?> selectReplyList(int info_idx) {
+		
+		return infoDao.selectInfoReplyList(info_idx);
+	}
+
 	
 	//정보공유 게시판 상세조회
 	@Override
@@ -100,6 +107,35 @@ public class InfoServiceImpl implements InfoService{
 		
 	}
 
+	
+	//댓글등록
+	@Override
+	public void insertInfoReply(InfoReply infoReply) {
+		
+		infoDao.insertReply(infoReply);
+	}
+
+	//댓글삭제
+	@Override
+	public int deleteInfoReply(String reply_idx) {
+		return infoDao.deleteInfoReply(reply_idx);
+	}
+
+	//댓글 수정
+	@Override
+	public void replyUpdate(InfoReply infoReply) {
+		infoDao.updateInfoReply(infoReply);
+		
+	}
+
+	@Override
+	public void insertInfo(InfoShare infoshare) throws Exception {
+		infoDao.insertInfo(infoshare);
+		
+	}
+
+	
+	
 	
 
 	
