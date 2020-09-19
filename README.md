@@ -99,9 +99,8 @@ SQL Developer
 <!-- LICENSE -->
 ## 프로젝트관리툴
 **NOTION**
-
 <img src="http://logovectordl.com/wp-content/uploads/2019/11/notion-labs-inc-logo-vector.png" alt="" width="300px" height="100px"/>
-
+[!주소][https://www.notion.so/66a42d30e00d4080ba98fc22de3b0520?v=d549b893077645e48b5fad7481e0e864]
 <!-- CONTACT -->
 ## 개발이미지
 
