@@ -449,20 +449,20 @@
 						<!--뉴스&이슈 / face -->
 						<div class="m_newsarea">
 							<div class="m_news">
-								<h3>뉴스 & 이슈<a href="tcmBoardList81c5.html?brdId=3&amp;brdGubun=" class="more">더보기</a></h3>
-								<h4 class="tit1">최신 브리핑</h4>
+								<h3>뉴스 & 이슈<a href="/covidNews.do" class="more">더보기</a></h3>
+								<h4 class="tit1">보도자료</h4>
 								<ul class="m_text_list">
-									<li><a href="tcmBoardView009e.html?contSeq=358872">코로나바이러스감염증-19 중앙재난안전대책본부 정례브리핑(8월 5일)</a><i class="ico_new">N</i></li><li><a href="tcmBoardViewfa34.html?contSeq=358871">코로나바이러스감염증-19 국내 발생 현황 (8월 5일 0시)</a><i class="ico_new">N</i></li>
+									<li><a href="/covidNews.do?cPage=1">코로나바이러스감염증-19 중앙재난안전대책본부 정례브리핑(8월 5일)</a><i class="ico_new">N</i></li><li><a href="/covidNews.do?cPage=2">코로나바이러스감염증-19 국내 발생 현황 (8월 5일 0시)</a><i class="ico_new">N</i></li>
 								</ul>
-								<h4 class="tit2">핫이슈</h4>
+								<h4 class="tit2">팩트체크</h4>
 								<ul class="m_text_list">
-									<li><a href="http://www.korea.kr/special/policyFocusView.do?newsId=148875447&amp;pageIndex=1&amp;pkgId=49500742&amp;pkgSubId=&amp;pkgSubs=&amp;exceptNewsId=&amp;cardYn=&amp;cateId=&amp;cateIds=&amp;sectId=&amp;sec"  target="_blank" >코로나 확진자 수능 병원서 치른다…자가격리자는 별도 시험장</a></li><li><a href="http://www.korea.kr/special/policyFocusView.do?newsId=148875459&amp;pageIndex=1&amp;pkgId=49500742&amp;pkgSubId=&amp;pkgSubs=&amp;exceptNewsId=&amp;cardYn=&amp;cateId=&amp;cateIds=&amp;sectId=&amp;sec"  target="_blank" >“코로나19, 방심하면 예상치 못한 곳서 취약한 연결고리로 파고들어”</a></li>
+									<li><a href="/covidFact.do?cPage=1"  target="_blank" >코로나 확진자 수능 병원서 치른다…자가격리자는 별도 시험장</a></li><li><a href="/covidFact.do?cPage=2"  target="_blank" >“코로나19, 방심하면 예상치 못한 곳서 취약한 연결고리로 파고들어”</a></li>
 								</ul>								
 							</div>
 							<div class="m_fact">
-								<h3>코로나19 팩트체크<a href="factBoardListacb8.html?brdId=3&amp;brdGubun=33" class="more">더보기</a></h3>
+								<h3>공지사항<a href="noticeBoard.do" class="more">더보기</a></h3>
 								<ul class="m_text_list">
-									<li><a href="searchBoardView9bc2.html?brdId=3&amp;brdGubun=33&amp;dataGubun=331&amp;ncvContSeq=2767">[이미지] 정부가 ‘임시생활시설 방역업체 등의 단가를 깎고 지급을 미뤘다’는 보도는 사실과 다릅니다.</a></li><li><a href="searchBoardViewbd2b.html?brdId=3&amp;brdGubun=33&amp;dataGubun=331&amp;ncvContSeq=2700">[이미지] 정부가 요금이 비싸다며 운송비를 지급하지 않는다는 보도는 사실이 아닙니다.</a></li>
+									<li><a href="/noticeBoard.do?cPage=1">[이미지] 정부가 ‘임시생활시설 방역업체 등의 단가를 깎고 지급을 미뤘다’는 보도는 사실과 다릅니다.</a></li><li><a href="/noticeBoard.do?cPage=2">[이미지] 정부가 요금이 비싸다며 운송비를 지급하지 않는다는 보도는 사실이 아닙니다.</a></li>
 								</ul>
 								<div class="m_now_banner">
 									<a href="https://www.youtube.com/playlist?list=PL_-Emxqwow0B8HTJBS7mccInnQlOKIIo5" target="_blank" title="새창이동 - 유투브 채널 "><span class="b_tit">푸름 &amp; 상옥이가 알려드립니다</a>

@@ -117,10 +117,15 @@ public class MemberDao {
 		return session.delete("MEMBER.memberdelete", member);
 	}
 
-	public Pay mypagePay(String member_id) {
-		// TODO Auto-generated method stub
-		return session.selectOne("MEMBER.mypagePay", member_id);
-	}
+	 /**
+	    * 결제 목록
+	    * @param member_id
+	    * @return
+	    */
+	   public List<Pay> mypagePay(String member_id) {
+	      // TODO Auto-generated method stub
+	      return session.selectList("MEMBER.mypagePay", member_id);
+	   }
 
 
 

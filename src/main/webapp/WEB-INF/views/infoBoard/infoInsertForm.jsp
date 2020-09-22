@@ -10,7 +10,6 @@ label[for='info_content']{display:block;}
 input {width: 150px; }
 textarea#info_content {width:100%; height: 180px;}
 
-.select_img img { margin:20px 0;}
 </style>
 <!-- 	<div class="infoForm" style="padding: 50px; margin-left: 600px"> -->
 		
@@ -116,14 +115,7 @@ textarea#info_content {width:100%; height: 180px;}
 		            </div>
  
 	                <!--게시글 보기-->
-	                <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
-<!-- 		                      	<div class="inputArea"> -->
-<!-- 		                      		<label>카테고리</label> -->
-<!-- 		                      		<select class="category1"> -->
-<!-- 		                      			<option value="">팩트체크</option> -->
-<!-- 		                      			<option value="">이슈체크</option> -->
-<!-- 		                      		</select> -->
-<!-- 		                      	</div> -->
+	                <form role="form" method="post" autocomplete="off" >
 <!-- 		                      	<div class="inputArea"> -->
 <!-- 		                      		<label for="member_id">유저 아이디</label> -->
 <!-- 		                      		<input type="text" id="member_id" name="member_id"/> -->
@@ -133,15 +125,12 @@ textarea#info_content {width:100%; height: 180px;}
 <!-- 		                      		<label for="member_nick">유저 닉네임</label> -->
 <!-- 		                      		<input type="text" id="member_nick" name="member_nick"/> -->
 <!-- 		                      	</div> -->
-
-		                      	<div class="inputArea">
-		                      		<label for="member_rank">유저 등급</label>
-		                      		<input type="text" id="member_rank" name="member_rank"/>
-		                      	</div>
 		                      	
 		                      	<div class="inputArea">
 		                      		<label for="info_title">제목</label>
 		                      		<input type="text" id="info_title" name="info_title"/>
+<!-- 		                      		<label for="info_date">작성일</label> -->
+<!-- 		                      		<input type="text" id="info_date" name="info_date" value="sysdate" readonly="readonly"/> -->
 		                      	</div>
 		                      	
 		                      	<div class="inputArea">
@@ -153,32 +142,34 @@ textarea#info_content {width:100%; height: 180px;}
                                 
                                 <div class="bvc_txt">
 
-                                	<div class="inputArea">
-	                                	<label for="info_content">&nbsp;내용</label>
-	                                	<textarea rows="5" cols="50" id="info_content" name="info_content">
-	                                	</textarea>
-                                	</div>
-                                	
-                                	<div class="inputArea">
-                                		<label for="info_img"></label>
-                                		<input type="file" id="info_img" name="file"/>
-                                		<div class="select_img"><img src="" /></div>
+<!--                                 	<div class="inputArea"> -->
+<!-- 	                                	<label for="info_content">&nbsp;내용</label> -->
+<!-- 	                                	<textarea id="info_content" name="info_content"> -->
+<!-- 	                                	</textarea> -->
+<!--                                 	</div> -->
+                            		 <div class="text">
+					     				 <textarea cols="150" rows="15" name="info_content" id="info_content" style="resize: none;"></textarea> 
+					   				 </div>
+<!--                                 	<div class="inputArea"> -->
+<!--                                 		<label for="info_img"></label> -->
+<!--                                 		<input type="file" id="info_img" name="file"/> -->
+<!--                                 		<div class="select_img"><img src="" /></div> -->
                                 		
-                                		<script type="text/javascript">
-											$("#info_img").change(function(){
-												if(this.files && this.files[0]){
-													var reader = new FileReader;
-													reader.onload = function(data){
-														$(".select_img img").attr("src", data.target.result).width(500);
-													}
-													reader.readAsDataURL(this.files[0]);
-												}	
-											})		                                		
-                                		</script>
+<!--                                 		<script type="text/javascript"> -->
+<!-- // 											$("#info_img").change(function(){ -->
+<!-- // 												if(this.files && this.files[0]){ -->
+<!-- // 													var reader = new FileReader; -->
+<!-- // 													reader.onload = function(data){ -->
+<!-- // 														$(".select_img img").attr("src", data.target.result).width(500); -->
+<!-- // 													} -->
+<!-- // 													reader.readAsDataURL(this.files[0]); -->
+<!-- // 												}	 -->
+<!-- // 											})		                                		 -->
+<!--                                 		</script> -->
                                 		
                                 		
-                                		<h3 style="font-weight: bold">저장경로 : <%=request.getRealPath("/") %></h3>
-                                	</div>
+<%--                                 		<h3 style="font-weight: bold">저장경로 : <%=request.getRealPath("/") %></h3> --%>
+<!--                                 	</div> -->
                                 	
                                 	
                                 	
@@ -202,6 +193,5 @@ textarea#info_content {width:100%; height: 180px;}
              </div>
          </div>
       </div>            
-                  
             
 <jsp:include page="/footer.do" />

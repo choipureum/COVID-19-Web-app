@@ -7,11 +7,17 @@
 	<!-- DB컬럼명을 Java의 Camel표기법으로 변경 -->
 	<typeAliases>
 		<!--타입얼리어스 -->
-		<typeAlias type="com.covid19.app.admin.login.vo.AdminMember" alias="Admin"/>
-		<typeAlias type="com.covid19.app.admin.login.vo.AdMemberList" alias="Admember"/>
+		<typeAlias alias="Admin" type="com.covid19.app.admin.login.vo.AdminMember"/>
+		<typeAlias alias="Admember" type="com.covid19.app.admin.login.vo.AdMemberList"/>
 		<typeAlias type="com.covid19.app.board.model.vo.InfoShare" alias="INFO"/>
+		<typeAlias alias="AdInfo" type="com.covid19.app.admin.login.vo.AdInfoList"/>
+		<typeAlias alias="COVID" type="com.covid19.app.admin.login.vo.CovidPat"/>
+		<typeAlias alias="Share" type="com.covid19.app.shareper.model.dto.Share"/>
+		<typeAlias type="com.covid19.app.board.model.vo.Notice" alias="NOTICE"/>
 		<typeAlias type="com.covid19.app.board.model.vo.Faq" alias="FAQ"/>
+		<typeAlias type="com.covid19.app.board.model.vo.InfoReply" alias="INFOREPLY"/>
 		<typeAlias type="com.covid19.app.coronaNews.model.vo.CovidNews" alias="NEWS"/>
+		<typeAlias type="com.covid19.app.coronaNews.model.vo.FactCheck" alias="FACT"/>
 		<typeAlias type="com.covid19.app.member.model.vo.Member" alias="MEMBER"/>
 
       	<typeAlias type="com.covid19.app.shareper.model.dto.Goods" alias="GOODS"/>

@@ -98,7 +98,7 @@ public interface MemberService {
 	 * @param member_id
 	 * @return
 	 */
-	public Pay mypagePay(String member_id);
+	public Map<String, Object> mypagePay(String member_id, Pay pay);
 
 	
 

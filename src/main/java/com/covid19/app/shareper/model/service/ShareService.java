@@ -66,7 +66,7 @@ public class ShareService {
 	}
 
 
-	public Map<String, Object> selectSlist(int cPage, int cntPerPage,String filter) {
+	public Map<String, Object> selectSlist(int cPage, int cntPerPage,String filter,int sorting) {
 		
 		 Map<String, Object> commandMap 
 	 		= new HashMap<String, Object>();
@@ -81,6 +81,7 @@ public class ShareService {
 		 Paging p = new Paging(total
 				 ,cPage,cntPerPage);
 		 p.setFilter(filter);
+		 p.setSorting(sorting);
 		 //현재 페이지에 필요한 게시물 목록
 		 List<Object> nlist = sharedao.selectshar(p);
 		 commandMap.put("nlist", nlist);
@@ -191,31 +192,27 @@ public class ShareService {
 			sharedao.insertQna(qna);
 		}
 		
-		//qna 댓글 리스트
-		public List<ShareQna> qnaView(int share_idx,int start, int end, HttpSession session) {
-			 List<ShareQna> item = sharedao.listQna(share_idx,start, end);
-			 Member res = (Member) session.getAttribute("logInInfo");
-				
-				//세션 값에 아이디
-				System.out.println("res" + res);
-				
-				String member_idx = res.getMember_id();
-				
-				for(ShareQna qna : item) {
-					if(qna.getSecretReply().equals("Y")) {
-						if(member_idx == null) {
-							qna.setSecretReply("비밀글 입니다.");
-						}
-					} else {
-						String member_id = qna.getMember_id();
-						if(!member_idx.equals(member_id)) {
-							qna.setShareQnaContent("비밀글 입니다.");
-						}
-					}
-				}
-				
-			return item;
-		}
+		   //qna 댓글 리스트
+	      public List<ShareQna> qnaView(int share_idx,int start, int end, HttpSession session) {
+	          List<ShareQna> item = sharedao.listQna(share_idx,start, end);
+	          Member member_id = (Member) session.getAttribute("logInInfo");
+
+	            
+	            for(ShareQna qna : item) {
+	               if(qna.getSecretReply().equals("N")) {
+	                  if(member_id == null) { //비로그인 상태 비밀 댓글로 처리
+	                     qna.setShareQnaContent("비밀글 입니다.");
+	               } else {
+	                     String member = qna.getMember_id();
+	                  if(!member_id.equals(member)) {
+	                     qna.setShareQnaContent("비밀글 입니다.");
+	                  }
+	                  }
+	               }
+	            }
+	            
+	         return item;
+	      }
 		
 		//글 갯수
 		public int count(int share_idx) {
@@ -236,10 +233,14 @@ public class ShareService {
 		public void updateQna(ShareQna qna) {
 			sharedao.updateQna(qna);
 		}
-		//qna 삭제
-		public void deleteQna (int qno) {
-			sharedao.deleteQna(qno);
-		}
+		//ID CHECK
+	      public String idCheck(int shareQnaIdx) {
+	         return sharedao.idCheck(shareQnaIdx);
+	      }
+	    //qna 삭제
+	      public void deleteQna (ShareQna qna) {
+	         sharedao.deleteQna(qna);
+	      }
 
 		/* 답변 입력 */
 		public void createReply(Reply vo) {

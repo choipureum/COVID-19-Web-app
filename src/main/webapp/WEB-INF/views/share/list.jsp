@@ -61,7 +61,6 @@
 				})
 
 				$("a").click(function() {
-
 					console.log($(this).children(0).val());
 					var filter_val = $(this).children(0).val();
 					$("#fival").val(filter_val);
@@ -70,7 +69,26 @@
 						type : "post",
 						url : "/share/filter.do",
 						data : {
-							filter : $(this).children(0).val(),
+							filter : $(this).children(0).val()
+						},
+						dataType : "html",
+						success : function(data) {
+							$(".page-wrapper").html(data);
+
+						},
+						error : function() {
+							console.log("AJAX error")
+						}
+					});
+
+				});
+				$("#sorting").on('change',function(){
+					$.ajax({
+						type : "post",
+						url : "/share/filter.do",
+						data : {
+							sorting : $(this).val(),
+							filter : $("#fival").val()
 						},
 						dataType : "html",
 						success : function(data) {
@@ -81,9 +99,8 @@
 							console.log("AJAX error")
 						}
 					})
-
 				});
-
+				
 				$(window).scroll(
 						function() {
 
@@ -147,6 +164,7 @@
 							지역재생<input id="shli_3" type="hidden" value="re" />
 					</a></li>
 
+								
 					<li role="tab" id="shli44"><a id="shli4" class="link_cate">
 							푸드<input id="shli_4" type="hidden" value="fo" />
 					</a></li>
@@ -163,9 +181,9 @@
 				<div class="box_select">
 					<select id="sorting" name="sorting" class="select_sort"
 						title="후원형 프로젝트 목록 분류">
-						<option value="100">펀딩금액순</option>
-						<option value="200">마감임박순</option>
-						<option value="300">최신순</option>
+						<option value="100">최신순</option>
+						<option value="200">펀딩금액순</option>
+						<option value="300">마감임박순</option>
 					</select>
 				</div>
 
@@ -198,7 +216,7 @@
 										</p>
 										<span class="user_profile"> <span
 											class="img_profile clear_empty_picture"> </span> <span
-											class="txt_name">${list.MEMBER_ID }</span>
+											class="txt_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성자 : ${list.MEMBER_ID }</span>
 										</span> <span class="project_category"> <span
 											class="screen_out">카테고리</span> ${list.FEIELD }
 										</span>
@@ -207,13 +225,13 @@
 									<c:choose>
 										<c:when test="${dDay <= 0}">
 											<div class="project_state">
-												<span class="total_amount"> <span class="screen_out">마감된
-														프로젝트입니다. </span>
+												<span class="total_amount">
+												 <span class="screen_out">마감된 프로젝트입니다. </span>
 												</span>
 												<div class="project_card_graph">
-													<span class="screen_out">참여율</span> <span class="bar_graph"
-														style="width: ${list.PAYPER}%;"></span> <span
-														class="invest_rate"> ${list.PAYPER }% </span>
+													<span class="screen_out">참여율</span> 
+													<span class="bar_graph" style="width: ${list.PAYPER}%;"></span> 
+													<span class="invest_rate"> ${list.PAYPER }% </span>
 												</div>
 												<span class="funding_type">금액 달성 시 배송진행</span>
 											</div>
@@ -224,9 +242,9 @@
 														참여금액</span> ${list.PAY }
 												</span>
 												<div class="project_card_graph">
-													<span class="screen_out">참여율</span> <span class="bar_graph"
-														style="width: ${list.PAYPER}%;"></span> <span
-														class="invest_rate"> ${list.PAYPER }% </span>
+													<span class="screen_out">참여율</span>
+													 <span class="bar_graph" style="width: ${list.PAYPER}%;"></span>
+													  <span class="invest_rate">${list.PAYPER }%</span>
 												</div>
 												<span class="funding_type">금액 달성 시 배송진행</span>
 											</div>

@@ -15,6 +15,14 @@
 <script src="/resources/admin/vendor/chartist/js/chartist.min.js"></script>
 <script src="/resources/admin/scripts/klorofil-common.js"></script>
 
+<style>
+
+	#btnDelete{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+</style>
 
 <!-- 헤더 -->
 <jsp:include page="/WEB-INF/views/admin/adinclude/header.jsp" />
@@ -68,6 +76,35 @@
 					</table>
 				
 					</form>
+					<div class="panel-footer">
+				
+						<div class="row">
+					
+							<button type="button" id="up" class="btn btn-primary pull-right">
+							등록
+							</button>
+						
+							<!-- 삭제버튼 -->
+							<button id="btnDelete" class="btn btn-danger pull-right">삭제</button>
+							
+							<!-- 검색 -->
+							<form action="${pageContext.request.contextPath}/admin/adinfosearch.do" method="post">
+							<div class="form-inline pull-right">
+								<input class="form-control" type="text" id="keyword" name="keyword"
+									style="width: 200px;" placeholder="검색어를 입력해주세요" />
+								<button id="btnSearch" class="btn btn-primary">검색</button>
+							
+							</div>
+							</form>
+							
+							<br>
+					
+						<div style="text-align: center;">
+						<c:import url="/WEB-INF/views/admin/adpaging/adinfopaging.jsp"></c:import>
+						</div>
+					
+					</div>
+				</div>
 				
 				</div><!-- panel-body -->
 			

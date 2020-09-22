@@ -46,32 +46,42 @@
 
 	<select id="selectshar" resultType="HashMap">
 
-		select nvl(payper,0) payper,nvl(pay,0)
-		pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,ROUND(sharedate-sysdate)
-		day,sharedate,rename_file,member_id
-		from(
-		select rownum rnum , s3.*
-		from(
-		select ROUND((sum(sp.payment)/s.sharemoney) * 100,1)
-		payper,s.member_id,sum(sp.payment)
-		pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,s.sharedate,st.rename_file
-		from shar s, share_thumb st,share_pay sp
-		where s.share_idx = st.share_idx
-		and s.share_idx = sp.share_idx(+)
-		<choose>
+		select nvl(payper,0) payper,nvl(pay,0) pay,share_idx,sharefield,sharename,simpleinfo,sharecontent,sharemoney,sharedateen,day,rename_file,member_id,sharedate
+   	    from(
+        select rownum rnum , s3.*
+        from(
+            select ROUND((sum(sp.payment)/s.sharemoney) * 100,1) payper,sum(sp.payment) pay,s.sharefield,s.sharename,s.simpleinfo,s.sharecontent,s.sharemoney,s.sharedateen,s.share_idx,ROUND(s.sharedate-sysdate) day,st.rename_file,s.member_id,s.sharedate 
+            from shar s, share_thumb st,share_pay sp
+            where s.share_idx = st.share_idx
+            and s.share_idx = sp.share_idx(+)
+            <choose>
 			<when test='filter != "*"'>
 				and s.sharefield = #{filter}
 			</when>
 			<when test='filter == "*"'>
 				and 1=1
 			</when>
-		</choose>
-		group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent,
-		s.sharemoney,
-		s.sharedateen, s.share_idx, s.sharedate, st.rename_file,s.member_id
-		order by s.share_idx desc
-		)s3
-		)where rnum between #{start} and #{end}
+			</choose>
+            group by s.sharefield, s.sharename, s.simpleinfo, s.sharecontent, s.sharemoney, 
+            s.sharedateen, s.share_idx, s.sharedate, st.rename_file, ROUND(s.sharedate-sysdate), 
+            s.sharedate-sysdate, sysdate, s.member_id
+            <choose>
+			<when test='sorting == "100"'>
+				order by CASE WHEN day>0 THEN 1
+            	ELSE 2 end , s.share_idx desc
+			</when>
+			<when test='sorting == "200"'>
+				order by CASE WHEN day>0 THEN 1
+            	ELSE 2 end , sum(sp.payment) desc
+			</when>
+			<when test='sorting == "300"'>
+				order by CASE WHEN day>0 THEN 1
+	            ELSE 2 end , day asc
+			</when>
+			</choose>
+        	)s3
+        )where rnum between #{start} and #{end}
+
 
 
 	</select>
@@ -133,31 +143,28 @@
 
 	<!-- 장바구니에 담기 -->
 	<insert id="insertCart">
-		insert into SHARE_Like (sharelike_id, share_idx, member_id, like_check)
+		insert into SHARE_Like (sharelike_id, share_idx, member_id, like_check,goods_idx)
 		values
-		(SHARE_LIKE_SEQ.nextval, #{share_idx}, #{member_id}, #{like_check} )
+		(SHARE_LIKE_SEQ.nextval, #{share_idx}, #{member_id}, #{like_check},#{goods_idx} )
 	</insert>
 
 
 	<select id="listCart" parameterType="String"
 		resultType="ShareLike">
 
-		select sharelike_id, p.share_idx, c.member_id, shareName, like_check,
-		sharemoney, (sharemoney*like_check) money
-		from member m, SHARE_Like c, shar p
-		where m.member_id=c.member_id and
-		c.share_idx=p.share_idx and
-		c.member_id=#{member_id}
-		order by sharelike_id
-
+	select sg.goods_Name,c.sharelike_id, s.share_idx, c.member_id, s.shareName, c.like_check,(sg.goods_price*c.like_check) money
+       from share_like c, shar s ,share_goods sg
+       where s.share_idx = c.share_idx
+       and c.goods_idx = sg.goods_idx
+       and c.member_id = #{member_id}
 	</select>
 	<select id="sumMoney" resultType="int">
-
-		select nvl(sum(sharemoney*like_check),0)
-		from SHARE_Like c,shar p
-		<!-- 장바구니 테이블과 상품 테이블로 부터 -->
-		where c.share_idx=p.share_idx and member_id=#{member_id}
-		<!--조건 : 장바구니테이블의 상품 id가 상품테이블의 상품 id와 같고, 요청하는 회원의 id와 같은 경우 -->
+		select sum(p.goods_price) price
+		from SHARE_Like c,share_goods p,shar s
+		where s.share_idx = p.share_idx
+        and p.goods_idx = c.goods_idx
+        and c.member_id=#{member_id}
+    	<!--조건 : 장바구니테이블의 상품 id가 상품테이블의 상품 id와 같고, 요청하는 회원의 id와 같은 경우 -->
 	</select>
 
 	<!-- 특정 장바구니 삭제 -->
@@ -222,7 +229,12 @@
 		#{secretReply} )
 	</insert>
 
-
+<!-- idcheck -->
+   <select id="idCheck" resultType="String">
+      select member_id
+         from share_Qna
+            WHERE share_Qna_Idx = #{shareQnaIdx}
+   </select>
 
 
 	<resultMap id="QnaList" type="ShareQna">
@@ -291,13 +303,13 @@
 		#{shareQnaIdx}
 
 	</update>
+<delete id="deleteQna" >
+      DELETE
+      FROM share_Qna
+      WHERE share_Qna_Idx =#{shareQnaIdx}
+      and member_id = #{member_id}
 
-	<delete id="deleteQna" parameterType="int">
-		DELETE
-		FROM share_Qna
-		WHERE share_Qna_Idx = #{shareQnaIdx}
-
-	</delete>
+   </delete>
 
 
 	<!-- 댓글 입력 -->

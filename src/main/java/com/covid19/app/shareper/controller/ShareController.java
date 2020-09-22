@@ -47,14 +47,15 @@ public class ShareController {
 
 	@RequestMapping("/share/list.do")
 	public ModelAndView slist(@RequestParam(required = false, defaultValue = "1") int cPage,
-			@RequestParam(required = false, defaultValue = "*") String filter, HttpServletResponse res) {
+			@RequestParam(required = false, defaultValue = "*") String filter, HttpServletResponse res
+			,@RequestParam(required = false, defaultValue = "100") int sorting) {
 
 		if (filter == "all") {
 			filter = "*";
 		}
 		ModelAndView mav = new ModelAndView();
-		int cntPerPage = 16;
-		Map<String, Object> map = shareSer.selectSlist(cPage, cntPerPage, filter);
+		int cntPerPage = 8;
+		Map<String, Object> map = shareSer.selectSlist(cPage, cntPerPage, filter,sorting);
 
 		System.out.println(map);
 
@@ -73,22 +74,24 @@ public class ShareController {
 
 	@RequestMapping("/share/filter.do")
 	public ModelAndView filterlist(@RequestParam(required = false, defaultValue = "1") int cPage,
-			@RequestParam(required = false, defaultValue = "*") String filter, HttpServletResponse res) {
-
+			@RequestParam(required = false, defaultValue = "*") String filter, HttpServletResponse res,
+			@RequestParam(required = false, defaultValue = "100") int sorting) {
+		
 		ModelAndView mav = new ModelAndView();
-		int cntPerPage = 16;
-		Map<String, Object> map = shareSer.selectSlist(cPage, cntPerPage, filter);
+		int cntPerPage = 8;
+		Map<String, Object> map = shareSer.selectSlist(cPage, cntPerPage, filter,sorting);
 
 		mav.addObject("paging", map.get("paging"));
 		mav.addObject("list", map);
-
 		mav.setViewName("share/scroll");
 		return mav;
 	}
-
+	
+	@ResponseBody
 	@RequestMapping("/share/detail.do")
-	public ModelAndView sdetail(@RequestParam int share_idx, @RequestParam String shareDate) {
-
+	public ModelAndView sdetail(@RequestParam int share_idx, @RequestParam String shareDate,
+			 @RequestParam(required = false, defaultValue = "1") int curPage, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
 		String paramDate = shareDate.substring(0, 10);
 		java.sql.Date sharedDay = java.sql.Date.valueOf(paramDate);
@@ -99,6 +102,18 @@ public class ShareController {
 		int dDay = (int) Math.floor(hidate / (1000 * 60 * 60 * 24) + 1);
 		List<Goods> goods = shareSer.selectGoods(share_idx);
 		Map<String, Object> map = shareSer.sharedetail(share_idx);
+		// 페이징 처리
+		int count = shareSer.count(share_idx);
+		QnaPager qnapager = new QnaPager(count, curPage);
+		int start = qnapager.getPageBegin();
+		int end = qnapager.getPageEnd();
+		System.out.println("컨트롤러 컬페이지" + curPage);
+		List<ShareQna> qna = shareSer.qnaView(share_idx, start, end, session);
+
+		mav.addObject("qlist", qna);
+		System.out.println("qlist컨트롤러 영역" + qna);
+		mav.addObject("qnapager", qnapager);
+
 		mav.addObject("goods", goods);
 		mav.addObject("list", map.get("dlist"));
 		mav.addObject("dDay", dDay);
@@ -236,7 +251,8 @@ public class ShareController {
 
 	// 장바구니 등록
 	@RequestMapping(value = "/share/cart.do")
-	public String insertCart(@ModelAttribute ShareLike like, HttpSession session) {
+	public String insertCart(@ModelAttribute ShareLike like, HttpSession session,
+			@RequestParam int goods_idx) {
 
 		// @ModelAttribute는 sumit된 form의 내용을 저장해서 전달받거나, 다시 뷰로 넘겨서 출력하기 위해 사용되는 오브젝트 이다.
 		// 도메인 오브젝트나 DTO의 프로퍼티에 요청 파라미터를 바인딩해서 한번에 받으면 @ModelAttribute 라고 볼 수 있다.
@@ -258,13 +274,10 @@ public class ShareController {
 		}
 
 		like.setMember_id(member_id);
-		System.out.println("컨트롤러 member" + member_id);
-
-		System.out.println("컨트롤러 like" + like);
+		like.setGoods_idx(goods_idx);
 
 		// 장바구니 기존에 상품있는지 확인
 		int count = shareSer.countCart(like.getShare_idx(), member_id);
-//			count == 0 ? shareSer.updateCart(like) : shareSer.insertCart(like);
 		if (count == 0) {
 			// 없으면 insert
 			shareSer.insertCart(like);
@@ -447,55 +460,58 @@ public class ShareController {
 		return qna;
 	}
 
-	// 댓글 수정 GET
-	@RequestMapping(value = "/share/read_QnA.do", method = RequestMethod.GET)
-	public String qnaUpdateView(Model model, ShareQna qna, RedirectAttributes ra) {
-//					ra.addAttribute("share_idx", qna.getShare_idx());
-		model.addAttribute("read", shareSer.detailQna(qna.getShareQnaIdx()));
+	  //댓글 수정 GET
+	   @RequestMapping(value = "/share/read_QnA.do", method = RequestMethod.GET)
+	   public String qnaUpdateView(Model model,
+	         ShareQna qna, RedirectAttributes ra ) {
+//	            ra.addAttribute("share_idx", qna.getShare_idx());
+	      model.addAttribute("read", shareSer.detailQna(qna.getShareQnaIdx() ));
+	      model.addAttribute("share_idx", qna.getShare_idx());
+	      model.addAttribute("shareQnaContent", qna.getShareQnaContent());
+	      model.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
+	      
+	      return "share/qna_Update";
+	      
+	   }
 
-		model.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
-		model.addAttribute("shareQnaContent", qna.getShareQnaContent());
-		model.addAttribute("share_idx", qna.getShare_idx());
+	   //댓글 수정 Post
+	   @RequestMapping(value="/share/readUpdate_QnA.do", method = RequestMethod.POST)
+	   public String qnaUpdate(ShareQna qna, Model model, RedirectAttributes ra ){
+	      
+	      shareSer.updateQna(qna);
+	      
+	      ra.addAttribute("share_idx", qna.getShare_idx());
+	      ra.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
+	      
+	      return "redirect:/share/list.do";
+	   }
 
-		return "share/qna_Update";
-	}
 
-	// 댓글 수정 Post
-	@RequestMapping(value = "/share/readUpdate_QnA.do", method = RequestMethod.POST)
-	public String qnaUpdate(ShareQna qna, Model model, RedirectAttributes ra, @RequestParam int share_idx) {
-		shareSer.updateQna(qna);
+	   // 상품 소감(댓글) 삭제
+	   @ResponseBody
+	   @RequestMapping(value = "/share/delete_QnA.do", method = RequestMethod.POST)
+	   public int getDelte(ShareQna qna, HttpSession session, Model model, RedirectAttributes ra)
+	         throws Exception {
 
-		ra.addAttribute("share_idx", qna.getShare_idx());
-//			mav.setViewName("redirect:detail.do");
-		return "share/detail";
+	      int result = 0;
+	   
+	      Member res = (Member) session.getAttribute("logInInfo");
 
-	}
+	      System.out.println("res" + res);
 
-	// 댓글 삭제 GET
-	@RequestMapping(value = "/share/delete_QnA.do", method = RequestMethod.GET)
-	public String qnaDeleteView(Model model, ShareQna qna, RedirectAttributes ra) {
-
-		model.addAttribute("delete", shareSer.detailQna(qna.getShareQnaIdx()));
-
-		model.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
-		model.addAttribute("shareQnaContent", qna.getShareQnaContent());
-		model.addAttribute("share_idx", qna.getShare_idx());
-		return "redirect:list.do";
-
-	}
-
-	// 상품 소감(댓글) 삭제
-	@RequestMapping(value = "/share/delete_QnA.do", method = RequestMethod.POST)
-	public ModelAndView getDelte(ShareQna qna, HttpSession session, Model model, RedirectAttributes ra)
-			throws Exception {
-		ModelAndView mav = new ModelAndView();
-		//
-		shareSer.deleteQna(qna.getShareQnaIdx());
-		ra.addAttribute("share_idx", qna.getShare_idx());
-		ra.addAttribute("shareQnaIdx", qna.getShareQnaIdx());
-		mav.setViewName("redirect:list.do");
-		return mav;
-	}
+	       String id = shareSer.idCheck(qna.getShareQnaIdx());
+	         
+	       if( res.getMember_id().equals(id)) {
+	        
+	          qna.setMember_id(res.getMember_id());
+	          
+	        shareSer.deleteQna(qna);
+	        
+	        result = 1;
+	       }
+	      
+	      return result;
+	   }
 
 	// 게시판 답변란 =======================================
 	// 댓글 입력

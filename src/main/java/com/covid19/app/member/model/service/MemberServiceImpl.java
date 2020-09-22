@@ -1,5 +1,6 @@
 package com.covid19.app.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,7 @@ public class MemberServiceImpl implements MemberService{
 		member.setMember_name((String)commandMap.get("username"));
 		member.setMember_pw((String)commandMap.get("joinuserpw"));
 		member.setMember_tell((String)commandMap.get("usertel"));
-		member.setMember_auth((String)commandMap.get("auth"));
+		member.setMember_auth(Integer.parseInt(commandMap.get("auth").toString()));
 		
 		//birth합쳐주기
 		StringBuilder sb = new StringBuilder();
@@ -209,14 +210,25 @@ public class MemberServiceImpl implements MemberService{
 	public int memberdelete(Member member) {
 		return memberDao.memberdelete(member);
 	}
-	
-	/**
-	 * 결제 완료 목록
-	 */
-	@Override
-	public Pay mypagePay(String member_id) {
-		return memberDao.mypagePay(member_id);
-	}
+	  /**
+	    * 결제 완료 목록
+	    */
+
+	   @Override
+	   public Map<String, Object> mypagePay(String member_id, Pay pay) {
+	   
+	      Map<String, Object> commandMap = new HashMap<String, Object>();
+
+	      
+	      List<Pay> list =memberDao.mypagePay(member_id);
+	      
+	      commandMap.put("list",list);
+	      commandMap.put("member_id",member_id);
+
+	      
+	      return commandMap;
+	            
+	   }
 	
 
 

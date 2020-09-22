@@ -54,12 +54,6 @@
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<beans:bean id="naverLoginBO" class="com.covid19.app.member.controller.NaverLoginBO" />
-
-	<!-- 혹시 문제되면 지우기 & 김민철 씀 -->
-	<!-- 업로드 패스 설정 --> 
-	<beans:bean class="java.lang.String" id="uploadPath">
-	 <beans:constructor-arg value="D:\workspace_framwork\COVID_19_Web_Project\target\m2e-wtp\web-resources\" />
-	</beans:bean>
 	
 	<!-- 일반 파일 업로드 경로 -->
 	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />

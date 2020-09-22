@@ -3341,7 +3341,9 @@ select {
     right: 24px;
     width: 32%;
     padding: 20px 28px 0 25px;
-    margin-top: -40px; }
+    margin-top: -40px; 
+    margin-left: -54%;
+    }
     .primary_cont .box_reward_select .tit_cont {
       width: 100%;
       height: 60px;

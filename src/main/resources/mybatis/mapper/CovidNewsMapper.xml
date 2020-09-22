@@ -23,7 +23,9 @@
 	    <select id="selectNewsList" resultType="NEWS">
 	    	SELECT * 
 	    	FROM( 
-	    		select rownum rnum, i1.* from(select * from covid_news order by regdate DESC
+	    		select rownum rnum, i1.* from(select * from covid_news
+	    		<include refid="search"/>
+	    		 order by regdate DESC
 	    		)i1
 	    )where rnum between #{start} and #{end} 
 	    </select>
@@ -31,5 +33,100 @@
 <!-- 	    총 뉴스기사 조회 -->
 	    <select id="selectNewsCnt" resultType="int">
 	    	SELECT COUNT(*) FROM COVID_NEWS
+	    	<include refid="search"/>
 	    </select>
+	    
+	    <insert id="uploadIssueCheck">
+	    	INSERT INTO FACT_CHECK
+	    	(FC_IDX, FC_TITLE, FC_WRITER, FC_CONTENTS, DIVISION)
+	    	VALUES(
+	    	FACT_CHECK_SEQ.nextval, #{fc_title}, #{fc_writer}, #{fc_contents}, #{division}
+	    	)
+	    
+	    </insert>
+	    
+	    <insert id="uploadFile">
+	    	INSERT INTO FACT_CHECK_FILE
+	    	(FILE_IDX, FC_IDX, ORIGIN_FILE_NAME, RENAME_FILE_NAME, SAVE_PATH)
+	    	VALUES(
+	    	FACT_CHECK_FILE_SEQ.nextval, FACT_CHECK_SEQ.currval, #{originFileName}, #{renameFileName}, #{savePath} 
+	    	)
+	    
+	    </insert>
+	    
+	    <!-- 이슈체크 리스트 -->
+	    <select id="selectIssueList" resultType="FACT">
+	 	select * from(
+	    	select rownum rnum, f1.* from(select fact_check.FC_IDX, FC_TITLE, FC_WRITER, FC_REGDATE, FC_CONTENTS, DIVISION, RENAME_FILE_NAME, ORIGIN_FILE_NAME
+	    	 from fact_check, fact_check_file
+	    	<include refid="Fsearch"/>
+	    	AND FACT_CHECK.FC_IDX = fact_check_file.fc_idx
+	    	AND division = 2
+	    	order by fc_idx desc
+	    	) f1
+	   	 )where rnum between #{start} and #{end}
+	    </select>
+	    
+	    <!-- 이슈체크 토탈 카운트 -->
+	    <select id="selectIssueCnt" resultType="int">
+	    	SELECT COUNT(*) FROM fact_check
+	    	<include refid="Fsearch"/>
+	    	AND division = 2
+	    </select>
+	    
+	    <!-- 팩트체크 리스트 -->
+	    <select id="selectFactList" resultType="FACT">
+	    select * from(
+	    	select rownum rnum, f1.* from(select fact_check.FC_IDX, FC_TITLE, FC_WRITER, FC_REGDATE, FC_CONTENTS, DIVISION, RENAME_FILE_NAME, ORIGIN_FILE_NAME
+	    	 from fact_check, fact_check_file
+	    	<include refid="Fsearch"/>
+	    	AND FACT_CHECK.FC_IDX = fact_check_file.fc_idx
+	    	AND division = 1
+	    	order by fc_idx desc
+	    	) f1
+	   	 )where rnum between #{start} and #{end}
+	    </select>
+	    
+	    <!-- 팩트체크 토탈 카운트 -->
+	    <select id="selectFactCnt" resultType="int">
+	    	SELECT COUNT(*) FROM fact_check
+	    	<include refid="Fsearch"/>
+	    	AND division = 1
+	    </select>
+	    
+	    <!-- 펙트, 이슈체크 상세 조회 -->
+	    <select id="selectCheckDetail" resultType="FACT">
+	    	SELECT * FROM fact_check
+	    	WHERE fc_idx = #{fc_idx}
+	    </select>
+	    
+	    
+<!-- 	    파일리스트 가져오기 -->
+	    <select id="selectFileWithCheck" resultType="HashMap">
+	    	SELECT * FROM FACT_CHECK_FILE
+	    	WHERE fc_idx = #{fc_idx}
+	    </select>
+	    
+	    
+	    <!-- 검색 쿼리 -->
+	    <sql id="search">
+	    	WHERE
+	    	<choose>
+	    		<when test="search_content ==''"> 1=1</when>
+	    		<when test="search_item =='t'.toString() and search_content !=''">    NEWSTITLE LIKE '%'|| #{search_content} || '%'</when>
+	    		<when test="search_item =='c'.toString() and search_content !=''">    NEWSCONTENTS LIKE '%'|| #{search_content} || '%'</when>
+	    	</choose>
+    	
+   		 </sql>
+   		 
+	    <sql id="Fsearch">
+	    	WHERE
+	    	<choose>
+	    		<when test="search_content ==''"> 1=1</when>
+	    		<when test="search_item =='t'.toString() and search_content !=''">    FC_TITLE LIKE '%'|| #{search_content} || '%'</when>
+	    		<when test="search_item =='c'.toString() and search_content !=''">    FC_CONTENTS LIKE '%'|| #{search_content} || '%'</when>
+	    	</choose>
+    	
+   		 </sql>
+	    
     </mapper>

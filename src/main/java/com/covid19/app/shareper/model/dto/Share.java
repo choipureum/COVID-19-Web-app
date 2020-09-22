@@ -3,7 +3,13 @@ package com.covid19.app.shareper.model.dto;
 import java.sql.Date;
 
 public class Share {
-
+	private int share_idx;
+	public int getShare_idx() {
+		return share_idx;
+	}
+	public void setShare_idx(int share_idx) {
+		this.share_idx = share_idx;
+	}
 	private String shareField;
 	private String shareName;
 	private String simpleInfo;

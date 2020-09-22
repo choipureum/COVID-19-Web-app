@@ -5,18 +5,15 @@
   
 <jsp:include page="/header.do" />
 
+<style>
+.list:hover {
+	background-color: #777;
+}
+</style>
+
 <script type="text/javaScript" language="javascript">
 
-function fn_search(pageNo){
-	$("#pageIndex").val(pageNo);
-	fn_submit();
-}
 
-function fn_submit(){
-	var frm = $("#form1");
-	frm.attr("action", "/duBoardList.do");
-	frm.submit();
-}
 
 //펼침메뉴를 눌렀을 경우 해당 seq번호로 게시글을 보여준다.
 // function showView(seq){
@@ -56,13 +53,6 @@ function fn_submit(){
 
 </script>
 
-<form name="form1" id="form1" method="post">
-<input name="pageIndex" id="pageIndex" type="hidden" value="" />
-<input type="hidden" id="ncv_file_seq" name="ncv_file_seq" value="" />
-<input type="hidden" id="file_path" name="file_path" value="" />
-<input type="hidden" id="file_name" name="file_name" value="" />
-<input type="hidden" id="brdId" name="brdId" value="3" />
-<input type="hidden" id="brdGubun" name="brdGubun" value="37" />
 	<div class="container" style="background-color: white;"><!-- main_container -->
 		<div>
 			<div id="content" class="content">
@@ -84,9 +74,9 @@ function fn_submit(){
 	      
 	      			 <div class="tab_flt cnt2-2-2">
                       <ul>
-                         <li style="width: 33.3%"><a href="/infoBoard.do"><span>정보공유</span></a></li>
+                         <li style="width: 33.3%"><a href="/infoBoard.do" class="list"><span>정보공유</span></a></li>
                          <li class="on" style="width: 33.3%" ><a href="/faqBoard.do"><span>FAQ</span></a></li>
-                         <li style="width: 33.3%"><a href="/noticeBoard.do"><span>공지사항</span></a></li>
+                         <li style="width: 33.3%"><a href="/noticeBoard.do" class="list"><span>공지사항</span></a></li>
                       </ul>
                     </div>
 	      
@@ -380,38 +370,38 @@ function fn_submit(){
 					
 					<h4 class="s_title_1">청소 및 소독</h4>
 					<div class="faq_list">
-						<ul>
-							<c:forEach items="${list.faqlist }" var="faq">
-								<c:if test="${faq.faq_category == '9' }">
-								
-								<li>
+							<ul>
+								<c:forEach items="${list.faqlist }" var="faq">
+									<c:if test="${faq.faq_category == '9' }">
 									
-									<a class="fl_q_n lt_l" onClick="showView('2252');">
-										<span class="ico_q_n" >Q</span>
-										<span class="fl_ttl" >${faq.faq_title }</span>
-										<i></i>
-									</a>
-									
-									<div class="fl_a_n lt_c">
+									<li>
+										
+										<a class="fl_q_n lt_l" onClick="showView('2252');">
+											<span class="ico_q_n" >Q</span>
+											<span class="fl_ttl" >${faq.faq_title }</span>
+											<i></i>
+										</a>
+										
+										<div class="fl_a_n lt_c">
+											<!--글내용-->
+	<!-- 										<a target="_blank" href="shBoardViewadea.html?brdId=3&amp;brdGubun=37&amp;ncvContSeq=2252"  class="a_sha" title="공유하기">공유하기</a> -->
+											<span class="ico_a_n">A</span>
+											<div class="s_descript mgt0"  id="2252" >${faq.faq_content }
+				                              	<p id="2252p" ></p>
+											</div>
 										<!--글내용-->
-<!-- 										<a target="_blank" href="shBoardViewadea.html?brdId=3&amp;brdGubun=37&amp;ncvContSeq=2252"  class="a_sha" title="공유하기">공유하기</a> -->
-										<span class="ico_a_n">A</span>
-										<div class="s_descript mgt0"  id="2252" >${faq.faq_content }
-			                              	<p id="2252p" ></p>
+										<!--첨부파일-->
+										
 										</div>
-									<!--글내용-->
-									<!--첨부파일-->
-									
-									</div>
-
-									
-									
-								</li>
-								</c:if>
+	
+										
+										
+									</li>
+									</c:if>
 							
-							</c:forEach>
-						</ul>
-					</div>
+								</c:forEach>
+							</ul>
+						</div>
 					
 					<h4 class="s_title_1">임신과 출산 </h4>
 					<div class="faq_list">
@@ -482,15 +472,12 @@ function fn_submit(){
 							</c:forEach>
 						</ul>
 					</div>
-					
-
 				</div>
 			</div>
 		</div>
 		
-		</div>
+	</div>
 
-</form>
 
 
 

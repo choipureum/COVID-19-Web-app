@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class InfoShare {
 
-	private String member_nick; //회원 닉네임
 	private String member_rank; //회원 등급
 	private int info_idx; //게시글 번호
 	private String info_writer; //게시글 작성자
@@ -13,19 +12,11 @@ public class InfoShare {
 	private Date info_date; //게시글 작성일자
 	private int info_hits; //게시글 조회 수
 	private int recnt; //게시글 댓글 수
-	private String info_img;
 	@Override
 	public String toString() {
-		return "InfoShare [member_nick=" + member_nick + ", member_rank=" + member_rank + ", info_idx=" + info_idx
-				+ ", info_writer=" + info_writer + ", info_title=" + info_title + ", info_content=" + info_content
-				+ ", info_date=" + info_date + ", info_hits=" + info_hits + ", recnt=" + recnt + ", info_img="
-				+ info_img + "]";
-	}
-	public String getMember_nick() {
-		return member_nick;
-	}
-	public void setMember_nick(String member_nick) {
-		this.member_nick = member_nick;
+		return "InfoShare [member_rank=" + member_rank + ", info_idx=" + info_idx + ", info_writer=" + info_writer
+				+ ", info_title=" + info_title + ", info_content=" + info_content + ", info_date=" + info_date
+				+ ", info_hits=" + info_hits + ", recnt=" + recnt + "]";
 	}
 	public String getMember_rank() {
 		return member_rank;
@@ -75,13 +66,6 @@ public class InfoShare {
 	public void setRecnt(int recnt) {
 		this.recnt = recnt;
 	}
-	public String getInfo_img() {
-		return info_img;
-	}
-	public void setInfo_img(String info_img) {
-		this.info_img = info_img;
-	}
-	
 	
 
 	

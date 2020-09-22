@@ -91,38 +91,34 @@ public class MypageController {
 		return "/mypage/memberMypageGrade";
 	}
 	
-	/**
-	 * 회원 결제목록
-	 */
-	@RequestMapping(value = "/memberMypagePay.do", method = RequestMethod.GET)
-	public ModelAndView mypagePay(HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		Member res = (Member) session.getAttribute("logInInfo");
-		
-		//세션 값에 아이디랑 이름만
-		System.out.println("res" + res);
-		
-		String member_id=res.getMember_id();
-		//id로 전체 멤버만들기
-		
-		Pay pay = new Pay();
-		
-		
-		
-		pay = memberService.mypagePay(member_id);
-		
-		
-		//member를 mav addobject하기
-		mav.addObject("mypagePay", pay);
-		mav.setViewName("/mypage/memberMypagePay");
-		return mav;
-	
+	   /**
+	    * 회원 결제목록
+	    */
+	   @RequestMapping(value = "/memberMypagePay.do", method = RequestMethod.GET)
+	   public ModelAndView mypagePay(HttpSession session) {
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      Member res = (Member) session.getAttribute("logInInfo");
+	      
+	      //세션 값에 아이디랑 이름만
+	      System.out.println("res" + res);
+	      
+	      String member_id=res.getMember_id();
+	      //id로 전체 멤버만들기
+	      
+	      Pay pay = new Pay();
+	      
+	      Map<String, Object> commandMap = memberService.mypagePay(member_id,pay);
+	      
+	      System.out.println("commandMap" + commandMap.get("list"));
+	      //member를 mav addobject하기
+	      mav.addObject("mypagePay", commandMap.get("list"));
+	      mav.setViewName("/mypage/memberMypagePay");
+	      return mav;
 
-		
-	}
-	
+	   }
+	   
 	
 
 }

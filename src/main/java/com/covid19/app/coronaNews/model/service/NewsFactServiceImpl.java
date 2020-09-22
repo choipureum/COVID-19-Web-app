@@ -14,11 +14,18 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.covid19.app.coronaNews.model.dao.CovidNewsDao;
 import com.covid19.app.coronaNews.model.vo.CovidNews;
 import com.covid19.app.coronaNews.model.vo.FactCheck;
 
+import common.exception.FileException;
+import common.util.FcFileUtil;
+import common.util.FileUtil;
+import common.util.InfoPaging;
+import common.util.NewsPaging;
 import common.util.Paging;
 
 @Service
@@ -28,10 +35,9 @@ public class NewsFactServiceImpl implements NewsFactService{
 	private CovidNewsDao covidNewsDao;
 	
 	private static String COVID_SNEWS_URL = "https://news.sbs.co.kr/news/newsHotIssueList.do?tagId=10000050973";
-	private static String COVID_FACT_URL = "http://ncov.mohw.go.kr/factBoardList.do?brdId=3&brdGubun=33";
 	
 	//시작하자마자 메소드를 실행하게 해주는 어노테이션
-//	@PostConstruct
+	@PostConstruct
 	public List<CovidNews> getCovidNews() throws IOException {
 		
 		List<CovidNews> newsList = new ArrayList<>();
@@ -40,7 +46,6 @@ public class NewsFactServiceImpl implements NewsFactService{
 		Elements contents = doc.select("#container > div > div.w_news_list.type_issue > ul > li > a.news");
 		
 		for(Element content : contents) {
-			
 			CovidNews covidnews = new CovidNews();
 			covidnews.setNewsTitle(content.select("strong.sub").html()); //뉴스제목
 			covidnews.setThumbNail(content.select("span.thumb").html()); //썸네일
@@ -49,67 +54,34 @@ public class NewsFactServiceImpl implements NewsFactService{
 			covidnews.setRegDate(content.select("span.date").text()); //작성일
 			covidnews.setCompany(1); //뉴스 보도자료는 1번
 			newsList.add(covidnews);
-//			System.out.println(covidnews.getRegDate());
 			
 				covidNewsDao.insertCovidNews(covidnews);
-				//크롤링 할때마다 DB에 넣어주기
+//				크롤링 할때마다 DB에 넣어주기
 				covidNewsDao.deleteCovidNews(covidnews.getNews_idx());
-//				//크롤링 할때마다 DB에 중복값 지워주기
-			
-//			System.out.println(covidnews.toString());
-			
 			
 		}
 		
 		
 		return newsList;
 		
-		
-		
-		
 	}
 
 	
-	@PostConstruct
-	public List<FactCheck> getCoronaFact() throws IOException {
-		
-		List<FactCheck> factList = new ArrayList<>();
-		Document doc = Jsoup.connect(COVID_FACT_URL).get();
-		Elements contents = doc.select("#content > div > div.faq_list > ul");
-//		System.out.println(contents);
-		for(Element content : contents) {
-			Elements liContents = content.select("div.bv_category");
-			Elements openContents = content.select("li.open");
-//			System.out.println("짜증난다" + liContents);
-			FactCheck factCheck = new FactCheck();
-			factCheck.setFcTitle(content.select("span.fl_ttl").text()); //제목
-			factCheck.setFcWriter(liContents.select("span.bvc_detail").text());
-			factCheck.setFcContents(openContents.select("p").html());
-//			factCheck.setFcRegDate(content.select("span.bvc_detail").text()); //작성날짜
-			factList.add(factCheck);
-			System.out.println(factList);
-//			#content > div > div.board_list > table > tbody > tr:nth-child(1) > td:nth-child(4)
-////				covidNewsDao.insertCovidNews(covidnews);
-//				//크롤링 할때마다 DB에 넣어주기
-////				covidNewsDao.deleteCovidNews(covidnews.getNews_idx());
-//				//크롤링 할때마다 DB에 중복값 지워주기
-//			
-//				System.out.println("kbs"+covidnews.toString());
-		}
-			return factList;
-	}
-	
 	
 	@Override
-	public Map<String, Object> selectNewsList(int currentPage, int cntPerPage) {
+	public Map<String, Object> selectNewsList(int currentPage, int cntPerPage, String search_item, String search_content) {
 		
 		Map<String,Object> commandMap = new HashMap<String, Object>();
-		
-		Paging p = new Paging(covidNewsDao.selectNewsCnt(), currentPage, cntPerPage);
+		commandMap.put("search_item", search_item);
+		commandMap.put("search_content", search_content);
+				
+		NewsPaging p = new NewsPaging(covidNewsDao.selectNewsCnt(commandMap), currentPage, cntPerPage);
+		p.setSearch_item(search_item);
+		p.setSearch_content(search_content);
 		
 		List<CovidNews> clist = covidNewsDao.selectNewsList(p);
 		commandMap.put("clist", clist);
-		commandMap.put("paging", p);
+		commandMap.put("NewsPaging", p);
 		
 		
 		
@@ -117,12 +89,93 @@ public class NewsFactServiceImpl implements NewsFactService{
 	}
 
 
-	@Override
-	public List<CovidNews> getCardNews() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	//이슈체크 게시판 업로드
 	
+	@Transactional
+	public int uploadIssueCheck(FactCheck factCheck, List<MultipartFile> files, String root)throws FileException {
+		
+		try {
+			int result = covidNewsDao.uploadIssueCheck(factCheck);
+			
+			if(!(files.size() == 1 && files.get(0).getOriginalFilename().equals(""))) {
+				
+				//파일업로드를 위한 FileUtil.uploadFile
+				List<Map<String,String>> filedata = new FcFileUtil().fileUpload(files, root);
+				
+				for(Map<String,String>f :filedata) {
+					covidNewsDao.uploadFile(f);
+				}
+				
+			}
+			
+			return result;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			throw new FileException("F_ERROR_01");
+		}
+		
+		
+		
+	}
+
+
+	@Override
+	public Map<String, Object> selectIssueCheckList(int currentPage, int cntPerPage, String search_item, String search_content) {
+		
+		Map<String,Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("search_item", search_item);
+		commandMap.put("search_content", search_content);
+		
+		InfoPaging p = new InfoPaging(covidNewsDao.selectIssueCnt(commandMap), currentPage, cntPerPage);
+		p.setSearch_item(search_item);
+		p.setSearch_content(search_content);
+		
+		List<CovidNews> flist = covidNewsDao.selectIssueList(p);
+		commandMap.put("flist", flist);
+		commandMap.put("NewsPaging", p);
+		
+		return commandMap;
+	}
+
+
+	@Override
+	public Map<String, Object> selectFactCheckList(int currentPage, int cntPerPage, String search_item,
+			String search_content) {
+		
+		Map<String,Object> commandMap = new HashMap<String, Object>();
+		commandMap.put("search_item", search_item);
+		commandMap.put("search_content", search_content);
+		
+		InfoPaging p = new InfoPaging(covidNewsDao.selectFactCnt(commandMap), currentPage, cntPerPage);
+		p.setSearch_item(search_item);
+		p.setSearch_content(search_content);
+		
+		List<CovidNews> flist = covidNewsDao.selectFactList(p);
+		commandMap.put("flist", flist);
+		commandMap.put("NewsPaging", p);
+		
+//		flist.get(fc_idx);
+//		List<Map<String,String>> filelist = covidNewsDao.selectFileWithCheck(fc_idx);
+//		commandMap.put("filelist", filelist);
+		
+		return commandMap;
+	}
+
+
+	@Override
+	public Map<String, Object> selectCheckDetail(int fc_idx) {
+		
+		Map<String,Object> commandMap = new HashMap<String, Object>();
+		FactCheck factCheck = covidNewsDao.selectCheckDetail(fc_idx);
+		List<Map<String,String>> flist = covidNewsDao.selectFileWithCheck(fc_idx);
+		commandMap.put("factCheck", factCheck);
+		commandMap.put("flist", flist);
+		
+		return commandMap;
+	}
+
+
 	
 	
 	

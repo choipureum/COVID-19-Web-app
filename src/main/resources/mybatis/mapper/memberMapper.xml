@@ -74,12 +74,12 @@
 		where MEMBER_ID = #{member_id}
 	</delete>
 	
-	<!-- 결제 목록 확인 -->
-	<select id="mypagePay" resultType="PAY">
-		select GOODS_NAME, PAY_DAY, ADDRESS
-		from SHARE_PAY
-		WHERE MEMBER_ID = #{member_id}
-	</select>
+	   <!-- 결제 목록 확인 -->
+   <select id="mypagePay" resultType="PAY">
+      select *
+      from SHARE_PAY
+      WHERE MEMBER_ID = #{member_id}
+   </select>
 </mapper>
 
 

@@ -2,13 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <link rel="stylesheet" type="text/css"
 	href="/resources/static/css/sharelist.css" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="/resources/UserBoardTemplate/assets/css/main.css" />
+
 <style type="text/css">
 .article_intro>p {
 	text-align: center;
@@ -20,13 +30,79 @@
 	margin-top: 32px;
 	width: 66%;
 }
+
+#modDiv {
+	width: 300px;
+	height: 100px;
+	position: absolute;
+	background: gray;
+	text-align: center;
+	padding: 15px 10px 10px 10px;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+	display: none;
+}
+
+.summary_cont {
+	display: block;
+	position: relative;
+	margin-top: 20px;
+	padding: 30px;
+	line-height: 1.3;
+	background-color: #fff;
+	box-shadow: 5px 2px 13px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dadada;
+}
+
+.box_details_cont{
+	display: block;
+	position: relative;
+	margin-top: 20px;
+	padding: 30px;
+	line-height: 1.3;
+	background-color: #fff;
+	box-shadow: 5px 2px 13px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dadada;
+}
+.box_reward{
+	background-color: #fff;
+	box-shadow: 5px 2px 13px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dadada;
+}
+
+.primary_cont .box_reward_select{
+	width:35%;
+}
+[class^="box_"]{
+	width:150%;
+}
+.comment_form_group .comment_input_box textarea{
+	width:150%;
+}
+#btnCopy{
+	width: 100%;
+    margin: 0%;
+    border-color: white;
+}
+select[name^="goods"]{
+	width: 314px;
+	float: right;
+}
+select[name^="like"]{
+	width: 314px;
+	float: right;
+}
+select option{
+	text-align: center;
+}
 </style>
 <!-- Q&A script 단  -->
 <jsp:include page="/header.do" />
 <script type="text/javascript">
 $(document).ready(function(){
     
-    listReply("1"); // **댓글 목록 불러오기
+//     listReply("1"); // **댓글 목록 불러오기
 //     detail_QnA(); // ** json 리턴방식
     
     // ** 댓글 쓰기 버튼 클릭 이벤트 (ajax로 처리)
@@ -48,14 +124,15 @@ $(document).ready(function(){
             url: "/share/insert_QnA.do",
             data: param,
             success: function(){
-            	console.log(param);
+               console.log(param);
                 alert("댓글이 등록되었습니다.");
-                listReply("1");
+                $("#shareQnaContent").val("");
             }
         });
+        return false;
     });
     
-   
+
     
 
 // Controller방식
@@ -108,56 +185,95 @@ function changeDate(date){
 });
 
 </script>
+<script type="text/javaScript">
+
+$(document).ready(function() {
+   // tab operation
+   
+     $(document).on("click", ".reply", function() {
+             console.log($(this).children("a").attr("href"))
+             
+             $.ajax({
+                type: "get"
+                , url: $(this).children("a").attr("href")
+                , dataType: "html"
+                , success: function(h) {
+                $('#listReply3').html(h);
+            console.log(h);
+            console.log(succ);
+                }
+                , error: function() {
+                   console.log("err")
+                }
+             })
+             
+             return false;
+          })
+          
+          
+          })
+
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
 
 
-//댓글 수정
-  $(document).on("click", ".qnaUpdateBtn", function() {
 
-  	$.ajax({
-  		type: "get"
-  		, url: "/share/read_QnA.do?share_idx=${list[0].SHARE_IDX }"
-			+ "&shareQnaIdx="+$(this).attr("data-qno")
-  		, dataType: "html"
-  		, success: function(h) {
-  			console.log("succ");
-  			console.log(h);
-  			$("#up").html(h)
-  		}
-  		, error: function() {
-  			console.log("err")
-  		}
-  	})
-	
-  })
+
+
+
+   //댓글 수정
+     $(document).on("click", ".qnaUpdateBtn", function() {
+
+        $.ajax({
+           type: "get"
+           , url: "/share/read_QnA.do?share_idx=${list[0].SHARE_IDX }"
+            + "&shareQnaIdx="+$(this).attr("data-qno")
+           , dataType: "html"
+           , success: function(h) {
+              console.log("succ");
+              console.log(h);
+              $("#listReply").html(h)
+           }
+           , error: function() {
+              console.log("err")
+           }
+        })
+   
+        return false;
+     })
+     
+
+  
   
 
   //댓글 삭제
-	 $(document).on("click",".qnaDeleteBtn", function(){
-	 
-	$.ajax({
-		url :  "/share/delete_QnA.do?share_idx=${list[0].SHARE_IDX }"
-			+ "&shareQnaIdx="+$(this).attr("data-qno")
-		,type  : "get"
-		,dataType : "HTML"
-		,success : function(h) {
-			
-			alert("삭제 하겠습니까?.");
-			$("#up").html(h);
-			
-		}
-		,error : function() {
-			alert("에러발생")
-		}
-	})
-//		 }
+    $(document).on("click",".qnaDeleteBtn", function(){
+   $.ajax({
+      url :  "/share/delete_QnA.do?share_idx=${list[0].SHARE_IDX }"
+         + "&shareQnaIdx="+$(this).attr("data-qno")
+      ,type  : "post"
+      ,dataType : "HTML"
+      ,success : function(result) {
+         if(result == 1) {
+            
+         $("#listReply").html();
+         alert("삭제 하겠습니까?.");
+         }
+                  
+      }
+      ,error : function() {
+         alert("로그인하셔야합니다.")
+      }
+   })
+//       }
 });
 })
 
 
 </script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -180,35 +296,36 @@ $(document).ready(function() {
 
 <script type="text/javascript">
     $(document).ready(function() {
-	// tab operation
+   // tab operation
 
 
-	  	  
+          
 
-	  $(document).on("click", ".link_cheering", function() {
-	  	  	console.log($(this).children("a").attr("href"))
-			$('li').css('background-color', 'white');
-			$(this).css('background-color', '#80c72d');
-	  	  	$.ajax({
-	  	  		type: "get"
-	  	  		, url: $(this).children("a").attr("href")
-	  	  		, dataType: "html"
-	  	  		, success: function(h) {
-	  	  		$('.article_intro2').html(h);
-				console.log(h);
-				console.log(succ);
-	  	  		}
-	  	  		, error: function() {
-	  	  			console.log("err")
-	  	  		}
-	  	  	})
-	  	  	
-	  	  	return false;
-	  	  })
-	  	  
-	  	  
-	  	  })
-	  	  </script>
+     $(document).on("click", ".link_cheering", function() {
+             console.log($(this).children("a").attr("href"))
+         $('li').css('background-color', 'white');
+         $(this).css('background-color', '#80c72d');
+             $.ajax({
+                type: "get"
+                , url: $(this).children("a").attr("href")
+                , dataType: "html"
+                , success: function(h) {
+                $('.article_intro2').html(h);
+            console.log(h);
+            console.log(succ);
+                }
+                , error: function() {
+                   console.log("err")
+                }
+             })
+             
+             return false;
+          })
+          
+          
+          })
+          </script>
+
 
 
 
@@ -338,7 +455,7 @@ $(document).ready(function() {
 						<div class="item_btns">
 							<a class="link_share" id="link_share" style="width: 99%"><button
 									id="btnCopy" data-clipboard-target="#targetText"
-									style="width: 99%">URL 복사하기</button> <img
+									style="width: 99%; margin: 0%">URL 복사하기</button> <img
 								src="https://www.ohmycompany.com/omc/asset/images/share.jpg"
 								style="width: 99%" /> <span class="num_count"
 								id="share_num_count"> <span id="targetText">http://localhost:8888/share/detail.do?shareDate=${list[0].SHAREDATE}&share_idx=${list[0].SHARE_IDX}</span>
@@ -352,12 +469,17 @@ $(document).ready(function() {
 									value="${list[0].SHARE_IDX }">
 
 								<!-- 상품코드를 히든타입으로 넘김 -->
-								<select name="like_check">
-
+								<select name="goods_idx">
+									<c:forEach items="${goods }" var="glist">
+										<option value="${glist.goods_Idx }"
+											style="text-align: center;">${glist.goods_Name }</option>
+									</c:forEach>
+									<span id="icon_like"></span>
+									<span class="num_count" id="like_num_count">
+								</select> <select name="like_check">
 									<c:forEach begin="1" end="10" var="i">
 										<option value="${i}" style="text-align: center;">${i}
 											개</option>
-										<!-- 장바구니에  10개 까지 담을수 있다.-->
 									</c:forEach>
 									<span id="icon_like"></span>
 									<span class="num_count" id="like_num_count">
@@ -449,31 +571,107 @@ $(document).ready(function() {
 									<br>
 
 									<!-- Q&A 리스단 -->
-									<div id="listReply"></div>
-								</section>
-							</div>
+									<div id="listReply">
+										<table style="width: 700px" class="table">
+											<c:forEach var="row" items="${qlist}">
+												<tr id="up">
+													<td scope="row">${row.member_id } <br> <fmt:formatDate
+															value="${row.shareQnaRegDate}"
+															pattern="yyyy-MM-dd HH:mm:ss" /> <br>
+														${row.shareQnaContent}
+
+														<div id="rol">
+															<div class='replyFooter'></div>
 
 
-							<div class="box_reward_select">
-								<form name="rewardForm" id="rewardForm" action="#">
-									<fieldset>
-										<ul class="list_reward">
-											<c:forEach items="${goods }" var="glist">
-												<li><a href="" class="box_reward"> <strong
-														class="tit_reward">${glist.goods_Price }원 펀딩</strong>
-														<p class="txt_desc">${glist.goods_Name }</p> <span
-														class="info_dely"><span class="tit_info">배송
-																예정일</span> : <span class="txt_info">목표금액 달성 시 개별공지</span> </span> <span
-														class="txt_satea"> <em class="num_state">${list[0].JOINPER}명</em>
-															참여하였습니다.
-													</span>
-												</a></li>
+															<button type="button" id="btnUpdete" class="qnaUpdateBtn"
+																data-qno="${row.shareQnaIdx }">수정</button>
+
+															<button type="button" class="qnaDeleteBtn"
+																data-qno="${row.shareQnaIdx }">삭제</button>
+
+
+															<div class="reply">
+
+																<a
+																	href="/share/listReply.do?shareQnaIdx=${row.shareQnaIdx}">
+																	<c:if test="${row.qcount > 0}">
+																		<span style="color: red;">답변완료 </span>
+																	</c:if> <c:if test="${row.qcount == 0}">
+																		<span style="color: blue;">답변대기중</span>
+																	</c:if>
+
+																</a>
+															</div>
+
+														</div>
+
+														<hr>
+													</td>
+												</tr>
+												<td id="listReply3"></td>
 											</c:forEach>
-										</ul>
-									</fieldset>
-								</form>
-							</div>
 
+
+											<!-- **페이징 처리 -->
+											<tr>
+												<td>
+													<!-- 현재 페이지 블럭이 1보다 크면 처음으로 이동 --> <c:if
+														test="${qnapager.curBlock > 1}">
+														<a
+															href="/share/detail.do?shareDate=${list[0].SHAREDATE }&share_idx=${list[0].SHARE_IDX }&curPage=${curPage}">[처음]</a>
+													</c:if> <!-- 현재 페이지 블럭이 1보다 크면 이전 페이지 블럭으로 이동 --> <c:if
+														test="${qnapager.curBlock > 1}">
+														<a
+															href="/share/detail.do?shareDate=${list[0].SHAREDATE }&share_idx=${list[0].SHARE_IDX }&curPage=${qnapager.prevPage}">[이전]</a>
+													</c:if> <!-- 페이지 블럭 처음부터 마지막 블럭까지 1씩 증가하는 페이지 출력 --> <c:forEach
+														var="num" begin="${qnapager.blockBegin}"
+														end="${qnapager.blockEnd}">
+														<c:choose>
+															<c:when test="${num == qnapager.curPage}">
+								                            ${num}&nbsp;
+								                        </c:when>
+															<c:otherwise>
+																<a
+																	href="/share/detail.do?shareDate=${list[0].SHAREDATE }&share_idx=${list[0].SHARE_IDX }&curPage=${num}">${num}</a>&nbsp;
+                        									</c:otherwise>
+														</c:choose>
+													</c:forEach> <!-- 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 다음페이지로 이동 --> <c:if
+														test="${qnapager.curBlock <= qnapager.totBlock}">
+														<a
+															href="/share/detail.do?shareDate=${list[0].SHAREDATE }&share_idx=${list[0].SHARE_IDX }&curPage=${qnapager.nextPage}">[다음]</a>
+													</c:if> <!-- 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 끝으로 이동 --> <c:if
+														test="${qnapager.curBlock <= qnapager.totBlock}">
+														<a
+															href="/share/detail.do?shareDate=${list[0].SHAREDATE }&share_idx=${list[0].SHARE_IDX }&curPage=${qnapager.totPage}">[끝]</a>
+													</c:if>
+												</td>
+
+											</tr>
+										</table>
+									</div>
+
+
+									<div class="box_reward_select" style="left: 160%">
+										<form name="rewardForm" id="rewardForm" action="#">
+											<fieldset>
+												<ul class="list_reward">
+													<c:forEach items="${goods }" var="glist">
+														<li><a href="" class="box_reward"> <strong
+																class="tit_reward">${glist.goods_Price }원 펀딩 </strong><input
+																type="hidden" id="goodsval" value="${glist.goods_Idx }">
+																<p class="txt_desc">${glist.goods_Name }</p> <span
+																class="info_dely"><span class="tit_info">배송
+																		예정일</span> : <span class="txt_info">목표금액 달성 시 개별공지</span> </span> <span
+																class="txt_satea"> <em class="num_state">${list[0].JOINPER}명</em>
+																	참여하였습니다.
+															</span>
+														</a></li>
+													</c:forEach>
+												</ul>
+											</fieldset>
+										</form>
+									</div>
+							</div>
 						</div>
-					</div>
-					<jsp:include page="/footer.do" />
+						<jsp:include page="/footer.do" />

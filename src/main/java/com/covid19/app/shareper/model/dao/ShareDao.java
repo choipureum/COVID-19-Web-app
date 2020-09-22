@@ -161,11 +161,13 @@ public class ShareDao {
 	public void updateQna(ShareQna qna) {
 		sqlSession.update("SHARE.updateQna", qna);
 	}
-
+	public String idCheck(int shareQnaIdx) {
+	      return sqlSession.selectOne("SHARE.idCheck", shareQnaIdx);
+	   }
 	// 삭제
-	public void deleteQna(int qno) {
-		sqlSession.delete("SHARE.deleteQna", qno);
-	}
+	   public void deleteQna(ShareQna qna) {
+	      sqlSession.delete("SHARE.deleteQna", qna);
+	   }
 
 	// 답변
 	// 입력

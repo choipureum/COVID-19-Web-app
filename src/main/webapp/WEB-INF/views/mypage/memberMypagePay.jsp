@@ -51,28 +51,28 @@ h2{
 <h2> 결 제 목 록 </h2>
 <br>
 <hr>
-	<!-- Table -->
-	<div class="table-wrapper">
-		<table>
-			<thead>
-				<tr style="border:1px;">
-					<th>상품 이름</th>
-					<th>결제 일자</th>
-					<th>주소 </th>
+   <!-- Table -->
+   <div class="table-wrapper">
+      <table>
+         <thead>
+            <tr style="border:1px;">
+               <th>상품 이름</th>
+               <th>결제 일자</th>
+               <th>주소 </th>
         
-				</tr>
-			</thead>
-			<tbody>
-
-				<tr>
-					<td>${mypagePay.goods_name }</td>
-			        <td>${mypagePay.pay_day }</td>	
-			        <td>${mypagePay.address }</td>	
-				</tr>		
-
-			</tbody>
-		</table>	
-	</div>
+            </tr>
+         </thead>
+         <tbody>
+         <c:forEach var="list" items="${mypagePay }">
+            <tr>
+               <td>${list.goods_name }</td>
+                 <td>${list.pay_day }</td>   
+                 <td>${list.address }</td>   
+            </tr>      
+         </c:forEach>
+         </tbody>
+      </table>   
+   </div>
 </div>
 
 <!-- footer 임포트 -->

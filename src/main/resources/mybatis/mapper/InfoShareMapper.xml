@@ -7,13 +7,16 @@
     <select id="selectInfoList" resultType="INFO">
      select * 
      from(
-    		select rownum rnum, i1.* from(select * from info_board order by info_idx desc
+    		select rownum rnum, i1.* from(select * from info_board 
+    		<include refid="search"/>
+    		order by info_idx desc
     		) i1
     	)where rnum between #{start} and #{end}
     </select>
     
     <select id="selectInfoCnt" resultType="int">
     	SELECT COUNT(*) FROM info_board
+    	<include refid="search"/>
     </select>
     
     <select id="selectInfoDetail" resultType="INFO">
@@ -30,22 +33,18 @@
     <delete id="deleteInfo" parameterType="int">
     	DELETE FROM info_board WHERE info_idx = #{info_idx}
     </delete>
-    
-    <resultMap type="map" id="info_FileData">
-    	<result column="Info_OriginFile" property="infoOriginFile"/>
-		<result column="Info_RenameFile" property="infoRenameFile"/>
-		<result column="Info_SavePath" property="infoSavePath"/> 
-		<result column="info_idx" property="info_idx"/>   
-    	<result column="info_Fidx" property="info_Fidx"/>
-    </resultMap>
 
     <insert id="insertInfo">
-    	INSERT INTO info_board (member_rank, info_idx, info_title, info_content, info_date, info_img, info_writer)
-    	VALUES( #{member_rank}, info_board_seq.nextval, #{info_title}, #{info_content}, sysdate, #{info_img}, #{info_writer})
+    	INSERT INTO info_board (info_idx, info_title, info_content, info_date, info_writer)
+    	VALUES(info_board_seq.nextval, #{info_title}, #{info_content}, sysdate, #{info_writer})
     </insert>
     
+    <update id="updateInfo">
+    	UPDATE info_board SET info_title = #{info_title}, info_content = #{info_content}
+    	WHERE info_idx = #{info_idx}
+    </update>
     
-    <insert id="insertInfoReply" parameterType="REPLY">
+    <insert id="insertInfoReply" parameterType="INFOREPLY">
     	<selectKey resultType="String" keyProperty="reply_idx" order="BEFORE">
     		SELECT NVL(MAX(reply_idx),0)+1 FROM INFO_REPLY
     	</selectKey>
@@ -54,14 +53,14 @@
     </insert>
     
     <!-- 댓글 수정 -->
-    <update id="updateInfoReply" parameterType="REPLY">
+    <update id="updateInfoReply" parameterType="INFOREPLY">
     	UPDATE info_reply
     	set reply_content=#{reply_content}
     	WHERE reply_idx=#{reply_idx}
     </update>
     
     <!-- 댓글 목록 -->
-    <select id="selectInfoReplyList" resultType="REPLY">
+    <select id="selectInfoReplyList" resultType="INFOREPLY">
     	SELECT * FROM info_reply
     	WHERE info_idx = #{info_idx}
     </select>
@@ -71,5 +70,15 @@
     	DELETE FROM info_reply
     	WHERE reply_idx = #{reply_idx}
     </delete>
+    
+    <sql id="search">
+    	WHERE
+    	<choose>
+    		<!--  검색내용 없는경우 -->
+    		<when test="search_content ==''"> 1=1</when>
+    		<when test="search_item =='t'.toString() and search_content !=''">    INFO_TITLE LIKE '%'|| #{search_content} || '%'</when>
+    		<when test="search_item =='c'.toString() and search_content !=''">    INFO_CONTENT LIKE '%'|| #{search_content} || '%'</when>
+    	</choose>
+    </sql>
     
    </mapper>

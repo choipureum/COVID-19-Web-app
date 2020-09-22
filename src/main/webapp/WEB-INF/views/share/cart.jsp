@@ -2,8 +2,33 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+   href="/resources/UserBoardTemplate/assets/css/main.css" />
+
+
 <jsp:include page="/header.do" />
+<style>
+.table {
+    width: 70%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    /* padding: 20% 20% 20% 20; */
+    margin-left: 15%;
+    margin-top: 3%;
+    }
+th{
+text-align: center;
+}
+button{
+   height: 5%;
+}
+</style>
 <script>
 $(function(){
 
@@ -13,7 +38,7 @@ $(function(){
 
      // 아래쪽에서 btnlist를 호출해서 실행되는 function() 함수 구문.
      // list로 가는 링크를 만든다.
-	$("#btnUpdate").click(function(){
+   $("#btnUpdate").click(function(){
         if(confirm("수량 변경하시겠습니까?")){
             location.href="${path}/share/cartUpdate.do?sharelike_id=${row.sharelike_id}";
         }
@@ -40,17 +65,17 @@ $(function(){
     <!-- form의 id를 form1로 하고, method 방식을 post로 한다. 그리고 update.do페이지로 이동시킨다. -->
         <form id="form1" name="form1" method="post"
         action="${path}/share/cartUpdate.do">
-            <table border="1" width="400px">
+            <table border="1" width="400px" class="table table-striped">
                 <tr>
-                    <th>상품명</th>
-                    <th>단가</th>
-                    <th>수량</th>
-                    <th>금액</th>
-                    <th>&nbsp;</th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">단가</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">금액</th>
+                    <th scope="col">&nbsp;</th>
                 </tr>
                 <!-- map에 있는 list출력하기 위해 forEach문을 사용해 row라는 변수에 넣는다. -->
             <c:forEach var="row" items="${map.list}">
-                <tr align="center">
+                <tr align="center" >
                     <td>${row.shareName}</td>
                     
                     <td><fmt:formatNumber value="${row.shareMoney}"
@@ -75,7 +100,7 @@ $(function(){
                     <td><fmt:formatNumber value="${row.money}"
                             pattern="#,###,###" /></td>
                     <td><a href=
-			"${path}/share/cartDelete.do?sharelike_id=${row.sharelike_id}">[삭제]</a>
+         "${path}/share/cartDelete.do?sharelike_id=${row.sharelike_id}">[삭제]</a>
 <!-- 삭제 버튼을 누르면 artDelete.do로 장바구니 개별 id (삭제하길원하는 장바구니 id)를 보내서 삭제한다. -->
                     </td>
                 </tr>
@@ -89,11 +114,11 @@ $(function(){
                 </tr>
             </table>
 <!--             <button type="button" id="btnUpdate">수정</button> -->
-            <button type="button" id="btnDelete">장바구니 비우기</button>
+            <button type="button" id="btnDelete" style="margin-left: 15%;">장바구니 비우기</button>
             <!-- 0//btnUpdate와 btnDelete id는 위쪽에 있는 자바스크립트가 처리한다. -->
+<button type="button" id="btnList" >상품목록</button>
         </form>
     </c:otherwise>
 </c:choose>
-<button type="button" id="btnList">상품목록</button>
 </body>
 </html>

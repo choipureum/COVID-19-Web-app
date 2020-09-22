@@ -15,7 +15,7 @@ $(document).ready(function(){
 	});	
 	//업데이트 버튼
 	$("#btnUpdate").click(function(){
-		$(location).attr("href", "/board/update?b_num=${viewBoard.b_num}")
+		$(location).attr("href", "/infoBoardUpdate.do?info_idx=${data.infoshare.info_idx}")
 	})
 	//삭제버튼
 	$("#btnDelete").click(function() {
@@ -105,49 +105,8 @@ $(document).ready(function(){
 
 
 </script>
-
-<div class="desc_notice" style="left:15%; width:80%">
-<!--       <div class="tit_notice"> -->
-<%--           <h4 class="reset">${data.infoshare.info_idx}</h4> --%>
-<!--       </div> -->
-<!--       <div class="info" > -->
-<%--            <span name="noticeNo" value="${data.infoshare.info_idx}">게시글번호 : ${data.infoshare.info_idx}</span> --%>
-          
-<%--           <span>등록일 : ${data.infoshare.info_date}</span> --%>
-<%--           <span>작성자 : ${data.infoshare.member_nick}</span> --%>
-<!--       </div> -->
-<!--       <div class="info" style="height:auto"> -->
-<%--       <c:forEach items="${data.flist}" var="file"> --%>
-<!--          <button style="margin-left:1%;" type="button"  -->
-<%--                onclick="downloadFile('${file.originFileName}','${file.renameFileName}')"> --%>
-<%--          ${file.originFileName}</button> --%>
-<%--       </c:forEach> --%>
-<!--       </div> -->
-<!--       <div class="text"> -->
-<%--            ${data.infoshare.info_content} --%>
-<!--         </div> -->
-<!--       <div class="btn_section"> -->
-<!--           <button style="color:white" onclick="submitData('noticelist.do')"><span>목록</span></button> -->
-<!--         </div> -->
-<%--         <c:if test="${logInInfo.userId == data.notice.userId}"> --%>
-<!--          <div class="btn_section"> -->
-<%--           <button style="color:white" onclick="submitData('noticedelete.do?nIdx=${data.notice.nIdx}&userId=${data.notice.userId}')"><span>삭제</span></button> --%>
-<!--         </div> -->
-<!--         <div class="btn_section"> -->
-<%--           <button style="color:white" onclick="submitData('noticeModify.do?nIdx=${data.notice.nIdx}&userId=${data.notice.userId}')"><span>수정</span></button> --%>
-<!--         </div> -->
-<%--         </c:if> --%>
-        <input type="hidden" name="pwVal" id="pwVal"/>
-   </div>
-   
-   
-   
-<form name="form1" id="form1" method="post">
-<input name="pageIndex" id="pageIndex" type="hidden" />
-<input type="hidden" id="file_path" name="file_path" value="" />
-<input type="hidden" id="file_name" name="file_name" value="" />
-</form>
 <fmt:formatDate value="${data.infoshare.info_date }" pattern="yy-MM-dd HH:mm" var="regDate"/>
+   
 
 	<div class="container" style="background-color: white;"><!-- main_container -->
 		<div>
@@ -176,6 +135,7 @@ $(document).ready(function(){
                                 </div>
                                 <div class="bv_category">
                                     <ul>
+                                    
                                         <li><span class="bvc_ttl">게시글 번호 :</span><span class="bvc_detail"> ${data.infoshare.info_idx}</span>
                                         <li><span class="bvc_ttl">작성자 :</span><span class="bvc_detail">${data.infoshare.info_writer}</span></li>
                                         <li><span class="bvc_ttl">작성일 :</span><span class="bvc_detail">${regDate}</span> </li>
@@ -187,44 +147,52 @@ $(document).ready(function(){
                             <div class="bv_content">
                                 <div class="bvc_txt">
                                 	<p>&nbsp;${data.infoshare.info_content}
-                                	
                                 	</p>
-                                	<c:set var="img" value="${data.infoshare.info_img}"/>
-                                	<div style="width: 50%; height:auto;">
-                                	<c:if test="${fn:contains(img, 'png')}">
-										<img src="${data.infoshare.info_img}"/>	
-                                	</c:if>
-                                	
-                                	<c:if test="${fn:contains(img, 'jpg')}">
-										<img src="${data.infoshare.info_img}"/>	
-                                	</c:if>
-                                	
-                                	<c:if test="${fn:contains(img, 'JPG')}">
-										<img src="${data.infoshare.info_img}"/>	
-                                	</c:if>
-                                	</div>
                                 	
                                 </div>
                             </div>
 							<p>&nbsp;</p>
+							<div>
+<!-- 								<button style="margin-left:1%;" type="button" -->
+<%-- 										onclick="downloadFile('${data.infoshare.info_img}')"> --%>
+<%-- 										${data.infoshare.info_img} --%>
+<!-- 								</button>	 -->
+<!-- 							</div> -->
+<!-- 							<p>&nbsp;</p> -->
 						<!-- 댓글 작성 -->
+						<c:if test="${logInInfo.member_id eq null}">
+							<div style="border: 1px solid; width: 100%; padding: 5px">
+								<form name="form1" action="<%= request.getContextPath() %>/infoReplySave.do" method="post">
+									<input type="hidden" name="info_idx" value="<c:out value="${data.infoshare.info_idx}"/>">
+									작성자:<input type="text" name="reply_writer"	size="20" maxlength="20" readonly="readonly"><br/>
+									<textarea style="resize: none" name="reply_content" rows="3" cols="60" maxlength="500" placeholder="로그인이 필요합니다." readonly="readonly"></textarea>								
+									<div style="text-align: right;">
+									</div>
+								</form>
+							</div>
+						</c:if>
+						
+						<c:if test="${logInInfo.member_id ne null}">
 							<div style="border: 1px solid; width: 100%; padding: 5px">
 								<form name="form1" action="<%= request.getContextPath() %>/infoReplySave.do" method="post">
 									<input type="hidden" name="info_idx" value="<c:out value="${data.infoshare.info_idx}"/>">
 									작성자:<input type="text" name="reply_writer"	size="20" maxlength="20" value="${logInInfo.member_id}" readonly="readonly"><br/>
-									<textarea name="reply_content" rows="3" cols="60" maxlength="500" placeholder="댓글을 달아주세요."></textarea>								
+									<textarea style="resize: none" name="reply_content" rows="3" cols="60" maxlength="500" placeholder="댓글을 달아주세요."></textarea>								
 									<div style="text-align: right;">
 									<button style="color:white; background-color:grey; text-align:center; font-size:1.5ww">저장</button>
 									</div>
 								</form>
 							</div>
+						</c:if>
 							
 						<!-- 댓글 목록  -->
 							<c:forEach var="replylist" items="${replylist}" varStatus="status">
 							    <div style="border: 1px solid gray; width: 100%; padding: 5px; margin-top: 5px;">
 							    <div style="text-align: right; font-weight: bold;"> 작성자: <c:out value="${replylist.reply_writer}"/> <c:out value="${replylist.reg_date}"/>
+							    <c:if test="${logInInfo.member_id} == ${logInInfo.member_id }">   
 							        <a href="#" onclick="fn_replyDelete('<c:out value="${replylist.reply_idx}"/>'); history.go(0); alert('삭제되었습니다.');">삭제</a>
 							        <a href="#" onclick="fn_replyUpdate('<c:out value="${replylist.reply_idx}"/>')">수정</a>
+							    </c:if>    
 <!-- 							        <a href="#" onclick="fn_editReply()">수정</a> -->
 							    </div>   
 							        <div id="reply<c:out value="${replylist.reply_idx}"/>"><c:out value="${replylist.reply_content}"/></div>
@@ -249,13 +217,14 @@ $(document).ready(function(){
 <!--                             <a href="javascript:void(0);" onclick="infoBoard.do" class="tag tag_lg tag_black"><span>목록</span></a> -->
                     <!--게시판 목록-->
 							<button id="btnList" class="tag tag_lg tag_black">목록</button>
-<!--                             <a href="javascript:void(0);" onclick="fn_boardView('/infoBoard.do', '3', '32', '', '', '');" class="tag tag_lg tag_blue"><span>수정</span></a> -->
+							  	<c:if test="${data.infoshare.info_writer eq logInInfo.member_id }">  
 							<button id="btnUpdate" class="tag tag_lg tag_blue">수정</button>
                         	<button id="btnDelete" class="tag tag_lg tag_red" onclick="alert('삭제되었습니다.');">삭제</button>
+                        		</c:if>
                         </div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 <jsp:include page="/footer.do" />

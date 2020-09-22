@@ -14,6 +14,13 @@ public class ShareLike {
 	private String shareMoney;//상품전체가격
 	private int sharedDay;//만료날짜
 	private int money;
+	private int goods_idx;
+	public int getGoods_idx() {
+		return goods_idx;
+	}
+	public void setGoods_idx(int goods_idx) {
+		this.goods_idx = goods_idx;
+	}
 	public int getSharelike_id() {
 		return sharelike_id;
 	}

@@ -85,7 +85,11 @@ public class MemberController {
 	public ModelAndView joinimpl(@RequestParam Map<String,Object> commandMap,HttpServletRequest request) {		
 	
 		ModelAndView mav = new ModelAndView();
-		
+		if(commandMap.get("auth").equals("일반")) {
+			commandMap.put("auth", 0);
+		}else if(commandMap.get("auth").equals("사업자")){
+			commandMap.put("auth", 1);
+		}
 		int res=memberService.insertMember(commandMap);
 		String root = request.getContextPath();
 		

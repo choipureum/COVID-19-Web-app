@@ -395,13 +395,14 @@ function openNav() {
       			<c:when test="${logInInfo.member_id == null}">
       			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
      			<a href="/mypage/memberMypageGrade.do"><i class="fa  fa-user"></i> 등급별 혜택 ^~^</a>
+     			<a href="/admin/adlogin.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-user"></i> 관리자 로그인</a>
       			</c:when>
       			<c:otherwise>
       				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
            			<a href="#"><span>${logInInfo.member_name}</span>님 안녕하세요</a><br><br>
       				<a href="#home"><i class="fa fa-virus"></i>MYPAGE</a>
         	   		<a href="/mypage/memberModify.do"><i class="fa  fa-wrench"></i> 회원정보수정</a>
-           			<a href="/mypage/memberMypageBag.do"><i class="fa  fa-envelope"></i> 장바구니</a>
+           			<a href="/share/cartList.do"><i class="fa  fa-envelope"></i> 장바구니</a>
            			<a href="/mypage/memberMypagePay.do"><i class="fa  fa-envelope"></i> 결제목록</a>   
            			<a href="/mypage/memberMypageGrade.do"><i class="fa  fa-user"></i> 등급별 혜택 ^~^</a>
            			<a href="/member/logout.do" style="font-size:13px; position:absolute;bottom:10px;"><i class="fa  fa-sign-out-alt"></i> 로그아웃</a>           
