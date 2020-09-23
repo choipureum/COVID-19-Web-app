@@ -14,7 +14,7 @@
   <h3 align="center">COVID-19 종합 웹프로젝트</h3>
 
   <p align="center">
-    2020 KH정보교육원 | 😷파이널프로젝트 코로나 종합 웹 프로젝트입니다
+    2020 KH정보교육원 | 😷파이널프로젝트 코로나 종합 웹 프로젝트
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>DOCS확인</strong></a>
     <br />
