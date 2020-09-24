@@ -1,5 +1,6 @@
 package com.covid19.app.member.controller;
 
+import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+
 import org.codehaus.jackson.JsonNode;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +41,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.covid19.app.member.model.service.MemberService;
 import com.covid19.app.member.model.vo.Member;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 //컨트롤러설정
 @Controller
 @RequestMapping("member")
@@ -47,6 +53,13 @@ public class MemberController {
 	 @Autowired   
 	 public MemberService memberService;
 	 
+	 private NaverLoginBO naverLoginBO;
+	 private String apiResult = null;
+	    
+	 @Autowired
+	 private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		 this.naverLoginBO = naverLoginBO;
+	 }
 	
 	 /**
 	  * 회원가입 GET
@@ -72,16 +85,20 @@ public class MemberController {
 	public ModelAndView joinimpl(@RequestParam Map<String,Object> commandMap,HttpServletRequest request) {		
 	
 		ModelAndView mav = new ModelAndView();
-		
+		if(commandMap.get("auth").equals("일반")) {
+			commandMap.put("auth", 0);
+		}else if(commandMap.get("auth").equals("사업자")){
+			commandMap.put("auth", 1);
+		}
 		int res=memberService.insertMember(commandMap);
 		String root = request.getContextPath();
 		
 		if(res > 0) {
-			mav.addObject("alertMsg", "회원가입성공!");
+			mav.addObject("alertMsg", "회원가입을 성공했습니다. 로그인하여 이용해주세요!");
 			mav.addObject("url", "/main.do");
 			mav.setViewName("/member/result");
 		} else {
-			mav.addObject("alertMsg", "회원가입에 실패");
+			mav.addObject("alertMsg", "회원가입에 실패했습니다. 다시 시도해 주세요");
 			mav.addObject("url", root+"/member/join.do");
 			mav.setViewName("/member/result");
 		}
@@ -116,7 +133,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/loginimpl.do", method=RequestMethod.POST)
 	public ModelAndView loginImpl(@RequestParam Map<String,Object> commandMap,HttpSession session,HttpServletRequest request) {
-
+		
 		ModelAndView mav = new ModelAndView();  
 		Member res = memberService.login(commandMap);
 		System.out.println(res);
@@ -126,11 +143,11 @@ public class MemberController {
 			session.setAttribute("logInInfo", res);
 			System.out.println("memberid = " + session.getAttribute("logInInfo"));
 	    	 
-			mav.addObject("alertMsg", "로그인성공!");
+			mav.addObject("alertMsg", "환영합니다 COVID - 19 종합 홈페이지 입니다");
 			mav.addObject("url",request.getContextPath()+"/main.do");
 	     
 		} else { //실패하면  로그인
-			mav.addObject("alertMsg", "로그인실패!");
+			mav.addObject("alertMsg", "아이디 또는 비밀번호를 확인해주세요!");
 			mav.addObject("url", request.getContextPath()+"/main.do");
 		}
 		mav.setViewName("member/result");
@@ -207,11 +224,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/changePwimpl.do", method = RequestMethod.POST)
 	public int changePwimpl(@ModelAttribute Member member,HttpSession session,HttpServletRequest request) {
-	    System.out.println("member다"+member);
 		int res = memberService.changePw(member);
 	    String member_id= member.getMember_id();
-	    System.out.println("넌 res고" + res);
-	    System.out.println(member_id);
 	      
 	    return res;
 	}
@@ -240,6 +254,111 @@ public class MemberController {
 			return null ;
 		}		
 	}
+	
+	
+	/**
+	 * 네이버 로그인
+	 */
+	
+	//로그인 첫 화면 요청 메소드
+    @RequestMapping(value = "/naverlogin", method = { RequestMethod.GET, RequestMethod.POST })
+    public String naverlogin(Model model, HttpSession session) {
+        
+        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+        
+        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+        System.out.println("네이버:" + naverAuthUrl);
+        
+        //네이버 
+        model.addAttribute("url", naverAuthUrl);
+        
+        /* 생성한 인증 URL을 View로 전달 */
+        return "/member/naverlogin";
+    }
+    
+//    //네이버 로그인 성공시 callback호출 메소드
+//    @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+//    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request, Member member)
+//            throws IOException, ParseException, MessagingException {
+//        
+//    	int resultCnt =0;
+//    	
+//    	System.out.println("여기는 callback");
+//        OAuth2AccessToken oauthToken;
+//        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+//        
+//        //로그인 사용자 정보를 읽어온다.
+//        apiResult = naverLoginBO.getUserProfile(oauthToken);
+//        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+//        
+//        model.addAttribute("result", apiResult);
+//        
+//        System.out.println("result"+apiResult);
+//        
+//        //DB와 세션에 넣기
+//        JSONParser jsonParser = new JSONParser();
+//        JSONObject jsonObject = (JSONObject)jsonParser.parse(naverLoginBO.getUserProfile(oauthToken).toString());
+//        
+//        JSONObject response = (JSONObject)jsonObject.get("response");
+//        
+//        System.out.println("이것은" + jsonObject.get("response"));
+//        String member_id=(String)response.get("id");
+//        
+//        System.out.println("아이디는" + member_id);
+//        
+//        member.setMember_id((String)response.get("id"));
+//        member.setMember_pw("0000"); //DB에서 Not null로 처리했기에 임의로 준 값
+//        member.setMember_name((String) response.get("name"));
+//        member.setMember_email((String) response.get("email"));
+//        member.setMember_birth((String) response.get("birthday"));
+//        
+//        System.out.println("멤바아이디는 " + member.getMember_id());
+//        
+//        session.setAttribute("logInInfo", member_id);
+//         
+//        model.addAttribute("result", apiResult);
+//        //생략 가능_세션에 담기 위해 사용했다.
+//        request.getSession(true).setAttribute("id", member.getMember_id());
+//        
+//        /* 네이버 로그인 성공 페이지 View 호출 */
+//        return "/member/naversuccess";
+//        
+//        
+//    }
+    
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 

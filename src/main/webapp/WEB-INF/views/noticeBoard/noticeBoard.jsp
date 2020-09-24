@@ -4,6 +4,13 @@
   
 <jsp:include page="/header.do" />
 
+<style>
+.list:hover {
+	background-color: #777;
+}
+
+
+</style>
 <script type="text/javaScript" language="javascript">
 
 function fn_goMenu(url, brd_id, brd_gubun, data_Gubun){
@@ -46,28 +53,6 @@ function fn_tcm_boardView(url, brdId, brdGubun, ncvContSeq, board_id, gubun){
 }
 
 
-function search( where ){
-	
-	var thisForm = $("#"+ where);
-	var thisSearch = $(thisForm).find("#searchTerm");
-	var cont = $(thisSearch).val();
-	
-	//특수문자 체크
-	if (containsChars(cont,"~!@#$%^&*()+|`=\\[]{};:'\".<>/?")) {
-		alert("특수문자는 제외하고 검색해주시기 바랍니다.");
-		$(thisSearch).val("");
-		event.preventDefault();
-		return false;
-	}else if ( cont == "" || cont == null || cont == undefined){
-		alert("검색어를 입력하세요");
-		$(thisSearch).focus();
-		event.preventDefault();
-		return false;
-	}
-	
-	return true;		
-	
-}
 
 
 
@@ -78,16 +63,6 @@ function search( where ){
 
 <script type="text/javaScript" language="javascript">
 
-function fn_search(pageNo){
-	$("#pageIndex").val(pageNo);
-	fn_submit();
-}
-
-function fn_submit(){
-	var frm = $("#form1");
-	frm.attr("action", "/factBoardList.do");
-	frm.submit();
-}
 
 //펼침메뉴를 눌렀을 경우 해당 seq번호로 게시글을 보여준다.
 function showView(seq){
@@ -114,30 +89,8 @@ function showView(seq){
 
 }
 
-
-// 첨부파일 
-function fn_fileDown(name, path, seq){
-	var frm = $("#form1");
-	$("#file_path").val(path);
-	$("#file_name").val(name);
-	$("#ncv_file_seq").val(seq); 
-	
-	frm.attr("action", '/board/doFileDownload.do');
-	frm.submit();
-}
-
-
 </script>
 
-<form name="form1" id="form1" method="post">
-<input name="pageIndex" id="pageIndex" type="hidden" value="" />
-
-<input type="hidden" id="ncv_file_seq" name="ncv_file_seq" value="" />
-<input type="hidden" id="file_path" name="file_path" value="" />
-<input type="hidden" id="file_name" name="file_name" value="" />
-<input type="hidden" id="brdId" name="brdId" value="3" />
-<input type="hidden" id="brdGubun" name="brdGubun" value="33" />
-<input type="hidden" id="dataGubun" name="dataGubun" value="" />
 
 	<div class="container" style="background-color: white"><!-- main_container -->
 		<div>
@@ -161,24 +114,25 @@ function fn_fileDown(name, path, seq){
 	                <!--게시판 목록-->
 	                  <div class="tab_flt cnt2-2-2">
                       <ul>
-                         <li style="width: 33.3%"><a href="/infoBoard.do"><span>정보공유</span></a></li>
-                         <li style="width: 33.3%" ><a href="/faqBoard.do"><span>FAQ</span></a></li>
+                         <li style="width: 33.3%" ><a href="/infoBoard.do" class="list"><span>정보공유</span></a></li>
+                         <li style="width: 33.3%" ><a href="/faqBoard.do" class="list"><span>FAQ</span></a></li>
                          <li class="on" style="width: 33.3%"><a href="/noticeBoard.do"><span>공지사항</span></a></li>
                       </ul>
                     </div>
 	                
 	                <div class="board_top">
 	                    <div class="fl_l">
-	                        <p class="bt_count">총<strong>56</strong>건</p>
+	                        <p class="bt_count">총<strong>${paging.total }</strong>건</p>
 	                    </div>
 	                    <div class="fl_r">
+	                    	 <form id="infoBoardSearch" action="noticeBoard.do" method="get">
 	                            <fieldset>
 	                                <legend class="hdn">게시물 검색</legend>
 	                                <div class="bt_srch">
 	                                    <div class="bts_slct">
 	                                        <select id="u_shcate" name="search_item" class="select" title="검색항목 선택">
-	                                            <option value="1" >제목 </option>
-	                                            <option value="2" >내용 </option>
+	                                            <option value="t" >제목 </option>
+	                                            <option value="c" >내용 </option>
 	                                       
 	                                        </select>
 	                                    </div>
@@ -190,80 +144,76 @@ function fn_fileDown(name, path, seq){
 	                                    </div>
 	                                </div>
 	                            </fieldset>
+	                         </form>
 	                    </div>
 	                </div>
 					<div class="faq_list">
 		                <ul>
-		                
+		                	<c:forEach items="${list.nlist}" var="notice">
 							
 			                    <li>
 			                        <a class="fl_q lt_l" onClick="showView('2767');">
 			                            <span class="ico_q" ></span>
-			                            <span class="fl_ttl">[이미지] 정부가 ‘임시생활시설 방역업체 등의 단가를 깎고 지급을 미뤘다’는 보도는 사실과 다릅니다.
-			                            	
-			                            </span>
-			                            <span class="list_date">2020-06-18 </span>
+			                            <span class="fl_ttl">${notice.notice_title }</span>
+			                            <span class="list_date">${notice.notice_date } </span>
 			                            <i></i>
 			                        </a>
 			                        <div class="fl_a lt_c">
 			                         <!--작성자정보-->
 			                         <div class="bv_top">
-			                                <div class="bv_category">
+			                               <div class="bv_category">
 			                                    <ul>
-			                                        <li><span class="bvc_ttl">담당 :</span><span class="bvc_detail">보건복지부</span></li>
-			                                        <li><span class="bvc_ttl">작성일 :</span><span class="bvc_detail">2020-06-18 17:43</span> </li>
+			                                        <li><span class="bvc_ttl">담당 :</span><span class="bvc_detail">${notice.notice_writer }</span></li>
+			                                        <li><span class="bvc_ttl">작성일 :</span><span class="bvc_detail">${notice.notice_date }</span> </li>
 			                                        
-			                                         <li><span class="bvc_ttl">
+			                                        
+			                                        <li><span class="bvc_ttl">
 			                                               <a target="_blank" href="shBoardView6765.html?brdId=3&amp;brdGubun=33&amp;ncvContSeq=2767"  class="bvf_link" title="공유하기">공유하기</a>
-			                                               </span>
-			                                            </li>
+			                                             </span>
+			                                         </li>
 			                                            
 			                                    </ul>
+			                                 	<ul>
+			                                    	<li>
+			                                    	     <span class="bvc_ttl">
+			                                    	     ${notice.notice_content }
+			                                    	     </span>              
+			                                    	</li>
+			                                 	</ul>
 			                                </div>
 			                            </div>
-			                            <!--작성자정보-->
-											
-			                            <!--글내용-->
-			                            <div class="fa_s_descript"  id="2767" >
-			                              	<p id="2767p" ></p>
-			                            </div>
-			                            <!--글내용-->
-
-			                            <!--첨부파일-->
-			                            
-			                            <!--첨부파일-->
+			                       
 			                        </div>
 			                    </li>
 							
-							
-							
+							</c:forEach>
 						
 		                </ul>
 		            </div>
 	                <div class="paging">section pagination
-			         <a href="<%= request.getContextPath() %>/covidNews.do" class="p_first"><i class="p_first"></i></a>
+			         <a href="<%= request.getContextPath() %>/noticeBoard.dosearch_item=${param.search_item}&search_content=${param.search_content}" class="p_first"><i class="p_first"></i></a>
 			        <c:choose>
 			        	<c:when test="${paging.blockStart > 1 }">
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart-1}" class="p_prev"></a>
+			         		<a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${paging.blockStart-1}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_prev"></a>
 			        	</c:when>
 			        	<c:otherwise>
-			        		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart}" class="p_prev"></a>
+			        		<a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${paging.blockStart}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_prev"></a>
 			        	</c:otherwise>
 			        </c:choose>
 			        <c:forEach begin="${paging.blockStart}" end="${paging.blockEnd}" var="page">
-			         <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${page}" class="num active"><span>${page}</span></a>
+			         <a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${page}&search_item=${param.search_item}&search_content=${param.search_content}" class="num active"><span>${page}</span></a>
 			        </c:forEach> 
 			        
 			        <c:choose>
 			        	<c:when test="${paging.blockEnd+1 > paging.lastPage }">
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd}" class="p_next"></a>
+			         		<a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${paging.blockEnd}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_next"></a>
 			        	</c:when>
 			        	<c:otherwise>
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd+1}" class="p_next"></a>
+			         		<a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${paging.blockEnd+1}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_next"></a>
 			        	</c:otherwise>
 			   	   	</c:choose>
 			 	   	 
-			 	   	 <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.lastPage}" class="p_last"></a>
+			 	   	 <a href="<%= request.getContextPath() %>/noticeBoard.do?cPage=${paging.lastPage}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_last"></a>
 			      	<div class="btn_section" style="background-color:white">
 			   	  	</div>
 	                </div>
@@ -271,7 +221,6 @@ function fn_fileDown(name, path, seq){
 			</div>
 		</div>
 	</div>
-</form>
 
 
 <!-- Mirrored from ncov.mohw.go.kr/factBoardList.do?brdId=3&brdGubun=33 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 05 Aug 2020 04:47:57 GMT -->

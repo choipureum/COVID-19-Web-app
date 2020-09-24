@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-
 <!doctype html>
 <html lang="ko">
 
@@ -27,6 +26,17 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="/resources/static/image/header/ROK.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/resources/static/image/header/ROK.png">
+
+	<!-- Javascript -->
+	<script src="/resources/admin/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/admin/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/resources/admin/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="/resources/admin/vendor/chartist/js/chartist.min.js"></script>
+	<script src="/resources/admin/scripts/klorofil-common.js"></script>
+
+
+
 </head>
 
 <body>
@@ -42,39 +52,18 @@
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left">
-					<div class="input-group">
-						<input type="text" value="" class="form-control" placeholder="텍스트 입력...">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary">검색</button></span>
-					</div>
-				</form>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
-							</a>
-							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+						<li class="dropdown">	
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> <span>홈페이지 이동</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
+								<li><a href="/main.do">코로나-19 종합관리센터</a></li>
+								<li><a href="https://news.naver.com/">네이버 뉴스</a></li>
+								<li><a href="https://news.daum.net/">다음 뉴스</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/resources/admin/img/user.png" class="img-circle" alt="Avatar"> <span>Admin</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/resources/admin/img/images.jpg" class="img-circle" alt="Avatar"> <span>ADMIN</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="/admin/adlogin.do"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li>
 							</ul>
@@ -99,8 +88,8 @@
 							<div id="subPages1" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/adconfirmed.do" class="">확진자 등록</a></li>
-									<li><a href="#" class="">추후 수정</a></li>
-									<li><a href="#" class="">추후 수정</a></li>
+<!-- 									<li><a href="#" class="">추후 수정</a></li> -->
+<!-- 									<li><a href="#" class="">추후 수정</a></li> -->
 								</ul>
 							</div>
 						</li>
@@ -108,7 +97,7 @@
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class=""></i> <span>게시판 관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
 								<ul class="nav">
-									<li><a href="/admin/adboard.do" class="">커뮤니티</a></li>
+									<li><a href="/admin/adboard.do" class="">정보공유</a></li>
 									<li><a href="/admin/adshrelist.do" class="">쇼핑</a></li>
 									<li><a href="/admin/adfaq.do" class="">FAQ</a></li>
 								</ul>
@@ -119,8 +108,8 @@
 							<div id="subPages3" class="collapse ">
 								<ul class="nav">
 									<li><a href="/admin/aduserlist.do" class="">회원 상세정보</a></li>
-									<li><a href="/admin/adseller.do" class="">판매자 관리</a></li>
-									<li><a href="#" class="">추후 수정</a></li>
+<!-- 									<li><a href="/admin/adseller.do" class="">판매자 관리</a></li> -->
+<!-- 									<li><a href="#" class="">추후 수정</a></li> -->
 								</ul>
 							</div>
 						</li>

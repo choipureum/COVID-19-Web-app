@@ -122,12 +122,48 @@ function emailCheckFunc(){
 h5{ text-align: center; }
 h5 span{ color:blue; }
 #findpw { 
-	background-color: #164165;
-    color:white; 
-    border-radius: 5px;   
-    border: 0; 
-    padding: 11px 93px; 
+	background:#164165;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:30px;
+  font-size:1em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
  } 
+ 
+ #findpw:hover{
+
+  background:#fff;
+  color:#164165;
+
+ }
+ 
+ #findpw:before,#findpw:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #164165;
+  transition:400ms ease all;
+}
+/* #164165 */
+#findpw:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+#findpw:hover:before,#findpw:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+ 
+ 
 .id_Button{ 
     background-color: rgb(220,220,220); 
     color:black; 

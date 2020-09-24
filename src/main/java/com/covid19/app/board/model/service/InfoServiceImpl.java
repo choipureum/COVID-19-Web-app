@@ -18,6 +18,7 @@ import com.covid19.app.board.model.vo.InfoShare;
 
 import common.exception.FileException;
 import common.util.FileUtil;
+import common.util.InfoPaging;
 import common.util.Paging;
 
 
@@ -28,24 +29,21 @@ public class InfoServiceImpl implements InfoService{
 	private InfoDao infoDao;
 	
 	//정보공유 게시판 목록
-//	@Override
-//	public List<Map<String, Object>> selectInfoList(Map<String, Object> map) throws Exception {
-//		return infoDao.selectInfoList(map);
-//	}
-
-	
 	@Override
-	public Map<String, Object> selectInfo(int currentPage, int cntPerPage) {
+	public Map<String, Object> selectInfo(int currentPage, int cntPerPage, String search_item, String search_content) {
 		
 		Map<String,Object> commandMap = new HashMap<String, Object>();
-		
+		commandMap.put("search_item", search_item);
+		commandMap.put("search_content", search_content);
 		
 		//페이징 처리를 위한 객체 생성
-		Paging p = new Paging(infoDao.selectInfoCnt(), currentPage, cntPerPage);
+		InfoPaging p = new InfoPaging(infoDao.selectInfoCnt(commandMap), currentPage, cntPerPage);
+		p.setSearch_item(search_item);
+		p.setSearch_content(search_content);
 		
 		List<InfoShare> ilist = infoDao.selectInfoList(p);
 		commandMap.put("ilist", ilist);
-		commandMap.put("paging", p);
+		commandMap.put("InfoPaging", p);
 		
 		return commandMap;
 	}
@@ -82,30 +80,30 @@ public class InfoServiceImpl implements InfoService{
 		
 	}
 
-	@Transactional
-	public int insertInfo(InfoShare infoShare, List<MultipartFile> files, String root) throws FileException{
-		
-		try {
-			
-			int result = infoDao.insertInfo(infoShare);
-			
-			if(!(files.size() == 1 && files.get(0).getOriginalFilename().equals(""))) {
-				
-				//파일업로드를 위한 FileUtil.uploadFile
-				List<Map<String,String>> filedata = new FileUtil().fileupload(files, root);
-				
-				
-				for(Map<String,String>f : filedata) {
-					infoDao.insertFile(f);
-				}
-			}
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new FileException("F_EROOR_01");
-		}	
-		
-	}
+//	@Transactional
+//	public int insertInfo(InfoShare infoShare, List<MultipartFile> files, String root) throws FileException{
+//		
+//		try {
+//			
+//			int result = infoDao.insertInfo(infoShare);
+//			
+//			if(!(files.size() == 1 && files.get(0).getOriginalFilename().equals(""))) {
+//				
+//				//파일업로드를 위한 FileUtil.uploadFile
+//				List<Map<String,String>> filedata = new FileUtil().fileupload(files, root);
+//				
+//				
+//				for(Map<String,String>f : filedata) {
+//					infoDao.insertFile(f);
+//				}
+//			}
+//			return result;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new FileException("F_EROOR_01");
+//		}	
+//		
+//	}
 
 	
 	//댓글등록
@@ -129,9 +127,17 @@ public class InfoServiceImpl implements InfoService{
 	}
 
 	@Override
-	public void insertInfo(InfoShare infoshare) throws Exception {
-		infoDao.insertInfo(infoshare);
+	public int insertInfo(InfoShare infoshare){
+		return infoDao.insertInfo(infoshare);
 		
+	}
+
+	@Override
+	public int updateInfo(InfoShare infoShare) {
+		
+		int result = infoDao.updateInfo(infoShare);
+		
+		return result;
 	}
 
 	

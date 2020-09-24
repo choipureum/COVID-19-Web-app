@@ -58,7 +58,7 @@ function requestPayment() {
 				dataType: 'json',
 				contentType:'application/json; charset=utf-8',
 				data : pay
-			
+				
 			}).done(function(data) {
 				//[2] 서버에서의 응답 처리
 				if ( data == 'success' ) {
@@ -81,6 +81,7 @@ function requestPayment() {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
 	    }
+	    console.log(pay);
 		alert(msg);
 	    location.href="/share/list.do";
 	});

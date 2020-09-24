@@ -37,6 +37,15 @@ public class Paging {
 	//sql에서 사용할 끝 값
 	private int end;
 	private String filter;
+	private int sorting;
+	public int getSorting() {
+		return sorting;
+	}
+
+	public void setSorting(int sorting) {
+		this.sorting = sorting;
+	}
+
 	public Paging() {
 		
 	}
@@ -170,7 +179,7 @@ public class Paging {
 	public String toString() {
 		return "Paging [currentPage=" + currentPage + ", total=" + total + ", cntPerPage=" + cntPerPage + ", blockCnt="
 				+ blockCnt + ", blockStart=" + blockStart + ", blockEnd=" + blockEnd + ", lastPage=" + lastPage
-				+ ", start=" + start + ", end=" + end + "]";
+				+ ", start=" + start + ", end=" + end + ", filter=" + filter + ", sorting=" + sorting + "]";
 	}
 
 	

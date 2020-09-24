@@ -25,17 +25,6 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 
 <script async="" src="https://static.sbsdlab.co.kr/common/jquery.lazy/jquery.lazy.min.js" onload="loadLazyLoad()" onerror="lazyerror()"></script>
 
-<form name="form1" id="form1" method="post">
-<input name="pageIndex" id="pageIndex" type="hidden" value="" />
-
-<!-- <input type="hidden" id="ncv_file_seq" name="ncv_file_seq" value="" /> -->
-<!-- <input type="hidden" id="file_path" name="file_path" value="" /> -->
-<!-- <input type="hidden" id="file_name" name="file_name" value="" /> -->
-<!-- <input type="hidden" id="brdId" name="brdId" value="3" /> -->
-<!-- <input type="hidden" id="brdGubun" name="brdGubun" value="32" /> -->
-<!-- <input type="hidden" id="dataGubun" name="dataGubun" value="" /> -->
-<!-- <input type="hidden" id="ncvContSeq" name="ncvContSeq" /> -->
-
 	<div class="container" style="background:white">
 	
 			<div>
@@ -55,18 +44,6 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 		                    </div>
 		                </div>
 		            </div>
-		            <!--텝메뉴-->
-		            
-<!--                         <div class="tab_flt cnt6-3-2"> -->
-<!--                             <ul> -->
-<!--                                 <li class="on"><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/covidNews.do', '3', '32', '', '');"><span>S</span></a></li> -->
-<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '324', '');"><span>K</span></a></li> -->
-<!--                                 <li ><a href="javascript:void(0);" onclick="javascript:fn_goMenu('/infoBoardList.do', '3', '32', '321', '');"><span>M</span></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-                    
-                       
-	                <!--게시판 목록-->
 	                 
 	                <!--게시판 상단부-->
 	                <div class="board_top">
@@ -75,23 +52,25 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 	                    </div>
 	                        
 	                    <div class="fl_r">
-	                            <fieldset>
-	                                <legend class="hdn">게시물 검색</legend>
-	                                <div class="bt_srch">
-	                                    <div class="bts_slct">
-	                                        <select id="u_shcate" name="search_item" class="select" title="검색항목 선택">
-	                                            <option value="1" >제목 </option>
-	                                            <option value="2" >내용 </option>
-	                                        </select>
-	                                    </div>
-	                                    <div>
-	                                        <input type="text" id="search_content" name="search_content" value="" title="검색어를 입력하세요.">
-	                                    </div>
-	                                    <div class="bts_btn">
-	                                        <input type="submit" class="btn btn_sm btn_gray" value="검색">
-	                                    </div>
-	                                </div>
-	                            </fieldset>
+		                    <form id="covidNewsSearch" action="/covidNews.do" method="get">
+		                            <fieldset>
+		                                <legend class="hdn">게시물 검색</legend>
+		                                <div class="bt_srch">
+		                                    <div class="bts_slct">
+		                                        <select id="u_shcate" name="search_item" class="select" title="검색항목 선택">
+		                                            <option value="t" >제목 </option>
+		                                            <option value="c" >내용 </option>
+		                                        </select>
+		                                    </div>
+		                                    <div>
+		                                        <input type="text" id="search_content" name="search_content" value="" title="검색어를 입력하세요.">
+		                                    </div>
+		                                    <div class="bts_btn">
+		                                        <input type="submit" class="btn btn_sm btn_gray" value="검색">
+		                                    </div>
+		                                </div>
+		                            </fieldset>
+		                     </form>
 	                    </div>
 	                </div>
 	                        <p style="font-size: 15px;">※ 뉴스제목 클릭 시 해당 언론사 기사 페이지로 이동합니다.</p>
@@ -139,36 +118,34 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
                         </table>
                     </div>
                     <br>
+                    
+                    
 	                <!--페이징-->
-<!-- 					<div class="paging"> -->
-<!-- 						<a href="#" class="p_first" title="처음" onclick="fn_search(1); return false;"><span class="hdn">처음페이지</span></a><a href="#" class="p_prev" title="이전" onclick="fn_search(1); return false;"><span class="hdn">이전페이지</span></a>&nbsp;&nbsp;<strong>1</strong>&nbsp;&nbsp;<a href="#" onclick="fn_search(2); return false;">2</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(3); return false;">3</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(4); return false;">4</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(5); return false;">5</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(6); return false;">6</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(7); return false;">7</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(8); return false;">8</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(9); return false;">9</a>&nbsp;&nbsp;<a href="#" onclick="fn_search(10); return false;">10</a>&nbsp;&nbsp;<a href="#" class="p_next" title="다음" onclick="fn_search(11); return false;"><span class="hdn">다음페이지</span></a><a href="#" class="p_last" title="끝" onclick="fn_search(105); return false;"><span class="hdn">끝페이지</span></a> -->
-						
-<!-- 					</div> -->
 					
 					<div class="paging">section pagination
-			         <a href="<%= request.getContextPath() %>/covidNews.do" class="p_first"><i class="p_first"></i></a>
+			         <a href="<%= request.getContextPath() %>/covidNews.do?search_item=${param.search_item}&search_content=${param.search_content}" class="p_first"><i class="p_first"></i></a>
 			        <c:choose>
 			        	<c:when test="${paging.blockStart > 1 }">
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart-1}" class="p_prev"></a>
+			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart-1}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_prev"></a>
 			        	</c:when>
 			        	<c:otherwise>
-			        		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart}" class="p_prev"></a>
+			        		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockStart}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_prev"></a>
 			        	</c:otherwise>
 			        </c:choose>
 			        <c:forEach begin="${paging.blockStart}" end="${paging.blockEnd}" var="page">
-			         <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${page}" class="num active"><span>${page}</span></a>
+			         <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${page}&search_item=${param.search_item}&search_content=${param.search_content}" class="num active"><span>${page}</span></a>
 			        </c:forEach> 
 			        
 			        <c:choose>
 			        	<c:when test="${paging.blockEnd+1 > paging.lastPage }">
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd}" class="p_next"></a>
+			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_next"></a>
 			        	</c:when>
 			        	<c:otherwise>
-			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd+1}" class="p_next"></a>
+			         		<a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.blockEnd+1}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_next"></a>
 			        	</c:otherwise>
 			   	   	</c:choose>
 			 	   	 
-			 	   	 <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.lastPage}" class="p_last"></a>
+			 	   	 <a href="<%= request.getContextPath() %>/covidNews.do?cPage=${paging.lastPage}&search_item=${param.search_item}&search_content=${param.search_content}" class="p_last"></a>
 			      	<div class="btn_section" style="background-color:white">
 			   	  	</div>
 	                
@@ -177,10 +154,9 @@ function lazyerror(){loadScript("https://img.sbs.co.kr/news/common/pc/js/jquery-
 	                
 					</div>
 				</div>
-			</div>
+			</div> <!-- content end -->
 		</div>
-	</div>
-</form>
+	</div> <!-- container end -->
 
 <jsp:include page="/footer.do" />
 
